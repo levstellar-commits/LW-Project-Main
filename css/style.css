@@ -39,12 +39,21 @@
 
 /* 图层 0: 宇宙背景 (只在首屏) */
 #hero-bg {
-    position: absolute; /* ⚠️ 改成 absolute，不跟随滚动 */
+    position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url('assets/images/hero-bg.jpg');
-    background-size: cover; background-position: center;
-    z-index: 0;
+    
+    /* 路径修正：CSS文件在css文件夹里，要向上一级找assets */
+    background-image: url('../assets/images/hero-bg.jpg'); 
+    
+    background-size: cover; 
+    background-position: center;
+    
+    z-index: 0; /* ✅ 按照你的想法，设为 0 */
 }
+
+
+
+
 
 /* 图层 1: 星座粒子 (你的星座回来了！) */
 #particles-js {
@@ -1557,10 +1566,10 @@ nav, header {
   top: 48%;
   left: 0;
   transform: translate3d(100vw, -50%, 0);
-  z-index: 30; /* <- 降低到 30，使其在大多数文字下方 */
+  z-index: 2; /* <- 降低到 30，使其在大多数文字下方 */
   width: 550px;  /* 已为您放大 */
   height: 235px; /* 已按比例调整 */
-  pointer-events:none;
+  pointer-events: none;
   animation: flyAcross 9s cubic-bezier(.22,.9,.29,1) infinite;
   will-change: transform, opacity;
 }
@@ -1676,7 +1685,7 @@ filter:brightness(1.15) drop-shadow(0 12px 40px rgba(255, 69, 0, 0.7));
 } /* 把龙图放到低层 */
 .hero, .hero-content, .hero-inner, .hero .title, .hero .subtitle, .hero .hero-line, .hero .hero-sub {
   position: relative !important;
-  z-index: 1000 !important; /* 文字层级远高于飞行物 */
+  z-index: 100 !important; /* 文字层级远高于飞行物 */
 }
 
 /* 防止某些元素用 transform 创建新的 stacking context 导致 z-index 无效 */
@@ -2106,13 +2115,7 @@ details[style*="cursor: pointer;"] summary::-webkit-details-marker {
 
 
 
-/* === 星空背景粒子动画 (让你的星空动起来) === */
-#particles-js {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-color: transparent; /* 保持透明，在你的现有背景之上 */
-    z-index: -2; /* 比内容层低，比你原有的星空背景高一点 */
-}
+
 
 
 
