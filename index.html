@@ -1712,7 +1712,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-<div id="wxSafeModal" class="wx-safe-modal">
+<div id="wxSafeModal" class="wx-safe-modal" style="display:none;">
     <div class="wx-safe-modal-content">
         <span class="wx-safe-modal-close" onclick="closeWxSafeModal()">&times;</span>
         <h3>请在浏览器中打开</h3>
@@ -2325,19 +2325,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const avatar = hud.querySelector('.avatar');
     if (!avatar) return;
 
-    avatar.addEventListener('click', (e) => {
-        // 阻止冒泡，防止触发折叠/展开逻辑
-        e.stopPropagation();
+avatar.addEventListener('click', (e) => {
+        // 1. 允许冒泡，这样才能触发 toggleCollapsed (折叠)
+        // e.stopPropagation(); // 注释掉这行
         
-        // 切换类名：如果有 is-zoomed 就删掉，没有就加上
-        hud.classList.toggle('is-zoomed');
-        
-        // 可选：如果是放大状态，自动在 3 秒后缩回去（防止遮挡太久）
-        if (hud.classList.contains('is-zoomed')) {
-            setTimeout(() => {
-                hud.classList.remove('is-zoomed');
-            }, 3000);
-        }
+        // 2. 强制移除放大状态 (解决你的痛点：点一下就变回正常大小)
+        hud.classList.remove('is-zoomed'); 
     });
     
     // 点击页面其他地方也能缩回去
