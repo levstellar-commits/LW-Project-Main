@@ -405,49 +405,62 @@ nav, header {
 }
 
 
- /* ---- HUD 收起提示 chevron 按钮 ---- */
+ 
+
+/* ---- HUD 收起提示 chevron 按钮（改进版） ---- */
 .dawei-hint {
   width: 34px;
   height: 34px;
   border-radius: 8px;
   border: none;
   background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0 6px 20px rgba(0,0,0,0.35);
-  margin-left:8px;
+  margin-left: 8px;
   cursor: pointer;
   color: rgba(230,240,255,0.95);
   pointer-events: auto;
+  
+  /* 新增：默认就显示箭头，不再隐藏 */
+  opacity: 1;
+  visibility: visible;
 }
 
-/* chevron 图形用伪元素（向右收起的提示） */
+/* chevron 图形：默认向右箭头（表示“点击收起”） */
 .dawei-hint::before {
   content: "";
-  display:block;
-  width:10px;
-  height:10px;
-  border-right:2px solid rgba(230,240,255,0.95);
-  border-top:2px solid rgba(230,240,255,0.95);
-  transform: rotate(45deg); /* 右箭头 */
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid rgba(230,240,255,0.95);
+  border-top: 2px solid rgba(230,240,255,0.95);
+  transform: rotate(45deg); /* ➜ 向右 */
+  transition: transform 0.3s ease; /* 转方向时平滑 */
 }
 
-/* pulse 提示效果（加载时轻微跳动） */
-.dawei-hint.hint-pulse {
-  animation: daweiHintPulse 1s ease-in-out 0s 3;
-}
-@keyframes daweiHintPulse {
-  0% { transform: translateX(0); box-shadow:0 6px 20px rgba(0,0,0,0.25); }
-  50% { transform: translateX(-4px);
-  box-shadow:0 10px 26px rgba(0,0,0,0.35); }
-  100% { transform: translateX(0); box-shadow:0 6px 20px rgba(0,0,0,0.25); }
-}
-
-/* 当 HUD 折叠时，把 chevron 方向改成向左（提示展开） */
+/* 折叠状态：箭头变成向左（表示“点击展开”） */
 .dawei-hud.collapsed .dawei-hint::before {
-  transform: rotate(-135deg); /* 左箭头 */
+  transform: rotate(-135deg); /* ➜ 变成 ← */
 }
+
+/* 新增：首次加载时让箭头轻微跳动几次，吸引用户注意可以点击 */
+.dawei-hint.hint-pulse {
+  animation: daweiHintPulse 1.5s ease-in-out 0s 4; /* 多跳几次 */
+}
+
+@keyframes daweiHintPulse {
+  0% { transform: translateX(0); box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
+  50% { transform: translateX(-6px); box-shadow: 0 10px 26px rgba(0,0,0,0.45); }
+  100% { transform: translateX(0); box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
+}
+
+/* 新增：默认给箭头加上跳动动画（加载后自动执行） */
+.dawei-hud .dawei-hint {
+  animation: daweiHintPulse 1.5s ease-in-out 1s 3; /* 延迟1秒，开始跳3次 */
+}
+
 
 
 
@@ -2955,6 +2968,16 @@ details[style*="cursor: pointer;"] summary::-webkit-details-marker {
     pointer-events: none; /* 关键！让鼠标能穿透粒子，点到下面的按钮 */
 }
 
+
+
+
+/* ========== 手机端隐藏解大为悬浮窗（避免遮挡内容） ========== */
+@media (max-width: 768px) {
+    .dawei-hud,
+    .dawei-guide {
+        display: none !important;   /* 彻底隐藏，不占任何空间 */
+    }
+}
 
 
 
