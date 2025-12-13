@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>雪里霜 - 宇宙萌宠 | 立维宇宙</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/subpage.css">
+  </head>
+<body>
+  <header> 
+<div id="header-placeholder"></div>
+</header>
+  <main>
+    <section class="subpage-hero" style="background-image: url('../assets/images/mascot_snowfox_hero.jpg');">
+        <div class="subpage-hero-overlay">
+            <p class="breadcrumb"><a href="../index.html">首页</a> &gt; <a href="../index.html#heroes">宇宙萌宠</a></p>
+            <h1>雪里霜 (Mengji)</h1>
+            <h2>上古纪元的引导者 · 星轨追逐者</h2>
+        </div>
+    </section>
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="data-sheet">
+                <div class="data-item"><div class="label">物种</div><div class="value">山海经异兽 · 孟极</div></div>
+                <div class="data-item"><div class="label">登场作品</div><div class="value"><a href="../works/yanhuangxingzhao.html">《炎黄星曌：命外之人》</a></div></div>
+                <div class="data-item"><div class="label">特质</div><div class="value">迅捷、星轨感知、情感治愈</div></div>
+            </div>
+        </section>
+        <section class="content-section">
+            <figure class="quote-block"><blockquote><p>它以星轨为印记，用温柔，指引我穿行在神谕与代码的战场。</p></blockquote></section>
+        <section class="content-section">
+            <div class="content-section-title"><h3>物种解读</h3></div>
+            <div class="text-image-split">
+                <div class="split-text">
+                    <h4>基因记忆的伴侣</h4>
+                    <p>雪里霜源自上古异兽孟极的基因样本，其雪白的皮毛中流淌着微弱的星辰能量。它并非普通的宠物，而是主角姜炎洺在觉醒之路上最亲密的伙伴。雪里霜能够感知并“具现化”周围环境的数字星轨和时间回响，这使得它能够提前预警危险，并帮助姜炎洺在战斗和抉择中，稳定其混乱的“时间之眼”能力。</p>
+                </div>
+                <div class="split-image"><img src="../assets/images/mascot_xuelishuang.jpg" alt="雪里霜概念图"></div>
+            </div>
+        </section>
+        <section class="content-section">
+            <div class="text-image-split">
+                 <div class="split-image"><img src="../assets/images/char_jiangyanming.jpg" alt="与姜炎洺的羁绊"></div>
+                <div class="split-text">
+                    <h4>驯化混沌的温柔</h4>
+                    <p>姜炎洺在掌握“炎帝之火”与“时间回溯”能力的过程中，常因接收到过多维度信息而陷入情绪崩溃。正是雪里霜——这个看似娇小但体内蕴含着宇宙星辰的小家伙——用它的温柔和独特的治愈光晕，在关键时刻稳定了姜炎洺的精神链接。它不负责战斗，而是负责情感计算和神经安定。它存在的本身，就是对姜炎洺不断在“创造与毁灭间抉择”的旅程，最坚实且最温暖的锚点。</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <section class="explore-next"> </section>
+  </main>
+  <footer><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;"><div><div style="font-weight:700">Levythos · 立维宇宙 · Vigio Design · 维杰设计</div><div class="muted" style="margin-top:6px">© 2025 Levythos Global · Vigio Planning & Architectural Design Co., Ltd. 保留所有权利。</div></div><div class="muted" style="font-size:13px">Global Creative HQ · Shanghai · business@levythos.com</div></div></footer>
+  <script>/* JS代码省略 */</script>
+<script>
+// (此处省略 JS 加载逻辑，确保和 xuanshuibaobao.html 的结构一致)
+// ----------------------------------------------------
+// [功能 1] 自动加载 /header.html 文件
+// ----------------------------------------------------
+function loadHeader() {
+    fetch('/header.html')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('网络响应不佳');
+            }
+            return response.text();
+        })
+        .then(data => {
+            const headerPlaceholder = document.getElementById('header-placeholder');
+            if (headerPlaceholder) {
+                headerPlaceholder.innerHTML = data;
+            }
+            setupWeChatSecurity();
+        })
+        .catch(error => {
+            console.error('加载导航栏失败:', error);
+        });
+}
+
+// ----------------------------------------------------
+// [功能 2] 微信安全拦截逻辑 (和之前一样)
+// ----------------------------------------------------
+const wxSafeModal = document.getElementById('wxSafeModal'); 
+
+function openWxSafeModal() {
+    if (wxSafeModal) wxSafeModal.style.display = 'flex';
+}
+function closeWxSafeModal() {
+    if (wxSafeModal) wxSafeModal.style.display = 'none';
+}
+
+function setupWeChatSecurity() {
+    if (document.documentElement.classList.contains('in-wechat')) {
+        const headerLoginButton = document.querySelector('a[onclick*="openLoginModal"]');
+        if (headerLoginButton) {
+            headerLoginButton.setAttribute('onclick', 'event.preventDefault();'); 
+            headerLoginButton.addEventListener('click', function(e) {
+                e.preventDefault(); 
+                e.stopPropagation();
+                openWxSafeModal(); 
+            });
+        }
+        
+        const arenaButtons = document.querySelectorAll('#arena a[href*="#arena-debate-details"]');
+        arenaButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault(); 
+                e.stopPropagation();
+                openWxSafeModal(); 
+            });
+        });
+
+        const reviewButton = document.querySelector('button[onclick*="openReviewModal"]');
+        if (reviewButton) {
+            reviewButton.setAttribute('onclick', ''); 
+            reviewButton.addEventListener('click', function(e) {
+                e.preventDefault(); 
+                e.stopPropagation();
+                openWxSafeModal(); 
+            });
+        }
+    }
+}
+
+// ----------------------------------------------------
+//  [启动] 页面加载时，立刻执行
+// ----------------------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+    loadHeader(); // 启动导航栏加载
+    
+    window.addEventListener('click', (event) => {
+        if (event.target == wxSafeModal) {
+            closeWxSafeModal();
+        }
+    });
+});
+</script>
+
+<a href="javascript:history.back()" class="mobile-back-fab" aria-label="返回上一页">
+    <span class="icon">←</span> <span class="text">返回</span>
+</a>
+</body>
+</html>
