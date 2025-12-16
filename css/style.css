@@ -294,13 +294,17 @@ nav, header {
   animation: hud-fade-in 0.5s ease-out 1s forwards;
 }
 
+
+
 /* 移除折叠态（因为现在不需要收起） */
 .dawei-hud.collapsed {
-  width: auto;
-  height: auto;
-  padding: 0;
-  border-radius: 0;
-  overflow: visible;
+    /* 核心收缩动作：向右移动，只露出头像的宽度 (70px) */
+    transform: translateY(-50%) translateX(calc(100% - 70px)); 
+    width: auto;
+    height: auto;
+    padding: 0;
+    border-radius: 0;
+    overflow: visible;
 }
 
 /* 新增一个动画定义 */
@@ -312,8 +316,9 @@ nav, header {
 
 /* 头像尺寸略小 */
 .dawei-hud .avatar, .dawei-guide .avatar {
-  width: 52px;
-  height: 52px;
+  /* 恢复到您代码末尾使用的 70px 尺寸，确保头像和收缩逻辑匹配 */
+  width: 70px !important;
+  height: 70px !important;
   border-radius: 50%;
   background-size: cover;
   background-position: center;
@@ -359,8 +364,13 @@ nav, header {
 }
 
 /* 移除折叠时隐藏面板 */
+/* 核心改动：在折叠状态下彻底隐藏对话框 */
 .dawei-hud.collapsed .dawei-body,
-.dawei-hud.collapsed .bubble { display: block; opacity: 1; visibility: visible; } 
+.dawei-hud.collapsed .bubble { 
+    display: none !important; 
+    opacity: 0 !important; 
+    visibility: hidden !important; 
+} 
 
 /* 移除悬停展开效果，保持稳定 */
 .dawei-hud:hover .dawei-body, 
@@ -381,29 +391,40 @@ nav, header {
   text-overflow: ellipsis;
 }
 
-/* 小屏幕适应：保持紧凑靠右 */
-@media (max-width: 760px) {
-  /* 手机端彻底隐藏悬浮窗（你文件里已有，这里只是保持，不冲突） */
-  .dawei-hud, .dawei-guide { 
-      display: none !important; 
-  }
-}
-
-/* 无动画偏好 */
-@media (prefers-reduced-motion: reduce) {
-  .dawei-hud, .dawei-hud .dawei-line {
-    transition: none !important;
-    transform: none !important; opacity: 1 !important;
-  }
-}
-
-
-/* 移除收起提示 chevron 按钮，现在始终展开，不需要这个按钮 */
+/* [新增] 箭头提示：定义样式和切换逻辑 */
 .dawei-hint {
-    display: none !important;
+    display: block !important; /* 强制显示箭头按钮 */
+    position: absolute;
+    left: -24px; /* 定位到头像左边一点 */
+    width: 20px; height: 20px;
+    background: rgba(0, 229, 255, 0.1);
+    border: 1px solid rgba(0, 229, 255, 0.4);
+    border-radius: 50%;
+    color: #00e5ff;
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 18px;
+    text-align: center;
+    transition: all 0.3s ease;
+    z-index: 10001;
+    cursor: pointer;
 }
 
+.dawei-hint::before {
+    content: '◀'; /* 默认显示「<」提示收起 */
+    display: block;
+    transform: translateX(0px);
+    transition: transform 0.3s ease, content 0.3s ease;
+    color: var(--accent);
+    font-size: 14px;
+    line-height: 1.2;
+}
 
+.dawei-hud.collapsed .dawei-hint::before {
+    content: '▶'; /* 折叠状态下显示「>」提示展开 */
+    transform: translateX(1px); 
+    color: var(--accent2);
+}
 
 
 
