@@ -2923,6 +2923,108 @@ details[style*="cursor: pointer;"] summary::-webkit-details-marker {
 
 
 
+/* =================================================================
+   ★ 解大为悬浮窗增强：拖拽 + 收起 + 提示
+   ================================================================= */
+
+/* 1. 容器基础设定：允许拖拽的层级与光标 */
+.dawei-hud {
+    /* 确保触摸和点击事件有效 */
+    touch-action: none; 
+    user-select: none; /* 防止拖拽时选中文字 */
+    transition: opacity 0.3s ease; /* 只保留透明度过渡，位置过渡由JS控制以免拖拽延迟 */
+}
+
+/* 2. 头像：作为拖拽的手柄 */
+.dawei-hud .avatar {
+    cursor: grab; /* 显示抓手图标 */
+    position: relative;
+    z-index: 1001;
+}
+.dawei-hud .avatar:active {
+    cursor: grabbing; /* 按下时显示紧握图标 */
+    transform: scale(0.95); /* 按下微缩反馈 */
+}
+
+/* 3. 关闭按钮 (新增) - 放在对话框右上角 */
+.dawei-close-btn {
+    position: absolute;
+    top: -8px;
+    left: -8px; /* 放左上角或者右上角看你喜好，这里设为左上角比较顺手 */
+    width: 20px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 50%;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1002;
+    opacity: 0.8;
+    transition: all 0.2s;
+    display: block;
+}
+.dawei-close-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    background: var(--accent);
+    color: #000;
+}
+
+/* 4. 收起状态 (.collapsed) 的核心动画 */
+.dawei-hud.collapsed .dawei-body, 
+.dawei-hud.collapsed .bubble {
+    /* 核心：向右平移 + 透明 + 缩小 */
+    transform: translateX(30px) scale(0.8);
+    opacity: 0;
+    pointer-events: none; /* 收起后点不到 */
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* 弹性动画 */
+}
+
+/* 展开状态恢复 */
+.dawei-hud .dawei-body, 
+.dawei-hud .bubble {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+/* 5. 收起后的提示红点 (告诉访客可以点开) */
+.dawei-hud.collapsed .avatar::after {
+    content: '💬'; /* 一个小的对话气泡图标 */
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    background: var(--accent);
+    color: #000;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid #000;
+    animation: bounce-in 0.5s;
+    z-index: 1003;
+}
+
+@keyframes bounce-in {
+    0% { transform: scale(0); }
+    80% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* 6. 隐藏原生多余的提示 */
+.dawei-hint { display: none !important; }
+
+
+
+
 
 
   </style>
