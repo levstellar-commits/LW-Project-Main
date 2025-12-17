@@ -1499,197 +1499,107 @@ document.addEventListener('DOMContentLoaded', () => {
     "default": { zh: ["我是编年者。"] }
   };
 
-  
-
-
-// 1. 创建节点函数 (已增强)
   function createHUDNode(avatarUrl) {
     const container = document.createElement('div');
     container.id = 'dawei-hud';
     container.className = 'dawei-hud';
-    // 初始样式：固定在右侧中间
-    container.style.position = 'fixed';
-    container.style.top = '50%';
-    container.style.right = '8px';
-    container.style.zIndex = '9999';
-    
-    // 创建头像
+    container.setAttribute('tabindex','0');
+    container.setAttribute('role','complementary');
+    container.setAttribute('aria-expanded','true');
     const avatar = document.createElement('div');
     avatar.className = 'dawei-avatar avatar';
     avatar.style.backgroundImage = avatarUrl || "url('assets/images/archetype_dawei_guide.jpg')";
-    
-    // 创建气泡主体
+    const hint = document.createElement('button');
+    hint.className = 'dawei-hint';
+    hint.setAttribute('aria-label','收起或展开对话框');
+    hint.type = 'button';
     const body = document.createElement('div');
     body.className = 'dawei-body';
-    
-    // ★ 新增：关闭按钮 (X)
-    const closeBtn = document.createElement('div');
-    closeBtn.className = 'dawei-close-btn';
-    closeBtn.innerHTML = '×';
-    closeBtn.setAttribute('title', '收起对话');
-    // 将关闭按钮放入气泡内 (或者放在头像旁，这里放在气泡内更直观)
-    body.appendChild(closeBtn);
-
-    // 文案容器
     const lines = document.createElement('div');
     lines.className = 'dawei-lines';
     lines.id = 'dawei-lines';
-    lines.innerHTML = '<p class="dawei-line">系统初始化完成...</p>';
+    lines.setAttribute('aria-atomic','true');
+    const initial = document.createElement('p');
+    initial.className = 'dawei-line';
+    initial.textContent = copyMap['hero-cinematic'].zh[0];
+    lines.appendChild(initial);
     body.appendChild(lines);
-
-    // 组装
-    container.appendChild(avatar); // 头像在上
-    container.appendChild(body);   // 气泡在下
-    
+    container.appendChild(avatar);
+    container.appendChild(body);
+    container.appendChild(hint);
     return container;
   }
 
-  // 2. 拖拽逻辑核心函数
-  function makeDraggable(el, handle) {
-      let isDragging = false;
-      let startY, startTop;
-      let hasMoved = false; // 用于区分点击和拖拽
-
-      // 鼠标/手指按下
-      const onDown = (e) => {
-          // 只允许左键
-          if (e.type === 'mousedown' && e.button !== 0) return;
-          
-          isDragging = true;
-          hasMoved = false; // 重置移动标记
-          
-          // 兼容触屏和鼠标
-          const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
-          
-          startY = clientY;
-          // 获取当前计算后的 top 值
-          const rect = el.getBoundingClientRect();
-          startTop = rect.top;
-
-          // 关键：拖拽开始时，移除 transform 的居中定位，改为绝对像素定位
-          // 这样计算更精准，防止抖动
-          el.style.transform = 'none'; 
-          el.style.top = startTop + 'px';
-          el.style.bottom = 'auto'; // 清除可能存在的bottom干扰
-
-          // 添加全局监听
-          document.addEventListener('mousemove', onMove);
-          document.addEventListener('touchmove', onMove, { passive: false });
-          document.addEventListener('mouseup', onUp);
-          document.addEventListener('touchend', onUp);
-          
-          // 阻止默认事件（如选中文本）
-          if(e.cancelable) e.preventDefault();
-      };
-
-      // 移动中
-      const onMove = (e) => {
-          if (!isDragging) return;
-          
-          const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
-          const deltaY = clientY - startY;
-
-          // 如果移动距离超过 5px，才视为拖拽（防止手抖导致无法点击）
-          if (Math.abs(deltaY) > 5) {
-              hasMoved = true;
-          }
-
-          // 限制边界 (不跑出屏幕)
-          let newTop = startTop + deltaY;
-          const maxTop = window.innerHeight - el.offsetHeight - 20;
-          if (newTop < 10) newTop = 10;
-          if (newTop > maxTop) newTop = maxTop;
-
-          el.style.top = newTop + 'px';
-          
-          if(e.cancelable) e.preventDefault(); // 防止手机端滚动屏幕
-      };
-
-      // 释放
-      const onUp = () => {
-          isDragging = false;
-          document.removeEventListener('mousemove', onMove);
-          document.removeEventListener('touchmove', onMove);
-          document.removeEventListener('mouseup', onUp);
-          document.removeEventListener('touchend', onUp);
-      };
-
-      // 绑定事件到“手柄”（头像）
-      handle.addEventListener('mousedown', onDown);
-      handle.addEventListener('touchstart', onDown, { passive: false });
-
-      // 返回状态查询函数，供点击事件使用
-      return () => hasMoved;
+  function ensureHUD() {
+    let hud = document.getElementById('dawei-hud');
+    if (hud) return hud;
+    const old = document.querySelector('.dawei-guide');
+    const avatarUrl = old ? old.querySelector('.avatar').style.backgroundImage : null;
+    const newNode = createHUDNode(avatarUrl);
+    if (old && old.parentNode) old.parentNode.replaceChild(newNode, old);
+    else document.body.appendChild(newNode);
+    return newNode;
   }
 
-  // 3. 主运行逻辑
   function runtime() {
-    let hud = document.getElementById('dawei-hud');
-    if (!hud) {
-        const old = document.querySelector('.dawei-guide');
-        const avatarUrl = old ? old.querySelector('.avatar').style.backgroundImage : null;
-        hud = createHUDNode(avatarUrl);
-        if (old && old.parentNode) old.parentNode.replaceChild(hud, old);
-        else document.body.appendChild(hud);
+    const hud = ensureHUD();
+    const linesContainer = document.getElementById('dawei-lines');
+    if (!linesContainer) return;
+
+    let activeKey = null;
+    let scrollTimeout;
+    let dialogueInterval;
+    const sections = Object.keys(copyMap)
+      .filter(k => k !== 'default')
+      .map(id => document.getElementById(id))
+      .filter(el => el);
+
+    function updateDialogue(newKey) {
+      if (newKey && newKey !== activeKey) {
+        activeKey = newKey;
+        clearInterval(dialogueInterval);
+        const lines = copyMap[activeKey].zh;
+        let currentIndex = 0;
+        linesContainer.innerHTML = `<p class="dawei-line">${lines[currentIndex]}</p>`;
+
+        if (lines.length > 1) {
+          dialogueInterval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % lines.length;
+            linesContainer.innerHTML = `<p class="dawei-line">${lines[currentIndex]}</p>`;
+          }, 4500);
+        }
+      }
     }
 
-    const avatar = hud.querySelector('.avatar');
-    const closeBtn = hud.querySelector('.dawei-close-btn');
-    const body = hud.querySelector('.dawei-body');
+    function findClosestSectionToCenter() {
+      const viewportCenter = window.innerHeight / 2;
+      let minDistance = Infinity;
+      let closestSectionId = null;
+      sections.forEach(section => {
+          const rect = section.getBoundingClientRect();
+          const distance = Math.abs(rect.top - viewportCenter);
+          if (distance < minDistance) {
+              minDistance = distance;
+              closestSectionId = section.id;
+          }
+      });
+      updateDialogue(closestSectionId);
+    }
 
-    // ★ 启用拖拽 (只允许拖头像)
-    // checkMoved 是一个函数，返回 true 表示刚刚发生了拖拽
-    const checkMoved = makeDraggable(hud, avatar);
+    window.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(findClosestSectionToCenter, 100);
+    }, { passive: true });
 
-    // ★ 切换收起/展开的逻辑
-    function toggleHud() {
+    // 折叠功能的事件绑定
+    const hintBtn = hud.querySelector('.dawei-hint');
+    const avatarBtn = hud.querySelector('.dawei-avatar');
+    function toggleCollapsed(e) {
+        e.stopPropagation();
         hud.classList.toggle('collapsed');
     }
-
-    // 绑定点击事件：头像
-    avatar.addEventListener('click', (e) => {
-        // 关键：如果刚刚发生了拖拽，就不要触发点击（不要收起/展开）
-        if (checkMoved()) return; 
-        
-        // 只有在“已收起”状态下，点击头像才展开
-        // 或者你想点击头像也能收起？一般逻辑是：点击X收起，点击头像展开
-        // 这里我设置为：如果已收起，则展开；如果未收起，则不做操作（防止误触）或者也收起
-        if (hud.classList.contains('collapsed')) {
-            hud.classList.remove('collapsed');
-        } else {
-             // 如果你希望点击头像也能收起，取消下面这行的注释
-             // hud.classList.add('collapsed');
-        }
-    });
-
-    // 绑定点击事件：关闭按钮 (X) -> 必定收起
-    if (closeBtn) {
-        closeBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // 防止冒泡
-            hud.classList.add('collapsed');
-        });
-    }
-
-    // 绑定文案滚动逻辑 (保留你原有的逻辑，此处略简写，直接放进去即可)
-    // ... (此处粘贴你原有的 updateDialogue 和 scroll 监听逻辑) ...
-    // 为了完整性，这里补上简单的文案轮播
-    const linesContainer = document.getElementById('dawei-lines');
-    // (你的 updateDialogue 逻辑放在这里)
-  }
-
-  // 启动
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', runtime);
-  } else {
-    runtime();
-  }
-})();
-
-
-
-
-
-
+    if(hintBtn) hintBtn.addEventListener('click', toggleCollapsed);
+    if(avatarBtn) avatarBtn.addEventListener('click', toggleCollapsed);
     
     setTimeout(findClosestSectionToCenter, 100);
   }
@@ -1709,7 +1619,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // 监听整个页面所有资源加载完毕后 (load事件) 再开始导入 Waline
       window.addEventListener('load', () => { 
-          //⚠️ 核心：使用动态导入 import()，确保 Waline JS 包是异步加载的
+          // ⚠️ 核心：使用动态导入 import()，确保 Waline JS 包是异步加载的
           import('https://unpkg.com/@waline/client@v3/dist/waline.js')
               .then(({ init }) => {
                   init({
@@ -2423,67 +2333,6 @@ avatar.addEventListener('click', (e) => {
         hud.classList.remove('is-zoomed');
     });
 });
-
-
-
-
-/* =================================================================
-   ★ [新增] HUD 交互优化样式 (任务 3)  <-- 请检查此处的代码是否和下面一致
-   ================================================================= */
-
-/* 1. 新增一个半透明的“关闭”图标到气泡左上角 */
-.dawei-hud .close-hint {
-    position: absolute;
-    top: 6px; 
-    left: 8px; /* ⬅️ 确保它在气泡的左上角 */
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.5); 
-    font-weight: bold;
-    cursor: pointer;
-    line-height: 1;
-    transition: color 0.3s;
-    border: 1px solid rgba(255, 255, 255, 0.2); 
-    border-radius: 4px;
-    padding: 1px 3px 2px 3px;
-    z-index: 100; 
-    display: block !important;
-}
-.dawei-hud .close-hint:hover {
-    color: #fff;
-    border-color: #fff;
-}
-
-/* 2. 调整气泡的主体，给关闭按钮留出空间 */
-.dawei-hud .dawei-body, .dawei-hud .bubble {
-    position: relative; 
-    padding-left: 30px !important; /* 增加左侧边距 */
-}
-
-/* 3. 【新提示】在折叠状态下，在头像上显示“气泡”提示 */
-.dawei-hud.collapsed .avatar::before {
-    content: '...'; /* 提示访客这里有内容 */
-    position: absolute;
-    bottom: 0; right: 0;
-    width: 15px; height: 15px;
-    background-color: var(--accent);
-    color: #000;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    font-weight: 900;
-    line-height: 1;
-    transform: translate(5px, 5px);
-    box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.5);
-    z-index: 100;
-}
-
-/* 4. 隐藏折叠状态下的关闭图标 */
-.dawei-hud.collapsed .close-hint {
-    display: none !important;
-}
-
 
 
 
