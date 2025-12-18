@@ -146,14 +146,32 @@
         font-family: 'Courier New', monospace; color: #00e5ff;
         transition: opacity 0.5s ease-out;
     }
-    .loader-text { font-size: 16px; letter-spacing: 2px; margin-bottom: 20px; animation: blink 1s infinite; }
+    .loader-text { font-size: 16px; letter-spacing: 2px; margin-bottom: 20px; }
     .progress-bar { width: 200px; height: 2px; background: #111; position: relative; overflow: hidden; }
-    .progress-bar::after {
-        content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: #00e5ff;
-        animation: loading 2.5s ease-in-out forwards;
-    }
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-    @keyframes loading { 0% { width: 0%; } 40% { width: 30%; } 80% { width: 80%; } 100% { width: 100%; } }
+
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #00e5ff;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: loading 2s ease-out forwards;
+}
+
+
+
+
+   
+ @keyframes loading {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+}
+
 
     /* =========================================
        2. 战术准星鼠标样式 (Tactical Cursor)
@@ -192,6 +210,18 @@
         font-size: 12px; cursor: pointer; transition: all 0.3s;
     }
     #exit-zen-btn:hover { border-color: #00e5ff; color: #00e5ff; }
+
+
+@media (max-width: 768px) {
+    #system-loader {
+        display: none !important;
+    }
+}
+
+
+
+
+
 </style>
 
 
