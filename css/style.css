@@ -1,16 +1,4 @@
-/* ========== [新增] 电影级Hero Section：“双星抉择” ========== */
-#hero-cinematic {
-    width: 100%;
-    height: 80vh;
-    min-height: 500px;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #000;
-    margin-top: -120px; /* 覆盖页面顶部导航栏造成的空白 */
-}
+
 
 .parallax-layer {
     position: absolute;
@@ -23,19 +11,35 @@
 
 
 
-/* =================================================================
-   ★ 修正版样式：首屏限定 (不跟随滚动)
-   ================================================================= */
 
-/* 确保首屏容器是定位基准 */
+/* =========================================
+   ★ 终极修正版 Hero 区域 (防卡顿)
+   ========================================= */
 #hero-cinematic {
     position: relative;
     width: 100%;
-    min-height: 100vh; /* 撑满一屏 */
-    padding-top: 0px; /* ⚠️ 给导航栏留出固定高度，解决A区域留白过高 */
-    overflow: hidden; /* 防止神像飘出界 */
-    background: #000; /* 兜底黑色 */
+    /* PC端全屏，手机端自动高度，防止滑不动 */
+    min-height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #000;
+    /* 给顶部导航栏留出位置，防止内容被遮挡 */
+    padding-top: 80px; 
+    padding-bottom: 40px;
+    z-index: 1;
 }
+
+/* 手机端专门优化 */
+@media (max-width: 768px) {
+    #hero-cinematic {
+        min-height: auto; /* 手机上取消强制全屏，允许滑动 */
+        height: auto;
+        padding-top: 100px;
+    }
+}
+
 
 /* 图层 0: 宇宙背景 (只在首屏) */
 #hero-bg {
