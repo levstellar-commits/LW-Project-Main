@@ -16,13 +16,11 @@
   <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="icon" href="assets/images/favicon.jpg" />
-  <link rel="preload" as="image" href="assets/images/hero_main.jpg">
-  <link rel="preload" as="image" href="assets/images/dragon rider.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link rel="preload" as="image" href="assets/images/hero_main.jpg" fetchpriority="high">
+  
 
-  <link rel="stylesheet" href="css/style.css">
+
+
 
   <meta name="baidu-site-verification" content="codeva-FgXs6ZwMEJ" />
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.jpg"> <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
@@ -79,11 +77,47 @@
 
 <div id="system-loader">
     <img src="./icon-192.png" style="width:60px; height:60px; margin-bottom:20px; border-radius:12px; box-shadow: 0 0 20px rgba(0,229,255,0.3);">
-    
     <div class="loader-text">SYSTEM INITIALIZING...</div>
     <div class="progress-bar"></div>
     <div style="margin-top:10px; font-size:10px; color:#444;">ESTABLISHING NEURAL LINK</div>
 </div>
+
+
+
+
+
+
+<script>
+  (function() {
+    var loader = document.getElementById('system-loader');
+    
+    // 这个函数负责关掉加载层
+    function absoluteForceOpen() {
+      if (!loader) return;
+      console.log("执行强行破门程序...");
+      loader.style.transition = 'opacity 0.5s ease-out';
+      loader.style.opacity = '0';
+      
+      // 等半秒钟动画播完，把这个黑层彻底删掉
+      setTimeout(function() {
+        if (loader && loader.parentNode) {
+          loader.parentNode.removeChild(loader);
+        }
+        // 强制让网页可以滚动
+        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflow = 'auto';
+      }, 500);
+    }
+
+    // 只要网页骨架加载完，就尝试开门
+    window.addEventListener('load', absoluteForceOpen);
+    
+    // 保底：2000毫秒（即2秒）一到，无论如何都必须开门
+    setTimeout(absoluteForceOpen, 2000); 
+  })();
+</script>
+
+
 
 
 
@@ -146,32 +180,14 @@
         font-family: 'Courier New', monospace; color: #00e5ff;
         transition: opacity 0.5s ease-out;
     }
-    .loader-text { font-size: 16px; letter-spacing: 2px; margin-bottom: 20px; }
+    .loader-text { font-size: 16px; letter-spacing: 2px; margin-bottom: 20px; animation: blink 1s infinite; }
     .progress-bar { width: 200px; height: 2px; background: #111; position: relative; overflow: hidden; }
-
-
-.progress-bar::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: #00e5ff;
-    transform: scaleX(0);
-    transform-origin: left;
-    animation: loading 2s ease-out forwards;
-}
-
-
-
-
-   
- @keyframes loading {
-    from { transform: scaleX(0); }
-    to   { transform: scaleX(1); }
-}
-
+    .progress-bar::after {
+        content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: #00e5ff;
+        animation: loading 2.5s ease-in-out forwards;
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    @keyframes loading { 0% { width: 0%; } 40% { width: 30%; } 80% { width: 80%; } 100% { width: 100%; } }
 
     /* =========================================
        2. 战术准星鼠标样式 (Tactical Cursor)
@@ -210,18 +226,6 @@
         font-size: 12px; cursor: pointer; transition: all 0.3s;
     }
     #exit-zen-btn:hover { border-color: #00e5ff; color: #00e5ff; }
-
-
-@media (max-width: 768px) {
-    #system-loader {
-        display: none !important;
-    }
-}
-
-
-
-
-
 </style>
 
 
@@ -249,7 +253,14 @@
 
 
     <div class="spaceship-container" aria-hidden="true">
-        <img src="assets/images/dragon rider.png" alt="立维宇宙创世人驾驭墨龙穿行于星际的概念艺术图" class="spaceship" loading="lazy" decoding="async">
+     
+
+<img src="assets/images/dragon rider.png"
+     alt="立维宇宙创世人驾驭墨龙穿行于星际的概念艺术图"
+     class="spaceship"
+     decoding="async">
+
+
         <div class="spaceship-beam" aria-hidden="true"></div>
         <div class="spaceship-trail" aria-hidden="true">
             <i style="top:18%; left:85%; width:6px; height:6px; animation-delay:-0.2s;"></i>
@@ -1462,12 +1473,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 合作伙伴/文创周边的无限滚动
-    document.querySelectorAll('.souvenir-track, .partner-track').forEach(track => {
-        if (track && track.children.length > 0) {
-            track.innerHTML += track.innerHTML;
-        }
-    });
+
 
     // 思想擂台交互逻辑
     const joinYandiBtn = document.getElementById('joinYandi');
@@ -1621,15 +1627,40 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollTimeout = setTimeout(findClosestSectionToCenter, 100);
     }, { passive: true });
 
-    // 折叠功能的事件绑定
-    const hintBtn = hud.querySelector('.dawei-hint');
-    const avatarBtn = hud.querySelector('.dawei-avatar');
-    function toggleCollapsed(e) {
-        e.stopPropagation();
-        hud.classList.toggle('collapsed');
+
+
+
+
+/* === 核心交互：点击头像展开，点击文字缩回 === */
+// 使用 setTimeout 确保元素已生成
+setTimeout(() => {
+    const hudContainer = document.getElementById('dawei-hud');
+    if (!hudContainer) return;
+
+    const avatarImg = hudContainer.querySelector('.avatar');
+    const hudBody = hudContainer.querySelector('.dawei-body');
+
+    // 1. 点击头像 -> 展开 (移除 collapsed 类)
+    if (avatarImg) {
+        avatarImg.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hudContainer.classList.remove('collapsed'); 
+            if (navigator.vibrate) navigator.vibrate(15);
+        });
     }
-    if(hintBtn) hintBtn.addEventListener('click', toggleCollapsed);
-    if(avatarBtn) avatarBtn.addEventListener('click', toggleCollapsed);
+
+    // 2. 点击对话框文字 -> 缩回 (添加 collapsed 类)
+    if (hudBody) {
+        hudBody.style.cursor = 'pointer'; // 鼠标变手型
+        hudBody.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hudContainer.classList.add('collapsed'); 
+            if (navigator.vibrate) navigator.vibrate(15);
+        });
+    }
+}, 500);
+
+
     
     setTimeout(findClosestSectionToCenter, 100);
   }
@@ -1877,43 +1908,7 @@ let isZenModeOn = false;
 
 
 
-/* === [优化版] 极速启动逻辑 (最长只等2秒) === */
-document.addEventListener("DOMContentLoaded", () => {
-    const loader = document.getElementById('system-loader');
-    const heroImg = document.querySelector('.spaceship'); // 锁定你的“墨龙”图
-    let isLoaded = false; // 标记是否已经开门
 
-    // 开门函数 (执行消除动画)
-    function openGate() {
-        if (isLoaded) return; // 如果已经开了，就别再开了
-        isLoaded = true;
-
-        if (loader) {
-            loader.style.transition = 'opacity 0.6s ease'; // 0.6秒平滑淡出
-            loader.style.opacity = '0';
-            setTimeout(() => { loader.remove(); }, 600); // 动画完删掉DOM
-        }
-    }
-
-    // 策略 1: 只要墨龙图片加载好了，立刻开门 (不用等下面的IP图)
-    if (heroImg) {
-        if (heroImg.complete) {
-            // 如果图片已经在缓存里(秒开)，稍微给个0.5秒展示Logo，别闪瞎眼
-            setTimeout(openGate, 500);
-        } else {
-            // 如果还在下，等它下完就开
-            heroImg.onload = () => { setTimeout(openGate, 300); };
-            heroImg.onerror = openGate; // 哪怕图裂了也要开门
-        }
-    } else {
-        // 如果没找到龙，直接开
-        openGate();
-    }
-
-    // 策略 2: 强制保底 (最长等待 2.0 秒)
-    // 就算墨龙图太大卡住了，2秒后也必须强制进系统，不能让用户等！
-    setTimeout(openGate, 2000);
-});
 
 
 
@@ -2017,81 +2012,39 @@ document.addEventListener('keydown', (e) => {
 </script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+
 <script>
-    /* particles.js config (极简配置，你也可以自行调整) */
-    particlesJS('particles-js', {
-        "particles": {
-            "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-            "color": { "value": "#ffffff" },
-            "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 } },
-            "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } },
-            "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } },
-            "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
-            "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } }
-        },
-        "interactivity": {
-            "detect_on": "canvas",
-            "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-            "modes": {
-                "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
-                "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 },
-                "repulse": { "distance": 200, "duration": 0.4 },
-                "push": { "particles_nb": 4 },
-                "remove": { "particles_nb": 2 }
-            }
-        },
-        "retina_detect": true
-    });
+    /* === 智能粒子优化：手机不加载，电脑才加载 === */
+    // 只有当屏幕宽度大于 768px (电脑/平板) 时，才运行下面的代码
+    if (window.innerWidth > 768) {
+        particlesJS('particles-js', {
+            "particles": {
+                // 数量保持30，保证流畅
+                "number": { "value": 30, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#ffffff" },
+                "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 } },
+                "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } },
+                "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } },
+                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
+                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                "modes": {
+                    "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
+                    "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 },
+                    "repulse": { "distance": 200, "duration": 0.4 },
+                    "push": { "particles_nb": 4 },
+                    "remove": { "particles_nb": 2 }
+                }
+            },
+            "retina_detect": true
+        });
+    }
 </script>
 
-
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-
-    // --- 1. 启动粒子 ---
-    particlesJS('particles-js', {
-        "particles": { "number": { "value": 60 }, "color": { "value": "#ffffff" }, "opacity": { "value": 0.5, "random": true }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.5, "width": 1 }, "move": { "enable": true, "speed": 1 } },
-        "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": false }, "onclick": { "enable": false } } }
-    });
-
-    // --- 2. 诸神降临 (文件名已预埋！) ---
-    // ⚠️ 只要你上传了对应名字的图片，这里就会自动显示！
-    const godsDatabase = [
-        { name: "伏羲",  en: "FUXI",   img: "assets/images/god_fuxi_trans.png" },
-        { name: "女娲",  en: "NUWA",   img: "assets/images/god_nuwa_trans.png" },
-        { name: "宙斯",  en: "ZEUS",   img: "assets/images/god_zeus_trans.png" },
-        { name: "湿婆",  en: "SHIVA",  img: "assets/images/god_shiva_trans.png" },
-        { name: "安努",  en: "ANU",    img: "assets/images/god_anu_trans.png" },
-        { name: "恩基",  en: "ENKI",   img: "assets/images/god_enki_trans.png" },
-        { name: "拉神",  en: "RA",     img: "assets/images/god_ra_trans.png" },
-        { name: "梵天",  en: "BRAHMA", img: "assets/images/god_brahma_trans.png" },
-        { name: "玄女",  en: "XUANNU", img: "assets/images/god_xuannu_trans.png" },
-        { name: "天帝",  en: "TIANDI", img: "assets/images/god_tiandi_trans.png" },
-        { name: "毗湿奴",en: "VISHNU", img: "assets/images/god_vishnu_trans.png" }
-    ];
-
-    function spawnGods() {
-        const shuffled = [...godsDatabase].sort(() => 0.5 - Math.random());
-        renderGod(document.getElementById('god-left'), shuffled[0]);
-        renderGod(document.getElementById('god-right'), shuffled[1]);
-    }
-
-    function renderGod(el, data) {
-        if (!el) return;
-        // 尝试加载图片，如果图片存在则显示
-        // 注意：因为图片还没传，可能会显示裂图或文字，这正常
-        el.innerHTML = "";
-        el.style.backgroundImage = `url('${data.img}')`;
-        el.classList.add('card-mode');
-        
-        // 如果想更智能一点：图片加载失败时回退到文字 (这个功能需要更复杂的JS，暂时先这样，逼着你去传图！)
-        // 暂时如果没图，你可能看到一个空的框或者裂开的图标
-    }
-    spawnGods();
-});
-</script>
 
 
 
@@ -2338,36 +2291,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
-
-// 解大为头像点击切换逻辑
-document.addEventListener('DOMContentLoaded', () => {
-    // 找到头像容器
-    const hud = document.getElementById('dawei-hud') || document.querySelector('.dawei-guide');
-    if (!hud) return;
-
-    const avatar = hud.querySelector('.avatar');
-    if (!avatar) return;
-
-avatar.addEventListener('click', (e) => {
-        // 1. 允许冒泡，这样才能触发 toggleCollapsed (折叠)
-        // e.stopPropagation(); // 注释掉这行
-        
-        // 2. 强制移除放大状态 (解决你的痛点：点一下就变回正常大小)
-        hud.classList.remove('is-zoomed'); 
-    });
-    
-    // 点击页面其他地方也能缩回去
-    document.addEventListener('click', () => {
-        hud.classList.remove('is-zoomed');
-    });
-});
-
-
-
-
 </script>
+
+
+
+
+<script>
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      var p = document.getElementById('particles-js');
+      if (p) {
+        p.style.display = 'block';
+      }
+    }, 2000);
+  });
+</script>
+
+
+<script>
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      document.querySelectorAll('.god-figure').forEach(function (el) {
+        el.style.animation = 'god-float 8s ease-in-out infinite';
+      });
+    }, 2500);
+  });
+</script>
+
+
 
 
 
