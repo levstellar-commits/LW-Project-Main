@@ -22,7 +22,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
-  <link rel="stylesheet" href="css/style.css">
 
   <meta name="baidu-site-verification" content="codeva-FgXs6ZwMEJ" />
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.jpg"> <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
@@ -79,12 +78,32 @@
 
 <div id="system-loader">
     <img src="./icon-192.png" style="width:60px; height:60px; margin-bottom:20px; border-radius:12px; box-shadow: 0 0 20px rgba(0,229,255,0.3);">
-    
     <div class="loader-text">SYSTEM INITIALIZING...</div>
     <div class="progress-bar"></div>
     <div style="margin-top:10px; font-size:10px; color:#444;">ESTABLISHING NEURAL LINK</div>
 </div>
 
+<script>
+  (function() {
+    const loader = document.getElementById('system-loader');
+    let isOpened = false;
+    function openGate() {
+      if (isOpened) return;
+      isOpened = true;
+      if (loader) {
+        loader.style.transition = 'opacity 0.6s ease';
+        loader.style.opacity = '0';
+        setTimeout(() => { 
+          if(loader.parentNode) loader.parentNode.removeChild(loader); 
+        }, 600);
+      }
+    }
+    // 强制保底：1.2秒内必须开门，解决WIFI环境手机卡顿 
+    setTimeout(openGate, 1200); 
+    // 资源加载快则提前开门 
+    window.addEventListener('load', openGate);
+  })();
+</script>
 
 
 
@@ -1591,15 +1610,24 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollTimeout = setTimeout(findClosestSectionToCenter, 100);
     }, { passive: true });
 
-    // 折叠功能的事件绑定
-    const hintBtn = hud.querySelector('.dawei-hint');
-    const avatarBtn = hud.querySelector('.dawei-avatar');
-    function toggleCollapsed(e) {
-        e.stopPropagation();
-        hud.classList.toggle('collapsed');
-    }
-    if(hintBtn) hintBtn.addEventListener('click', toggleCollapsed);
-    if(avatarBtn) avatarBtn.addEventListener('click', toggleCollapsed);
+
+/* === 核心交互：点击头像切换折叠状态 === */
+const hudContainer = document.getElementById('dawei-hud');
+const avatarImg = hudContainer.querySelector('.avatar');
+
+if (avatarImg && hudContainer) {
+    avatarImg.addEventListener('click', (e) => {
+        e.stopPropagation(); 
+        // 关键：给整个容器加上或去掉 "collapsed" 类名
+        hudContainer.classList.toggle('collapsed');
+        
+        // 手机震动反馈 (15毫秒)
+        if (navigator.vibrate) navigator.vibrate(15);
+    });
+}
+
+
+
     
     setTimeout(findClosestSectionToCenter, 100);
   }
@@ -1847,43 +1875,7 @@ let isZenModeOn = false;
 
 
 
-/* === [优化版] 极速启动逻辑 (最长只等2秒) === */
-document.addEventListener("DOMContentLoaded", () => {
-    const loader = document.getElementById('system-loader');
-    const heroImg = document.querySelector('.spaceship'); // 锁定你的“墨龙”图
-    let isLoaded = false; // 标记是否已经开门
 
-    // 开门函数 (执行消除动画)
-    function openGate() {
-        if (isLoaded) return; // 如果已经开了，就别再开了
-        isLoaded = true;
-
-        if (loader) {
-            loader.style.transition = 'opacity 0.6s ease'; // 0.6秒平滑淡出
-            loader.style.opacity = '0';
-            setTimeout(() => { loader.remove(); }, 600); // 动画完删掉DOM
-        }
-    }
-
-    // 策略 1: 只要墨龙图片加载好了，立刻开门 (不用等下面的IP图)
-    if (heroImg) {
-        if (heroImg.complete) {
-            // 如果图片已经在缓存里(秒开)，稍微给个0.5秒展示Logo，别闪瞎眼
-            setTimeout(openGate, 500);
-        } else {
-            // 如果还在下，等它下完就开
-            heroImg.onload = () => { setTimeout(openGate, 300); };
-            heroImg.onerror = openGate; // 哪怕图裂了也要开门
-        }
-    } else {
-        // 如果没找到龙，直接开
-        openGate();
-    }
-
-    // 策略 2: 强制保底 (最长等待 2.0 秒)
-    // 就算墨龙图太大卡住了，2秒后也必须强制进系统，不能让用户等！
-    setTimeout(openGate, 2000);
-});
 
 
 
@@ -2015,53 +2007,6 @@ document.addEventListener('keydown', (e) => {
     });
 </script>
 
-
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-
-    // --- 1. 启动粒子 ---
-    particlesJS('particles-js', {
-        "particles": { "number": { "value": 60 }, "color": { "value": "#ffffff" }, "opacity": { "value": 0.5, "random": true }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.5, "width": 1 }, "move": { "enable": true, "speed": 1 } },
-        "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": false }, "onclick": { "enable": false } } }
-    });
-
-    // --- 2. 诸神降临 (文件名已预埋！) ---
-    // ⚠️ 只要你上传了对应名字的图片，这里就会自动显示！
-    const godsDatabase = [
-        { name: "伏羲",  en: "FUXI",   img: "assets/images/god_fuxi_trans.png" },
-        { name: "女娲",  en: "NUWA",   img: "assets/images/god_nuwa_trans.png" },
-        { name: "宙斯",  en: "ZEUS",   img: "assets/images/god_zeus_trans.png" },
-        { name: "湿婆",  en: "SHIVA",  img: "assets/images/god_shiva_trans.png" },
-        { name: "安努",  en: "ANU",    img: "assets/images/god_anu_trans.png" },
-        { name: "恩基",  en: "ENKI",   img: "assets/images/god_enki_trans.png" },
-        { name: "拉神",  en: "RA",     img: "assets/images/god_ra_trans.png" },
-        { name: "梵天",  en: "BRAHMA", img: "assets/images/god_brahma_trans.png" },
-        { name: "玄女",  en: "XUANNU", img: "assets/images/god_xuannu_trans.png" },
-        { name: "天帝",  en: "TIANDI", img: "assets/images/god_tiandi_trans.png" },
-        { name: "毗湿奴",en: "VISHNU", img: "assets/images/god_vishnu_trans.png" }
-    ];
-
-    function spawnGods() {
-        const shuffled = [...godsDatabase].sort(() => 0.5 - Math.random());
-        renderGod(document.getElementById('god-left'), shuffled[0]);
-        renderGod(document.getElementById('god-right'), shuffled[1]);
-    }
-
-    function renderGod(el, data) {
-        if (!el) return;
-        // 尝试加载图片，如果图片存在则显示
-        // 注意：因为图片还没传，可能会显示裂图或文字，这正常
-        el.innerHTML = "";
-        el.style.backgroundImage = `url('${data.img}')`;
-        el.classList.add('card-mode');
-        
-        // 如果想更智能一点：图片加载失败时回退到文字 (这个功能需要更复杂的JS，暂时先这样，逼着你去传图！)
-        // 暂时如果没图，你可能看到一个空的框或者裂开的图标
-    }
-    spawnGods();
-});
-</script>
 
 
 
