@@ -75,50 +75,8 @@
 <body>
 
 
-<div id="system-loader">
-    <img src="./icon-192.png" style="width:60px; height:60px; margin-bottom:20px; border-radius:12px; box-shadow: 0 0 20px rgba(0,229,255,0.3);">
-    <div class="loader-text">SYSTEM INITIALIZING...</div>
-    <div class="progress-bar"></div>
-    <div style="margin-top:10px; font-size:10px; color:#444;">ESTABLISHING NEURAL LINK</div>
-</div>
 
 
-
-
-
-
-<script>
-  (function() {
-    var loader = document.getElementById('system-loader');
-    
-    // 这个函数负责关掉加载层
-    function absoluteForceOpen() {
-      if (!loader) return;
-      console.log("执行强行破门程序...");
-      loader.style.transition = 'opacity 0.5s ease-out';
-      loader.style.opacity = '0';
-      
-      // 等半秒钟动画播完，把这个黑层彻底删掉
-      setTimeout(function() {
-        if (loader && loader.parentNode) {
-          loader.parentNode.removeChild(loader);
-        }
-        // 强制让网页可以滚动
-        document.body.style.overflow = 'auto';
-        document.documentElement.style.overflow = 'auto';
-      }, 500);
-    }
-
-
-
-// 优化后的代码：不再死等所有资源，只要网页结构好了就开门
-document.addEventListener('DOMContentLoaded', absoluteForceOpen); 
-
-// 缩短保底时间。如果1.5秒还没加载完，强制开门，让用户先进去看文字
-setTimeout(absoluteForceOpen, 1500);
-
-  })();
-</script>
 
 
 
