@@ -2277,28 +2277,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// 解大为头像点击切换逻辑
-document.addEventListener('DOMContentLoaded', () => {
-    // 找到头像容器
-    const hud = document.getElementById('dawei-hud') || document.querySelector('.dawei-guide');
-    if (!hud) return;
-
-    const avatar = hud.querySelector('.avatar');
-    if (!avatar) return;
-
-avatar.addEventListener('click', (e) => {
-        // 1. 允许冒泡，这样才能触发 toggleCollapsed (折叠)
-        // e.stopPropagation(); // 注释掉这行
-        
-        // 2. 强制移除放大状态 (解决你的痛点：点一下就变回正常大小)
-        hud.classList.remove('is-zoomed'); 
-    });
-    
-    // 点击页面其他地方也能缩回去
-    document.addEventListener('click', () => {
-        hud.classList.remove('is-zoomed');
-    });
-});
 
 
 
