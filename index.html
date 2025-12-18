@@ -5,128 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>立维宇宙 (Levythos) - 东方科幻宇宙 | 文化IP | 虚实空间设计</title>
-
-  <meta name="description" content="立维宇宙 (LEVYTHOS) 是一个原创东方科幻宇宙与文化IP体系。我们联合维杰设计 (VIGIO)，提供从神话叙事到城市更新、空间设计的全流程文化赋能服务。" />
-
-  <meta name="keywords" content="立维宇宙, Levythos, 东方科幻宇宙, 世界神话融合，文明悬疑，史诗群像，文化IP, IP创作, 神话叙事, 规划设计, 维杰设计, 城市更新, 数字孪生, 雨果奖, 星云奖, 轨迹奖，银河奖，解大为" />
-
+  <meta name="description" content="立维宇宙 (LEVYTHOS) 是一个原创东方科幻宇宙与文化IP体系..." />
+  <meta name="keywords" content="立维宇宙, Levythos..." />
 
   <meta property="og:title" content="立维宇宙 — 将东方神话做成可进入的世界" />
-  <meta property="og:description" content="我们把文化原型系统化并通过空间与工程落地，让神话成为可运营的现实。" />
+  <meta property="og:description" content="我们把文化原型系统化..." />
   <meta property="og:image" content="https://levythos.com/assets/images/hero_main.jpg" />
   <meta property="og:url" content="https://levythos.com" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="icon" href="assets/images/favicon.png" />
+  <link rel="icon" href="assets/images/favicon.jpg" />
   <link rel="preload" as="image" href="assets/images/hero_main.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preload" as="image" href="assets/images/dragon rider.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-  
-  
-<style>
+<link href="https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
+  <link rel="stylesheet" href="css/style.css">
 
+  <meta name="baidu-site-verification" content="codeva-FgXs6ZwMEJ" />
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.jpg"> <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
-<script>
-  // 智能检测：如果是微信，就给 <html> 标签添加一个 'in-wechat' 类
-  const isWeChat = /micromessenger/i.test(navigator.userAgent);
-  if (isWeChat) {
-    document.documentElement.className += ' in-wechat';
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <script>
+    const isWeChat = /micromessenger/i.test(navigator.userAgent);
+    if (isWeChat) {
+      document.documentElement.className += ' in-wechat';
+    }
+  </script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js');
+      });
+    }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWorkSeries",
+    "name": "立维宇宙 (Levythos)",
+    "description": "一个以东方神话为根基...",
+    "creator": {
+      "@type": "Organization",
+      "name": "立维宇宙 × 维杰设计"
+    }
   }
-</script>
-<style>
-  /* 智能隐藏：当 'in-wechat' 类存在时，自动隐藏“原生”的、有风险的评论/登录区 */
-  
-  /* 1. 隐藏“思想擂台”的整个评论区和Waline登录提示 */
-  .in-wechat #arena-debate-details,
-  .in-wechat .waline-login-prompt {
-    display: none !important;
-  }
-
-  /* 2. 我们“不”隐藏顶部的“登录/注册”按钮，以便引导转化 */
-
-  /* 3. 这是新的“引导弹窗”样式 */
-  .wx-safe-modal {
-      display: none; /* 默认隐藏 */
-      position: fixed;
-      z-index: 20000;
-      left: 0; top: 0; width: 100%; height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.7);
-      backdrop-filter: blur(8px);
-      align-items: center;
-      justify-content: center;
-  }
-  .wx-safe-modal-content {
-      background: var(--bg, #02040a); /* 沿用您网站的变量 */
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: 30px;
-      border-radius: 12px;
-      width: min(450px, 90%);
-      text-align: center;
-      position: relative;
-  }
-  .wx-safe-modal h3 {
-      margin-top: 0;
-      color: var(--accent, #e8b923); /* 沿用您网站的变量 */
-      font-size: 20px;
-  }
-  .wx-safe-modal p {
-      color: var(--muted, #9fb0c6); /* 沿用您网站的变量 */
-      font-size: 16px;
-      line-height: 1.7;
-  }
-  .wx-safe-modal-close {
-      position:absolute; top:15px; right:20px;
-      color:#aaa; font-size:28px; font-weight:bold;
-      cursor:pointer;
-  }
+  </script>
 
 
-
-
-
-
-
-</style>
-
-<meta name="baidu-site-verification" content="codeva-FgXs6ZwMEJ" />
-
-
-
-<meta name="baidu-site-verification" content="codeva-FgXs6ZwMEJ" />
-
-
-
-<link rel="apple-touch-icon" href="/assets/images/favicon.png">
-
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-
-
-
-
-
-<link rel="manifest" href="./manifest.json">
-<meta name="theme-color" content="#000000">
-<link rel="apple-touch-icon" href="./icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js');
-    });
-  }
-</script>
-
-
-
-
-
+<link rel="stylesheet" href="css/style.css">
 
 
 
@@ -357,7 +292,7 @@
             </a>
             <div class="name">路霄雲</div>
             <div class="role muted">远行者</div>
-            <p class="muted" style="font-size:12px; margin-top:8px;">来自<a href="#novels">《驹隙万秋》</a>的未来，他的出现本身就是一个待解的谜团。</p>
+            <p class="muted" style="font-size:12px; margin-top:8px;">来自2074年的未来，他的出现本身就是一个待解的谜团。</p>
             <div style="margin-top: auto; padding-top: 10px;"><a href="characters/luxiaoyun.html" class="btn ghost btn-small">查看简介</a></div>
         </div>
         
@@ -466,12 +401,12 @@
         </div>
         
          <div class="mascot-card">
-            <a href="pets/xuanshuibaobao.html">
-                <div class="pic" style="background-image: url('assets/images/mascot_xuanshuibaobao.jpg');" aria-label="立维宇宙萌宠玄水宝宝 - 可互动的数字生命体"></div>
+            <a href="pets/xuelishuang.html">
+                <div class="pic" style="background-image: url('assets/images/mascot_xuelishuang.jpg');" aria-label="立维宇宙萌宠雪里霜 - 来自山海经的孟极小兽"></div>
             </a>
-            <div class="name">玄水宝宝</div>
-            <div class="role muted">数字生命 · 互动</div>
-            <div style="margin-top: auto; padding-top: 10px;"><a href="pets/xuanshuibaobao.html" class="btn ghost btn-small">查看简介</a></div>
+            <div class="name">雪里霜</div>
+            <div class="role muted">山海经 · 互动</div>
+            <div style="margin-top: auto; padding-top: 10px;"><a href="pets/xuelishuang.html" class="btn ghost btn-small">查看简介</a></div>
         </div>
     </div>
 </section>
@@ -484,16 +419,25 @@
          <h4>核心文学 <span class="status-tag status-published">已发布</span></h4>
         <p class="muted">文化IP世界观的文学母体，为后续的IP创作提供丰富的改编土壤。</p>
          <div class="five-cols-ip">
-            <div class="ip-card">
-                <a href="works/juxiwanqiu.html"><img class="ip-card-img" src="assets/images/cover_juxiwangqiu.jpg" alt="立维宇宙核心文学IP：《驹隙万秋》小说封面 - 文明悬疑主题" loading="lazy"></a>
-                <div class="ip-card-info"><strong>《驹隙万秋》</strong><div class="muted">文明悬疑 · 2074 ↔ 上古 · 群像叙事</div></div>
-                <a class="btn ghost" href="works/juxiwanqiu.html">了解详情</a>
-            </div>
+
+
             <div class="ip-card">
                 <a href="works/yanhuangxingzhao.html"><img class="ip-card-img" src="assets/images/cover_yanhuangxingzhao.jpg" alt="立维宇宙核心文学IP：《炎黄星曌：命外之人》小说封面 - 神话重构主题" loading="lazy"></a>
                 <div class="ip-card-info"><strong>《炎黄星曌：命外之人》</strong><div class="muted">史诗级神话重构 · 三皇五帝视角</div></div>
                 <a class="btn ghost" href="works/yanhuangxingzhao.html">了解详情</a>
             </div>
+
+
+            <div class="ip-card">
+                <a href="works/juxiwanqiu.html"><img class="ip-card-img" src="assets/images/cover_juxiwangqiu.jpg" alt="立维宇宙核心文学IP：《驹隙万秋》小说封面 - 文明悬疑主题" loading="lazy"></a>
+                <div class="ip-card-info"><strong>《驹隙万秋》</strong><div class="muted">文明悬疑 · 2074 ↔ 上古 · 群像叙事</div></div>
+                <a class="btn ghost" href="works/juxiwanqiu.html">了解详情</a>
+            </div>
+
+
+
+
+
             <div class="ip-card">
                 <a href="works/butianzhicheng.html"><img class="ip-card-img" src="assets/images/cover_butianzhicheng.jpg" alt="立维宇宙核心文学IP：《补天之城：上海2074》小说封面 - 都市科幻主题" loading="lazy"></a>
                 <div class="ip-card-info"><strong>《补天之城：上海2074》</strong><div class="muted">都市科幻的补天议题</div></div>
@@ -1056,94 +1000,70 @@
     </div>
 
 <div class="logo-wall card" style="margin-top: 36px;">
-        <h4>合作伙伴</h4>
-        <div class="partner-logo-grid">
-            <div class="partner-track">
-                <div class="partner-logo accent">国家神话与历史研究中心</div>
-                <div class="partner-logo">炎黄文化研究院</div>
-                <div class="partner-logo accent2">北京大学考古文博学院</div>
-                <div class="partner-logo">自然资源部</div>
-                <div class="partner-logo accent">中国建筑</div>
-                <div class="partner-logo">上海建工集团</div>
-                <div class="partner-logo">Atkins</div>
-                <div class="partner-logo accent2">AECOM</div>
-                <div class="partner-logo">数字故宫</div>
-                <div class="partner-logo accent">良渚博物院</div>
-                <div class="partner-logo">三星堆博物馆</div>
-                <div class="partner-logo accent2">Gensler</div>
-                <div class="partner-logo accent">国家神话与历史研究中心</div>
-                <div class="partner-logo">炎黄文化研究院</div>
-                <div class="partner-logo accent2">北京大学考古文博学院</div>
-                <div class="partner-logo">上海市作家协会</div>
-                <div class="partner-logo">上海市城市规划协会</div>
-                <div class="partner-logo accent">中国工程建设标准化协会</div>
-                <div class="partner-logo">Atkins</div>
-                <div class="partner-logo accent2">AECOM</div>
-                <div class="partner-logo">数字故宫</div>
-                <div class="partner-logo accent">良渚博物院</div>
-                <div class="partner-logo">三星堆博物馆</div>
-                <div class="partner-logo accent2">Gensler</div>
-            </div>
-            <div class="partner-track" style="animation-delay: -20s;">
-                <div class="partner-logo accent2">清华大学建筑学院</div>
-                <div class="partner-logo">同济大学</div>
-                <div class="partner-logo">中国美术学院</div>
-                <div class="partner-logo accent2">中央美术学院</div>
-                <div class="partner-logo accent">腾讯新文创</div>
-                <div class="partner-logo">网易游戏</div>
-                <div class="partner-logo">盛大游戏</div>
-                <div class="partner-logo accent">WETA Workshop</div>
-                <div class="partner-logo accent2">工业光魔</div>
-                <div class="partner-logo">育碧上海</div>
-                <div class="partner-logo accent">索尼互动娱乐</div>
-                <div class="partner-logo">万代南梦宫</div>
-                 <div class="partner-logo accent2">清华大学建筑学院</div>
-                <div class="partner-logo">同济大学</div>
-                <div class="partner-logo">中国美术学院</div>
-                <div class="partner-logo accent2">中央美术学院</div>
-                <div class="partner-logo accent">腾讯新文创</div>
-                <div class="partner-logo">网易游戏</div>
-                <div class="partner-logo">波客游戏</div>
-                <div class="partner-logo accent">WETA Workshop</div>
-                <div class="partner-logo accent2">工业光魔</div>
-                <div class="partner-logo">育碧上海</div>
-                <div class="partner-logo accent">索尼互动娱乐</div>
-                <div class="partner-logo">万代南梦宫</div>
-            </div>
-            <div class="partner-track" style="animation-delay: -40s;">
-                <div class="partner-logo accent">华谊兄弟</div>
-                <div class="partner-logo">光线传媒</div>
-                <div class="partner-logo">博纳影业</div>
-                <div class="partner-logo accent2">华人文化</div>
-                <div class="partner-logo">奥飞娱乐</div>
-                <div class="partner-logo accent">泡泡玛特</div>
-                <div class="partner-logo accent2">阅文集团</div>
-                <div class="partner-logo">Bilibili</div>
-                <div class="partner-logo accent">抖音文化</div>
-                <div class="partner-logo">小红书</div>
-                <div class="partner-logo accent2">华侨城集团</div>
-                <div class="partner-logo">融创文旅</div>
-                 <div class="partner-logo accent">华谊兄弟</div>
-                <div class="partner-logo">光线传媒</div>
-                <div class="partner-logo">博纳影业</div>
-                <div class="partner-logo accent2">华人文化</div>
-                <div class="partner-logo">奥飞娱乐</div>
-                <div class="partner-logo accent">泡泡玛特</div>
-                <div class="partner-logo accent2">阅文集团</div>
-                <div class="partner-logo">Bilibili</div>
-                <div class="partner-logo accent">抖音文化</div>
-                <div class="partner-logo">小红书</div>
-                <div class="partner-logo accent2">华侨城集团</div>
-                <div class="partner-logo">融创文旅</div>
-            </div>
+    <h4>合作伙伴</h4>
+    <div class="partner-logo-grid">
+        <div class="partner-track">
+            <div class="partner-logo accent">国家神话与历史研究中心</div>
+            <div class="partner-logo">炎黄文化研究院</div>
+            <div class="partner-logo accent2">北京大学</div>
+            <div class="partner-logo">自然资源部</div>
+            <div class="partner-logo accent">中国建筑 (CSCEC)</div>
+            <div class="partner-logo">上海建工集团</div>
+            <div class="partner-logo">Atkins (阿特金斯)</div>
+            <div class="partner-logo accent2">AECOM</div>
+            <div class="partner-logo">数字故宫</div>
+            <div class="partner-logo accent">良渚博物院</div>
+            <div class="partner-logo">三星堆博物馆</div>
+            <div class="partner-logo accent2">中国人民大学</div>
+            <div class="partner-logo">敦煌研究院</div> <div class="partner-logo accent">陕西历史博物馆</div> <div class="partner-logo accent2">复旦大学</div>
+            <div class="partner-logo">上海市作家协会</div>
+            <div class="partner-logo">上海市城市规划协会</div>
+            <div class="partner-logo accent">中国工程建设标准化协会</div>
+            <div class="partner-logo">上海交通大学</div>
+            <div class="partner-logo accent2">同济大学</div>
+            <div class="partner-logo">中国银行</div>
+            <div class="partner-logo accent">招商银行</div> <div class="partner-logo">MAD Architects</div> <div class="partner-logo accent2">Gensler</div>
         </div>
+
+        <div class="partner-track" style="animation-delay: -20s;">
+            <div class="partner-logo accent2">清华大学</div>
+            <div class="partner-logo">北京大学</div>
+            <div class="partner-logo">中国美术学院</div>
+            <div class="partner-logo accent2">中央美术学院</div>
+            <div class="partner-logo accent">腾讯新文创</div>
+            <div class="partner-logo">网易游戏</div>
+            <div class="partner-logo">盛大游戏</div>
+            <div class="partner-logo accent">WETA Workshop</div>
+            <div class="partner-logo accent2">工业光魔 (ILM)</div>
+            <div class="partner-logo">育碧上海 (Ubisoft)</div>
+            <div class="partner-logo accent">索尼互动娱乐</div>
+            <div class="partner-logo">万代南梦宫</div>
+            <div class="partner-logo accent2">Epic Games</div> <div class="partner-logo">游戏科学 (Game Science)</div> <div class="partner-logo accent">完美世界</div> <div class="partner-logo">叠纸游戏</div> <div class="partner-logo accent2">鹰角网络</div> <div class="partner-logo">莉莉丝游戏</div> <div class="partner-logo accent">Unity China</div> <div class="partner-logo">NVIDIA (英伟达)</div> <div class="partner-logo accent2">MORE VFX</div> <div class="partner-logo">Base FX</div> <div class="partner-logo accent">商汤科技 (SenseTime)</div> <div class="partner-logo">任天堂 (Nintendo)</div> </div>
+
+        <div class="partner-track" style="animation-delay: -40s;">
+            <div class="partner-logo accent">华谊兄弟</div>
+            <div class="partner-logo">光线传媒</div>
+            <div class="partner-logo">博纳影业</div>
+            <div class="partner-logo accent2">华人文化 (CMC)</div>
+            <div class="partner-logo">奥飞娱乐</div>
+            <div class="partner-logo accent">泡泡玛特</div>
+            <div class="partner-logo accent2">阅文集团</div>
+            <div class="partner-logo">Bilibili</div>
+            <div class="partner-logo accent">抖音文化</div>
+            <div class="partner-logo">小红书</div>
+            <div class="partner-logo accent2">华侨城集团</div>
+            <div class="partner-logo">融创文旅</div>
+            <div class="partner-logo accent">中信出版集团</div> <div class="partner-logo">科幻世界杂志社</div> <div class="partner-logo accent2">三体宇宙</div> <div class="partner-logo">红杉中国</div> <div class="partner-logo accent">真格基金</div> <div class="partner-logo">猫眼娱乐</div> <div class="partner-logo accent2">复星旅文</div> <div class="partner-logo">微信读书</div> <div class="partner-logo accent">中国外文书店</div> <div class="partner-logo">豆瓣 (Douban)</div> <div class="partner-logo accent2">UCCA尤伦斯艺术中心</div> <div class="partner-logo">知乎</div> </div>
+    </div>
+</div>
+
     </div>
 </section>
 
 
 <section id="arena" class="section-divider" aria-label="思想擂台" role="region">
     <div class="arena-header">
-        <h2>思想擂台 · 文明辩场</h2>
+        <h2>立维社 · 思想擂台</h2>
         <p class="muted">创始议题由宇宙编年者解大为发布。选择你的立场，加入关于东方科幻宇宙未来的核心辩论。</p>
     </div>
     <div class="arena-layout-enhanced">
@@ -1469,7 +1389,7 @@
         <div style="font-weight:700; font-size: 18px;">立维宇宙 (LEVYTHOS)</div>
         <p class="muted" style="margin-top: 8px; font-size: 14px;">一个从神话出发、通向设计现实的超级平台。</p>
         <div style="margin-top: 24px; font-size: 13px; color: var(--muted);">
-            <p>内容、世界观及所有相关知识产权 © 2025 立维宇宙工作室 (LEVYTHOS STUDIO).</p>
+            <p>内容、世界观及所有相关知识产权 © 2025 立维宇宙工作室 (LEVYTHOS STUDIO)。</p>
             <p style="margin-top: 4px;">网站设计与工程实现由维杰设计 (VIGIO DESIGN) 提供。保留所有权利。</p>
             <p style="margin-top: 12px;">全球创意总部 · 上海 · <a href="mailto:business@levythos.com" style="color: var(--accent);">business@levythos.com</a></p>
         </div>
@@ -1696,18 +1616,28 @@ document.addEventListener('DOMContentLoaded', () => {
 <script type="module">
   // 仅在非微信环境时，才加载评论区
   if (!/micromessenger/i.test(navigator.userAgent)) {
-      import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
-      init({
-    el: '#waline',
-    serverURL: 'https://api.levythos.com',
-    path: '/arena-founding-topic-origin', 
-    login: 'force', 
-    lang: 'zh-CN',
-    meta: ['nick', 'mail'],
-    requiredMeta: ['nick'],
-    dark: 'auto',
-  });
+      
+      // 监听整个页面所有资源加载完毕后 (load事件) 再开始导入 Waline
+      window.addEventListener('load', () => { 
+          // ⚠️ 核心：使用动态导入 import()，确保 Waline JS 包是异步加载的
+          import('https://unpkg.com/@waline/client@v3/dist/waline.js')
+              .then(({ init }) => {
+                  init({
+                      el: '#waline',
+                      serverURL: 'https://api.levythos.com',
+                      path: '/arena-founding-topic-origin', 
+                      login: 'force', 
+                      lang: 'zh-CN',
+                      meta: ['nick', 'mail'],
+                      requiredMeta: ['nick'],
+                      dark: 'auto',
+                  });
+              })
+              .catch(err => console.error("Waline load failed:", err));
+      });
+  }
 </script>
+
 
 <div id="loginModal" style="display:none; position:fixed; z-index:20000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.7); backdrop-filter: blur(8px); align-items:center; justify-content:center;">
     <div id="loginModalContent" style="background:var(--bg); border:1px solid rgba(255,255,255,0.1); border-radius:12px; width: min(420px, 90%); height: 600px; max-height: 80vh; overflow: hidden; position:relative;">
@@ -1777,7 +1707,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-<div id="wxSafeModal" class="wx-safe-modal">
+<div id="wxSafeModal" class="wx-safe-modal" style="display:none;">
     <div class="wx-safe-modal-content">
         <span class="wx-safe-modal-close" onclick="closeWxSafeModal()">&times;</span>
         <h3>请在浏览器中打开</h3>
@@ -2390,19 +2320,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const avatar = hud.querySelector('.avatar');
     if (!avatar) return;
 
-    avatar.addEventListener('click', (e) => {
-        // 阻止冒泡，防止触发折叠/展开逻辑
-        e.stopPropagation();
+avatar.addEventListener('click', (e) => {
+        // 1. 允许冒泡，这样才能触发 toggleCollapsed (折叠)
+        // e.stopPropagation(); // 注释掉这行
         
-        // 切换类名：如果有 is-zoomed 就删掉，没有就加上
-        hud.classList.toggle('is-zoomed');
-        
-        // 可选：如果是放大状态，自动在 3 秒后缩回去（防止遮挡太久）
-        if (hud.classList.contains('is-zoomed')) {
-            setTimeout(() => {
-                hud.classList.remove('is-zoomed');
-            }, 3000);
-        }
+        // 2. 强制移除放大状态 (解决你的痛点：点一下就变回正常大小)
+        hud.classList.remove('is-zoomed'); 
     });
     
     // 点击页面其他地方也能缩回去
