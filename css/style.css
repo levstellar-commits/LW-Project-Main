@@ -2179,7 +2179,12 @@ details[style*="cursor: pointer;"] summary::-webkit-details-marker {
 
 
 
-
+/* 在手机端隐藏粒子层 */
+@media (max-width: 768px) {
+    #particles-js {
+        display: none !important;
+    }
+}
 
 
 
