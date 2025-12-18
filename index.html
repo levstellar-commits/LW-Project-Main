@@ -18,7 +18,6 @@
   <link rel="icon" href="assets/images/favicon.jpg" />
   <link rel="preload" as="image" href="assets/images/hero_main.jpg" fetchpriority="high">
   <link rel="preload" as="image" href="assets/images/dragon rider.png" fetchpriority="high">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
@@ -87,24 +86,30 @@
 
 <script>
   (function() {
-    const loader = document.getElementById('system-loader');
-    let isOpened = false;
-    function openGate() {
-      if (isOpened || !loader) return;
-      isOpened = true;
-      loader.style.transition = 'opacity 0.4s ease'; // 缩短开门动画
+    // 强力开门脚本：不等待，时间一到直接炸开加载层
+    var loader = document.getElementById('system-loader');
+    
+    function forceRemoveLoader() {
+      if (!loader) return;
+      // 这里的 0.3s 是淡出动画时间
+      loader.style.transition = 'opacity 0.3s ease-out';
       loader.style.opacity = '0';
-      setTimeout(function() { 
-        if(loader.parentNode) loader.parentNode.removeChild(loader); 
-      }, 400);
+      // 动画结束后彻底移除，防止挡住点击
+      setTimeout(function() {
+        if (loader && loader.parentNode) {
+          loader.parentNode.removeChild(loader);
+        }
+      }, 300);
     }
-    // 重点：当HTML和首屏核心资源初步就绪就开门，不准等 window.load (那会等评论区和所有Logo)
-    document.addEventListener('DOMContentLoaded', openGate);
-    // 手机WIFI环境下，800ms强制开门。墨龙图片因为有下文的 fetchpriority，会优先显示。
-    setTimeout(openGate, 800);
+
+    // 策略A：如果网页很快加载完，立刻开门
+    document.addEventListener('DOMContentLoaded', forceRemoveLoader);
+    
+    // 策略B（保底）：不管网页有没有加载完，500毫秒后强制开门
+    // 这能确保绝对不会卡住
+    setTimeout(forceRemoveLoader, 500); 
   })();
 </script>
-
 
 <div class="dawei-guide" id="dawei-guide-widget">
     <div class="avatar" style="background-image: url('assets/images/archetype_dawei_guide.jpg');" aria-label="立维宇宙编年者解大为的头像"></div>
