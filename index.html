@@ -17,9 +17,9 @@
 
   <link rel="icon" href="assets/images/favicon.jpg" />
   <link rel="preload" as="image" href="assets/images/hero_main.jpg" fetchpriority="high">
-  <link rel="preload" as="image" href="assets/images/dragon rider.png" fetchpriority="high">
+  
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
 
 
   <meta name="baidu-site-verification" content="codeva-FgXs6ZwMEJ" />
@@ -107,7 +107,7 @@
     
     // 策略B（保底）：不管网页有没有加载完，500毫秒后强制开门
     // 这能确保绝对不会卡住
-    setTimeout(forceRemoveLoader, 500); 
+    setTimeout(forceRemoveLoader, 2000); 
   })();
 </script>
 
