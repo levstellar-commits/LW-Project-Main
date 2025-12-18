@@ -109,11 +109,14 @@
       }, 500);
     }
 
-    // 只要网页骨架加载完，就尝试开门
-    window.addEventListener('load', absoluteForceOpen);
-    
-    // 保底：2000毫秒（即2秒）一到，无论如何都必须开门
-    setTimeout(absoluteForceOpen, 2000); 
+
+
+// 优化后的代码：不再死等所有资源，只要网页结构好了就开门
+document.addEventListener('DOMContentLoaded', absoluteForceOpen); 
+
+// 缩短保底时间。如果1.5秒还没加载完，强制开门，让用户先进去看文字
+setTimeout(absoluteForceOpen, 1500);
+
   })();
 </script>
 
@@ -1675,12 +1678,9 @@ setTimeout(() => {
 
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
 <script type="module">
-  // 仅在非微信环境时，才加载评论区
-  if (!/micromessenger/i.test(navigator.userAgent)) {
-      
-      // 监听整个页面所有资源加载完毕后 (load事件) 再开始导入 Waline
+  // 优化：彻底禁用外部评论脚本的加载，防止卡死页面
+  /* if (!/micromessenger/i.test(navigator.userAgent)) {
       window.addEventListener('load', () => { 
-          // ⚠️ 核心：使用动态导入 import()，确保 Waline JS 包是异步加载的
           import('https://unpkg.com/@waline/client@v3/dist/waline.js')
               .then(({ init }) => {
                   init({
@@ -1697,8 +1697,9 @@ setTimeout(() => {
               .catch(err => console.error("Waline load failed:", err));
       });
   }
+  */
+  console.log("评论系统已暂时停用以加速首屏加载");
 </script>
-
 
 <div id="loginModal" style="display:none; position:fixed; z-index:20000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.7); backdrop-filter: blur(8px); align-items:center; justify-content:center;">
     <div id="loginModalContent" style="background:var(--bg); border:1px solid rgba(255,255,255,0.1); border-radius:12px; width: min(420px, 90%); height: 600px; max-height: 80vh; overflow: hidden; position:relative;">
