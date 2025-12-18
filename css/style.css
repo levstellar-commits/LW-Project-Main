@@ -2038,16 +2038,7 @@ details[style*="cursor: pointer;"] summary::-webkit-details-marker {
     font-size: 20px;
   }
   
-  /* 5. 按钮组和悬浮窗 */
-  .hero-actions {
-    margin-top: 24px;
-  }
-  .dawei-hud, .dawei-guide {
-      top: auto;
-      bottom: 20px;
-      right: 16px;
-      transform: none;
-  }
+
   
   /* 6. 所有多列布局，在手机上全部变为单列显示 */
   .two-cols,
@@ -2847,7 +2838,46 @@ details[style*="cursor: pointer;"] summary::-webkit-details-marker {
     pointer-events: none;
 }
 
-/* 5. 收起后的“左箭头”提示：在头像左侧跳动引导点击 */
+
+
+/* 6. 手机端适配：彻底隐藏 */
+@media (max-width: 768px) {
+    .dawei-hud { display: none !important; }
+}
+
+
+
+/* ================= CSS 修复补丁 ================= */
+
+/* 1. 修复首屏星空漏黑边 */
+#hero-cinematic {
+    /* 核心：用负 Margin 抵消掉 main 的顶部 padding */
+    margin-top: -120px !important; 
+    margin-left: -24px !important; /* 抵消 main 的左右 padding */
+    margin-right: -24px !important;
+    width: calc(100% + 48px) !important; /* 补回宽度 */
+    
+    /* 核心：增加内部 padding，让文字内容回到视觉中心，不被导航栏挡住 */
+    padding-top: 200px !important; 
+    
+    /* 确保背景占满全屏 */
+    min-height: 100vh !important;
+    border-radius: 0 !important; /* 首屏一般不需要圆角 */
+}
+
+/* 手机端适配调整 */
+@media (max-width: 768px) {
+    #hero-cinematic {
+        margin-top: -100px !important; /* 手机端 main padding 较小 */
+        padding-top: 140px !important;
+    }
+}
+
+
+
+
+
+/* ================== [新] 三角箭头修复 (不闪烁) ================== */
 .dawei-hud.collapsed .avatar::after {
     content: '◀'; 
     position: absolute;
@@ -2856,18 +2886,27 @@ details[style*="cursor: pointer;"] summary::-webkit-details-marker {
     transform: translateY(-50%);
     color: var(--accent);
     font-size: 18px;
-    text-shadow: 0 0 10px var(--accent);
+    opacity: 1 !important; /* 核心：固定不透明度，禁止闪烁 */
+    text-shadow: 0 0 5px var(--accent);
     animation: arrow-guide-jump 1.2s infinite ease-in-out;
+    pointer-events: none;
 }
 
 @keyframes arrow-guide-jump {
-    0%, 100% { transform: translate(0, -50%) scale(1); opacity: 0.4; }
-    50% { transform: translate(-8px, -50%) scale(1.3); opacity: 1; }
+    0%, 100% { transform: translate(0, -50%) scale(1); }
+    50% { transform: translate(-6px, -50%) scale(1.1); }
 }
 
-/* 6. 手机端适配：彻底隐藏 */
+/* ================== [新] 手机端强制隐藏对话框 ================== */
 @media (max-width: 768px) {
-    .dawei-hud { display: none !important; }
+    #dawei-hud, 
+    .dawei-hud, 
+    .dawei-guide {
+        display: none !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        visibility: hidden !important;
+    }
 }
 
 
