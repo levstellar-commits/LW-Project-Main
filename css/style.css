@@ -1,4 +1,16 @@
-
+/* ========== [新增] 电影级Hero Section：“双星抉择” ========== */
+#hero-cinematic {
+    width: 100%;
+    height: 80vh;
+    min-height: 500px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    margin-top: -120px; /* 覆盖页面顶部导航栏造成的空白 */
+}
 
 .parallax-layer {
     position: absolute;
@@ -11,9 +23,19 @@
 
 
 
+/* =================================================================
+   ★ 修正版样式：首屏限定 (不跟随滚动)
+   ================================================================= */
 
-
-
+/* 确保首屏容器是定位基准 */
+#hero-cinematic {
+    position: relative;
+    width: 100%;
+    min-height: 100vh; /* 撑满一屏 */
+    padding-top: 0px; /* ⚠️ 给导航栏留出固定高度，解决A区域留白过高 */
+    overflow: hidden; /* 防止神像飘出界 */
+    background: #000; /* 兜底黑色 */
+}
 
 /* 图层 0: 宇宙背景 (只在首屏) */
 #hero-bg {
@@ -38,7 +60,6 @@
     position: absolute; /* ⚠️ 改成 absolute */
     top: 0; left: 0; width: 100%; height: 100%;
     z-index: 1; 
-    display: none;
     pointer-events: none;
     opacity: 0.8; /* 亮度调高一点 */
 }
@@ -70,8 +91,7 @@
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     color: rgba(0, 229, 255, 0.7); font-family: monospace; font-size: 10px;
     
-
-    animation: none;
+    animation: god-float 8s ease-in-out infinite; /* 浮动更缓慢 */
     pointer-events: none; transition: all 1s ease;
 }
 
@@ -248,51 +268,160 @@ nav, header {
       --accent-rgb: 232, 185, 35; --accent2-rgb: 74, 144, 226; --card-bg: rgba(255,255,255,0.02);
     }
     *{box-sizing:border-box}
-    body {
-    margin: 0;
-    /* 重点：我们在中间插了一串 "Microsoft YaHei" 等，这些是你电脑自带的，不需要下载 */
-    font-family: Inter, "Microsoft YaHei", "微软雅黑", sans-serif, 'Noto Serif SC', serif;
-    background: linear-gradient(180deg,#02040a,#071428);
-    color: #eaf6ff;
-    -webkit-font-smoothing: antialiased;
-}
-
+    body{margin:0;font-family:Inter,'Noto Serif SC',serif;background:linear-gradient(180deg,#02040a,#071428);color:#eaf6ff;-webkit-font-smoothing:antialiased}
     a{color:inherit;text-decoration:none}
 
 
 
 
 
-
-
-
-
-
-
-
-
-/* --- 替换为这一块新代码 --- */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    padding: 20px 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
-    /* 修改点：去掉了 backdrop-filter (模糊)，改用更深的不透明度 */
-    /* 这样显卡就不需要计算模糊了，速度瞬间恢复 */
-    background: rgba(2, 6, 10, 0.9) !important; 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.3s ease;
+/* ====== HUD 垂直且默认展开：人像在上，对话框在下，始终可见（替换旧 HUD CSS） ====== */
+.dawei-hud, .dawei-guide {
+  position: fixed;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9999;
+  
+  /* 【核心】改为垂直布局 */
+  display: flex;
+  flex-direction: column; /* 让头像和对话框垂直排列 */
+  align-items: flex-end; /* 让所有元素靠右对齐 */
+  
+  gap: 8px; /* 增加头像和对话框之间的垂直间距 */
+  pointer-events: auto;
+  opacity: 0; 
+  animation: hud-fade-in 0.5s ease-out 1s forwards;
 }
 
- 
+/* 移除折叠态（因为现在不需要收起） */
+.dawei-hud.collapsed {
+  width: auto;
+  height: auto;
+  padding: 0;
+  border-radius: 0;
+  overflow: visible;
+}
+
+/* 新增一个动画定义 */
+@keyframes hud-fade-in {
+  from { opacity: 0; transform: translateY(-50%) scale(0.95); }
+  to { opacity: 1; transform: translateY(-50%) scale(1); }
+}
 
 
+/* 头像尺寸略小 */
+.dawei-hud .avatar, .dawei-guide .avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.42);
+  border: 2px solid rgba(232,185,35,0.16);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+/* 鼠标悬停时：头像稍微浮动一下 */
+.dawei-hud:hover .avatar {
+    transform: scale(1.05) translateY(-2px);
+}
+
+/* 气泡主体：窄宽度，垂直跟随头像 */
+.dawei-hud .dawei-body, .dawei-hud .bubble {
+  /* 【核心】始终可见并紧凑靠右 */
+  margin-left: 0; 
+  margin-top: 0;  
+  
+  opacity: 1;      /* 强制始终可见 */
+  visibility: visible; 
+  transform: translateY(0); 
+  
+  /* 恢复原有美化样式 */
+  background: transparent;
+  backdrop-filter: none;
+  border-radius: 12px;
+  border: 1.5px solid rgba(var(--accent-rgb), 0.7);
+  box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.3), 0 4px 20px rgba(0,0,0,0.5);
+  color: #fff;
+  font-weight: 500;
+  text-shadow: 
+    0 0 5px rgba(var(--accent-rgb), 0.7),
+    -1px -1px 2px rgba(0,0,0,0.7),
+    1px 1px 2px rgba(0,0,0,0.7);
+  padding: 6px 14px;
+  min-width: 150px;
+  max-width: 180px;
+  display: block;
+  pointer-events: auto;
+  transition: all 0.3s ease;
+}
+
+/* 移除折叠时隐藏面板 */
+.dawei-hud.collapsed .dawei-body,
+.dawei-hud.collapsed .bubble { display: block; opacity: 1; visibility: visible; } 
+
+/* 移除悬停展开效果，保持稳定 */
+.dawei-hud:hover .dawei-body, 
+.dawei-hud:hover .bubble {
+  transform: scale(1.00); 
+  box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.3), 0 4px 20px rgba(0,0,0,0.5); 
+}
+
+/* [最终优化] 对话文字的精准样式 */
+#dawei-hud p.dawei-line {
+  font-size: 14px;
+  color: inherit;
+  line-height: 1.25;
+  margin: 0;
+  padding: 0;
+  word-break: break-word;
+  white-space: normal;
+  text-overflow: ellipsis;
+}
+
+/* 小屏幕适应：保持紧凑靠右 */
+@media (max-width: 760px) {
+  /* 手机端彻底隐藏悬浮窗（你文件里已有，这里只是保持，不冲突） */
+  .dawei-hud, .dawei-guide { 
+      display: none !important; 
+  }
+}
+
+/* 无动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .dawei-hud, .dawei-hud .dawei-line {
+    transition: none !important;
+    transform: none !important; opacity: 1 !important;
+  }
+}
+
+
+/* 移除收起提示 chevron 按钮，现在始终展开，不需要这个按钮 */
+.dawei-hint {
+    display: none !important;
+}
+
+
+
+
+
+    /* --- [其余样式，保持不变] --- */
+    header {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        padding: 16px 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(180deg, rgba(2,4,10,0.85) 0%, rgba(2,4,10,0.6) 50%, rgba(2,4,10,0) 100%);
+        z-index: 10000;
+        backdrop-filter: blur(8px);
+        transition: all 0.3s ease;
+    }
     .brand{display:flex;gap:12px;align-items:center}
     .logo{width:44px;height:44px;border-radius:8px;background:transparent;display:grid;place-items:center;font-weight:700;}
     nav{display:flex;gap:12px;align-items:center}nav a{color:var(--muted);font-size:13px;
@@ -1483,16 +1612,18 @@ filter:brightness(1.15) drop-shadow(0 12px 40px rgba(255, 69, 0, 0.7));
 
 /* 光带脉动 */
 @keyframes beamPulse {
-  0% { transform: translateY(-50%) rotate(-6deg) scaleX(0.96); opacity:0.54; }
-  50% { transform: translateY(-52%) rotate(-6deg) scaleX(1.06); opacity:1; }
-  100% { transform: translateY(-50%) rotate(-6deg) scaleX(0.96); opacity:0.54; }
+  0% { transform: translateY(-50%) rotate(-6deg) scaleX(0.96); opacity:0.54; filter: blur(28px);
+  }
+  50% { transform: translateY(-52%) rotate(-6deg) scaleX(1.06); opacity:1; filter: blur(12px); }
+  100% { transform: translateY(-50%) rotate(-6deg) scaleX(0.96); opacity:0.54;
+  filter: blur(28px); }
 }
 
 /* 保留无障碍设置 */
 @media(prefers-reduced-motion:reduce){
   .spaceship-container{animation:none!important; transform:translate3d(-400px,-50%,0)!important;}
   .spaceship-trail i, .spaceship-beam::before, .spaceship-beam::after{animation:none!important; opacity:0.9 !important;
-  filter:none!important; filter: blur(20px);}
+  filter:none!important;}
 }
 @media(max-width:768px){
   .spaceship-container{
@@ -2025,7 +2156,16 @@ details[style*="cursor: pointer;"] summary::-webkit-details-marker {
     font-size: 20px;
   }
   
-
+  /* 5. 按钮组和悬浮窗 */
+  .hero-actions {
+    margin-top: 24px;
+  }
+  .dawei-hud, .dawei-guide {
+      top: auto;
+      bottom: 20px;
+      right: 16px;
+      transform: none;
+  }
   
   /* 6. 所有多列布局，在手机上全部变为单列显示 */
   .two-cols,
@@ -2062,8 +2202,8 @@ details[style*="cursor: pointer;"] summary::-webkit-details-marker {
 .header-compact {
     padding: 10px 16px !important; /* 缩小上下边距 */
     height: 60px; /* 设定一个较小的高度 */
-    background: rgba(2,6,10,0.95) !important; 
-
+    background: rgba(2,4,10,0.95) !important; 
+    backdrop-filter: blur(12px) !important;
     
     /* 隐藏所有菜单和操作按钮 */
     nav, .header-actions {
@@ -2161,12 +2301,7 @@ details[style*="cursor: pointer;"] summary::-webkit-details-marker {
 
 
 
-/* 在手机端隐藏粒子层 */
-@media (max-width: 768px) {
-    #particles-js {
-        display: none !important;
-    }
-}
+
 
 
 
@@ -2752,6 +2887,13 @@ details[style*="cursor: pointer;"] summary::-webkit-details-marker {
     }
 }
 
+/* 3. 手机端：只有加上了 'is-zoomed' 类名才放大 */
+/* 我们稍微放得更大一点(2.2倍)，并移到屏幕中间一点，方便看清 */
+.dawei-hud.is-zoomed .avatar, .dawei-guide.is-zoomed .avatar {
+    transform: scale(2.2) translate(-10px, -10px) !important; 
+    box-shadow: 0 0 50px rgba(0,0,0,0.9) !important;
+    border-color: #fff !important;
+}
 
 
 
@@ -2771,152 +2913,14 @@ details[style*="cursor: pointer;"] summary::-webkit-details-marker {
 
 
 
-
-/* ========== [最终整合] 解大为交互组件：呼吸感 + 右侧隐藏 + 召唤箭头 ========== */
-
-/* 1. 基础容器：定位在右侧中间 */
-.dawei-hud {
-    position: fixed;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 9999;
-    display: flex;
-    flex-direction: row-reverse; /* 确保气泡在头像左边 */
-    align-items: center;
-    gap: 12px;
-}
-
-/* 2. 头像：实现“呼吸式”放缩闪烁 */
-.dawei-hud .avatar {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background-size: cover;
-    background-position: center;
-    border: 2px solid var(--accent);
-    box-shadow: 0 8px 22px rgba(0,0,0,0.4);
-    cursor: pointer;
-    position: relative;
-    /* 核心动画：放缩呼吸感 */
-    animation: dawei-avatar-breathe 3s infinite ease-in-out;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@keyframes dawei-avatar-breathe {
-    0%, 100% { transform: scale(1); filter: brightness(1); }
-    50% { transform: scale(1.1); filter: brightness(1.2); box-shadow: 0 0 25px rgba(232, 185, 35, 0.5); }
-}
-
-/* 3. 对话框主体样式 */
-.dawei-hud .dawei-body {
-    background: rgba(2, 4, 10, 0.85);
-    backdrop-filter: blur(8px);
-    border: 1.5px solid var(--accent);
-    padding: 10px 16px;
-    border-radius: 12px;
-    color: #fff;
-    min-width: 160px;
-    max-width: 220px;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* 4. 隐藏逻辑：向右平移出屏幕边缘 */
-.dawei-hud.collapsed .dawei-body {
-    transform: translateX(calc(100% + 50px)); /* 完全向右划出 */
-    opacity: 0;
-    pointer-events: none;
-}
-
-
-
-/* 6. 手机端适配：彻底隐藏 */
+/* ========== 手机端隐藏解大为悬浮窗（避免遮挡内容） ========== */
 @media (max-width: 768px) {
-    .dawei-hud { display: none !important; }
-}
-
-
-
-/* ================= CSS 修复补丁 ================= */
-
-/* 1. 修复首屏星空漏黑边 */
-#hero-cinematic {
-    /* 核心：用负 Margin 抵消掉 main 的顶部 padding */
-    margin-top: -120px !important; 
-    margin-left: -24px !important; /* 抵消 main 的左右 padding */
-    margin-right: -24px !important;
-    width: calc(100% + 48px) !important; /* 补回宽度 */
-    
-    /* 核心：增加内部 padding，让文字内容回到视觉中心，不被导航栏挡住 */
-    padding-top: 200px !important; 
-    
-    /* 确保背景占满全屏 */
-    min-height: 100vh !important;
-    border-radius: 0 !important; /* 首屏一般不需要圆角 */
-}
-
-/* 手机端适配调整 */
-@media (max-width: 768px) {
-    #hero-cinematic {
-        margin-top: -100px !important; /* 手机端 main padding 较小 */
-        padding-top: 140px !important;
-    }
-}
-
-
-
-
-
-/* ================== [新] 三角箭头修复 (不闪烁) ================== */
-.dawei-hud.collapsed .avatar::after {
-    content: '◀'; 
-    position: absolute;
-    left: -25px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--accent);
-    font-size: 18px;
-    opacity: 1 !important; /* 核心：固定不透明度，禁止闪烁 */
-    text-shadow: 0 0 5px var(--accent);
-    animation: arrow-guide-jump 1.2s infinite ease-in-out;
-    pointer-events: none;
-}
-
-@keyframes arrow-guide-jump {
-    0%, 100% { transform: translate(0, -50%) scale(1); }
-    50% { transform: translate(-6px, -50%) scale(1.1); }
-}
-
-/* ================== [新] 手机端强制隐藏对话框 ================== */
-@media (max-width: 768px) {
-    #dawei-hud, 
-    .dawei-hud, 
+    .dawei-hud,
     .dawei-guide {
-        display: none !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-        visibility: hidden !important;
+        display: none !important;   /* 彻底隐藏，不占任何空间 */
     }
 }
 
-
-/* ✅ 正确的还原方案：让容器回归自然位置 */
-main {
-    max-width: 1300px;
-    margin: 0 auto;
-    /* 原来是 padding-top: 120px; 我们把它改为 0 */
-    padding: 0 24px 80px; 
-}
-
-#hero-cinematic {
-    /* 这里的 padding-top 用来给导航栏留出空间，而不是用负 margin 去拉 */
-    padding-top: 120px; 
-    margin-top: 0 !important; /* 确保不产生位移计算 */
-    width: 100% !important;   /* 恢复标准宽度 */
-    min-height: 100vh;
-}
 
 
 
