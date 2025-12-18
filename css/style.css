@@ -275,133 +275,11 @@ nav, header {
 
 
 
-/* ====== HUD 垂直且默认展开：人像在上，对话框在下，始终可见（替换旧 HUD CSS） ====== */
-.dawei-hud, .dawei-guide {
-  position: fixed;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 9999;
-  
-  /* 【核心】改为垂直布局 */
-  display: flex;
-  flex-direction: column; /* 让头像和对话框垂直排列 */
-  align-items: flex-end; /* 让所有元素靠右对齐 */
-  
-  gap: 8px; /* 增加头像和对话框之间的垂直间距 */
-  pointer-events: auto;
-  opacity: 0; 
-  animation: hud-fade-in 0.5s ease-out 1s forwards;
-}
-
-/* 移除折叠态（因为现在不需要收起） */
-.dawei-hud.collapsed {
-  width: auto;
-  height: auto;
-  padding: 0;
-  border-radius: 0;
-  overflow: visible;
-}
-
-/* 新增一个动画定义 */
-@keyframes hud-fade-in {
-  from { opacity: 0; transform: translateY(-50%) scale(0.95); }
-  to { opacity: 1; transform: translateY(-50%) scale(1); }
-}
 
 
-/* 头像尺寸略小 */
-.dawei-hud .avatar, .dawei-guide .avatar {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background-size: cover;
-  background-position: center;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.42);
-  border: 2px solid rgba(232,185,35,0.16);
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
-}
-
-/* 鼠标悬停时：头像稍微浮动一下 */
-.dawei-hud:hover .avatar {
-    transform: scale(1.05) translateY(-2px);
-}
-
-/* 气泡主体：窄宽度，垂直跟随头像 */
-.dawei-hud .dawei-body, .dawei-hud .bubble {
-  /* 【核心】始终可见并紧凑靠右 */
-  margin-left: 0; 
-  margin-top: 0;  
-  
-  opacity: 1;      /* 强制始终可见 */
-  visibility: visible; 
-  transform: translateY(0); 
-  
-  /* 恢复原有美化样式 */
-  background: transparent;
-  backdrop-filter: none;
-  border-radius: 12px;
-  border: 1.5px solid rgba(var(--accent-rgb), 0.7);
-  box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.3), 0 4px 20px rgba(0,0,0,0.5);
-  color: #fff;
-  font-weight: 500;
-  text-shadow: 
-    0 0 5px rgba(var(--accent-rgb), 0.7),
-    -1px -1px 2px rgba(0,0,0,0.7),
-    1px 1px 2px rgba(0,0,0,0.7);
-  padding: 6px 14px;
-  min-width: 150px;
-  max-width: 180px;
-  display: block;
-  pointer-events: auto;
-  transition: all 0.3s ease;
-}
-
-/* 移除折叠时隐藏面板 */
-.dawei-hud.collapsed .dawei-body,
-.dawei-hud.collapsed .bubble { display: block; opacity: 1; visibility: visible; } 
-
-/* 移除悬停展开效果，保持稳定 */
-.dawei-hud:hover .dawei-body, 
-.dawei-hud:hover .bubble {
-  transform: scale(1.00); 
-  box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.3), 0 4px 20px rgba(0,0,0,0.5); 
-}
-
-/* [最终优化] 对话文字的精准样式 */
-#dawei-hud p.dawei-line {
-  font-size: 14px;
-  color: inherit;
-  line-height: 1.25;
-  margin: 0;
-  padding: 0;
-  word-break: break-word;
-  white-space: normal;
-  text-overflow: ellipsis;
-}
-
-/* 小屏幕适应：保持紧凑靠右 */
-@media (max-width: 760px) {
-  /* 手机端彻底隐藏悬浮窗（你文件里已有，这里只是保持，不冲突） */
-  .dawei-hud, .dawei-guide { 
-      display: none !important; 
-  }
-}
-
-/* 无动画偏好 */
-@media (prefers-reduced-motion: reduce) {
-  .dawei-hud, .dawei-hud .dawei-line {
-    transition: none !important;
-    transform: none !important; opacity: 1 !important;
-  }
-}
 
 
-/* 移除收起提示 chevron 按钮，现在始终展开，不需要这个按钮 */
-.dawei-hint {
-    display: none !important;
-}
+
 
 
 
@@ -2887,13 +2765,6 @@ details[style*="cursor: pointer;"] summary::-webkit-details-marker {
     }
 }
 
-/* 3. 手机端：只有加上了 'is-zoomed' 类名才放大 */
-/* 我们稍微放得更大一点(2.2倍)，并移到屏幕中间一点，方便看清 */
-.dawei-hud.is-zoomed .avatar, .dawei-guide.is-zoomed .avatar {
-    transform: scale(2.2) translate(-10px, -10px) !important; 
-    box-shadow: 0 0 50px rgba(0,0,0,0.9) !important;
-    border-color: #fff !important;
-}
 
 
 
@@ -2913,15 +2784,87 @@ details[style*="cursor: pointer;"] summary::-webkit-details-marker {
 
 
 
-/* ========== 手机端隐藏解大为悬浮窗（避免遮挡内容） ========== */
-@media (max-width: 768px) {
-    .dawei-hud,
-    .dawei-guide {
-        display: none !important;   /* 彻底隐藏，不占任何空间 */
-    }
+
+/* ========== [最终整合] 解大为交互组件：呼吸感 + 右侧隐藏 + 召唤箭头 ========== */
+
+/* 1. 基础容器：定位在右侧中间 */
+.dawei-hud {
+    position: fixed;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: row-reverse; /* 确保气泡在头像左边 */
+    align-items: center;
+    gap: 12px;
 }
 
+/* 2. 头像：实现“呼吸式”放缩闪烁 */
+.dawei-hud .avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid var(--accent);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.4);
+    cursor: pointer;
+    position: relative;
+    /* 核心动画：放缩呼吸感 */
+    animation: dawei-avatar-breathe 3s infinite ease-in-out;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
 
+@keyframes dawei-avatar-breathe {
+    0%, 100% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(1.1); filter: brightness(1.2); box-shadow: 0 0 25px rgba(232, 185, 35, 0.5); }
+}
+
+/* 3. 对话框主体样式 */
+.dawei-hud .dawei-body {
+    background: rgba(2, 4, 10, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1.5px solid var(--accent);
+    padding: 10px 16px;
+    border-radius: 12px;
+    color: #fff;
+    min-width: 160px;
+    max-width: 220px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 4. 隐藏逻辑：向右平移出屏幕边缘 */
+.dawei-hud.collapsed .dawei-body {
+    transform: translateX(calc(100% + 50px)); /* 完全向右划出 */
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* 5. 收起后的“左箭头”提示：在头像左侧跳动引导点击 */
+.dawei-hud.collapsed .avatar::after {
+    content: '◀'; 
+    position: absolute;
+    left: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent);
+    font-size: 18px;
+    text-shadow: 0 0 10px var(--accent);
+    animation: arrow-guide-jump 1.2s infinite ease-in-out;
+}
+
+@keyframes arrow-guide-jump {
+    0%, 100% { transform: translate(0, -50%) scale(1); opacity: 0.4; }
+    50% { transform: translate(-8px, -50%) scale(1.3); opacity: 1; }
+}
+
+/* 6. 手机端适配：彻底隐藏 */
+@media (max-width: 768px) {
+    .dawei-hud { display: none !important; }
+}
 
 
 
@@ -2940,6 +2883,7 @@ details[style*="cursor: pointer;"] summary::-webkit-details-marker {
     }
   }
   </script>
+
 
 
 
