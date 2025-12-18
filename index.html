@@ -1616,21 +1616,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
 
 
-/* === 核心交互：点击头像切换折叠状态 === */
-const hudContainer = document.getElementById('dawei-hud');
-const avatarImg = hudContainer.querySelector('.avatar');
 
-if (avatarImg && hudContainer) {
-    avatarImg.addEventListener('click', (e) => {
-        e.stopPropagation(); 
-        // 关键：给整个容器加上或去掉 "collapsed" 类名
-        hudContainer.classList.toggle('collapsed');
-        
-        // 手机震动反馈 (15毫秒)
-        if (navigator.vibrate) navigator.vibrate(15);
-    });
-}
 
+
+/* === 核心交互：点击头像展开，点击文字缩回 === */
+// 使用 setTimeout 确保元素已生成
+setTimeout(() => {
+    const hudContainer = document.getElementById('dawei-hud');
+    if (!hudContainer) return;
+
+    const avatarImg = hudContainer.querySelector('.avatar');
+    const hudBody = hudContainer.querySelector('.dawei-body');
+
+    // 1. 点击头像 -> 展开 (移除 collapsed 类)
+    if (avatarImg) {
+        avatarImg.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hudContainer.classList.remove('collapsed'); 
+            if (navigator.vibrate) navigator.vibrate(15);
+        });
+    }
+
+    // 2. 点击对话框文字 -> 缩回 (添加 collapsed 类)
+    if (hudBody) {
+        hudBody.style.cursor = 'pointer'; // 鼠标变手型
+        hudBody.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hudContainer.classList.add('collapsed'); 
+            if (navigator.vibrate) navigator.vibrate(15);
+        });
+    }
+}, 500);
 
 
     
