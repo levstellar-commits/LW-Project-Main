@@ -1499,18 +1499,16 @@ filter:brightness(1.15) drop-shadow(0 12px 40px rgba(255, 69, 0, 0.7));
 
 /* 光带脉动 */
 @keyframes beamPulse {
-  0% { transform: translateY(-50%) rotate(-6deg) scaleX(0.96); opacity:0.54; filter: blur(28px);
-  }
-  50% { transform: translateY(-52%) rotate(-6deg) scaleX(1.06); opacity:1; filter: blur(12px); }
-  100% { transform: translateY(-50%) rotate(-6deg) scaleX(0.96); opacity:0.54;
-  filter: blur(28px); }
+  0% { transform: translateY(-50%) rotate(-6deg) scaleX(0.96); opacity:0.54; }
+  50% { transform: translateY(-52%) rotate(-6deg) scaleX(1.06); opacity:1; }
+  100% { transform: translateY(-50%) rotate(-6deg) scaleX(0.96); opacity:0.54; }
 }
 
 /* 保留无障碍设置 */
 @media(prefers-reduced-motion:reduce){
   .spaceship-container{animation:none!important; transform:translate3d(-400px,-50%,0)!important;}
   .spaceship-trail i, .spaceship-beam::before, .spaceship-beam::after{animation:none!important; opacity:0.9 !important;
-  filter:none!important;}
+  filter:none!important; filter: blur(20px);}
 }
 @media(max-width:768px){
   .spaceship-container{
@@ -2080,8 +2078,8 @@ details[style*="cursor: pointer;"] summary::-webkit-details-marker {
 .header-compact {
     padding: 10px 16px !important; /* 缩小上下边距 */
     height: 60px; /* 设定一个较小的高度 */
-    background: rgba(2,4,10,0.95) !important; 
-    backdrop-filter: blur(12px) !important;
+    background: rgba(2,6,10,0.95) !important; 
+
     
     /* 隐藏所有菜单和操作按钮 */
     nav, .header-actions {
