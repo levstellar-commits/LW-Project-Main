@@ -247,14 +247,15 @@ nav, header {
       --accent-rgb: 232, 185, 35; --accent2-rgb: 74, 144, 226; --card-bg: rgba(255,255,255,0.02);
     }
     *{box-sizing:border-box}
-    body {
+    
+body {
     margin: 0;
-    /* 重点：我们在中间插了一串 "Microsoft YaHei" 等，这些是你电脑自带的，不需要下载 */
-    font-family: Inter, "Microsoft YaHei", "微软雅黑", sans-serif, 'Noto Serif SC', serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
     background: linear-gradient(180deg,#02040a,#071428);
     color: #eaf6ff;
     -webkit-font-smoothing: antialiased;
 }
+
 
     a{color:inherit;text-decoration:none}
 
