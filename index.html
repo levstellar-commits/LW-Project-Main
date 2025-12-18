@@ -19,7 +19,7 @@
   <link rel="preload" as="image" href="assets/images/hero_main.jpg" fetchpriority="high">
   
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+
 
 
   <meta name="baidu-site-verification" content="codeva-FgXs6ZwMEJ" />
@@ -107,7 +107,7 @@
     
     // 策略B（保底）：不管网页有没有加载完，500毫秒后强制开门
     // 这能确保绝对不会卡住
-    setTimeout(forceRemoveLoader, 2000); 
+    setTimeout(forceRemoveLoader, 800); 
   })();
 </script>
 
@@ -241,8 +241,13 @@
 
 
     <div class="spaceship-container" aria-hidden="true">
-      
-<img src="assets/images/dragon rider.png" alt="立维宇宙创世人驾驭墨龙穿行于星际的概念艺术图" class="spaceship" decoding="async" fetchpriority="high">
+     
+
+<img src="assets/images/dragon rider.png"
+     alt="立维宇宙创世人驾驭墨龙穿行于星际的概念艺术图"
+     class="spaceship"
+     decoding="async">
+
 
         <div class="spaceship-beam" aria-hidden="true"></div>
         <div class="spaceship-trail" aria-hidden="true">
@@ -2279,14 +2284,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
-
-
-
-
-
 </script>
+
+
+
+
+<script>
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      var p = document.getElementById('particles-js');
+      if (p) {
+        p.style.display = 'block';
+      }
+    }, 2000);
+  });
+</script>
+
+
+<script>
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      document.querySelectorAll('.god-figure').forEach(function (el) {
+        el.style.animation = 'god-float 8s ease-in-out infinite';
+      });
+    }, 2500);
+  });
+</script>
+
+
 
 
 
