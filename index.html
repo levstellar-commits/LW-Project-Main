@@ -77,7 +77,13 @@
 
 
 
-
+<div id="system-loader">
+    <div class="loader-content">
+        <div class="loader-text">LEVYTHOS</div>
+        <div class="loader-sub">SYSTEM INITIALIZING...</div>
+        <div class="progress-bar"></div>
+    </div>
+</div>
 
 
 
@@ -130,28 +136,17 @@
 </style>
 
 
+
+
+
 <style>
     /* =========================================
        1. 系统初始化加载屏样式 (System Loader)
+       已移除，请去 style-76.css 添加新样式
        ========================================= */
-    #system-loader {
-        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: #000; z-index: 999999; /* 最高层级 */
-        display: flex; flex-direction: column; align-items: center; justify-content: center;
-        font-family: 'Courier New', monospace; color: #00e5ff;
-        transition: opacity 0.5s ease-out;
-    }
-    .loader-text { font-size: 16px; letter-spacing: 2px; margin-bottom: 20px; animation: blink 1s infinite; }
-    .progress-bar { width: 200px; height: 2px; background: #111; position: relative; overflow: hidden; }
-    .progress-bar::after {
-        content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: #00e5ff;
-        animation: loading 2.5s ease-in-out forwards;
-    }
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-    @keyframes loading { 0% { width: 0%; } 40% { width: 30%; } 80% { width: 80%; } 100% { width: 100%; } }
 
     /* =========================================
-       2. 战术准星鼠标样式 (Tactical Cursor)
+       2. 战术准星鼠标样式 (Tactical Cursor) - [彩蛋保留]
        ========================================= */
     body { cursor: crosshair; } /* 默认十字 */
     a, button, .pwa-btn, .avatar, .breathing-circle {
@@ -160,7 +155,7 @@
     }
 
     /* =========================================
-       3. 神经安定协议/禅意模式 (Zen Mode)
+       3. 神经安定协议/禅意模式 (Zen Mode) - [彩蛋保留]
        ========================================= */
     #zen-mode-overlay {
         position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -188,6 +183,11 @@
     }
     #exit-zen-btn:hover { border-color: #00e5ff; color: #00e5ff; }
 </style>
+
+
+
+
+
 
 
 <a href="#" onclick="openInstallGuide(); return false;" class="pwa-btn">
@@ -2249,77 +2249,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
 <script>
-    /* 🛡️ 立维宇宙：智能首屏锁 V8.0 (Smart Loader) */
+    /* 🛡️ 立维宇宙：智能首屏锁 V10.0 (修复版) */
     (function() {
-        // 配置：为了防止网络极差时卡死，设置一个最长等待时间 (比如 8 秒)
-        // 超过这个时间，就算没加载完也强制开门，不能让用户以为网站挂了
-        const MAX_WAIT_TIME = 8000; 
+        // 1. 获取元素
+        const loader = document.getElementById('system-loader');
+        const particles = document.getElementById('particles-js');
         
-        // 标记首屏关键资源
-        const heroImageSrc = 'assets/images/hero-bg.jpg'; // 请确认这是你的首屏背景图路径
-        const fontName = '1em "Noto Serif SC"'; // 你的核心字体
-
-        // 启动函数
-        function launchUniverse() {
-            const loader = document.getElementById('system-loader');
-            // 防止重复启动
+        // 2. 定义关闭加载屏的函数
+        function dismissLoader() {
             if (!loader || loader.getAttribute('data-closed')) return;
             loader.setAttribute('data-closed', 'true');
-
-            // 优雅淡出
+            
+            // 动画：淡出
             loader.style.opacity = '0';
-            setTimeout(() => { 
-                loader.style.display = 'none'; 
-                // 进场后，立即启动动画
-                const particles = document.getElementById('particles-js');
+            loader.style.visibility = 'hidden';
+            
+            // 启动背景特效
+            setTimeout(() => {
                 if (particles) particles.style.display = 'block';
+                // 启动 God Figure 动画
                 document.querySelectorAll('.god-figure').forEach(el => {
                     el.style.animation = 'god-float 8s ease-in-out infinite';
                 });
-            }, 800);
+            }, 500);
         }
 
-        // 任务1：加载首屏大图
-        const imagePromise = new Promise((resolve) => {
-            const img = new Image();
-            img.src = heroImageSrc;
-            if (img.complete) {
-                resolve('Image Cached');
-            } else {
-                img.onload = () => resolve('Image Loaded');
-                img.onerror = () => resolve('Image Error'); // 即使图挂了也要通过，不能卡死
-            }
-        });
-
-        // 任务2：加载核心字体
-        const fontPromise = document.fonts ? document.fonts.load(fontName) : Promise.resolve();
-
-        // 任务3：至少展示 1.5 秒 loading (维持仪式感，太快了像闪屏Bug)
-        const minTimePromise = new Promise(r => setTimeout(r, 1500));
-
-        // ★★★ 核心逻辑：等 图片+字体+时间 全部满足，才开门 ★★★
-        Promise.all([imagePromise, fontPromise, minTimePromise])
-            .then(() => {
-                console.log("首屏资源就绪，启动宇宙...");
-                launchUniverse();
-            })
-            .catch(() => {
-                // 即使出错也强制启动
-                launchUniverse();
-            });
-
-        // 保险丝：如果 8秒 还没加载完，强制开门
+        // 3. 核心逻辑：无论图片加没加载完，3秒后必须进游戏 (保底机制)
+        // 这样就算 github 慢，也不会卡死用户
         setTimeout(() => {
-            console.log("加载超时，强制启动...");
-            launchUniverse();
-        }, MAX_WAIT_TIME);
+            console.log("Force launching universe...");
+            dismissLoader();
+        }, 3000);
+
+        // 4. 尝试监听主图加载（如果网速快，可以提前结束）
+        const heroImg = new Image();
+        heroImg.src = 'assets/images/hero-bg.jpg'; // 注意：如果你没改CF路径，这里依然是瓶颈
+        heroImg.onload = dismissLoader;
+        heroImg.onerror = dismissLoader; // 图片挂了也得进
     })();
 </script>
-
-
 
 
 
