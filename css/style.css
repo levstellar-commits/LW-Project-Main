@@ -567,4 +567,97 @@ footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,
 
 
 
+/* =========================================
+   ★ V9.0 最终装修补丁 (针对大哥的要求)
+   ★ 包含：四个块蓝条样式、立维社居中+方图、天问三联画拼接
+   ========================================= */
 
+/* --- 1. 世界蓝图 (四个块)：左侧蓝条 + 科技感 --- */
+.summary-item {
+    /* 强制左对齐，不然蓝条不好看 */
+    text-align: left !important; 
+    /* 左边加粗的青色竖条 */
+    border-left: 4px solid #00e5ff !important; 
+    /* 其他三边只要淡淡的线 */
+    border-top: 1px solid rgba(0, 229, 255, 0.1) !important;
+    border-right: 1px solid rgba(0, 229, 255, 0.1) !important;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.1) !important;
+    /* 右边圆角，左边直角，像个括号 */
+    border-radius: 0 8px 8px 0 !important;
+    /* 给个渐变背景，突显左侧 */
+    background: linear-gradient(90deg, rgba(0, 229, 255, 0.05) 0%, transparent 100%) !important;
+    padding: 20px !important;
+}
+/* 让数字标号更好看 */
+.summary-item h4 span {
+    display: inline-block !important;
+    margin-right: 10px !important;
+    font-size: 24px !important;
+    vertical-align: middle;
+}
+
+/* --- 2. 立维社 (Arena)：文字居中 + 图片变正方形 --- */
+/* 标题下的文字居中，并增加间距 */
+.arena-header p.muted {
+    text-align: center !important;
+    margin: 10px auto 40px auto !important; /* 上下留出呼吸感 */
+    max-width: 800px !important;
+}
+
+/* 图片强制变成 1:1 正方形 */
+.arena-visual img {
+    aspect-ratio: 1 / 1 !important; 
+    object-fit: cover !important;
+    width: 100% !important;
+    border-radius: 12px !important;
+    /* 加个光晕让它看起来不像普通的图 */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* --- 3. 天问 (Bridge)：三图拼接成一个正方形 --- */
+/* 容器：限制宽度，强制正方形比例，居中 */
+.bridge-layout-grid .visual-container-compact .triptych-container {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    max-width: 500px !important; /* 限制最大宽度，不然太大了 */
+    aspect-ratio: 1 / 1 !important; /* 强制整体是个正方形 */
+    margin: 0 auto !important; /* 居中 */
+    gap: 4px !important; /* 极小的缝隙，更有拼接感 */
+    height: auto !important; /* 高度由比例决定 */
+}
+
+/* 单个条目：三等分 */
+.bridge-layout-grid .triptych-item {
+    flex: 1 !important; /* 三个平分宽度 */
+    height: 100% !important; /* 高度撑满 */
+    margin: 0 !important;
+    border-radius: 0 !important; /* 去掉圆角，像切开的方块 */
+}
+
+/* 第一张图左边圆角 */
+.bridge-layout-grid .triptych-item:first-child {
+    border-top-left-radius: 8px !important;
+    border-bottom-left-radius: 8px !important;
+}
+/* 最后一张图右边圆角 */
+.bridge-layout-grid .triptych-item:last-child {
+    border-top-right-radius: 8px !important;
+    border-bottom-right-radius: 8px !important;
+}
+
+/* 图片本身：填满格子 */
+.bridge-layout-grid .triptych-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; /* 裁剪多余部分 */
+    aspect-ratio: unset !important; /* 覆盖掉以前的设置 */
+}
+
+/* 手机端适配：如果不希望手机上太挤，可以保持这样，或者手机上变成上下排列 */
+@media (max-width: 768px) {
+    .bridge-layout-grid .visual-container-compact .triptych-container {
+        max-width: 100% !important;
+        height: 300px !important; /* 手机上固定一个高度 */
+    }
+}
