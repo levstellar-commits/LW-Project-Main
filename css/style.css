@@ -1,23 +1,12 @@
-/* =========================================================
-   LEVYTHOS CORE CSS
-   Version: Stable Baseline
-   Purpose: Structure First, Visual Safe
-========================================================= */
+/* ===== SAFE BASE CSS FOR GITHUB PAGES ===== */
 
-/* -----------------------------
-   0. RESET & ROOT
------------------------------- */
-
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
 }
 
 html {
   width: 100%;
   height: 100%;
-  overflow-x: hidden;
 }
 
 body {
@@ -26,203 +15,86 @@ body {
   min-height: 100%;
   background-color: #02040a;
   color: #eaeaf0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont,
-               "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  line-height: 1.6;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-/* -----------------------------
-   1. LOADER SYSTEM
------------------------------- */
+/* ===== LOADER ===== */
 
 #system-loader {
   position: fixed;
-  inset: 0;
-  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: #02040a;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1000;
 }
 
-#system-loader .loader-inner {
-  text-align: center;
-  letter-spacing: 0.2em;
-  font-size: 0.9rem;
-}
-
-/* -----------------------------
-   2. GLOBAL STRUCTURE
------------------------------- */
+/* ===== BASIC LAYOUT ===== */
 
 main {
   width: 100%;
-  position: relative;
 }
 
 section {
   width: 100%;
-  padding: 6vh 6vw;
+  padding: 5vh 5vw;
 }
 
-.section-inner {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-/* -----------------------------
-   3. TYPOGRAPHY SYSTEM
------------------------------- */
-
-h1, h2, h3, h4, h5 {
-  margin: 0 0 0.6em 0;
-  font-weight: 600;
-  line-height: 1.25;
-}
-
-h1 { font-size: clamp(2rem, 4vw, 3.2rem); }
-h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); }
-h3 { font-size: 1.4rem; }
-h4 { font-size: 1.1rem; }
-
-p {
-  margin: 0 0 1em 0;
-  opacity: 0.9;
-}
-
-/* -----------------------------
-   4. GRID SYSTEM
------------------------------- */
+/* ===== GRID ===== */
 
 .grid {
   display: grid;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
-.grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
-.grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-.grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
-
-@media (max-width: 900px) {
-  .grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+.grid.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
 }
 
-@media (max-width: 600px) {
-  .grid.cols-3,
-  .grid.cols-4 {
-    grid-template-columns: 1fr;
-  }
+.grid.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
 }
 
-/* -----------------------------
-   5. CARD RATIO SYSTEM
------------------------------- */
+.grid.cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
 
-.card {
-  position: relative;
+/* ===== CARD RATIO SYSTEM ===== */
+
+.card-3-4 {
   width: 100%;
+  aspect-ratio: 3 / 4;
   background-color: #0b0f1a;
-  overflow: hidden;
 }
 
-.card-3-4 { aspect-ratio: 3 / 4; }
-.card-16-9 { aspect-ratio: 16 / 9; }
-.card-1-1 { aspect-ratio: 1 / 1; }
+.card-16-9 {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #0b0f1a;
+}
+
+.card-1-1 {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #0b0f1a;
+}
+
 .card-1-3 {
+  width: 100%;
   aspect-ratio: 1 / 3;
   max-height: 70vh;
+  background-color: #0b0f1a;
 }
 
-/* -----------------------------
-   6. IMAGE SAFETY
------------------------------- */
+/* ===== IMAGE SAFETY ===== */
 
-.card img,
-.media img {
+img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
-
-/* -----------------------------
-   7. CARD CONTENT
------------------------------- */
-
-.card-content {
-  position: absolute;
-  inset: 0;
-  padding: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.55),
-    rgba(0,0,0,0)
-  );
-}
-
-/* -----------------------------
-   8. MODULE TYPES
------------------------------- */
-
-.module-core { }
-.module-world { }
-.module-emotion { }
-.module-echo { }
-.module-prism { }
-.module-anchor { }
-.module-credibility { }
-.module-forum { }
-.module-whisper { }
-
-/* -----------------------------
-   9. HUD SAFE BASE
------------------------------- */
-
-.hud {
-  position: fixed;
-  right: 2vw;
-  bottom: 2vh;
-  width: 280px;
-  max-width: 80vw;
-  background-color: rgba(20, 24, 40, 0.85);
-  padding: 1rem;
-  z-index: 500;
-}
-
-/* -----------------------------
-   10. BUTTONS
------------------------------- */
-
-.button {
-  display: inline-block;
-  padding: 0.6em 1.2em;
-  border: 1px solid rgba(255,255,255,0.15);
-  background-color: transparent;
-  color: inherit;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* -----------------------------
-   11. FOOTER
------------------------------- */
-
-footer {
-  padding: 4vh 6vw;
-  text-align: center;
-  font-size: 0.85rem;
-  opacity: 0.6;
-}
-
-/* -----------------------------
-   12. HARD SAFETY OVERRIDES
------------------------------- */
-
-* {
-  filter: none !important;
-  backdrop-filter: none !important;
-}
-
