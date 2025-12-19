@@ -2249,23 +2249,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<script>
-    /* 🛡️ 立维宇宙：智能首屏锁 V9.0 (Smart Loader) */
-    (function() {
-        // 配置
-        const MAX_WAIT_TIME = 5000; // 最多等5秒，防止卡死
-        const heroImageSrc = 'assets/images/hero-bg.jpg'; 
-        const fontName = '16px "Noto Serif SC"'; // 检测这个字体
 
+
+<script>
+    /* 🛡️ 立维宇宙：智能首屏锁 V8.0 (Smart Loader) */
+    (function() {
+        // 配置：为了防止网络极差时卡死，设置一个最长等待时间 (比如 8 秒)
+        // 超过这个时间，就算没加载完也强制开门，不能让用户以为网站挂了
+        const MAX_WAIT_TIME = 8000; 
+        
+        // 标记首屏关键资源
+        const heroImageSrc = 'assets/images/hero-bg.jpg'; // 请确认这是你的首屏背景图路径
+        const fontName = '1em "Noto Serif SC"'; // 你的核心字体
+
+        // 启动函数
         function launchUniverse() {
             const loader = document.getElementById('system-loader');
+            // 防止重复启动
             if (!loader || loader.getAttribute('data-closed')) return;
             loader.setAttribute('data-closed', 'true');
 
+            // 优雅淡出
             loader.style.opacity = '0';
             setTimeout(() => { 
                 loader.style.display = 'none'; 
-                // 启动特效
+                // 进场后，立即启动动画
                 const particles = document.getElementById('particles-js');
                 if (particles) particles.style.display = 'block';
                 document.querySelectorAll('.god-figure').forEach(el => {
@@ -2274,36 +2282,42 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 800);
         }
 
-        // 1. 等待大图
+        // 任务1：加载首屏大图
         const imagePromise = new Promise((resolve) => {
             const img = new Image();
             img.src = heroImageSrc;
-            if (img.complete) resolve();
-            else {
-                img.onload = resolve;
-                img.onerror = resolve; // 出错也放行
+            if (img.complete) {
+                resolve('Image Cached');
+            } else {
+                img.onload = () => resolve('Image Loaded');
+                img.onerror = () => resolve('Image Error'); // 即使图挂了也要通过，不能卡死
             }
         });
 
-        // 2. 等待字体 (关键修复)
+        // 任务2：加载核心字体
         const fontPromise = document.fonts ? document.fonts.load(fontName) : Promise.resolve();
 
-        // 3. 至少展示 1 秒 (仪式感)
-        const minTimePromise = new Promise(r => setTimeout(r, 1000));
+        // 任务3：至少展示 1.5 秒 loading (维持仪式感，太快了像闪屏Bug)
+        const minTimePromise = new Promise(r => setTimeout(r, 1500));
 
-        // 4. 全部完成后启动
+        // ★★★ 核心逻辑：等 图片+字体+时间 全部满足，才开门 ★★★
         Promise.all([imagePromise, fontPromise, minTimePromise])
             .then(() => {
-                console.log("资源就绪，启动宇宙...");
+                console.log("首屏资源就绪，启动宇宙...");
                 launchUniverse();
             })
-            .catch(() => launchUniverse());
+            .catch(() => {
+                // 即使出错也强制启动
+                launchUniverse();
+            });
 
-        // 5. 超时强制启动
-        setTimeout(launchUniverse, MAX_WAIT_TIME);
+        // 保险丝：如果 8秒 还没加载完，强制开门
+        setTimeout(() => {
+            console.log("加载超时，强制启动...");
+            launchUniverse();
+        }, MAX_WAIT_TIME);
     })();
 </script>
-
 
 
 
