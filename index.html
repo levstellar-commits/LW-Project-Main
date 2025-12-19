@@ -1030,7 +1030,11 @@ footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,
     z-index: 1 !important; /* 保证在文字(z-index:10)的后面，星空的前面 */
     
     /* 动画：更加明显的悬停 */
-    animation: dragonHoverFly 20s ease-in-out infinite !important;
+    animation: dragonHoverFly 20s ease-in-out 1 !important;
+    animation-fill-mode: forwards;
+    will-change: transform;
+
+
 }
 
 @keyframes dragonHoverFly {
@@ -1150,14 +1154,6 @@ footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,
        已移除，请去 style-76.css 添加新样式
        ========================================= */
 
-    /* =========================================
-       2. 战术准星鼠标样式 (Tactical Cursor) - [彩蛋保留]
-       ========================================= */
-    body { cursor: crosshair; } /* 默认十字 */
-    a, button, .pwa-btn, .avatar, .breathing-circle {
-        /* 悬停变成青色瞄准圈 (SVG代码) */
-        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewport="0 0 24 24" fill="none" stroke="%2300e5ff" stroke-width="2"><circle cx="12" cy="12" r="8"/><line x1="12" y1="4" x2="12" y2="20"/><line x1="4" y1="12" x2="20" y2="12"/></svg>') 12 12, pointer;
-    }
 
     /* =========================================
        3. 神经安定协议/禅意模式 (Zen Mode) - [彩蛋保留]
@@ -3457,6 +3453,23 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(dismissLoader, 1000);
     })();
 </script>
+
+
+
+
+<script>
+window.addEventListener('load', function () {
+    var loader = document.getElementById('system-loader');
+    if (loader) {
+        loader.style.opacity = '0';
+        loader.style.pointerEvents = 'none';
+        setTimeout(function () {
+            loader.remove();
+        }, 600);
+    }
+});
+</script>
+
 
 
 
