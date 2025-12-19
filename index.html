@@ -1629,7 +1629,7 @@ setTimeout(() => {
 })();
 </script>
 
-<link rel="stylesheet" href="https://npmmirror.com/package/@waline/client/files/dist/waline.css" />
+
 <script type="module">
   // 优化：彻底禁用外部评论脚本的加载，防止卡死页面
   /* if (!/micromessenger/i.test(navigator.userAgent)) {
@@ -2251,7 +2251,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <script>
     /* 🛡️ 立维宇宙：智能首屏锁 V12.1 (极速响应版 - 修复阻塞) */
-    // 移除 document.addEventListener('DOMContentLoaded', ...) 包裹，直接执行 IIFE
+    /* 原理：不再等待 DOMContentLoaded，直接执行，防止被 CSS 卡死 */
     (function() {
         const loader = document.getElementById('system-loader');
         const particles = document.getElementById('particles-js');
@@ -2263,7 +2263,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (loader.getAttribute('data-closed')) return;
             loader.setAttribute('data-closed', 'true');
             
-            // 瞬间满条 + 淡出
+            // 进度条瞬间满条
             const bar = loader.querySelector('.progress-bar::after');
             if(bar) bar.style.width = '100%';
             
@@ -2273,28 +2273,20 @@ document.addEventListener('DOMContentLoaded', () => {
             
             setTimeout(() => {
                 loader.style.display = 'none';
+                // 启动粒子和背景动画
                 if (particles) particles.style.display = 'block';
-                // 启动神像动画
                 document.querySelectorAll('.god-figure').forEach(el => {
                     el.style.animation = 'god-float 8s ease-in-out infinite';
                 });
             }, 500);
         }
 
-        // 策略1: 设定一个绝对的超时保险 (2秒后无论如何必须关掉)
-        // 这样即使图片卡住，用户也能进得去
-        setTimeout(dismissLoader, 2000);
+        // 策略1: 只要读到这行代码，先尝试开门！(不等图片了，先进去再说)
+        // 如果你有缓存，这会是秒开
+        dismissLoader();
 
-        // 策略2: 尝试监听主图 (锦上添花)
-        const heroImg = new Image();
-        heroImg.src = 'assets/images/hero_main.jpg'; 
-        
-        if (heroImg.complete) {
-            dismissLoader();
-        } else {
-            heroImg.onload = dismissLoader;
-            heroImg.onerror = dismissLoader;
-        }
+        // 策略2: 双保险，防止上述逻辑未触发
+        setTimeout(dismissLoader, 1000);
     })();
 </script>
 
