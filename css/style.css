@@ -334,3 +334,37 @@ footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,
         aspect-ratio: 3/4 !important;
     }
 }
+
+
+
+
+/* =================================================================
+   ★ V6.1 补丁：单独修复“主角”和“萌宠”图片显示不全的问题
+   ★ 原理：强制开启背景图缩放，确保看到全图
+   ================================================================= */
+
+/* 针对主角卡片 (Hero) 和 萌宠卡片 (Mascot) 的图片容器 */
+.hero-card .pic, 
+.mascot-card .pic {
+    /* 1. 强制锁定 3:4 竖屏比例 */
+    width: 100% !important;
+    aspect-ratio: 3 / 4 !important;
+    height: auto !important;
+
+    /* 2. 核心修复：背景图模式 (针对 div) */
+    /* contain = 完整显示全图（会有黑边） */
+    /* cover   = 填满格子（会裁切掉边缘） */
+    /* 你说要“看全图”，所以我用了 contain */
+    background-size: contain !important; 
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+
+    /* 3. 兼容修复：图片标签模式 (防止未来改回 img 标签) */
+    object-fit: contain !important;
+    object-position: center center !important;
+
+    /* 4. 背景色：图片没填满的地方显示深空黑，不留白 */
+    background-color: #050b14 !important;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
