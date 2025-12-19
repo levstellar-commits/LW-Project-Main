@@ -938,7 +938,6 @@ footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,
     box-shadow: 0 0 20px rgba(232, 185, 35, 0.3), inset 0 0 10px rgba(232, 185, 35, 0.1) !important; /* 发光 */
     transform: translateY(-5px) !important; /* 上浮 */
     cursor: pointer;
-}
 
 
 
