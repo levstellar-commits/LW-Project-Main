@@ -442,7 +442,7 @@
 
             <div class="ip-card">
                 <a href="works/butianzhicheng.html"><img class="ip-card-img" src="assets/images/cover_butianzhicheng.jpg" alt="立维宇宙核心文学IP：《补天之城：上海2074》小说封面 - 都市科幻主题" loading="eager"></a>
-                <div class="ip-card-info"><strong>《补天之城：上海2074》</strong><div class="muted">都市科幻的补天议题</div></div>
+                <div class="ip-card-info"><strong>《补天之城：上海2074》</strong><div class="muted">都市科幻的补天议题 · 当人类的生存环境变得艰难，世界将何去何从？</div></div>
                 <a class="btn ghost" href="works/butianzhicheng.html">了解详情</a>
             </div>
             <div class="ip-card">
@@ -1574,9 +1574,21 @@ document.addEventListener('DOMContentLoaded', () => {
     .dawei-lines p { margin: 0; padding: 0; }
 </style>
 
+
+
+
+
+
+
+
+
+
+
+
 <script>
+/* 🛡️ 立维宇宙：解大为向导 V14.0 (防走丢 + 默认展开版) */
 (function(){
-  /* 1. 核心台词库 (完整保留，不动一个字) */
+  // 台词库 (保持不变)
   const copyMap = {
     "hero-cinematic": { zh: ["解大为：小伙伴好，我骑墨龙来为你开门。","解大为：第一道门只为好奇者开启。","解大为：进来看看，你的名字有没有被记下。"] },
     "executive-summary": { zh: ["解大为：被遗忘的神话，是一扇未开的门。","解大为：我们把碎片拼成路，路通向故事的心脏。","解大为：每个未说完的传说，都等着被点燃。"] },
@@ -1588,27 +1600,24 @@ document.addEventListener('DOMContentLoaded', () => {
     "default": { zh: ["我是编年者。"] }
   };
 
-  /* 2. 创建 DOM 结构 (适配新版垂直布局) */
   function createHUDNode(avatarUrl) {
     const container = document.createElement('div');
     container.id = 'dawei-hud';
-    container.className = 'dawei-hud'; // 默认展开
+    container.className = 'dawei-hud'; 
+    // 注意：这里没有加 collapsed 类，所以默认是展开的 (文字直接显示)
     
-    // 头像
     const avatar = document.createElement('div');
     avatar.className = 'avatar';
     avatar.style.backgroundImage = avatarUrl || "url('assets/images/archetype_dawei_guide.jpg')";
     
-    // 对话框
     const body = document.createElement('div');
     body.className = 'dawei-body';
-    body.title = "点击收起对话"; // 鼠标悬停提示
+    body.title = "点击收起对话"; 
     
     const lines = document.createElement('div');
     lines.className = 'dawei-lines';
     lines.id = 'dawei-lines';
     
-    // 初始台词
     const initial = document.createElement('p');
     initial.className = 'dawei-line';
     initial.textContent = copyMap['hero-cinematic'].zh[0];
@@ -1617,28 +1626,26 @@ document.addEventListener('DOMContentLoaded', () => {
     body.appendChild(lines);
     
     container.appendChild(avatar);
-    container.appendChild(body); // body 在 avatar 下面 (由 flex-direction: column 控制)
+    container.appendChild(body);
     
     return { container, avatar, body };
   }
 
-  /* 3. 拖拽逻辑 (新增功能) */
+  // --- 核心修复：拖拽边界限制 (防走丢) ---
   function makeDraggable(el, handle) {
     let isDragging = false;
     let startX, startY, initialLeft, initialTop;
 
     handle.addEventListener('mousedown', (e) => {
-        // 只有左键可以拖拽
         if(e.button !== 0) return;
         isDragging = true;
-        el.classList.add('dragging'); // 激活样式
+        el.classList.add('dragging');
 
-        // 计算当前位置 (第一次拖拽时需要把 right/bottom 转换为 left/top)
+        // 获取当前位置
         const rect = el.getBoundingClientRect();
-        // 强制转换为绝对坐标，防止定位跳变
         el.style.right = 'auto'; 
         el.style.bottom = 'auto';
-        el.style.transform = 'none'; // 清除居中变换
+        el.style.transform = 'none'; 
         el.style.left = rect.left + 'px';
         el.style.top = rect.top + 'px';
 
@@ -1647,18 +1654,34 @@ document.addEventListener('DOMContentLoaded', () => {
         initialLeft = rect.left;
         initialTop = rect.top;
 
-        // 绑定全局移动
         document.addEventListener('mousemove', onMouseMove);
         document.addEventListener('mouseup', onMouseUp);
-        e.preventDefault(); // 防止选中文本
+        e.preventDefault();
     });
 
     function onMouseMove(e) {
         if (!isDragging) return;
         const dx = e.clientX - startX;
         const dy = e.clientY - startY;
-        el.style.left = `${initialLeft + dx}px`;
-        el.style.top = `${initialTop + dy}px`;
+        
+        // 计算新坐标
+        let newLeft = initialLeft + dx;
+        let newTop = initialTop + dy;
+
+        // --- 边界检查 (关键代码) ---
+        // 既然是 fixed 定位，边界就是 window 的宽高
+        const maxLeft = window.innerWidth - el.offsetWidth;
+        const maxTop = window.innerHeight - el.offsetHeight;
+
+        // 不允许小于0 (左/上边界)
+        if (newLeft < 0) newLeft = 0;
+        if (newTop < 0) newTop = 0;
+        // 不允许超过屏幕 (右/下边界)
+        if (newLeft > maxLeft) newLeft = maxLeft;
+        if (newTop > maxTop) newTop = maxTop;
+
+        el.style.left = `${newLeft}px`;
+        el.style.top = `${newTop}px`;
     }
 
     function onMouseUp() {
@@ -1669,46 +1692,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  /* 4. 运行时逻辑 (滚屏检测 + 交互) */
   function runtime() {
-    // 检查旧元素并清理
-    const old = document.getElementById('dawei-hud') || document.getElementById('dawei-guide-widget');
+    const old = document.getElementById('dawei-hud');
     const avatarUrl = old ? (old.querySelector('.avatar')?.style.backgroundImage) : null;
     if (old) old.remove();
 
-    // 创建新元素
     const { container, avatar, body } = createHUDNode(avatarUrl);
     document.body.appendChild(container);
 
-    // 绑定拖拽
     makeDraggable(container, avatar);
 
-    // 绑定点击收起/展开
-    // A. 点击气泡 -> 收起
+    // 交互逻辑：文字默认显示
+    // 点击气泡 -> 收起
     body.addEventListener('click', (e) => {
-        e.stopPropagation(); // 防止触发拖拽
-        container.classList.add('collapsed');
+        e.stopPropagation(); 
+        container.classList.add('collapsed'); // 加上这个类，CSS会让它向右隐藏
     });
 
-    // B. 点击头像 -> 展开
+    // 点击头像 -> 展开
     let isClick = true;
     avatar.addEventListener('mousedown', () => { isClick = true; });
-    avatar.addEventListener('mousemove', () => { isClick = false; }); // 如果移动了就算拖拽，不算点击
+    avatar.addEventListener('mousemove', () => { isClick = false; }); 
     avatar.addEventListener('click', (e) => {
-        if (isClick && container.classList.contains('collapsed')) {
-            container.classList.remove('collapsed');
+        if (isClick) {
+            // 如果收起了，就展开；如果没收起，就不动
+            if (container.classList.contains('collapsed')) {
+                container.classList.remove('collapsed');
+            }
         }
     });
 
-    // 滚屏对话逻辑 (保留原逻辑)
+    // 滚屏逻辑
     const linesContainer = document.getElementById('dawei-lines');
     let activeKey = null;
     let scrollTimeout;
     let dialogueInterval;
-    const sections = Object.keys(copyMap)
-      .filter(k => k !== 'default')
-      .map(id => document.getElementById(id))
-      .filter(el => el);
+    const sections = Object.keys(copyMap).filter(k => k !== 'default').map(id => document.getElementById(id)).filter(el => el);
 
     function updateDialogue(newKey) {
       if (newKey && newKey !== activeKey) {
@@ -1717,7 +1736,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const lines = copyMap[activeKey].zh;
         let currentIndex = 0;
         linesContainer.innerHTML = `<p class="dawei-line">${lines[currentIndex]}</p>`;
-
         if (lines.length > 1) {
           dialogueInterval = setInterval(() => {
             currentIndex = (currentIndex + 1) % lines.length;
@@ -1747,17 +1765,12 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollTimeout = setTimeout(findClosestSectionToCenter, 100);
     }, { passive: true });
     
-    // 初始执行一次
     setTimeout(findClosestSectionToCenter, 100);
   }
 
-  // 启动
-  if (window.innerWidth > 768) { // 仅在电脑端运行
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', runtime);
-      } else {
-        runtime();
-      }
+  if (window.innerWidth > 768) { 
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', runtime);
+      else runtime();
   }
 })();
 </script>
