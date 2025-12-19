@@ -1629,7 +1629,7 @@ setTimeout(() => {
 })();
 </script>
 
-<link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
+<link rel="stylesheet" href="https://npmmirror.com/package/@waline/client/files/dist/waline.css" />
 <script type="module">
   // 优化：彻底禁用外部评论脚本的加载，防止卡死页面
   /* if (!/micromessenger/i.test(navigator.userAgent)) {
@@ -2250,10 +2250,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <script>
-    /* 🛡️ 立维宇宙：智能首屏锁 V12.0 (极速响应版) */
-    document.addEventListener('DOMContentLoaded', function() {
+    /* 🛡️ 立维宇宙：智能首屏锁 V12.1 (极速响应版 - 修复阻塞) */
+    // 移除 document.addEventListener('DOMContentLoaded', ...) 包裹，直接执行 IIFE
+    (function() {
         const loader = document.getElementById('system-loader');
         const particles = document.getElementById('particles-js');
+        
+        // 如果找不到 loader，说明页面出错，直接退出
         if (!loader) return;
 
         function dismissLoader() {
@@ -2263,36 +2266,37 @@ document.addEventListener('DOMContentLoaded', () => {
             // 瞬间满条 + 淡出
             const bar = loader.querySelector('.progress-bar::after');
             if(bar) bar.style.width = '100%';
+            
+            // 强制淡出
             loader.style.opacity = '0';
             loader.style.visibility = 'hidden';
             
             setTimeout(() => {
                 loader.style.display = 'none';
                 if (particles) particles.style.display = 'block';
-                // 启动神像
+                // 启动神像动画
                 document.querySelectorAll('.god-figure').forEach(el => {
                     el.style.animation = 'god-float 8s ease-in-out infinite';
                 });
             }, 500);
         }
 
-        // 策略：主图加载监听 (这是最快的路径)
+        // 策略1: 设定一个绝对的超时保险 (2秒后无论如何必须关掉)
+        // 这样即使图片卡住，用户也能进得去
+        setTimeout(dismissLoader, 2000);
+
+        // 策略2: 尝试监听主图 (锦上添花)
         const heroImg = new Image();
         heroImg.src = 'assets/images/hero_main.jpg'; 
         
-        // 如果浏览器有缓存，complete 为 true，直接开门！
         if (heroImg.complete) {
             dismissLoader();
         } else {
             heroImg.onload = dismissLoader;
             heroImg.onerror = dismissLoader;
         }
-
-        // 保底：最长等 1 秒 (防止图片挂了)
-        setTimeout(dismissLoader, 1000);
-    });
+    })();
 </script>
-
 
 
 
