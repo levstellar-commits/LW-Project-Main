@@ -1,15 +1,16 @@
 /* =================================================================
-   ★ 立维宇宙 CSS 救急修复版 (V6.0)
-   ★ 核心修复：IP矩阵巨大化问题、悬浮窗白点、十祖对齐
+   ★ 立维宇宙 CSS 完整优化版 (V8.0)
+   ★ 整合：飞龙S型轨迹、横排蓝图、全局金边、Logo错落、三联画修复
    ================================================================= */
 
 /* --- 1. 全局与基础 --- */
 :root {
     --bg: #02040a;
     --muted: #9fb0c6;
-    --accent: #e8b923;
-    --accent2: #4a90e2;
+    --accent: #e8b923; /* 金色 */
+    --accent2: #4a90e2; /* 蓝色 */
     --card-bg: rgba(255, 255, 255, 0.03);
+    --neon-blue: #00e5ff; /* 科幻青 */
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@400;600&display=swap');
@@ -22,6 +23,7 @@ body {
     background: linear-gradient(180deg, #02040a 0%, #071428 100%);
     color: #eaf6ff;
     overflow-x: hidden;
+    cursor: crosshair; /* 默认十字准星 */
 }
 
 a { text-decoration: none; color: inherit; transition: 0.3s; }
@@ -38,7 +40,12 @@ header {
 nav { display: flex; gap: 20px; }
 nav a { font-size: 14px; color: var(--muted); }
 nav a:hover { color: #fff; }
-.btn { padding: 8px 16px; border-radius: 6px; background: linear-gradient(90deg, var(--accent), var(--accent2)); color: #000; font-weight: bold; border:none; cursor:pointer;}
+.btn { 
+    padding: 8px 16px; border-radius: 6px; 
+    background: linear-gradient(90deg, var(--accent), var(--accent2)); 
+    color: #000; font-weight: bold; border:none; cursor:pointer;
+    display: inline-flex; justify-content: center; align-items: center; /* 修复按钮居中 */
+}
 .ghost { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--muted); }
 
 main { max-width: 1300px; margin: 0 auto; padding: 0 24px 80px; position: relative; z-index: 10; }
@@ -47,7 +54,7 @@ section { margin-top: 80px; }
 h2 { font-family: 'Noto Serif SC', serif; font-size: 32px; margin-bottom: 16px; color: #fff; text-align: center; }
 p.muted { line-height: 1.6; color: var(--muted); margin: 0; }
 
-/* --- 3. 首屏 Hero --- */
+/* --- 3. 首屏 Hero & 飞龙动画 --- */
 #hero-cinematic {
     position: relative; width: 100vw; min-height: 100vh;
     margin-left: -50vw; left: 50%;
@@ -64,85 +71,101 @@ p.muted { line-height: 1.6; color: var(--muted); margin: 0; }
 .hero-actions { display: flex; gap: 20px; justify-content: center; margin-top: 40px; }
 .btn-primary-cinematic { padding: 12px 36px; border-radius: 50px; background: var(--accent); color: #000; font-weight: bold; }
 .btn-ghost-cinematic { padding: 12px 36px; border-radius: 50px; border: 2px solid rgba(255,255,255,0.5); color: #fff; font-weight: bold; }
-.spaceship-container { position: absolute; top: 50%; left: 0; width: 500px; animation: flyAcross 12s linear infinite; pointer-events: none; z-index: 5; }
-.spaceship { width: 100%; filter: drop-shadow(0 0 20px rgba(232, 185, 35, 0.6)); }
-@keyframes flyAcross { 0% { transform: translate(110vw, -50%) rotate(5deg); } 100% { transform: translate(-600px, -20%) rotate(-5deg); } }
 
-/* --- 4. 全局卡片样式 --- */
-.card, .hero-card, .ip-card, .mascot-card, .project-card, .expert-card, .archetype-card, .co-builder-card {
+/* 飞龙容器：S型变速轨迹 */
+.spaceship-container { 
+    position: absolute; top: 0; left: 0; width: 500px; 
+    pointer-events: none; z-index: 5; 
+    animation: dragonPath 18s ease-in-out infinite; /* 调整为18秒更优雅 */
+}
+.spaceship { width: 100%; filter: drop-shadow(0 0 20px rgba(232, 185, 35, 0.6)); }
+
+@keyframes dragonPath {
+    0% {
+        transform: translate(110vw, 20%) rotate(15deg) scale(0.6); /* 右下角入场 */
+        opacity: 0;
+    }
+    10% { opacity: 1; }
+    40% {
+        transform: translate(10vw, 40vh) rotate(-5deg) scale(0.9); /* 飞到中间偏左，减速 */
+    }
+    60% {
+        transform: translate(-10vw, 45vh) rotate(5deg) scale(1); /* 悬停展示细节 */
+    }
+    100% {
+        transform: translate(-120vw, 10%) rotate(-20deg) scale(0.7); /* 加速左上飞出 */
+        opacity: 0;
+    }
+}
+
+/* --- 4. 全局卡片与交互 (金边特效) --- */
+.card, .hero-card, .ip-card, .mascot-card, .project-card, .expert-card, .archetype-card, .co-builder-card, .summary-item {
     background: var(--card-bg);
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 8px;
     padding: 12px;
-    transition: all 0.3s;
     display: flex; flex-direction: column;
+    /* 新增交互过渡 */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-.card:hover, .hero-card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
 
-/* 全局图片强制 3:4 */
+/* 统一悬停效果：金边 + 上浮 + 投影 */
+.card:hover, .hero-card:hover, .ip-card:hover, .mascot-card:hover, .project-card:hover, .expert-card:hover, .summary-item:hover {
+    transform: translateY(-5px) scale(1.01); 
+    border-color: var(--accent); 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(232, 185, 35, 0.1);
+    cursor: pointer;
+}
+
+/* 强制图片比例 */
 .hero-card .pic, .ip-card-img, .mascot-card .pic, .archetype-card img, .project-card img, .expert-card img, .work-sample-cover {
     width: 100%;
+    /* 核心修复：背景图模式 (防止显示不全) */
     aspect-ratio: 3 / 4 !important;
-    object-fit: cover;
-    object-position: top center;
+    height: auto !important;
+    background-size: contain !important; 
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    object-fit: contain !important;
+    background-color: #050b14 !important;
     border-radius: 6px;
     margin-bottom: 10px;
-    background: #000;
 }
 .name, h3, h4 { margin: 5px 0; color: #fff; font-size: 16px; }
 
-/* --- 5. ⚡️核心修复：IP矩阵/文学/漫画/游戏 (防止巨大化) --- */
-
-/* 5列布局 (文学、漫画用) */
-.five-cols, .five-cols-ip {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr) !important; /* 强制5列 */
-    gap: 15px;
-    margin-top: 30px;
+/* --- 5. 世界蓝图 (变身横排方块) --- */
+/* 原本是 summary-grid, 现在改为横排 4 列 */
+.summary-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important; 
+    gap: 20px;
+    margin-top: 40px;
+}
+.summary-item {
+    background: rgba(2, 6, 10, 0.6);
+    text-align: center;
+    padding: 24px 15px; /* 增加内边距 */
+    border: 1px solid rgba(0, 229, 255, 0.15); /* 默认微蓝边框 */
+}
+/* 数字序号变大变炫 */
+.summary-item h4 span {
+    display: block;
+    font-size: 32px !important;
+    margin-bottom: 12px;
+    text-shadow: 0 0 10px var(--accent);
 }
 
-/* 4列布局 (游戏、角色、萌宠用) */
-.four-cols, .four-cols-ip, .four-cols-redefined, .ip-matrix-grid {
-    display: grid; 
-    grid-template-columns: repeat(4, 1fr) !important; /* 强制4列 */
-    gap: 20px; 
-    margin-top: 30px;
-}
+/* --- 6. 布局系统 --- */
+/* 5列 */
+.five-cols, .five-cols-ip { display: grid; grid-template-columns: repeat(5, 1fr) !important; gap: 15px; margin-top: 30px; }
+/* 4列 */
+.four-cols, .four-cols-ip, .four-cols-redefined, .ip-matrix-grid { display: grid; grid-template-columns: repeat(4, 1fr) !important; gap: 20px; margin-top: 30px; }
+/* 3列 */
+.three-cols, .co-builder-grid { display: grid; grid-template-columns: repeat(3, 1fr) !important; gap: 20px; margin-top: 30px; }
+/* 6列 */
+.six-cols { display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; margin-top: 20px; }
 
-/* 3列布局 (关于、方法论用) */
-.three-cols { 
-    display: grid; 
-    grid-template-columns: repeat(3, 1fr) !important; /* 强制3列 */
-    gap: 20px; 
-    margin-top: 30px;
-}
-#what .card img.card-img-top { aspect-ratio: 3/4 !important; object-fit: cover; }
-
-/* --- 6. 十大始祖 (保持完美对齐) --- */
-#mobile-ancestor-full-list { display: none !important; }
-.ancestor-lineage-epic { display: flex; flex-direction: column; align-items: center; width: 100%; gap: 30px; }
-.ancestor-tier { display: grid; gap: 20px; }
-/* 炎黄 (3个，满宽) */
-.tier-3 { grid-template-columns: repeat(3, 1fr); width: 100%; max-width: 100%; }
-/* 伏羲 (2个，66%宽，居中) */
-.tier-2 { grid-template-columns: repeat(2, 1fr); width: 66.66%; margin: 0 auto; }
-/* 颛顼 (5个，满宽) */
-.tier-5 { grid-template-columns: repeat(5, 1fr); width: 100%; }
-.lineage-connector { height: 30px; width: 1px; background: rgba(255,255,255,0.2); margin: 0 auto; }
-.lineage-title { text-align: center; color: var(--accent); margin-bottom: 10px; font-size: 14px; letter-spacing: 2px; }
-
-/* --- 7. 万象棱镜 --- */
-.prism-container { display: flex; flex-direction: column; align-items: center; gap: 20px; }
-.prism-input-title { width: 100%; text-align: center; }
-.prism-core { text-align: center; margin: 10px 0; }
-.prism-core img { width: 120px; margin: 0 auto; animation: rotate 30s linear infinite; }
-.prism-connector { height: 40px; width: 2px; background: rgba(255,255,255,0.2); margin: 0 auto; }
-.prism-outputs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; }
-.prism-output-card { text-align: center; background: var(--card-bg); border-radius: 8px; overflow: hidden; border-top: 3px solid var(--accent); }
-.prism-output-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
-.prism-output-content { padding: 15px; }
-
-/* --- 8. 场景降临 (2x2 田字格) --- */
+/* 场景降临流程图 */
 .narrative-flow-horizontal { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
 .narrative-flow-horizontal .flow-arrow { display: none !important; }
 .flow-node { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.08); padding: 15px; border-radius: 8px; display: flex; flex-direction: column; }
@@ -150,7 +173,7 @@ p.muted { line-height: 1.6; color: var(--muted); margin: 0; }
 .flow-node-number { font-size: 24px; color: var(--accent); font-weight: bold; }
 .flow-node-img img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 4px; margin-bottom: 10px; }
 
-/* --- 9. 现实锚点 (2x2 左右布局) --- */
+/* 现实锚点 */
 .archaeology-grid-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 30px; }
 .arch-item { display: flex; align-items: center; background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
 .arch-item .arch-image { width: 40%; flex-shrink: 0; }
@@ -158,77 +181,169 @@ p.muted { line-height: 1.6; color: var(--muted); margin: 0; }
 .arch-item .arch-text { padding: 20px; }
 .arch-item:nth-child(even) { flex-direction: row-reverse; }
 
-/* --- 10. 其他组件 (滚动、蓝图等) --- */
-.souvenir-scroll-container { width: 100%; overflow: hidden; margin-top: 30px; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
-.souvenir-track { display: flex; gap: 20px; width: max-content; animation: scroll 40s linear infinite; }
-.souvenir-track.reverse { animation-direction: reverse; margin-top: 20px; }
-.souvenir-item { width: 180px; flex-shrink: 0; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; }
-.souvenir-item img { aspect-ratio: 1/1 !important; margin-bottom: 8px; }
-@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
 /* 世界回响横图 */
 .two-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 #world-echoes .card img.card-img-top { aspect-ratio: 16 / 9 !important; object-position: center; }
 
-/* 蓝图 & 共建者 */
-.six-cols { display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; margin-top: 20px; }
-.co-builder-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
-.co-builder-card { text-align: center; padding: 30px; border-color: rgba(255,255,255,0.1); }
-.co-builder-card .icon { font-size: 40px; color: var(--accent); margin-bottom: 15px; }
-.co-builder-card .btn { margin-top: 20px; width: auto; display: inline-block; }
+/* --- 7. 十大始祖对齐 --- */
+#mobile-ancestor-full-list { display: none !important; }
+.ancestor-lineage-epic { display: flex; flex-direction: column; align-items: center; width: 100%; gap: 30px; }
+.ancestor-tier { display: grid; gap: 20px; }
+.tier-3 { grid-template-columns: repeat(3, 1fr); width: 100%; max-width: 100%; }
+.tier-2 { grid-template-columns: repeat(2, 1fr); width: 66.66%; margin: 0 auto; }
+.tier-5 { grid-template-columns: repeat(5, 1fr); width: 100%; }
+.lineage-connector { height: 30px; width: 1px; background: rgba(255,255,255,0.2); margin: 0 auto; }
+.lineage-title { text-align: center; color: var(--accent); margin-bottom: 10px; font-size: 14px; letter-spacing: 2px; }
 
-/* 复杂布局 */
-.manifesto-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; align-items: center; }
-.manifesto-grid-visual img { width: 100%; border-radius: 12px; aspect-ratio: 1/1 !important; object-fit: cover; }
-.statement-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
-.award-focus { background: rgba(255,255,255,0.02); padding: 15px; border-radius: 6px; }
+/* --- 8. 万象棱镜 (修复旋转) --- */
+.prism-container { display: flex; flex-direction: column; align-items: center; gap: 20px; position: relative; overflow: visible; }
+.prism-core { text-align: center; margin: 10px 0; display: flex; flex-direction: column; align-items: center; }
+/* 旋转动画 */
+.prism-core img { 
+    width: 120px; margin: 0 auto; 
+    animation: prismSpin 20s linear infinite !important; /* 强制旋转 */
+}
+@keyframes prismSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
 
-.press-redefined-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
-.media-item-article, .media-item-video { display: flex; gap: 15px; margin-bottom: 15px; align-items: center; }
-.media-item-article img, .media-item-video img { width: 100px; height: 70px; object-fit: cover; border-radius: 4px; }
+/* 棱镜光束 (绝对居中) */
+.prism-connector { width: 2px; background: rgba(255,255,255,0.2); margin: 0 auto; }
+.prism-connector.light-beam-in {
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--accent));
+    box-shadow: 0 0 15px var(--accent);
+}
+.prism-connector.light-beam-out {
+    height: 60px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    box-shadow: 0 0 15px var(--accent);
+}
+.prism-outputs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; }
+.prism-output-card { text-align: center; background: var(--card-bg); border-radius: 8px; overflow: hidden; border-top: 3px solid var(--accent); }
+.prism-output-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+.prism-output-content { padding: 15px; }
 
+/* --- 9. 滚动组件 (Logo墙错落) --- */
+/* 文创周边 */
+.souvenir-scroll-container { width: 100%; overflow: hidden; margin-top: 30px; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
+.souvenir-track { display: flex; gap: 20px; width: max-content; animation: scroll 40s linear infinite; }
+.souvenir-track.reverse { animation-direction: reverse; margin-top: 20px; }
+@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* Logo墙：错落有致 */
 .logo-wall { overflow: hidden; padding: 20px 0; }
 .partner-logo-grid { display: flex; flex-direction: column; gap: 15px; }
-.partner-track { display: flex; gap: 15px; width: max-content; animation: scroll 60s linear infinite; }
+.partner-track { display: flex; gap: 15px; width: max-content; }
 .partner-logo { width: 120px; height: 80px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 12px; color: var(--muted); border: 1px solid rgba(255,255,255,0.05); }
 
-/* 思想擂台 & 长条图 */
-.arena-layout-enhanced { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+/* 第一排 */
+.partner-track:nth-child(1) { animation: scroll 60s linear infinite; }
+/* 第二排：反向且错位 */
+.partner-track:nth-child(2) { animation: scroll 80s linear infinite reverse; margin-left: -60px; }
+/* 第三排：稍快且错位 */
+.partner-track:nth-child(3) { animation: scroll 50s linear infinite; margin-left: -120px; }
+
+
+/* --- 10. 立维社 & 天畔 (布局修复) --- */
+/* 思想擂台：垂直居中 */
+.arena-layout-enhanced { 
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; 
+    align-items: center !important; /* 修正对齐 */
+}
+.arena-content { padding-right: 20px; }
 .arena-visual img { aspect-ratio: 3 / 4 !important; object-fit: cover; border-radius: 12px; width: 100%; }
 .arena-progress-bar { display: flex; height: 36px; border-radius: 8px; overflow: hidden; margin-top: 20px; }
 .progress-bar-yandi { background: rgba(232, 185, 35, 0.2); color: var(--accent); width: 50%; display: grid; place-items: center; }
 .progress-bar-prometheus { background: rgba(74, 144, 226, 0.2); color: var(--accent2); width: 50%; display: grid; place-items: center; }
 
+/* 天畔/桥梁：三联画修复 (1:3比例 + 缝隙) */
 .bridge-layout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
 .clue-cards-column { display: flex; flex-direction: column; gap: 20px; }
-.triptych-container { display: flex; gap: 10px; height: 500px; justify-content: center; }
-.triptych-item { flex: 1; height: 100%; overflow: hidden; position: relative; border-radius: 4px; }
-.triptych-item img { width: 100%; height: 100%; object-fit: cover; }
-.triptych-item:hover img { transform: scale(1.05); }
-
-/* --- 11. ⚡️核心修复：Dawei HUD 暴力去白点 --- */
-.dawei-hud { position: fixed; right: 20px; bottom: 20px; z-index: 999; display: flex; flex-direction: row-reverse; align-items: center; gap: 10px; }
-.dawei-hud .avatar { width: 60px; height: 60px; border-radius: 50%; background-size: cover; border: 2px solid var(--accent); animation: pulse 3s infinite; cursor: pointer; }
-.dawei-hud .dawei-body { background: rgba(0,0,0,0.8); padding: 10px; border-radius: 8px; border: 1px solid var(--accent); color: #fff; font-size: 13px; max-width: 200px; transition: transform 0.3s, opacity 0.3s; }
-.dawei-hud.collapsed .dawei-body { opacity: 0; transform: translateX(20px); pointer-events: none; }
-
-/* ☢️ 暴力隐藏所有伪元素，彻底消除白点 ☢️ */
-.dawei-hud *, .dawei-hud::before, .dawei-hud::after, 
-.dawei-hud .avatar::before, .dawei-hud .avatar::after,
-.dawei-hint, .dawei-hint::before {
-    /* 如果白点是 dawei-hint 按钮本身，这里会把它隐藏。如果你需要保留收起按钮，请删掉 .dawei-hint */
-    /* 下面这行是专门针对奇怪的白点 */
-    list-style: none !important;
+.triptych-container { 
+    display: flex !important; 
+    gap: 15px !important; /* 缝隙 */
+    height: 400px; /* 固定高度 */
+    width: 100%;
 }
-/* 单独处理：如果是 hint 按钮的白点 */
-.dawei-hint::before { display: block !important; content: '' !important; } /* 恢复箭头 */
+.triptych-item { 
+    flex: 1; /* 三等分 */
+    height: 100%; 
+    overflow: hidden; 
+    border-radius: 4px; 
+}
+.triptych-item img { 
+    width: 100%; height: 100%; 
+    object-fit: cover; /* 填满 */
+    transition: transform 0.5s;
+}
+.triptych-item:hover img { transform: scale(1.1); }
 
-/* --- 12. 手机端适配 (强制单列) --- */
+/* --- 11. Dawei HUD (去白点) --- */
+.dawei-hud { position: fixed; right: 20px; bottom: 20px; z-index: 999; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.dawei-hud .avatar { width: 60px; height: 60px; border-radius: 50%; background-size: cover; border: 2px solid var(--accent); animation: pulse 3s infinite; cursor: pointer; }
+.dawei-hud .dawei-body { 
+    display: none; /* 默认隐藏 */
+    background: rgba(0,0,0,0.8); padding: 10px; border-radius: 8px; border: 1px solid var(--accent); 
+    color: #fff; font-size: 13px; max-width: 200px; 
+    position: absolute; bottom: 70px; right: 0; width: 200px;
+}
+.dawei-hud:hover .dawei-body { display: block; }
+/* 消除所有可能的白点 */
+.dawei-hud *, .dawei-hud::before, .dawei-hud::after { list-style: none !important; }
+
+/* --- 12. 加载屏样式 (新版赛博) --- */
+#system-loader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #02040a; z-index: 999999;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: var(--neon-blue);
+    font-family: 'Courier New', monospace; 
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.loader-content {
+    text-align: center;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    padding: 40px;
+    background: rgba(0, 20, 30, 0.8);
+    box-shadow: 0 0 30px rgba(0, 229, 255, 0.1);
+    backdrop-filter: blur(5px);
+}
+.loader-text {
+    font-size: 24px; letter-spacing: 6px; margin-bottom: 10px; font-weight: bold;
+    text-shadow: 0 0 10px var(--neon-blue);
+    animation: textFlicker 2s infinite;
+}
+.loader-sub { font-size: 12px; color: #5a7d9a; margin-bottom: 30px; letter-spacing: 3px; text-transform: uppercase; }
+.progress-bar { width: 240px; height: 4px; background: #111; position: relative; overflow: hidden; margin: 0 auto; }
+.progress-bar::after {
+    content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 0%; 
+    background: var(--neon-blue); box-shadow: 0 0 15px var(--neon-blue);
+    animation: loadingBar 3.5s ease-in-out forwards;
+}
+@keyframes loadingBar { 0% { width: 0%; } 40% { width: 40%; } 100% { width: 100%; } }
+@keyframes textFlicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } 52% { opacity: 0.3; } 54% { opacity: 1; } }
+
+/* --- 13. 杂项与适配 --- */
+footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--muted); font-size: 13px; background: #010205; }
+.pwa-btn { display: none; }
+@media (max-width: 768px) { .pwa-btn { display: inline-block; color: var(--accent2); border: 1px solid var(--accent2); padding: 2px 8px; border-radius: 4px; font-size: 12px; margin-left: 10px;} }
+::-webkit-scrollbar { width: 8px; background: #02040a; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+#waline { margin-top: 20px; background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; }
+
+/* 鼠标彩蛋 */
+body { cursor: crosshair; }
+a, button, .pwa-btn, .avatar {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewport="0 0 24 24" fill="none" stroke="%2300e5ff" stroke-width="2"><circle cx="12" cy="12" r="8"/><line x1="12" y1="4" x2="12" y2="20"/><line x1="4" y1="12" x2="20" y2="12"/></svg>') 12 12, pointer;
+}
+
+/* 手机端适配 (强制单列) */
 @media (max-width: 980px) {
     header { flex-direction: column; padding: 15px; }
     #hero-cinematic { padding-top: 140px; margin-left: 0; left: 0; width: 100%; }
     
-    /* 强制所有网格变单列 */
     .summary-grid, .two-cols, .three-cols, .four-cols, .four-cols-redefined, 
     .five-cols, .five-cols-ip, .four-cols-ip, .six-cols, 
     .co-builder-grid, .manifesto-grid, .statement-grid,
@@ -245,189 +360,7 @@ p.muted { line-height: 1.6; color: var(--muted); margin: 0; }
     .triptych-item { height: 150px; width: 100%; }
     .dawei-hud { bottom: 10px; right: 10px; }
     .dawei-body { display: none; }
+    
+    /* 手机端特殊处理：蓝图方块不用横排 */
+    .summary-grid { grid-template-columns: 1fr !important; }
 }
-
-/* 杂项 */
-footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--muted); font-size: 13px; background: #010205; }
-.pwa-btn { display: none; }
-@media (max-width: 768px) { .pwa-btn { display: inline-block; color: var(--accent2); border: 1px solid var(--accent2); padding: 2px 8px; border-radius: 4px; font-size: 12px; margin-left: 10px;} }
-::-webkit-scrollbar { width: 8px; background: #02040a; }
-::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-#waline { margin-top: 20px; background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; }
-
-
-
-
-
-/* =================================================================
-   ★ V7.0 补丁：解决启动、悬浮窗、对称与居中问题
-   ================================================================= */
-
-/* --- 1. 修复：解大为悬浮窗 (默认折叠，不干扰视线) --- */
-/* 默认隐藏对话框文字，只显示头像 */
-.dawei-hud .dawei-body {
-    display: none; /* 默认不显示对话气泡 */
-}
-/* 只有当鼠标悬停在头像上，或者点击后才显示 */
-.dawei-hud:hover .dawei-body,
-.dawei-hud.active .dawei-body {
-    display: block;
-    position: absolute;
-    bottom: 70px; /* 让文字出现在头像的正上方 */
-    right: 0;     /* 右对齐 */
-    width: 200px;
-}
-/* 头像本身的位置 */
-.dawei-hud {
-    flex-direction: column; /* 改为垂直排列 */
-    align-items: flex-end;  /* 靠右对齐 */
-}
-
-/* --- 2. 修复：创意棱镜光束 (绝对对称) --- */
-.prism-container {
-    position: relative;
-    overflow: visible; /* 允许光束延伸 */
-}
-/* 上方的光束 (输入) */
-.prism-connector.light-beam-in {
-    margin: 0 auto; /* 绝对居中 */
-    width: 4px;     /* 光束宽度 */
-    height: 60px;   /* 光束长度 */
-    background: linear-gradient(to bottom, transparent, var(--accent)); /* 渐变光效 */
-    box-shadow: 0 0 15px var(--accent);
-}
-/* 下方的光束 (输出) */
-.prism-connector.light-beam-out {
-    margin: 0 auto; /* 绝对居中 */
-    width: 4px;
-    height: 60px;
-    background: linear-gradient(to bottom, var(--accent), transparent);
-    box-shadow: 0 0 15px var(--accent);
-}
-/* 棱镜核心旋转修复 */
-.prism-core {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-/* --- 3. 修复：提交按钮文字居中 --- */
-#storySubmit .btn {
-    display: flex;             /* 启用 Flex 布局 */
-    justify-content: center;   /* 水平居中 */
-    align-items: center;       /* 垂直居中 */
-    text-align: center;        /* 文字居中 */
-    width: auto;               /* 宽度自动 */
-    min-width: 150px;          /* 最小宽度 */
-    margin: 0 auto;            /* 按钮本身居中 */
-}
-
-/* --- 4. 修复：手机端图片再次确认不巨大 --- */
-@media (max-width: 768px) {
-    .five-cols-ip .ip-card, 
-    .four-cols-ip .ip-card {
-        width: 100% !important; /* 手机上卡片占满行 */
-    }
-    /* 手机上图片依然保持 3:4 */
-    .ip-card-img {
-        aspect-ratio: 3/4 !important;
-    }
-}
-
-
-
-
-/* =================================================================
-   ★ V6.1 补丁：单独修复“主角”和“萌宠”图片显示不全的问题
-   ★ 原理：强制开启背景图缩放，确保看到全图
-   ================================================================= */
-
-/* 针对主角卡片 (Hero) 和 萌宠卡片 (Mascot) 的图片容器 */
-.hero-card .pic, 
-.mascot-card .pic {
-    /* 1. 强制锁定 3:4 竖屏比例 */
-    width: 100% !important;
-    aspect-ratio: 3 / 4 !important;
-    height: auto !important;
-
-    /* 2. 核心修复：背景图模式 (针对 div) */
-    /* contain = 完整显示全图（会有黑边） */
-    /* cover   = 填满格子（会裁切掉边缘） */
-    /* 你说要“看全图”，所以我用了 contain */
-    background-size: contain !important; 
-    background-repeat: no-repeat !important;
-    background-position: center center !important;
-
-    /* 3. 兼容修复：图片标签模式 (防止未来改回 img 标签) */
-    object-fit: contain !important;
-    object-position: center center !important;
-
-    /* 4. 背景色：图片没填满的地方显示深空黑，不留白 */
-    background-color: #050b14 !important;
-    border-radius: 6px;
-    margin-bottom: 10px;
-}
-
-
-
-
-
-/* === 新版赛博加载屏样式 === */
-#system-loader {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: #02040a; z-index: 999999;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    color: #00e5ff;
-    font-family: 'Courier New', monospace; 
-    transition: opacity 0.5s ease, visibility 0.5s ease; /* 增加平滑消失效果 */
-}
-.loader-content {
-    text-align: center;
-    border: 1px solid rgba(0, 229, 255, 0.3);
-    padding: 40px;
-    background: rgba(0, 20, 30, 0.8);
-    box-shadow: 0 0 30px rgba(0, 229, 255, 0.1);
-    backdrop-filter: blur(5px);
-}
-.loader-text {
-    font-size: 24px; letter-spacing: 6px; margin-bottom: 10px; font-weight: bold;
-    text-shadow: 0 0 10px #00e5ff;
-    animation: textFlicker 2s infinite;
-}
-.loader-sub {
-    font-size: 12px; color: #5a7d9a; margin-bottom: 30px; letter-spacing: 3px;
-    text-transform: uppercase;
-}
-.progress-bar {
-    width: 240px; height: 4px; background: #111; position: relative; overflow: hidden; margin: 0 auto;
-}
-.progress-bar::after {
-    content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 0%; 
-    background: #00e5ff;
-    box-shadow: 0 0 15px #00e5ff;
-    animation: loadingBar 3.5s ease-in-out forwards;
-}
-@keyframes loadingBar { 0% { width: 0%; } 40% { width: 40%; } 100% { width: 100%; } }
-@keyframes textFlicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } 52% { opacity: 0.3; } 54% { opacity: 1; } }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
