@@ -1483,8 +1483,100 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+
+
+
+
+
+<style>
+    /* 1. 容器定位：右侧居中 + 垂直排列 */
+    .dawei-hud {
+        position: fixed;
+        top: 50%;           /* 垂直居中 */
+        right: 20px;        /* 靠右 */
+        z-index: 10000;     /* 最上层 */
+        display: flex;
+        flex-direction: column; /* 垂直排列：头在上，话在下 */
+        align-items: flex-end;  /* 靠右对齐 */
+        gap: 15px;          /* 头像和气泡的间距 */
+        user-select: none;  /* 拖拽时不选中文本 */
+        touch-action: none; /* 防止触摸屏滚动冲突 */
+    }
+
+    /* 手机端隐藏 */
+    @media (max-width: 768px) {
+        .dawei-hud { display: none !important; }
+    }
+
+    /* 2. 头像样式：金边 + 放大反馈 */
+    .dawei-hud .avatar, .dawei-avatar {
+        width: 60px; height: 60px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        /* 默认淡青色边框 */
+        border: 2px solid rgba(0, 229, 255, 0.5); 
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        cursor: grab; /* 抓手光标 */
+        transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+
+    /* 激活/拖拽时：变大 + 变金 */
+    .dawei-hud .avatar:active, .dawei-hud.dragging .avatar {
+        transform: scale(1.2); /* 放大 */
+        border-color: #e8b923; /* 金色 */
+        box-shadow: 0 0 20px rgba(232, 185, 35, 0.6);
+        cursor: grabbing; /* 抓紧光标 */
+    }
+
+    /* 3. 对话框样式：头像正下方 + 可收起 */
+    .dawei-hud .dawei-body {
+        position: relative;
+        width: 240px;       /* 宽度适中 */
+        background: rgba(2, 6, 10, 0.9);
+        border: 1px solid rgba(0, 229, 255, 0.3);
+        border-radius: 8px;
+        padding: 12px 15px;
+        color: #eaf6ff;
+        font-size: 13px;
+        line-height: 1.6;
+        text-align: left;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        backdrop-filter: blur(10px);
+        
+        /* 动画过渡 */
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        opacity: 1;
+        transform: translateX(0);
+        cursor: pointer; /* 提示可点击 */
+        pointer-events: auto;
+    }
+    
+    /* 对话框小箭头 (指向上面头像) */
+    .dawei-hud .dawei-body::before {
+        content: ''; position: absolute;
+        top: -6px; right: 24px; /* 箭头位置 */
+        width: 10px; height: 10px;
+        background: rgba(2, 6, 10, 0.9);
+        border-top: 1px solid rgba(0, 229, 255, 0.3);
+        border-left: 1px solid rgba(0, 229, 255, 0.3);
+        transform: rotate(45deg);
+    }
+
+    /* 收起状态：向右滑出 + 透明 */
+    .dawei-hud.collapsed .dawei-body {
+        opacity: 0;
+        transform: translateX(50px); /* 向右滑走 */
+        pointer-events: none; /* 收起后点不到 */
+    }
+    
+    /* 强制重置样式防止干扰 */
+    .dawei-lines p { margin: 0; padding: 0; }
+</style>
+
 <script>
 (function(){
+  /* 1. 核心台词库 (完整保留，不动一个字) */
   const copyMap = {
     "hero-cinematic": { zh: ["解大为：小伙伴好，我骑墨龙来为你开门。","解大为：第一道门只为好奇者开启。","解大为：进来看看，你的名字有没有被记下。"] },
     "executive-summary": { zh: ["解大为：被遗忘的神话，是一扇未开的门。","解大为：我们把碎片拼成路，路通向故事的心脏。","解大为：每个未说完的传说，都等着被点燃。"] },
@@ -1496,48 +1588,120 @@ document.addEventListener('DOMContentLoaded', () => {
     "default": { zh: ["我是编年者。"] }
   };
 
+  /* 2. 创建 DOM 结构 (适配新版垂直布局) */
   function createHUDNode(avatarUrl) {
     const container = document.createElement('div');
     container.id = 'dawei-hud';
-    container.className = 'dawei-hud';
-    container.setAttribute('tabindex','0');
-    container.setAttribute('role','complementary');
-    container.setAttribute('aria-expanded','true');
+    container.className = 'dawei-hud'; // 默认展开
+    
+    // 头像
     const avatar = document.createElement('div');
-    avatar.className = 'dawei-avatar avatar';
+    avatar.className = 'avatar';
     avatar.style.backgroundImage = avatarUrl || "url('assets/images/archetype_dawei_guide.jpg')";
+    
+    // 对话框
     const body = document.createElement('div');
     body.className = 'dawei-body';
+    body.title = "点击收起对话"; // 鼠标悬停提示
+    
     const lines = document.createElement('div');
     lines.className = 'dawei-lines';
     lines.id = 'dawei-lines';
-    lines.setAttribute('aria-atomic','true');
+    
+    // 初始台词
     const initial = document.createElement('p');
     initial.className = 'dawei-line';
     initial.textContent = copyMap['hero-cinematic'].zh[0];
+    
     lines.appendChild(initial);
     body.appendChild(lines);
+    
     container.appendChild(avatar);
-    container.appendChild(body);
-    return container;
+    container.appendChild(body); // body 在 avatar 下面 (由 flex-direction: column 控制)
+    
+    return { container, avatar, body };
   }
 
-  function ensureHUD() {
-    let hud = document.getElementById('dawei-hud');
-    if (hud) return hud;
-    const old = document.querySelector('.dawei-guide');
-    const avatarUrl = old ? old.querySelector('.avatar').style.backgroundImage : null;
-    const newNode = createHUDNode(avatarUrl);
-    if (old && old.parentNode) old.parentNode.replaceChild(newNode, old);
-    else document.body.appendChild(newNode);
-    return newNode;
+  /* 3. 拖拽逻辑 (新增功能) */
+  function makeDraggable(el, handle) {
+    let isDragging = false;
+    let startX, startY, initialLeft, initialTop;
+
+    handle.addEventListener('mousedown', (e) => {
+        // 只有左键可以拖拽
+        if(e.button !== 0) return;
+        isDragging = true;
+        el.classList.add('dragging'); // 激活样式
+
+        // 计算当前位置 (第一次拖拽时需要把 right/bottom 转换为 left/top)
+        const rect = el.getBoundingClientRect();
+        // 强制转换为绝对坐标，防止定位跳变
+        el.style.right = 'auto'; 
+        el.style.bottom = 'auto';
+        el.style.transform = 'none'; // 清除居中变换
+        el.style.left = rect.left + 'px';
+        el.style.top = rect.top + 'px';
+
+        startX = e.clientX;
+        startY = e.clientY;
+        initialLeft = rect.left;
+        initialTop = rect.top;
+
+        // 绑定全局移动
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+        e.preventDefault(); // 防止选中文本
+    });
+
+    function onMouseMove(e) {
+        if (!isDragging) return;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        el.style.left = `${initialLeft + dx}px`;
+        el.style.top = `${initialTop + dy}px`;
+    }
+
+    function onMouseUp() {
+        isDragging = false;
+        el.classList.remove('dragging');
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+    }
   }
 
+  /* 4. 运行时逻辑 (滚屏检测 + 交互) */
   function runtime() {
-    const hud = ensureHUD();
-    const linesContainer = document.getElementById('dawei-lines');
-    if (!linesContainer) return;
+    // 检查旧元素并清理
+    const old = document.getElementById('dawei-hud') || document.getElementById('dawei-guide-widget');
+    const avatarUrl = old ? (old.querySelector('.avatar')?.style.backgroundImage) : null;
+    if (old) old.remove();
 
+    // 创建新元素
+    const { container, avatar, body } = createHUDNode(avatarUrl);
+    document.body.appendChild(container);
+
+    // 绑定拖拽
+    makeDraggable(container, avatar);
+
+    // 绑定点击收起/展开
+    // A. 点击气泡 -> 收起
+    body.addEventListener('click', (e) => {
+        e.stopPropagation(); // 防止触发拖拽
+        container.classList.add('collapsed');
+    });
+
+    // B. 点击头像 -> 展开
+    let isClick = true;
+    avatar.addEventListener('mousedown', () => { isClick = true; });
+    avatar.addEventListener('mousemove', () => { isClick = false; }); // 如果移动了就算拖拽，不算点击
+    avatar.addEventListener('click', (e) => {
+        if (isClick && container.classList.contains('collapsed')) {
+            container.classList.remove('collapsed');
+        }
+    });
+
+    // 滚屏对话逻辑 (保留原逻辑)
+    const linesContainer = document.getElementById('dawei-lines');
     let activeKey = null;
     let scrollTimeout;
     let dialogueInterval;
@@ -1582,52 +1746,38 @@ document.addEventListener('DOMContentLoaded', () => {
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(findClosestSectionToCenter, 100);
     }, { passive: true });
-
-
-
-
-
-/* === 核心交互：点击头像展开，点击文字缩回 === */
-// 使用 setTimeout 确保元素已生成
-setTimeout(() => {
-    const hudContainer = document.getElementById('dawei-hud');
-    if (!hudContainer) return;
-
-    const avatarImg = hudContainer.querySelector('.avatar');
-    const hudBody = hudContainer.querySelector('.dawei-body');
-
-    // 1. 点击头像 -> 展开 (移除 collapsed 类)
-    if (avatarImg) {
-        avatarImg.addEventListener('click', (e) => {
-            e.stopPropagation();
-            hudContainer.classList.remove('collapsed'); 
-            if (navigator.vibrate) navigator.vibrate(15);
-        });
-    }
-
-    // 2. 点击对话框文字 -> 缩回 (添加 collapsed 类)
-    if (hudBody) {
-        hudBody.style.cursor = 'pointer'; // 鼠标变手型
-        hudBody.addEventListener('click', (e) => {
-            e.stopPropagation();
-            hudContainer.classList.add('collapsed'); 
-            if (navigator.vibrate) navigator.vibrate(15);
-        });
-    }
-}, 500);
-
-
     
+    // 初始执行一次
     setTimeout(findClosestSectionToCenter, 100);
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', runtime);
-  } else {
-    runtime();
+  // 启动
+  if (window.innerWidth > 768) { // 仅在电脑端运行
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', runtime);
+      } else {
+        runtime();
+      }
   }
 })();
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <script type="module">
