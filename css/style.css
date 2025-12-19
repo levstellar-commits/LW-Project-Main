@@ -51,7 +51,7 @@ p.muted { line-height: 1.6; color: var(--muted); margin: 0; }
     position: relative; width: 100vw; min-height: 100vh;
     margin-left: -50vw; left: 50%;
     display: flex; align-items: center; justify-content: center;
-    background: url('../assets/images/hero-bg.jpg') center/cover no-repeat;
+    background: url('../assets/images/hero-bg.webp') center/cover no-repeat;
     padding-top: 80px;
 }
 #hero-cinematic::after {
@@ -838,6 +838,107 @@ footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,
     font-weight: 500;
 }
 
+
+/* =========================================
+   ★ V11.0 救命补丁 (字体加速 + 飞龙修正 + 全局交互)
+   ★ 解决：首屏字体难看、飞龙位置不对、点击没反应
+   ========================================= */
+
+/* --- 1. 首屏字体急救 (换成系统原生黑体，不下载，秒开且好看) --- */
+#hero-line-1, #hero-line-2 {
+    /* 放弃宋体，改用最稳的系统黑体 (Mac/Win/手机都适配) */
+    font-family: system-ui, -apple-system, "Microsoft YaHei", "PingFang SC", sans-serif !important;
+    font-weight: 300 !important; /* 细一点，显高级 */
+    letter-spacing: 2px !important;
+    text-shadow: 0 0 20px rgba(0,0,0,0.8); /* 加重黑影，防止背景太亮看不清 */
+}
+
+#hero-line-1 {
+    font-size: clamp(28px, 5vw, 56px) !important; /* 字体加大 */
+    font-weight: 800 !important; /* 第一行标题加粗 */
+    margin-bottom: 20px !important;
+}
+
+#hero-line-2 {
+    font-size: clamp(16px, 3vw, 24px) !important;
+    opacity: 0.9;
+}
+
+
+/* --- 2. 飞龙归位 (位置修正 + 横向飞行) --- */
+.spaceship-container {
+    /* 暴力定位：强制放在文字下方，按钮上方 */
+    top: auto !important;
+    bottom: 25% !important; /* 距离底部 25% 的位置 (文字和按钮中间) */
+    left: 0 !important;
+    width: 100% !important; 
+    height: 100px !important; /* 限制高度，别挡住别的 */
+    pointer-events: none; /* 鼠标穿透，不挡点击 */
+    z-index: 2; /* 保证在背景之上，文字之下(视觉上) */
+    
+    /* 动画：水平横飞 */
+    animation: dragonHorizontalFly 20s ease-in-out infinite !important;
+}
+
+/* 龙的大小调整 */
+.spaceship {
+    width: 400px !important; /* 限制龙的大小，太大了像贴图 */
+    max-width: 80vw !important; /* 手机上别爆屏 */
+    margin: 0 auto; /* 自身居中 */
+}
+
+@keyframes dragonHorizontalFly {
+    /* 1. 入场：从右边屏幕外冲进来 */
+    0% {
+        transform: translateX(120vw) scale(0.8); 
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    
+    /* 2. 悬停：飞到正中间，慢慢游动 (20% - 80%) */
+    20% {
+        transform: translateX(10vw) scale(1); /* 稍微偏右一点 */
+    }
+    50% {
+        transform: translateX(-10vw) scale(1.05); /* 稍微偏左一点，微放大 */
+    }
+    80% {
+        transform: translateX(0) scale(1); /* 回到中间 */
+    }
+
+    /* 3. 离场：向左加速飞走 */
+    100% {
+        transform: translateX(-120vw) scale(0.8);
+        opacity: 1;
+    }
+}
+
+
+/* --- 3. 补全交互 (高维原型 + 剩下的漏网之鱼) --- */
+/* 把所有你想让它亮起来的板块都加进来 */
+.archetype-card,   /* 高维原型 */
+.souvenir-item,    /* 文创周边 */
+.flow-node,        /* 场景降临流程图 */
+.arch-item,        /* 现实锚点 */
+.prism-output-card /* 棱镜输出 */
+{
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* 统一悬停金边特效 */
+.archetype-card:hover,
+.souvenir-item:hover,
+.flow-node:hover,
+.arch-item:hover,
+.prism-output-card:hover {
+    border-color: var(--accent) !important; /* 变金 */
+    box-shadow: 0 0 20px rgba(232, 185, 35, 0.3), inset 0 0 10px rgba(232, 185, 35, 0.1) !important; /* 发光 */
+    transform: translateY(-5px) !important; /* 上浮 */
+    cursor: pointer;
+}
 
 
 
