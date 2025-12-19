@@ -254,3 +254,83 @@ footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,
 ::-webkit-scrollbar { width: 8px; background: #02040a; }
 ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
 #waline { margin-top: 20px; background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; }
+
+
+
+
+
+/* =================================================================
+   ★ V7.0 补丁：解决启动、悬浮窗、对称与居中问题
+   ================================================================= */
+
+/* --- 1. 修复：解大为悬浮窗 (默认折叠，不干扰视线) --- */
+/* 默认隐藏对话框文字，只显示头像 */
+.dawei-hud .dawei-body {
+    display: none; /* 默认不显示对话气泡 */
+}
+/* 只有当鼠标悬停在头像上，或者点击后才显示 */
+.dawei-hud:hover .dawei-body,
+.dawei-hud.active .dawei-body {
+    display: block;
+    position: absolute;
+    bottom: 70px; /* 让文字出现在头像的正上方 */
+    right: 0;     /* 右对齐 */
+    width: 200px;
+}
+/* 头像本身的位置 */
+.dawei-hud {
+    flex-direction: column; /* 改为垂直排列 */
+    align-items: flex-end;  /* 靠右对齐 */
+}
+
+/* --- 2. 修复：创意棱镜光束 (绝对对称) --- */
+.prism-container {
+    position: relative;
+    overflow: visible; /* 允许光束延伸 */
+}
+/* 上方的光束 (输入) */
+.prism-connector.light-beam-in {
+    margin: 0 auto; /* 绝对居中 */
+    width: 4px;     /* 光束宽度 */
+    height: 60px;   /* 光束长度 */
+    background: linear-gradient(to bottom, transparent, var(--accent)); /* 渐变光效 */
+    box-shadow: 0 0 15px var(--accent);
+}
+/* 下方的光束 (输出) */
+.prism-connector.light-beam-out {
+    margin: 0 auto; /* 绝对居中 */
+    width: 4px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    box-shadow: 0 0 15px var(--accent);
+}
+/* 棱镜核心旋转修复 */
+.prism-core {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- 3. 修复：提交按钮文字居中 --- */
+#storySubmit .btn {
+    display: flex;             /* 启用 Flex 布局 */
+    justify-content: center;   /* 水平居中 */
+    align-items: center;       /* 垂直居中 */
+    text-align: center;        /* 文字居中 */
+    width: auto;               /* 宽度自动 */
+    min-width: 150px;          /* 最小宽度 */
+    margin: 0 auto;            /* 按钮本身居中 */
+}
+
+/* --- 4. 修复：手机端图片再次确认不巨大 --- */
+@media (max-width: 768px) {
+    .five-cols-ip .ip-card, 
+    .four-cols-ip .ip-card {
+        width: 100% !important; /* 手机上卡片占满行 */
+    }
+    /* 手机上图片依然保持 3:4 */
+    .ip-card-img {
+        aspect-ratio: 3/4 !important;
+    }
+}
