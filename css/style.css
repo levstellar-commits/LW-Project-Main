@@ -12,13 +12,13 @@
     --card-bg: rgba(255, 255, 255, 0.03);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@400;600&display=swap');
 
 * { box-sizing: border-box; }
 
 body {
     margin: 0;
-    font-family: -apple-system, "PingFang SC", sans-serif;
+    /* ✅ 修改后：优先使用苹果系统字，然后是微软雅黑，最后是通用黑体 */
+    font-family: "PingFang SC", "Microsoft YaHei", "微软雅黑", -apple-system, system-ui, sans-serif;
     background: linear-gradient(180deg, #02040a 0%, #071428 100%);
     color: #eaf6ff;
     overflow-x: hidden;
@@ -44,8 +44,17 @@ nav a:hover { color: #fff; }
 main { max-width: 1300px; margin: 0 auto; padding: 0 24px 80px; position: relative; z-index: 10; }
 section { margin-top: 80px; }
 .section-divider { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 60px; }
-h2 { font-family: 'Noto Serif SC', serif; font-size: 32px; margin-bottom: 16px; color: #fff; text-align: center; }
-p.muted { line-height: 1.6; color: var(--muted); margin: 0; }
+
+h2 {
+    /* ✅ 修改后：使用系统宋体，保留文化感 */
+    font-family: "Songti SC", "SimSun", "宋体", "Times New Roman", serif; 
+    font-size: 32px;
+    margin-bottom: 16px;
+    color: #fff;
+    text-align: center;
+}
+
+
 
 /* --- 3. 首屏 Hero --- */
 #hero-cinematic {
@@ -60,7 +69,17 @@ p.muted { line-height: 1.6; color: var(--muted); margin: 0; }
     background: linear-gradient(to bottom, transparent, #02040a);
 }
 .hero-content { position: relative; z-index: 10; text-align: center; max-width: 800px; }
-.hero-line { font-size: 48px; font-family: 'Noto Serif SC'; font-weight: 700; margin-bottom: 20px; }
+
+
+.hero-line {
+    font-size: 48px;
+    /* ✅ 修改后：同样使用系统宋体 */
+    font-family: "Songti SC", "SimSun", "宋体", serif;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+
 .hero-actions { display: flex; gap: 20px; justify-content: center; margin-top: 40px; }
 .btn-primary-cinematic { padding: 12px 36px; border-radius: 50px; background: var(--accent); color: #000; font-weight: bold; }
 .btn-ghost-cinematic { padding: 12px 36px; border-radius: 50px; border: 2px solid rgba(255,255,255,0.5); color: #fff; font-weight: bold; }
@@ -660,4 +679,96 @@ footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,
         max-width: 100% !important;
         height: 300px !important; /* 手机上固定一个高度 */
     }
+}
+
+
+
+/* =========================================
+   ★ V10.0 终极整容补丁 (针对大哥的审美严修版)
+   ★ 修复：首屏文字排版、龙的轨迹、方图比例、立体文字
+   ========================================= */
+
+/* --- 1. 首屏文字大修 (解决换行、字体硬、太小) --- */
+/* 修复 ①：强制一行显示，不许换行！自适应字体大小 */
+#hero-line-1 {
+    white-space: nowrap !important; /* 强制不换行 */
+    font-size: clamp(24px, 4vw, 48px) !important; /* 字体随屏幕缩放，最小24，最大48 */
+    width: 100%;
+}
+
+/* 修复 ②：第二行字体太硬 -> 改用柔和的非衬线体，字间距拉开 */
+#hero-line-2 {
+    font-family: 'Inter', -apple-system, sans-serif !important; /* 不用宋体，改用干净的黑体 */
+    font-weight: 300 !important; /* 变细，显精致 */
+    letter-spacing: 1px !important; /* 增加呼吸感 */
+    opacity: 0.9;
+    margin-top: 15px !important;
+}
+
+/* 修复 ③：第三行(解大为)太小 -> 放大、加亮、加金 */
+#hero-line-3 {
+    font-size: 20px !important; /* 明显加大 */
+    font-weight: bold !important;
+    color: var(--accent) !important; /* 变成金色 */
+    margin-top: 25px !important;
+    text-shadow: 0 0 10px rgba(232, 185, 35, 0.3); /* 加点微光 */
+}
+
+
+/* --- 2. 墨龙轨迹重写 (加速入场 -> 悬停 -> 加速飞离，不许变淡) --- */
+.spaceship-container {
+    /* 调整时间为 20秒，动作更分明 */
+    animation: dragonPathNew 20s ease-in-out infinite !important;
+}
+
+@keyframes dragonPathNew {
+    /* 第一阶段：极速入场 (0% - 15%) */
+    0% {
+        transform: translate(120vw, 10vh) scale(0.6) rotate(15deg); /* 从屏幕右外深处冲进来 */
+        opacity: 1; /* 全程不透明 */
+    }
+    15% {
+        transform: translate(5vw, 35vh) scale(1) rotate(-5deg); /* 快速刹车到屏幕中间 */
+    }
+    
+    /* 第二阶段：巡航悬停 (15% - 85%) - 慢慢游动 */
+    50% {
+        transform: translate(0, 40vh) scale(1.05) rotate(0deg); /* 微微浮动 */
+    }
+    85% {
+        transform: translate(-5vw, 38vh) scale(1) rotate(5deg); /* 准备离开 */
+    }
+
+    /* 第三阶段：极速飞离 (85% - 100%) */
+    100% {
+        transform: translate(-120vw, 10vh) scale(0.6) rotate(-15deg); /* 向左极速冲出屏幕 */
+        opacity: 1; /* 不变淡！ */
+    }
+}
+
+
+/* --- 3. 世界蓝图 (神话之核) 图片调整 --- */
+/* 现在的 3:4 太长了，改为 4:3 (横向矩形) 看起来更稳重 */
+#what .card img.card-img-top {
+    aspect-ratio: 4 / 3 !important; /* 黄金比例横图 */
+    object-fit: cover !important;
+    height: auto !important;
+}
+
+
+/* --- 4. 立维社 (思想擂台) 文字修复 --- */
+/* 修复显示不全的问题，并增加立体感 */
+.arena-header p.muted {
+    width: 100% !important;
+    max-width: 900px !important; /* 给够宽度 */
+    margin: 10px auto 30px auto !important;
+    white-space: normal !important; /* 允许正常换行，防止切断 */
+    line-height: 1.8 !important;
+    
+    /* 增加立体感 (浮雕效果) */
+    color: #eaf6ff !important; /*稍微提亮字体颜色*/
+    text-shadow: 
+        0 2px 4px rgba(0,0,0,0.8),   /* 深色投影 */
+        0 0 10px rgba(0, 229, 255, 0.2); /* 淡淡的科幻背光 */
+    font-weight: 500;
 }
