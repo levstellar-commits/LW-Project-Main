@@ -2250,27 +2250,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<script>
-  window.addEventListener('load', function () {
-    setTimeout(function () {
-      var p = document.getElementById('particles-js');
-      if (p) {
-        p.style.display = 'block';
-      }
-    }, 2000);
-  });
-</script>
-
 
 <script>
-  window.addEventListener('load', function () {
-    setTimeout(function () {
-      document.querySelectorAll('.god-figure').forEach(function (el) {
-        el.style.animation = 'god-float 8s ease-in-out infinite';
-      });
-    }, 2500);
-  });
+    /* 🚀 立维宇宙：强力启动引擎 V7.0 */
+    (function() {
+        // 定义启动函数：负责扫清障碍，显示画面
+        function launchUniverse() {
+            // 1. 移除加载屏 (System Loader)
+            const loader = document.getElementById('system-loader');
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 500);
+            }
+
+            // 2. 立即显示星空粒子 (不再延迟2秒)
+            const particles = document.getElementById('particles-js');
+            if (particles) {
+                particles.style.display = 'block';
+            }
+
+            // 3. 立即启动神像浮动 (不再延迟2.5秒)
+            document.querySelectorAll('.god-figure').forEach(el => {
+                el.style.animation = 'god-float 8s ease-in-out infinite';
+            });
+        }
+
+        // 逻辑A: 如果网页加载太慢，1.5秒后强制启动 (你可以改这个数字，1000=1秒)
+        setTimeout(launchUniverse, 1500);
+
+        // 逻辑B: 如果网页瞬间加载完了，那就立刻启动，不用等1.5秒
+        window.addEventListener('load', launchUniverse);
+    })();
 </script>
+
 
 
 
