@@ -1062,6 +1062,359 @@ footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,
 
 
 
+/* =========================================
+   ★ V15.0 终极优化补丁：首屏居中 + 悬浮窗交互
+   ========================================= */
+
+/* --- 1. 首屏 Hero 区域：强制绝对居中 & 字体优化 --- */
+#hero-cinematic {
+    /* 确保容器本身是弹性布局，且垂直水平都居中 */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    width: 100vw !important;
+    /* 防止原有样式导致偏左 */
+    margin-left: -50vw !important; 
+    left: 50% !important;
+    padding-top: 0 !important; /* 去掉多余顶部边距，依靠 flex 居中 */
+}
+
+.hero-content {
+    /* 内容容器限制宽度，防止文字太散 */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto !important; /* 核心：左右自动边距 */
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 核心：子元素水平居中 */
+}
+
+/* 标题：大气的宋体/衬线体，强制居中 */
+#hero-line-1 {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-family: "Noto Serif SC", "Songti SC", "Source Han Serif SC", serif !important; /* 更有文化的字体 */
+    font-weight: 700 !important;
+    font-size: clamp(36px, 5vw, 64px) !important; /* 字体加大 */
+    line-height: 1.2 !important;
+    letter-spacing: 2px !important;
+    margin-bottom: 24px !important;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.8); /* 增加文字阴影，防背景干扰 */
+}
+
+/* 副标题：干净的黑体，字间距拉开，居中 */
+#hero-line-2 {
+    display: block !important;
+    width: 100% !important;
+    max-width: 900px !important; /* 限制宽度，防止一行太长难看 */
+    margin: 0 auto 30px auto !important;
+    text-align: center !important;
+    font-family: system-ui, -apple-system, "PingFang SC", sans-serif !important;
+    font-weight: 300 !important; /* 纤细感 */
+    font-size: clamp(16px, 2.5vw, 24px) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    letter-spacing: 3px !important; /* 增加呼吸感 */
+}
+
+/* 角色台词：金色，加粗，居中 */
+#hero-line-3 {
+    display: block !important;
+    text-align: center !important;
+    font-size: 20px !important;
+    color: var(--accent) !important;
+    font-weight: bold !important;
+    margin-top: 10px !important;
+    letter-spacing: 1px;
+}
+
+/* --- 2. 解大为悬浮窗：放大、双击逻辑、常驻文字 --- */
+
+/* 容器基础：允许拖拽 */
+.dawei-hud {
+    position: fixed;
+    right: 30px;
+    bottom: 100px; /* 默认位置 */
+    z-index: 9999;
+    display: flex;
+    flex-direction: column; /* 头像在上，文字在下 */
+    align-items: flex-end;  /* 靠右对齐 */
+    gap: 15px;
+    user-select: none; /* 防止拖拽时选中文本 */
+}
+
+/* 头像：核心交互 */
+.dawei-hud .avatar {
+    width: 65px; 
+    height: 65px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid rgba(0, 229, 255, 0.6); /* 默认青色边框 */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    cursor: grab; /* 抓手图标 */
+    
+    /* 动画过渡：让变大变小很丝滑 */
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s; 
+    transform-origin: center center; /* 从中心放大 */
+}
+
+/* ★ 交互重点：鼠标放上去（Hover）变大 2 倍 */
+.dawei-hud .avatar:hover {
+    transform: scale(2.0) !important; /* 放大两倍 */
+    border-color: #e8b923; /* 变金色 */
+    box-shadow: 0 0 40px rgba(232, 185, 35, 0.8);
+    z-index: 10001;
+}
+
+/* 拖拽时：稍微变大一点点，给个反馈 */
+.dawei-hud.dragging .avatar {
+    transform: scale(1.1) !important;
+    cursor: grabbing;
+}
+
+/* 对话气泡：默认一直显示 */
+.dawei-hud .dawei-body {
+    position: relative;
+    background: rgba(0, 15, 25, 0.85); /* 深色半透明背景 */
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    padding: 12px 16px;
+    border-radius: 12px;
+    border-top-right-radius: 2px; /*右上角尖角指向头像*/
+    color: #fff;
+    font-size: 13px;
+    line-height: 1.6;
+    max-width: 220px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    
+    /* 显隐动画 */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 1; /* 默认显示 */
+    transform: scale(1);
+    cursor: pointer; /* 提示可双击 */
+}
+
+/* ★ 隐藏状态类（由JS控制） */
+.dawei-hud.text-hidden .dawei-body {
+    opacity: 0;
+    pointer-events: none; /* 隐藏后点不到 */
+    transform: scale(0.8) translateY(-20px);
+}
+
+
+
+/* =================================================================
+   ★ V16.0 暴力修复补丁：强制首屏居中 + 字体美化
+   ================================================================= */
+
+/* 1. 暴力重置首屏容器：去掉所有偏移，强制 Flex 居中 */
+#hero-cinematic {
+    position: relative !important;
+    left: 0 !important;
+    top: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    height: 100vh !important; /* 满屏高度 */
+    min-height: 800px;
+    padding: 0 !important;
+    
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; /* 垂直居中 */
+    align-items: center !important;     /* 水平居中 */
+    text-align: center !important;
+}
+
+/* 2. 内容区域：强制不许歪 */
+.hero-content {
+    position: relative !important;
+    z-index: 100 !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+    
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; /* 子元素居中 */
+}
+
+/* 3. 主标题：宋体、巨大、字间距 */
+#hero-line-1 {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-family: "Noto Serif SC", "Songti SC", "SimSun", serif !important; /* 强制宋体 */
+    font-size: clamp(40px, 5vw, 72px) !important; /* 字体加大 */
+    font-weight: 700 !important;
+    letter-spacing: 4px !important;
+    line-height: 1.3 !important;
+    margin-bottom: 30px !important;
+    text-shadow: 0 5px 30px rgba(0,0,0,0.9); /* 加重阴影，防止看不清 */
+}
+
+/* 4. 副标题：黑体、纤细、呼吸感 */
+#hero-line-2 {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-family: -apple-system, "Helvetica Neue", "PingFang SC", sans-serif !important;
+    font-size: clamp(16px, 2vw, 22px) !important;
+    font-weight: 300 !important; /* 极细 */
+    letter-spacing: 6px !important; /* 宽间距 */
+    color: rgba(255, 255, 255, 0.85) !important;
+    margin-bottom: 40px !important;
+    margin-top: 0 !important;
+}
+
+/* 5. 角色台词：金色 */
+#hero-line-3 {
+    text-align: center !important;
+    color: var(--accent) !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    margin-bottom: 40px !important;
+}
+
+/* 6. 按钮组：强制居中 */
+.hero-actions {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 20px !important;
+    margin-top: 20px !important;
+}
+
+
+
+/* =========================================
+   ★ V2025 终极修复：首屏防遮挡 + 绝对居中
+   ========================================= */
+
+#hero-cinematic {
+    /* 1. 核心修复：给顶部留出空间，防止导航栏挡住文字 */
+    padding-top: 120px !important; 
+    box-sizing: border-box !important;
+
+    /* 2. 强制满屏与定位 */
+    position: relative !important;
+    width: 100% !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    left: 0 !important;
+    
+    /* 3. 弹性布局保证绝对居中 */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; /* 垂直居中 */
+    align-items: center !important;     /* 水平居中 */
+    
+    /* 4. 背景修正 */
+    background-position: center center !important;
+    background-size: cover !important;
+    overflow: hidden !important;
+}
+
+/* 文字容器强制居中 */
+.hero-content {
+    width: 100% !important;
+    max-width: 1200px !important;
+    text-align: center !important;
+    margin: 0 auto !important; /* 左右自动边距 */
+    z-index: 20 !important;
+    
+    /* 既然加了 padding-top，这里可以稍微复位，或者微调 */
+    transform: translateY(-20px) !important; 
+}
+
+/* 强制修正：大标题 */
+#hero-line-1 {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    margin: 0 auto 20px auto !important;
+    font-size: clamp(36px, 5vw, 64px) !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important; /* 防止换行导致的错位 */
+}
+
+/* 强制修正：墨龙位置 */
+.spaceship-container {
+    top: 55% !important; /* 稍微靠下，避开文字 */
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    /* 确保它在水平方向也是绝对居中的 */
+    width: 90% !important;
+    max-width: 900px !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+.spaceship {
+    margin: 0 auto !important; /* 图片自身居中 */
+}
+
+
+
+
+
+
+
+
+
+
+/* 补救动画：让龙横向飞 */
+@keyframes dragonHorizontalFly {
+    0% { transform: translateX(50px) translateY(0px); }
+    50% { transform: translateX(-50px) translateY(-10px); }
+    100% { transform: translateX(50px) translateY(0px); }
+}
+
+
+
+
+
+
+/* 新动画：极速穿梭 (飞入 -> 悬停一下 -> 飞走 -> 等待) */
+@keyframes dragonFlyPass {
+    /* 0% - 10%: 从屏幕右侧快速飞入 */
+    0% { transform: translateX(120vw) scale(0.8); opacity: 0; }
+    10% { transform: translateX(0) scale(1); opacity: 1; }
+    
+    /* 10% - 35%: 中间悬停 (稍微慢动作游动一下) */
+    10% { transform: translateX(0) scale(1); }
+    25% { transform: translateX(-20px) scale(1.05); } 
+    35% { transform: translateX(0) scale(1); }
+    
+    /* 35% - 45%: 快速飞走 (向左飞出屏幕) */
+    45% { transform: translateX(-120vw) scale(0.8); opacity: 1; }
+    
+    /* 45% - 100%: 留白时间 (龙不在屏幕上，等待下一轮循环) */
+    100% { transform: translateX(-120vw); opacity: 0; }
+}
+
+
+
+
+/* 极速版：龙飞过不墨迹 */
+@keyframes dragonFlyFast {
+    /* 0% - 10%: 飞进来 (约1.5秒) */
+    0% { transform: translateX(120vw) scale(0.8); opacity: 0; }
+    10% { transform: translateX(0) scale(1); opacity: 1; }
+    
+    /* 10% - 15%: 只停一下下 (约0.8秒) */
+    10% { transform: translateX(0) scale(1); }
+    15% { transform: translateX(-10px) scale(1.02); } 
+    
+    /* 15% - 25%: 马上飞走 (约1.5秒) */
+    25% { transform: translateX(-120vw) scale(0.8); opacity: 1; }
+    
+    /* 25% - 100%: 消失等待，等下一轮 (龙不在屏幕上) */
+    100% { transform: translateX(-120vw); opacity: 0; }
+}
+
 
 
 
@@ -1106,7 +1459,70 @@ footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,
     </div>
 </div>
 
-<header>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. 锁定说话的文字框
+    const quoteSpan = document.getElementById('dawei-quote');
+    const bubble = document.querySelector('.dawei-guide .bubble');
+
+    if (!quoteSpan) return; // 找不到就不执行
+
+    // 2. 台词库 (精准对应你页面里的 ID)
+    const lines = {
+        "hero-cinematic": "小伙伴好，我骑墨龙来为你开门。",
+        "executive-summary": "我们把神话碎片拼成路，路通向故事的心脏。",
+        "heroes": "英雄由契约唤醒，她/他不是被选中，而是签下了那张纸。",
+        "matrix": "一条故事线，可以是书、游或一座馆。",
+        "what": "从神话之核到现实之城，这是我们的方法论。",
+        "universe": "表象易见，法则难寻。你愿钻进缝隙吗？",
+        "spatial": "让传说落地，真实的场景会把虚构变成记忆。",
+        "ip-souvenir-section": "文创不是周边，是成为文明的一种方式。",
+        "team": "一个神奇宇宙的诞生，需要跨学科的智慧共同点亮。",
+        "press": "真正伟大的幻想，是对现实最深刻的质问。",
+        "arena": "神话的缔造者，是史前人类还是天外来客？",
+        "stories": "每一个平凡的瞬间，都可能蕴含着撼动世界的叙事原型。",
+        "contact": "别只点赞，合作是把故事带到世界的邀约。",
+        "default": "我是解大为，正在读取你的探索路径..."
+    };
+
+    // 3. 说话函数
+    function speak(text) {
+        // 如果气泡存在，做个淡入淡出效果
+        if (bubble) bubble.style.opacity = 0.5;
+        
+        setTimeout(() => {
+            quoteSpan.innerText = text; // 替换文字
+            if (bubble) bubble.style.opacity = 1;
+        }, 200);
+    }
+
+    // 4. 滚动监听器 (核心逻辑)
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // 当某个板块进入屏幕超过 20% 时触发
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                // 如果这个板块有台词，就说
+                if (lines[id]) {
+                    speak(lines[id]);
+                }
+            }
+        });
+    }, { threshold: 0.2 }); // 灵敏度设为 0.2
+
+    // 5. 绑定页面上所有的板块
+    // 自动扫描页面上所有的 section 标签
+    document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+    });
+});
+</script>
+
+
+
+<header style="padding: 0 20px !important; height: 60px !important; min-height: 60px !important; display: flex !important; align-items: center !important; justify-content: space-between !important; background: rgba(2, 6, 10, 0.95); border-bottom: 1px solid rgba(255,255,255,0.05); position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;">
+
+
     <div class="brand">
         <a class="logo" href="/" aria-label="Levythos 标志">
             <img src="assets/images/logo.png" alt="立维宇宙Levythos的Logo标志" width="44" height="44" />
@@ -1143,6 +1559,8 @@ footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,
     }
   }
 </style>
+
+
 
 
 
@@ -1203,7 +1621,7 @@ footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,
 
 <main>
 
-<section id="hero-cinematic">
+<section id="hero-cinematic" style="position: relative !important; left: 0 !important; margin: 0 !important; width: 100% !important; height: 100vh !important; min-height: 800px !important; display: flex !important; flex-direction: column !important; justify-content: flex-start !important; align-items: center !important; padding-top: 160px !important; box-sizing: border-box !important; transform: none !important;">
  
 
 
@@ -1214,13 +1632,6 @@ footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,
     <div class="hero-vignette"></div>
 
 
-    <div class="spaceship-container" aria-hidden="true">
-     
-
-<img src="assets/images/dragon rider.png"
-     alt="立维宇宙创世人驾驭墨龙穿行于星际的概念艺术图"
-     class="spaceship"
-     decoding="async">
 
 
         <div class="spaceship-beam" aria-hidden="true"></div>
@@ -1232,10 +1643,26 @@ footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,
         </div>
     </div>
 
-    <div class="hero-content">
-        <p class="hero-line" id="hero-line-1">我驾驭墨龙，在代码与神谕之间潜行。</p>
+    <div class="hero-content" style="position: relative !important; width: 100% !important; max-width: 1200px !important; margin: 0 auto !important; text-align: center !important; z-index: 20 !important; top: 0 !important;">
+
+    <p class="hero-line" id="hero-line-1" style="display: block !important; width: 100% !important; text-align: center !important; margin-top: 0 !important; font-size: clamp(24px, 4vw, 48px) !important; font-weight: 800 !important; letter-spacing: 2px !important; line-height: 1.4 !important;">
+    我驾驭墨龙，在代码与神谕之间潜行。
+</p>
+
         <h1 class="hero-sub-cinematic" id="hero-line-2">只为将每一段被遗忘的神话，重新编织，铸成一个可被踏足的世界。</h1>
         <p class="hero-sub-cinematic" id="hero-line-3">我是解大为，欢迎来到我的战场！</p>
+
+<div class="spaceship-container" aria-hidden="true" style="position: relative !important; width: 100% !important; max-width: 600px !important; height: 120px !important; margin: 10px auto !important; z-index: 10 !important; pointer-events: none !important; display: flex !important; justify-content: center !important; align-items: center !important; overflow: visible !important;">
+
+<img src="assets/images/dragon_rider.png" 
+     alt="墨龙"
+     class="spaceship"
+     style="width: 100% !important; height: auto !important; display: block !important; animation: dragonFlyFast 15s ease-in-out infinite !important;">
+
+</div>
+
+
+
         <div class="hero-actions">
             <a href="#executive-summary" class="btn-primary-cinematic">开始探索世界</a>
             <a href="#contact" class="btn-ghost-cinematic">了解合作共建</a>
@@ -2581,83 +3008,147 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
-
-
-
 <script>
-/* 🛡️ 立维宇宙：解大为向导 V14.0 (防走丢 + 默认展开版) */
-(function(){
-  // 台词库 (保持不变)
-  const copyMap = {
-    "hero-cinematic": { zh: ["解大为：小伙伴好，我骑墨龙来为你开门。","解大为：第一道门只为好奇者开启。","解大为：进来看看，你的名字有没有被记下。"] },
-    "executive-summary": { zh: ["解大为：被遗忘的神话，是一扇未开的门。","解大为：我们把碎片拼成路，路通向故事的心脏。","解大为：每个未说完的传说，都等着被点燃。"] },
-    "heroes": { zh: ["解大为：英雄由契约唤醒，不问出身。","解大为：她/他不是被选中，而是签下了那张纸。","解大为：看角色卡，故事会告诉你他们为何举剑。"] },
-    "universe": { zh: ["解大为：十祖织法则，表象之外有规则。","解大为：表象易见，法则难寻。你愿钻进缝隙吗？","解大为：世界按经纬运转，任一线被拔动都会回响。"] },
-    "matrix": { zh: ["解大为：一条故事线，可以是书、游或一座馆。","解大为：我们把故事拉长，任你在其中驻足或跨越。","解大为：想把这条线做成游戏？从一句台词开始。"] },
-    "spatial": { zh: ["解大为：让传说落地，变成可触摸的场景。","解大为：把神话做成空间，人会按线索去祈祷。","解大为：真实的场景，会把虚构变成记忆。"] },
-    "contact": { zh: ["解大为：别只点赞，来把传说做成真物件。","解大为：想合作？把想法放进来，我们把它做成样本。","解大为：合作不是交易，是把故事带到世界的邀约。"] },
-    "default": { zh: ["我是编年者。"] }
-  };
+/**
+ * ★ V16.0 解大为悬浮窗：终极重写版
+ * 功能：
+ * 1. 鼠标悬停头像 -> 放大 2 倍 (CSS hover)
+ * 2. 文字默认一直显示
+ * 3. 双击文字 -> 隐藏文字
+ * 4. 双击头像 -> 显示文字
+ * 5. 全屏可拖拽
+ */
+(function() {
+    // 1. 先清理掉页面上可能存在的旧悬浮窗，防止重叠
+    const oldHud = document.getElementById('dawei-hud');
+    if (oldHud) oldHud.remove();
 
-  function createHUDNode(avatarUrl) {
+    // 2. 注入专用 CSS (写在 JS 里确保一定生效)
+    const style = document.createElement('style');
+    style.innerHTML = `
+        /* 容器：固定定位，初始在右下角 */
+        #dawei-hud {
+            position: fixed;
+            z-index: 99999;
+            right: 30px;
+            bottom: 100px;
+            display: flex;
+            flex-direction: column; /* 垂直排列 */
+            align-items: flex-end;  /* 靠右对齐 */
+            pointer-events: none;   /* 容器本身不挡鼠标，子元素挡 */
+            gap: 15px;
+        }
+
+        /* 头像 */
+        #dawei-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-image: url('assets/images/archetype_dawei_guide.jpg');
+            background-size: cover;
+            background-position: center;
+            border: 2px solid rgba(0, 229, 255, 0.5);
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            pointer-events: auto; /* 允许点击和拖拽 */
+            cursor: move;
+            
+            /* ★ 核心：平滑过渡 ★ */
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-origin: center center;
+        }
+
+        /* ★ 核心：鼠标放上去放大 2 倍 ★ */
+        #dawei-avatar:hover {
+            transform: scale(2.0);
+            border-color: #e8b923; /* 金色 */
+            z-index: 100000;
+        }
+
+        /* 对话框 */
+        #dawei-body {
+            pointer-events: auto;
+            background: rgba(0, 20, 30, 0.9);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.5;
+            max-width: 200px;
+            text-align: left;
+            backdrop-filter: blur(5px);
+            user-select: none;
+            
+            /* 显隐动画 */
+            transition: opacity 0.3s, transform 0.3s;
+            opacity: 1;
+            transform: scale(1);
+            transform-origin: top right;
+        }
+
+        /* 隐藏状态 */
+        #dawei-body.hidden {
+            opacity: 0;
+            transform: scale(0.5);
+            pointer-events: none;
+        }
+    `;
+    document.head.appendChild(style);
+
+    // 3. 创建 DOM 结构
     const container = document.createElement('div');
     container.id = 'dawei-hud';
-    container.className = 'dawei-hud'; 
-    // 注意：这里没有加 collapsed 类，所以默认是展开的 (文字直接显示)
-    
+
     const avatar = document.createElement('div');
-    avatar.className = 'avatar';
-    avatar.style.backgroundImage = avatarUrl || "url('assets/images/archetype_dawei_guide.jpg')";
-    
+    avatar.id = 'dawei-avatar';
+    avatar.title = "拖拽移动 / 双击显示文字";
+
     const body = document.createElement('div');
-    body.className = 'dawei-body';
-    body.title = "点击收起对话"; 
-    
-    const lines = document.createElement('div');
-    lines.className = 'dawei-lines';
-    lines.id = 'dawei-lines';
-    
-    const initial = document.createElement('p');
-    initial.className = 'dawei-line';
-    initial.textContent = copyMap['hero-cinematic'].zh[0];
-    
-    lines.appendChild(initial);
-    body.appendChild(lines);
-    
+    body.id = 'dawei-body';
+    body.title = "双击隐藏";
+    body.innerHTML = `<strong>解大为：</strong><br>你好，我是这个宇宙的编年者。让我为你引路...`;
+
     container.appendChild(avatar);
     container.appendChild(body);
-    
-    return { container, avatar, body };
-  }
+    document.body.appendChild(container);
 
-  // --- 核心修复：拖拽边界限制 (防走丢) ---
-  function makeDraggable(el, handle) {
+    // 4. 双击显隐逻辑
+    // 双击文字 -> 隐藏
+    body.addEventListener('dblclick', (e) => {
+        e.stopPropagation(); // 防止冒泡
+        body.classList.add('hidden');
+    });
+
+    // 双击头像 -> 显示
+    avatar.addEventListener('dblclick', (e) => {
+        e.stopPropagation();
+        body.classList.remove('hidden');
+    });
+
+    // 5. 拖拽逻辑 (全屏无限制)
     let isDragging = false;
     let startX, startY, initialLeft, initialTop;
 
-    handle.addEventListener('mousedown', (e) => {
-        if(e.button !== 0) return;
+    avatar.addEventListener('mousedown', (e) => {
+        if (e.button !== 0) return; // 只响应左键
+        e.preventDefault();
+        
         isDragging = true;
-        el.classList.add('dragging');
-
-        // 获取当前位置
-        const rect = el.getBoundingClientRect();
-        el.style.right = 'auto'; 
-        el.style.bottom = 'auto';
-        el.style.transform = 'none'; 
-        el.style.left = rect.left + 'px';
-        el.style.top = rect.top + 'px';
-
+        const rect = container.getBoundingClientRect();
+        
+        // 转换为绝对坐标，防止定位跳动
+        container.style.right = 'auto';
+        container.style.bottom = 'auto';
+        container.style.left = rect.left + 'px';
+        container.style.top = rect.top + 'px';
+        
         startX = e.clientX;
         startY = e.clientY;
         initialLeft = rect.left;
         initialTop = rect.top;
-
+        
         document.addEventListener('mousemove', onMouseMove);
         document.addEventListener('mouseup', onMouseUp);
-        e.preventDefault();
     });
 
     function onMouseMove(e) {
@@ -2665,124 +3156,31 @@ document.addEventListener('DOMContentLoaded', () => {
         const dx = e.clientX - startX;
         const dy = e.clientY - startY;
         
-        // 计算新坐标
+        // 计算新位置
         let newLeft = initialLeft + dx;
         let newTop = initialTop + dy;
-
-        // --- 边界检查 (关键代码) ---
-        // 既然是 fixed 定位，边界就是 window 的宽高
-        const maxLeft = window.innerWidth - el.offsetWidth;
-        const maxTop = window.innerHeight - el.offsetHeight;
-
-        // 不允许小于0 (左/上边界)
+        
+        // 简单的边界限制（防止拖丢）
+        const maxX = window.innerWidth - 60;
+        const maxY = window.innerHeight - 60;
+        
         if (newLeft < 0) newLeft = 0;
         if (newTop < 0) newTop = 0;
-        // 不允许超过屏幕 (右/下边界)
-        if (newLeft > maxLeft) newLeft = maxLeft;
-        if (newTop > maxTop) newTop = maxTop;
+        if (newLeft > maxX) newLeft = maxX;
+        if (newTop > maxY) newTop = maxY;
 
-        el.style.left = `${newLeft}px`;
-        el.style.top = `${newTop}px`;
+        container.style.left = newLeft + 'px';
+        container.style.top = newTop + 'px';
     }
 
     function onMouseUp() {
         isDragging = false;
-        el.classList.remove('dragging');
         document.removeEventListener('mousemove', onMouseMove);
         document.removeEventListener('mouseup', onMouseUp);
     }
-  }
 
-  function runtime() {
-    const old = document.getElementById('dawei-hud');
-    const avatarUrl = old ? (old.querySelector('.avatar')?.style.backgroundImage) : null;
-    if (old) old.remove();
-
-    const { container, avatar, body } = createHUDNode(avatarUrl);
-    document.body.appendChild(container);
-
-    makeDraggable(container, avatar);
-
-    // 交互逻辑：文字默认显示
-    // 点击气泡 -> 收起
-    body.addEventListener('click', (e) => {
-        e.stopPropagation(); 
-        container.classList.add('collapsed'); // 加上这个类，CSS会让它向右隐藏
-    });
-
-    // 点击头像 -> 展开
-    let isClick = true;
-    avatar.addEventListener('mousedown', () => { isClick = true; });
-    avatar.addEventListener('mousemove', () => { isClick = false; }); 
-    avatar.addEventListener('click', (e) => {
-        if (isClick) {
-            // 如果收起了，就展开；如果没收起，就不动
-            if (container.classList.contains('collapsed')) {
-                container.classList.remove('collapsed');
-            }
-        }
-    });
-
-    // 滚屏逻辑
-    const linesContainer = document.getElementById('dawei-lines');
-    let activeKey = null;
-    let scrollTimeout;
-    let dialogueInterval;
-    const sections = Object.keys(copyMap).filter(k => k !== 'default').map(id => document.getElementById(id)).filter(el => el);
-
-    function updateDialogue(newKey) {
-      if (newKey && newKey !== activeKey) {
-        activeKey = newKey;
-        clearInterval(dialogueInterval);
-        const lines = copyMap[activeKey].zh;
-        let currentIndex = 0;
-        linesContainer.innerHTML = `<p class="dawei-line">${lines[currentIndex]}</p>`;
-        if (lines.length > 1) {
-          dialogueInterval = setInterval(() => {
-            currentIndex = (currentIndex + 1) % lines.length;
-            linesContainer.innerHTML = `<p class="dawei-line">${lines[currentIndex]}</p>`;
-          }, 4500);
-        }
-      }
-    }
-
-    function findClosestSectionToCenter() {
-      const viewportCenter = window.innerHeight / 2;
-      let minDistance = Infinity;
-      let closestSectionId = null;
-      sections.forEach(section => {
-          const rect = section.getBoundingClientRect();
-          const distance = Math.abs(rect.top - viewportCenter);
-          if (distance < minDistance) {
-              minDistance = distance;
-              closestSectionId = section.id;
-          }
-      });
-      updateDialogue(closestSectionId);
-    }
-
-    window.addEventListener('scroll', () => {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(findClosestSectionToCenter, 100);
-    }, { passive: true });
-    
-    setTimeout(findClosestSectionToCenter, 100);
-  }
-
-  if (window.innerWidth > 768) { 
-      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', runtime);
-      else runtime();
-  }
 })();
 </script>
-
-
-
-
-
-
-
-
 
 
 
