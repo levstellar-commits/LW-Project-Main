@@ -1363,23 +1363,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// 监听全局点击事件，实现点击图片出金边
 document.addEventListener('click', function (e) {
-    // 检查点击的是否是卡片里的图片
-    const target = e.target.closest('.card img, .hero-card img, .pic, .ip-card-img');
+    // 寻找点击的目标是否是图片或角色卡片背景
+    const target = e.target.closest('img, .pic, .ip-card-img, .hero-card');
     
-    // 先移除所有已存在的金边
-    document.querySelectorAll('.img-glow-active').forEach(el => {
-        el.classList.remove('img-glow-active');
-    });
+    // 清除之前所有选中的金边
+    document.querySelectorAll('.img-active-gold').forEach(el => el.classList.remove('img-active-gold'));
 
-    // 如果点中了目标，就加上金边
+    // 如果点中了图片，则加上金边
     if (target) {
-        target.classList.add('img-glow-active');
-        // 如果是 .pic 这种 div 背景图，直接加在它身上
-        e.stopPropagation();
+        target.classList.add('img-active-gold');
     }
 });
+
+
+
 
 
 
