@@ -740,7 +740,30 @@ header.site-header {
 
 
 
+/* 耳畔图文对齐 */
+.bridge-layout {
+    align-items: center !important; /* 垂直居中对齐 */
+}
+.visual-container-compact .triptych-item img {
+    aspect-ratio: 1 / 1 !important; /* 修改为 1:1 */
+}
 
+/* 情感奇遇 1:1 图与表单精致化 */
+.story-intro img {
+    aspect-ratio: 1 / 1 !important;
+}
+
+/* 提升右边表单美感 */
+.story-form-card {
+    border: 1px solid rgba(0, 229, 255, 0.3) !important;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.1), inset 0 0 10px rgba(0,0,0,0.5) !important;
+    padding: 40px !important;
+}
+.form-control {
+    border-bottom: 1px solid rgba(255,255,255,0.2) !important;
+    background: transparent !important;
+    padding-left: 0 !important;
+}
 
 
 
