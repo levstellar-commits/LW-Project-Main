@@ -1566,3 +1566,75 @@ select.form-control option {
 }
 
 
+
+/* ==========================================================================
+   手机端专项优化（不影响电脑端）
+   ========================================================================== */
+@media (max-width: 768px) {
+    
+    /* 1. 导航栏：手机端随下滑消失，且隐藏登录按钮 */
+    header.site-header {
+        position: absolute !important; /* 不再 fixed，滑走即消失 */
+        background: transparent !important;
+        border: none !important;
+    }
+    
+    .hide-on-mobile {
+        display: none !important; /* 彻底隐藏手机端登录按钮 */
+    }
+
+    /* 2. 首屏文字：解决字太大、不居中、比例失调 */
+    .hero-content {
+        text-align: center !important;
+        padding: 0 20px !important;
+    }
+
+    #hero-line-1 {
+        font-size: 1.6rem !important; /* 第一行缩小，防止手机溢出 */
+        line-height: 1.3 !important;
+        margin-bottom: 15px !important;
+    }
+
+    #hero-line-2 {
+        font-size: 1rem !important; /* 第二行调大，作为主要副标题 */
+        line-height: 1.6 !important;
+        opacity: 0.9;
+    }
+
+    #hero-line-3 {
+        font-size: 0.85rem !important;
+        margin-top: 10px !important;
+    }
+
+    /* 3. 按钮：规格对齐，文字强制居中 */
+    .hero-actions {
+        display: flex !important;
+        flex-direction: column !important; /* 手机端上下堆叠更稳 */
+        align-items: center !important;
+        gap: 15px !important;
+        margin-top: 35px !important;
+    }
+
+    .hero-actions .btn {
+        width: 220px !important; /* 左右两个按钮强制等宽 */
+        height: 50px !important; /* 强制等高 */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important; /* 文字居中 */
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* 4. 图片：强制手机端所有卡片横滑（如十祖、建筑） */
+    .ancestor-row, .grid-4, .grid-3 {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        padding-bottom: 20px !important;
+    }
+    
+    .hero-card, .project-card, .card {
+        flex: 0 0 80% !important; /* 露一点下张图的边 */
+        scroll-snap-align: center !important;
+    }
+}
