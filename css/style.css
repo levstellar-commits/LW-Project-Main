@@ -1445,3 +1445,124 @@ select.form-control option {
 
 
 
+/* ==========================================================================
+   手机端终极视觉重构 (图导向，字陪衬)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* 1. 彻底移除解大为悬浮窗 */
+    #dawei-guide-widget, .dawei-guide { display: none !important; }
+
+    /* 2. 首屏重塑：缩减文字，突出龙与意境 */
+    #hero-cinematic {
+        height: 100vh !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        padding: 0 30px !important;
+    }
+    .hero-line { 
+        font-size: 1.5rem !important; /* 大幅缩小第一行 */
+        line-height: 1.3 !important;
+        margin-bottom: 10px !important;
+    }
+    .hero-title { 
+        font-size: 0.9rem !important; /* 标题作为陪衬 */
+        opacity: 0.8;
+        line-height: 1.5 !important;
+    }
+    .hero-subtitle { font-size: 0.85rem !important; margin-top: 10px; }
+    
+    /* 飞龙缩小并置于视觉中心 */
+    .spaceship-container img {
+        width: 90vw !important;
+        max-width: 400px;
+        filter: drop-shadow(0 0 20px rgba(0, 225, 255, 0.3));
+    }
+    .hero-actions { margin-top: 30px; }
+    .hero-actions .btn { padding: 10px 20px !important; font-size: 0.9rem; }
+
+    /* 3. “十祖”板块横滑化 */
+    .ancestor-lineage {
+        display: block !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important; /* 强制不换行以实现横滑 */
+        padding-bottom: 30px !important;
+    }
+    .ancestor-row {
+        display: inline-flex !important; /* 改为行内弹性盒 */
+        flex-wrap: nowrap !important;
+        gap: 15px !important;
+        padding: 0 20px !important;
+    }
+    .ancestor-row .hero-card {
+        flex: 0 0 70vw !important; /* 70%宽度，露出下一张边缘 */
+        scroll-snap-align: center;
+    }
+    .connector-line, .tier-title { margin-left: 20px !important; text-align: left !important; }
+
+    /* 4. 建筑/流程板块优化：解决文字堆叠 */
+    .narrative-flow {
+        display: flex !important;
+        overflow-x: auto !important;
+        gap: 20px !important;
+        padding: 0 20px 20px 20px !important;
+    }
+    .flow-node {
+        flex: 0 0 75vw !important;
+        text-align: left !important;
+    }
+    .flow-node img { aspect-ratio: 16/9 !important; }
+    .flow-node .desc-sm { 
+        white-space: normal !important; 
+        font-size: 0.8rem !important; 
+        line-height: 1.4 !important;
+    }
+    .flow-arrow { display: none !important; } /* 手机端箭头太乱，直接去掉 */
+
+    /* 5. 公信力/天问板块：图主字次 */
+    .manifesto-grid, .bridge-layout {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    .manifesto-grid-visual img, .triptych-item img {
+        aspect-ratio: 16/9 !important; /* 手机端横图更舒服 */
+        width: 100% !important;
+        border-radius: 8px !important;
+    }
+    .manifesto-grid-content h3, .bridge-header h2 {
+        font-size: 1.4rem !important;
+        margin-top: 20px !important;
+    }
+    .desc, .desc-sm {
+        font-size: 0.85rem !important;
+        line-height: 1.6 !important;
+        color: rgba(255,255,255,0.6) !important; /* 降低文字亮度 */
+    }
+
+    /* 6. 天问三张图排布优化 */
+    .visual-container-compact .triptych-container {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
+        height: auto !important;
+    }
+    .triptych-item img { aspect-ratio: 1/1 !important; } /* 底部三张小图做成正方形 */
+
+    /* 7. 登录/导航精简化 */
+    header.site-header { height: 60px !important; padding: 0 15px !important; }
+    .brand img { width: 32px; height: 32px; }
+    .header-actions .btn-small { 
+        padding: 4px 10px !important; 
+        font-size: 0.75rem !important;
+        background: rgba(255,255,255,0.05) !important; 
+    }
+    
+    /* 8. 全局横滑吸附感 */
+    .grid-2, .grid-3, .grid-4, .grid-5, .grid-6, .ancestor-lineage, .narrative-flow {
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch;
+    }
+    .card, .hero-card, .flow-node { scroll-snap-align: start !important; }
+}
+
+
