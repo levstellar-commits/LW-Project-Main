@@ -1259,3 +1259,189 @@ select.form-control option {
 }
 
 
+
+/* ==========================================================================
+   精准修正补丁 V2025.12.21
+   ========================================================================== */
+
+/* 1. 关于 (About) 板块：彻底解决不居中问题 */
+#about .about-grid {
+    display: flex !important;
+    justify-content: center !important; /* 水平居中核心指令 */
+    align-items: stretch !important;    /* 高度统一 */
+    flex-wrap: wrap !important;        /* 自动换行 */
+    gap: 30px !important;
+    max-width: 1200px !important;
+    margin: 40px auto 0 auto !important; /* 左右 auto 确保容器居中 */
+}
+
+#about .card {
+    flex: 0 1 350px !important; /* 盒子宽度固定，不随容器拉伸 */
+    text-align: left !important;
+}
+
+/* 2. 世界回响：恢复文字显示，设置图片为 16:9 */
+.echo-card {
+    display: flex !important;
+    flex-direction: column !important; /* 确保文字在图片下方显示 */
+    background: var(--bg-panel) !important;
+    height: auto !important; /* 取消固定高度，让文字撑开 */
+}
+
+.echo-card img {
+    aspect-ratio: 16 / 9 !important; /* 按照你的要求改为 16:9 */
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+}
+
+.echo-card .info {
+    display: block !important; /* 确保文字 div 强制显示 */
+    padding: 20px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.echo-card .info h4 {
+    margin-top: 0 !important;
+    color: var(--accent) !important;
+    font-size: 1.1rem !important;
+}
+
+/* 3. 情感奇遇：优化布局，取消浮动感，适配 1:1 图片 */
+.story-layout {
+    display: grid !important;
+    grid-template-columns: 1fr 1.2fr !important; /* 比例调整 */
+    gap: 40px !important;
+    align-items: start !important; /* 顶部对齐 */
+}
+
+.story-intro img {
+    aspect-ratio: 1 / 1 !important; /* 强制图片 1:1 */
+    width: 100% !important;
+    border-radius: 12px !important;
+}
+
+/* 移除表单的“浮空”和“透明”感，让输入更习惯 */
+.story-form-card {
+    background: rgba(10, 20, 30, 0.9) !important; /* 扎实的背景色 */
+    border: 1px solid rgba(0, 229, 255, 0.3) !important;
+    box-shadow: none !important; /* 移除花哨的阴影，回归功能 */
+    transform: none !important;
+    padding: 30px !important;
+}
+
+.story-form-card h3 {
+    margin-bottom: 25px !important;
+}
+
+/* 输入框样式：像传统表单一样有边框，更有安全感 */
+.story-form-card .form-control {
+    background: rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 4px !important;
+    padding: 12px !important;
+    color: #fff !important;
+    margin-bottom: 10px !important;
+}
+
+.story-form-card .form-control:focus {
+    border-color: var(--accent) !important;
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+   手机端自适应补丁 (响应式屏宽 < 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* 1. 彻底移除解大为悬浮窗 */
+    #dawei-guide-widget, .dawei-guide {
+        display: none !important;
+    }
+
+    /* 2. 首屏清爽化 */
+    #hero-cinematic {
+        height: 100vh !important;
+        padding: 0 20px !important;
+    }
+    .hero-line { 
+        font-size: 1.8rem !important; 
+        white-space: normal !important; /* 手机端允许换行 */
+    }
+    .hero-title { font-size: 1rem !important; }
+    
+    /* 缩放飞龙尺寸，适应小屏幕 */
+    .spaceship-container img {
+        width: 85vw !important;
+    }
+
+    /* 3. 核心：横滑轨道组件化 */
+    /* 针对所有网格栏目实施横滑 */
+    .grid-2, .grid-3, .grid-4, .grid-5, .grid-6, 
+    .character-grid, .ip-grid, .mascot-grid, .expert-grid, .project-showcase .grid-4 {
+        display: flex !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-snap-type: x mandatory !important; /* 吸附感 */
+        gap: 15px !important;
+        padding: 10px 20px 30px 20px !important;
+        margin-left: -20px !important; /* 抵消父级边距，让滚动条到头 */
+        margin-right: -20px !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* 隐藏丑陋的滚动条 */
+    .grid-2::-webkit-scrollbar { display: none; }
+
+    /* 4. 横滑卡片尺寸：第一个全显，第二个露一点 */
+    .card, .hero-card, .ip-card, .expert-card, .project-card, .echo-card {
+        flex: 0 0 82% !important; /* 关键：82% 确保右侧露出下一张卡片的边缘 */
+        scroll-snap-align: center !important;
+        max-width: none !important;
+    }
+
+    /* 修正世界回响在手机端的显示 */
+    .echo-grid {
+        display: flex !important;
+    }
+
+    /* 5. 情感奇遇：手机端上下排列 */
+    .story-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 30px !important;
+    }
+    .story-intro img {
+        aspect-ratio: 1 / 1 !important;
+        width: 100% !important;
+    }
+    .story-form-card {
+        padding: 20px !important;
+        width: 100% !important;
+    }
+
+    /* 6. 导航栏保持可见但精简化 */
+    header.site-header {
+        padding: 0 15px !important;
+    }
+    .site-nav {
+        display: none !important; /* 默认隐藏复杂菜单，建议手机端只留 Logo 和登录 */
+    }
+    .header-actions {
+        display: block !important;
+    }
+
+    /* 7. 通用间距修正 */
+    main > section, .section-container {
+        padding: 60px 20px !important; /* 缩小上下留白 */
+    }
+    h2 { font-size: 1.8rem !important; }
+}
+
+
+
