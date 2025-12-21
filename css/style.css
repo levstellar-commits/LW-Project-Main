@@ -98,58 +98,44 @@ p.desc, .section-header .desc {
 .grid-6 { grid-template-columns: repeat(6, 1fr) !important; }
 
 /* ==========================================================================
-   4. 核心修复：始祖金字塔 / 宽度对齐问题 (#universe)
-   [修复]：移除 max-width: 1000px，让它撑满 1300px 的父容器
+   4. 专项修复：十大始祖 / 金字塔 (#universe)
    ========================================================================== */
+/* 修复：使用 Flex 居中，而不是 Grid，这样不同数量的行会自动居中形成金字塔 */
 .ancestor-lineage {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     gap: 50px !important;
-    width: 100% !important; /* 确保自身也是全宽 */
 }
-
 .ancestor-row {
     display: flex !important;
-    justify-content: center !important;
-    flex-wrap: nowrap !important;
-    gap: 20px !important;
+    justify-content: center !important; /* 核心：居中 */
+    gap: 30px !important;
+    flex-wrap: wrap !important;
     width: 100% !important;
-    max-width: 100% !important; /* 核心修改：从 1000px 改为 100%，对齐页面边界 */
 }
-
-/* 卡片自适应逻辑 */
+/* 修复巨大图：限制始祖卡片宽度 */
 .ancestor-row .hero-card {
-    flex: 1 1 0px !important;
-    width: auto !important;
-    min-width: 0 !important; 
-    max-width: 300px !important; 
+    width: 180px !important; /* 强制小卡片 */
+    flex: 0 0 auto !important;
     height: auto !important;
 }
-
-/* 强制 3:4 比例，保持队形整齐 */
+/* 始祖图片比例 3:4 */
 .ancestor-row .hero-card img {
     aspect-ratio: 3/4 !important;
     width: 100%;
 }
-.ancestor-row .hero-card .name {
-    font-size: 1.1rem; margin-top: 10px; font-weight: bold; text-align: center;
-}
-.ancestor-row .hero-card .role {
-    font-size: 0.8rem; color: var(--accent); text-align: center; padding-bottom: 10px;
-}
-
 .tier-title {
     color: var(--accent);
     letter-spacing: 4px;
     text-transform: uppercase;
     margin-bottom: 10px;
     text-align: center;
-    margin-top: 10px;
 }
 
 /* ==========================================================================
-   5. 现实锚点 (#archaeology) - 保持 3:4
+   5. 专项修复：现实锚点 (#archaeology)
+   需求：3:4，紧凑
    ========================================================================== */
 .archaeology-grid {
     display: grid !important;
@@ -158,12 +144,13 @@ p.desc, .section-header .desc {
 }
 .arch-item {
     display: flex !important;
-    flex-direction: row !important;
-    height: 200px !important;
+    flex-direction: row !important; /* 左图右文 */
+    height: 200px !important; /* 限制高度，使其紧凑 */
     align-items: stretch !important;
 }
+/* 图片改为 3:4 */
 .arch-item img {
-    width: 150px !important;
+    width: 150px !important; /* 固定宽度 */
     aspect-ratio: 3/4 !important;
     object-fit: cover !important;
     flex-shrink: 0 !important;
@@ -174,7 +161,8 @@ p.desc, .section-header .desc {
 }
 
 /* ==========================================================================
-   6. 场景降临 (#spatial)
+   6. 专项修复：场景降临 (#spatial)
+   需求：修复巨大图，横向排列
    ========================================================================== */
 .narrative-flow {
     display: flex !important;
@@ -182,72 +170,132 @@ p.desc, .section-header .desc {
     gap: 20px !important;
     margin-bottom: 50px !important;
 }
-.flow-node { flex: 1 !important; max-width: 250px !important; text-align: center; }
-.flow-node img {
-    width: 100% !important; aspect-ratio: 16/9 !important;
-    border-radius: 6px; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.1);
+.flow-node {
+    flex: 1 !important;
+    max-width: 250px !important; /* 限制最大宽度，防止巨图 */
+    text-align: center;
 }
-.flow-arrow { align-self: center; font-size: 24px; color: var(--accent); }
+.flow-node img {
+    width: 100% !important;
+    aspect-ratio: 16/9 !important;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.flow-arrow {
+    align-self: center;
+    font-size: 24px; color: var(--accent);
+}
 
 /* ==========================================================================
-   7. 周边轨道 (#ip-souvenir)
+   7. 专项修复：周边轨道 (#ip-souvenir)
+   需求：滑动、字漏出、有间隙
    ========================================================================== */
 .souvenir-scroll-container {
-    width: 100% !important; overflow: hidden !important;
-    display: flex; flex-direction: column; gap: 40px !important;
+    width: 100% !important;
+    overflow: hidden !important;
+    display: flex; flex-direction: column; gap: 40px !important; /* 两排之间的间隙 */
     padding: 20px 0;
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
+
+/* 核心动画修复 */
 .souvenir-track {
-    display: flex !important; gap: 30px !important; width: max-content !important;
-    animation: scrollLeft 40s linear infinite !important;
+    display: flex !important;
+    gap: 30px !important; /* 左右间隙 */
+    width: max-content !important;
+    animation: scrollLeft 40s linear infinite !important; /* 强制动画 */
 }
-.souvenir-track.reverse { animation: scrollRight 40s linear infinite !important; }
+.souvenir-track.reverse {
+    animation: scrollRight 40s linear infinite !important;
+}
+
 .souvenir-item {
     width: 200px !important; flex-shrink: 0 !important;
     background: #0b1116; border: 1px solid #333;
     padding: 15px; border-radius: 8px; text-align: center;
-    height: 300px !important; display: flex; flex-direction: column;
+    height: 300px !important; /* 增加高度，给字留位置 */
+    display: flex; flex-direction: column;
 }
 .souvenir-item img {
-    width: 100% !important; aspect-ratio: 1/1 !important; object-fit: contain !important; margin-bottom: 10px;
+    width: 100% !important;
+    aspect-ratio: 1/1 !important;
+    object-fit: contain !important;
+    margin-bottom: 10px;
 }
-.souvenir-item strong { margin-top: auto; display: block; font-size: 0.9rem; color: #fff; }
+.souvenir-item strong {
+    margin-top: auto; display: block; font-size: 0.9rem; color: #fff;
+}
 .souvenir-item .desc-sm { font-size: 0.8rem; color: #888; }
-@keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-@keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+
+/* 定义关键帧，防止动画丢失 */
+@keyframes scrollLeft { 
+    0% { transform: translateX(0); } 
+    100% { transform: translateX(-50%); } 
+}
+@keyframes scrollRight { 
+    0% { transform: translateX(-50%); } 
+    100% { transform: translateX(0); } 
+}
 
 /* ==========================================================================
-   8. 合作伙伴墙 (#logo-wall)
+   8. 专项修复：合作伙伴墙 (#logo-wall)
+   需求：3排方块，1/3排左滑，2排右滑
    ========================================================================== */
 .logo-wall .partner-logo-grid {
-    display: flex; flex-direction: column; gap: 20px; overflow: hidden; padding: 20px 0;
+    display: flex; flex-direction: column; gap: 20px; overflow: hidden;
+    padding: 20px 0;
 }
-.partner-track { display: flex; gap: 20px; width: max-content; }
+.partner-track {
+    display: flex; gap: 20px; width: max-content;
+}
+/* 动画分配 */
 .partner-track:nth-child(1) { animation: scrollLeft 60s linear infinite !important; }
 .partner-track:nth-child(2) { animation: scrollRight 60s linear infinite !important; }
 .partner-track:nth-child(3) { animation: scrollLeft 70s linear infinite !important; }
+
+/* 样式：方块盒子 */
 .partner-logo {
     width: 120px !important; height: 120px !important;
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
     display: flex; align-items: center; justify-content: center;
-    text-align: center; font-size: 0.9rem; padding: 10px; border-radius: 4px; flex-shrink: 0;
+    text-align: center;
+    font-size: 0.9rem; padding: 10px;
+    border-radius: 4px; flex-shrink: 0;
 }
 
 /* ==========================================================================
-   9. 天问到耳畔 (#bridge)
+   9. 专项修复：天问到耳畔 (#bridge)
+   需求：右边3个长图合成一个大方块
    ========================================================================== */
 .bridge-layout {
-    display: grid !important; grid-template-columns: 1fr 1fr !important;
-    gap: 40px !important; align-items: stretch;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important; /* 左右各半 */
+    gap: 40px !important;
+    align-items: stretch;
 }
-.visual-container-compact { height: 100%; }
-.triptych-container { display: flex !important; gap: 10px !important; height: 400px !important; width: 100%; }
-.triptych-item { flex: 1 !important; height: 100% !important; margin: 0 !important; }
-.triptych-item img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1/3 !important; }
+.visual-container-compact {
+    height: 100%;
+}
+.triptych-container {
+    display: flex !important;
+    gap: 10px !important; /* 缝隙 */
+    height: 400px !important; /* 锁定高度 */
+    width: 100%;
+}
+.triptych-item {
+    flex: 1 !important;
+    height: 100% !important;
+    margin: 0 !important;
+}
+.triptych-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    aspect-ratio: 1/3 !important; /* 竖长图 */
+}
 
 /* ==========================================================================
-   10. 首屏与导航 (HERO & HEADER) - [飞龙动画修正]
+   10. 首屏与导航 (HERO & HEADER) - [LOGO锁定左上]
    ========================================================================== */
 header.site-header {
     height: 80px !important;
@@ -258,171 +306,67 @@ header.site-header {
     padding: 0 40px !important;
     position: fixed !important; top: 0; left: 0; width: 100%; z-index: 1000;
 }
+/* Logo */
 .brand { display: flex; align-items: center; gap: 15px; }
 .brand img { width: 44px; height: 44px; }
 .brand-text { display: flex; flex-direction: column; justify-content: center; }
 
-/* 导航右移 */
-.site-nav { margin-left: auto; margin-right: 40px; display: flex; gap: 30px; }
-.site-nav a { font-size: 0.95rem; font-weight: 500; }
-.site-nav a:hover { color: var(--accent); }
-
-/* Hero 区域 */
+/* Hero */
 #hero-cinematic {
     height: 100vh !important; min-height: 800px;
     padding: 0 !important;
     display: flex; align-items: center; justify-content: center;
     position: relative; overflow: hidden;
 }
-.hero-content { z-index: 10; text-align: center; max-width: 1100px; position: relative; }
-
-/* 字体样式 */
-.hero-line {
-    display: block;
-    font-family: "Songti SC", "Noto Serif SC", serif;
-    font-size: 4.2rem;
-    font-weight: 700;
-    color: #fff;
-    text-shadow: 0 0 20px rgba(0,0,0,0.8);
-    margin-bottom: 25px;
-    line-height: 1.2;
-}
-.hero-title {
-    display: block;
-    font-size: 2.0rem;
-    font-weight: 400;
-    color: rgba(255,255,255,0.9);
-    margin-bottom: 30px;
-    line-height: 1.4;
-}
-.hero-subtitle {
-    display: block;
-    font-size: 1.2rem;
-    color: var(--accent);
-    margin-bottom: 40px;
-    letter-spacing: 2px;
-}
-
-/* 按钮区域 */
-.hero-actions { display: flex; justify-content: center; gap: 20px; }
-.btn {
-    display: inline-block; padding: 12px 30px; border-radius: 6px;
-    font-weight: 600; text-align: center; cursor: pointer; transition: 0.3s;
-    border: 1px solid transparent;
-}
-.btn-primary { 
-    background: linear-gradient(135deg, #e8b923, #d4a010);
-    color: #000; border: none;
-    box-shadow: 0 0 15px rgba(232, 185, 35, 0.4); 
-}
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 25px rgba(232, 185, 35, 0.6); }
-.btn.ghost { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.4); color: #fff; }
-.btn.ghost:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
-
-
-
-
-/* ==========================================================================
-   修正：首屏飞龙 (酷炫版：急停 + 短停留)
-   ========================================================================== */
+.hero-content { z-index: 10; text-align: center; max-width: 900px; }
+.hero-line { font-size: 1.5rem; color: var(--accent); letter-spacing: 4px; margin-bottom: 15px; }
+.hero-title { font-size: 3.5rem; line-height: 1.2; font-weight: 800; margin-bottom: 30px; }
 
 .spaceship-container {
-    position: absolute; 
-    top: 50%; 
-    left: 50%; 
-    /* 核心修复：宽度设为auto，让它紧贴图片，
-       这样 translate(-50%, -50%) 才是真正的物理中心，绝不会偏 */
-    width: auto; 
-    max-width: 800px; /* 限制最大尺寸 */
-    z-index: 5; 
-    pointer-events: none;
-    /* 缩短总时长到 7s，更紧凑 */
-    animation: dragonCoolFlow 7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 65%; z-index: 5; pointer-events: none;
+    animation: dragonFly 8s ease-out forwards;
 }
-
-/* 确保图片自适应但保持比例 */
-.spaceship-container img {
-    display: block;
-    width: 60vw; /* 图片宽度控制在这里，而不是容器 */
-    max-width: 700px;
-    height: auto;
-    filter: drop-shadow(0 0 40px rgba(0, 229, 255, 0.4)); /* 加强一点光晕，更酷 */
+@keyframes dragonFly {
+    0% { transform: translate(150%, -50%); opacity: 1; }
+    30% { transform: translate(-50%, -50%); }
+    70% { transform: translate(-50%, -50%); }
+    100% { transform: translate(-250%, -50%); opacity: 0; }
 }
-
-/* 酷炫节奏关键帧：
-   0% - 15%: 极速入场 (Right -> Center)
-   15% - 65%: 绝对锁定中场 (Center Hover) -> 停留约 3.5秒
-   65% - 80%: 极速离场 (Center -> Left)
-*/
-@keyframes dragonCoolFlow {
-    0% {
-        left: 120vw; /* 屏幕右外 */
-        transform: translate(0, -50%) scale(0.8) skewX(-10deg); /* 带一点速度感的倾斜 */
-        opacity: 0;
-    }
-    15% {
-        left: 50%; /* 锁定中心 */
-        transform: translate(-50%, -50%) scale(1) skewX(0deg); /* 刹车，回正 */
-        opacity: 1;
-    }
-    /* --- 核心停留区：Left 保持 50% 不变，只动 Y 轴做呼吸 --- */
-    65% {
-        left: 50%; /* 依然锁定中心 */
-        transform: translate(-50%, -55%) scale(1.05); /* 微微上浮，更有生命力 */
-        opacity: 1;
-    }
-    /* ---------------------------------------------------- */
-    80% {
-        left: -120vw; /* 屏幕左外 */
-        transform: translate(-100%, -50%) scale(1.2) skewX(10deg); /* 加速冲出的倾斜 */
-        opacity: 0;
-    }
-    100% {
-        left: -120vw;
-        opacity: 0;
-    }
-}
-
-
-
-
-
-
-
-
-
-
 
 /* ==========================================================================
-   11. 其他精美卡片样式 (CARDS & ASPECT RATIOS)
+   11. 其他精美卡片样式 (CARDS)
    ========================================================================== */
 .card, .hero-card, .ip-card, .method-card, .expert-card, .project-card {
-    background: var(--bg-panel); border: 1px solid var(--border-light);
-    border-radius: 12px; overflow: hidden; transition: 0.4s;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 0.4s;
 }
 .card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
 
+/* 条纹 */
 .summary-item, .method-card {
     border-left: 4px solid transparent;
     box-shadow: inset 4px 0 0 0 var(--accent);
     background: linear-gradient(90deg, rgba(0, 229, 255, 0.05), transparent);
 }
 
-/* 比例控制 */
-.hero-card .pic, .ip-card img, .expert-card img, .project-card img, .mascot-card .pic, #high-archetypes .card img {
+/* 比例修正 */
+.hero-card .pic, .ip-card img, .expert-card img, .project-card img, .mascot-card .pic {
     aspect-ratio: 3/4 !important; width: 100%; object-fit: cover;
 }
-#world-echoes .card img, .media-item-article img {
-    aspect-ratio: 16/9 !important; width: 100%; object-fit: cover;
-}
+.media-item-article img { aspect-ratio: 16/9 !important; }
 
-/* 公信力 & 擂台 */
+/* 公信力 (#press) */
 .manifesto-grid { display: grid !important; grid-template-columns: 1fr 1.5fr !important; gap: 40px; }
+.manifesto-grid img { border-radius: 8px; box-shadow: 0 0 20px rgba(0,229,255,0.1); }
 .statement-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 20px; }
 .award-focus { padding: 15px; background: rgba(255,255,255,0.03); border-left: 2px solid #555; }
 
+/* 擂台立体按钮 */
 .arena-layout { display: grid !important; grid-template-columns: 1.2fr 0.8fr !important; gap: 50px; }
-.arena-actions { margin-top: 50px; display: flex; gap: 20px; }
 .btn-faction-a {
     background: #00e5ff; color: #000; border: none; padding: 15px 30px; border-radius: 8px; font-weight: 800;
     box-shadow: 0 6px 0 #008ba3; margin-right: 15px; position: relative; top: 0;
@@ -433,15 +377,20 @@ header.site-header {
 }
 .btn-faction-a:active, .btn-faction-b:active { top: 6px; box-shadow: none; }
 
+/* 情感奇遇大图 */
 .story-layout { display: grid !important; grid-template-columns: 1fr 1.2fr !important; gap: 40px; }
 .story-intro img { aspect-ratio: 1/1 !important; width: 100%; border-radius: 8px; }
 
 /* ==========================================================================
    12. 页脚与杂项 (FOOTER)
    ========================================================================== */
-.site-footer { text-align: center !important; padding: 60px 0 !important; background: #000; }
+.site-footer {
+    text-align: center !important; padding: 60px 0 !important; background: #000;
+}
 .footer-content { display: flex; flex-direction: column; align-items: center; }
-.fixed-left-bottom-trash, .ads, .debug, #zen-mode-overlay { display: none !important; }
+
+/* 隐藏左下角垃圾 */
+.fixed-left-bottom-trash, .ads, .debug { display: none !important; }
 
 /* ==========================================================================
    13. 解大为悬浮窗 (DAWEI)
@@ -455,7 +404,10 @@ header.site-header {
     padding: 12px 16px; border-radius: 8px 8px 0 8px; margin-bottom: 10px; max-width: 240px;
     opacity: 1; transition: opacity 0.3s, transform 0.3s;
 }
-.dawei-guide .bubble.hidden { opacity: 0 !important; transform: scale(0.5); pointer-events: none; }
+/* 隐藏状态 */
+.dawei-guide .bubble.hidden {
+    opacity: 0 !important; transform: scale(0.5); pointer-events: none;
+}
 .dawei-guide .avatar {
     width: 65px; height: 65px; border-radius: 50%;
     background-size: cover; border: 2px solid var(--accent);
@@ -468,12 +420,6 @@ header.site-header {
    14. 移动端 (MOBILE)
    ========================================================================== */
 @media (max-width: 768px) {
-    .site-nav { display: none !important; }
-    .hero-line { font-size: 2.2rem; } 
-    .hero-title { font-size: 1.1rem; }
-    .ancestor-row { flex-wrap: wrap !important; } 
-    .ancestor-row .hero-card { flex: 0 0 45% !important; max-width: none !important; }
-    
     .grid-2, .grid-3, .grid-4, .grid-5, .grid-6, .summary-grid, .partner-track, .triptych-container, .story-layout, .manifesto-grid {
         display: flex !important; overflow-x: auto !important; scroll-snap-type: x mandatory;
         gap: 16px !important; padding-bottom: 20px;
@@ -484,5 +430,554 @@ header.site-header {
     }
     .arch-item { height: auto !important; flex-direction: column !important; }
     .arch-item img { width: 100% !important; }
-    .dawei-guide .bubble { display: none !important; }
+    .site-nav, .dawei-guide .bubble { display: none !important; }
 }
+
+
+
+
+/* ==========================================================================
+   2025.12.21 架构级优化修复补丁 (Architecture Fixes)
+   ========================================================================== */
+
+/* --- 1. 导航栏修复：向右对齐 (Header Fix) --- */
+header.site-header {
+    /* 保持两端对齐的基础，但重新分配空间 */
+    justify-content: flex-start !important; 
+    gap: 40px;
+}
+.site-nav {
+    /* 核心：将导航栏和右侧登录框整体推到右边 */
+    margin-left: auto !important; 
+    display: flex;
+    gap: 30px; /* 增加导航项之间的间距，更大气 */
+}
+/* 登录按钮区域紧随导航 */
+.header-actions {
+    margin-left: 0 !important;
+}
+
+/* --- 2. 首屏文字与按钮修复 (Hero Typography & Buttons) --- */
+/* 箭头1 & 2: 文字加大 */
+#hero-line-1 {
+    font-size: 1.8rem !important; /* 原来可能太小，现在加大 */
+    opacity: 0.9;
+    margin-bottom: 10px;
+}
+/* 核心大标题微调 */
+.hero-title {
+    font-size: 3.8rem !important;
+    text-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+}
+/* 箭头3: 解大为介绍文字加大 */
+#hero-line-3 {
+    font-size: 1.5rem !important;
+    color: var(--accent);
+    margin-top: 15px;
+    margin-bottom: 40px; /* 给下方按钮留出空间 */
+    font-weight: 600;
+}
+
+/* 箭头4: 按钮实体化修复 */
+.hero-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+.hero-actions .btn {
+    /* 强制按钮以此样式显示，覆盖之前的 ghost 样式 */
+    padding: 12px 36px !important;
+    border: 1px solid var(--accent) !important;
+    background: rgba(2, 6, 10, 0.6) !important; /* 半透明黑底 */
+    color: #fff !important;
+    border-radius: 4px !important;
+    font-size: 1.1rem !important;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+.hero-actions .btn:hover {
+    background: var(--accent) !important;
+    color: #000 !important;
+    box-shadow: 0 0 20px var(--accent);
+}
+
+/* --- 3. 宇宙观始祖修复：统一放大与对齐 (Universe Layout) --- */
+/* 之前的 CSS 有 .hero-card width: 180px !important，这是导致图片太小的元凶。
+   我们要重写这一块的布局逻辑。
+*/
+.ancestor-lineage {
+    width: 100%;
+    max-width: 1200px; /* 限制总宽，防止在超大屏散太开 */
+    margin: 0 auto;
+}
+
+.ancestor-row {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 40px !important; /* 卡片间距 */
+    width: 100% !important;
+    margin-bottom: 50px;
+}
+
+/* 核心修复：卡片尺寸重定义 */
+.ancestor-row .hero-card {
+    /* 删除 180px 限制，改为弹性宽度 */
+    width: 280px !important; /* 设定一个更宽的标准尺寸 */
+    flex: 0 0 auto !important; /* 不允许被压缩 */
+    display: flex;
+    flex-direction: column;
+}
+
+/* 强制图片比例为 3:4 */
+.ancestor-row .hero-card .pic,
+.ancestor-row .hero-card img {
+    width: 100% !important;
+    aspect-ratio: 3/4 !important; /* 竖构图 */
+    object-fit: cover !important;
+    height: auto !important;
+}
+
+/* --- 4. 图片比例隔离策略 (Aspect Ratio Control) --- */
+/* 为了防止“世界回响”和“高维原型”打架，我们明确指定 */
+
+/* 世界回响：横图 (16:9) */
+.echo-card img {
+    aspect-ratio: 16/9 !important;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* 高维原型：竖图 (3:4) */
+.archetype-card img {
+    aspect-ratio: 3/4 !important;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* --- 5. 擂台布局修复 (Arena Layout) --- */
+.arena-layout {
+    align-items: center !important; /* 垂直居中 */
+}
+
+.arena-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.arena-actions {
+    margin-top: 40px !important; /* 关键：增加与上方文字的间距，防止重叠 */
+    margin-bottom: 30px !important;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* 修复按钮本身的高度和点击态 */
+.btn-faction-a, .btn-faction-b {
+    position: relative;
+    top: 0;
+    white-space: nowrap; /* 防止文字换行 */
+    line-height: 1.2;
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+}
+
+/* --- 6. 隐藏左下角垃圾 (Hide Trash) --- */
+/* 隐藏 Zen Mode 按钮及覆盖层 */
+#zen-mode-overlay, 
+#exit-zen-btn,
+.fixed-left-bottom-trash {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+    z-index: -999 !important;
+}
+
+
+
+
+/* ==========================================================================
+   2025.12.21 最终视觉精修 (Final Visual Polish)
+   ========================================================================== */
+
+/* --- 1. 首屏字体层级重构 (Hero Typography) --- */
+/* 需求：第一行最大，霸气；第二行做注解 */
+
+.hero-content {
+    /* 确保文字在龙的前面，防止被龙遮挡 */
+    z-index: 10 !important; 
+    position: relative;
+    max-width: 1000px; /* 稍微放宽文字区域 */
+}
+
+/* 第一行：我驾驭墨龙... (主视觉) */
+#hero-line-1 {
+    font-family: 'Noto Serif SC', 'Songti SC', serif !important; /* 强制衬线体，更有神话感 */
+    font-size: 3.5rem !important; /* 巨大尺寸 */
+    font-weight: 700 !important;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 20px !important;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.8); /* 增加黑色阴影，保证在龙身上也能看清 */
+    opacity: 1 !important;
+    letter-spacing: 2px;
+}
+
+/* 第二行：只为将... (副视觉) */
+#hero-line-2 {
+    font-size: 1.4rem !important; /* 缩小，不再喧宾夺主 */
+    font-weight: 400 !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    margin-bottom: 40px !important;
+    line-height: 1.6;
+    letter-spacing: 1px;
+}
+
+/* 按钮区域：防止和文字太挤 */
+.hero-actions {
+    margin-top: 10px;
+}
+
+/* --- 2. 墨龙归来：飞行轨迹动画 (Dragon Animation Restoration) --- */
+.spaceship-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 85vw; /* 龙的大小 */
+    max-width: 1100px; 
+    height: auto;
+    z-index: 1; /* 在文字后面，但在背景前面 */
+    pointer-events: none;
+    /* 动画配置：总时长12秒，缓动进入 */
+    animation: dragonFlySequence 12s ease-in-out forwards; 
+    /* 如果想循环飞，把 forwards 改成 infinite */
+}
+
+/* 关键帧：右入 -> 悬停 -> 左出 */
+@keyframes dragonFlySequence {
+    0% {
+        transform: translate(120%, -40%) scale(0.8); /* 起点：屏幕右外侧 */
+        opacity: 0;
+    }
+    15% {
+        transform: translate(-50%, -50%) scale(1); /* 进场：快速飞到屏幕中央 */
+        opacity: 1;
+    }
+    55% {
+        transform: translate(-55%, -52%) scale(1.05); /* 悬停：在中间缓慢游动展示细节 */
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-200%, -40%) scale(1.1); /* 离场：向左飞出屏幕 */
+        opacity: 0;
+    }
+}
+
+/* --- 3. 始祖阵列：智能混合布局 (Hybrid Ancestor Grid) --- */
+
+/* 通用设定：前两行的大佬们 (伏羲女娲/炎黄蚩尤) */
+.ancestor-row {
+    flex-wrap: nowrap !important;
+    gap: 40px !important;
+    margin-bottom: 40px !important;
+}
+.ancestor-row .hero-card {
+    width: 260px !important; /* 默认大尺寸 */
+    transition: 0.3s;
+}
+
+/* 特殊设定：最后一行 (5个一排的小弟们：颛顼帝喾...) */
+/* 使用 :last-child 精准命中最后一行 */
+.ancestor-lineage .ancestor-row:last-child {
+    gap: 15px !important; /* 间距缩小 */
+    margin-top: 20px;
+}
+
+.ancestor-lineage .ancestor-row:last-child .hero-card {
+    width: 160px !important; /* 强制变小，确保5个能放下 */
+    min-width: 140px; /* 防止手机上太扁 */
+}
+
+.ancestor-lineage .ancestor-row:last-child .hero-card .name {
+    font-size: 1rem !important; /* 名字字号也稍微改小一点点适配 */
+}
+
+/* --- 4. 导航栏最终微调 --- */
+.site-nav {
+    margin-right: 20px !important; /* 离登录按钮再近一点，整体靠右 */
+}
+
+
+
+
+
+/* ==========================================================================
+   2025.12.21 最终修正：宽度对齐 & 悬停锁定 (Alignment & Animation Fix)
+   ========================================================================== */
+
+/* --- 1. 十大始祖宽度修复 (Universe Width Fix) --- */
+/* 之前限制了 1200px，现在解除限制，使其与全局 1300px 对齐 */
+.ancestor-lineage {
+    width: 100% !important;
+    max-width: 100% !important; /* 核心：撑满父容器，不再缩手缩脚 */
+    margin: 0 auto !important;
+    padding: 0 !important;
+}
+
+/* 确保行内的卡片能利用更宽的空间 */
+.ancestor-row {
+    width: 100% !important;
+    justify-content: center !important;
+    /* 保持之前的间距设定 */
+}
+
+/* --- 2. 墨龙动画：绝对悬停版 (Dragon Stop & Go) --- */
+/* 逻辑：快进 -> 锁死在中间(微动) -> 快出 */
+@keyframes dragonFlySequence {
+    /* [0% - 15%] 进场阶段：从最右侧冲进来 */
+    0% {
+        transform: translate(150%, -50%) scale(0.8);
+        opacity: 0;
+    }
+    15% {
+        transform: translate(-50%, -50%) scale(1); /* 到达正中心 */
+        opacity: 1;
+    }
+
+    /* [15% - 85%] 悬停阶段：时间很长，X轴锁死在 -50% 不动！只做轻微放大和上下浮动 */
+    85% {
+        transform: translate(-50%, -55%) scale(1.05); /* X轴不变，只动Y轴和缩放 */
+        opacity: 1;
+    }
+
+    /* [85% - 100%] 离场阶段：加速向左飞出 */
+    100% {
+        transform: translate(-250%, -50%) scale(1.1);
+        opacity: 0;
+    }
+}
+
+/* 确保动画应用了新的 Keyframes */
+.spaceship-container {
+    /* 12秒总时长：
+       前2秒进场 
+       中间8秒悬停展示 
+       最后2秒离场 
+    */
+    animation: dragonFlySequence 12s ease-in-out forwards; 
+}
+
+
+
+
+/* ==========================================================================
+   2025.12.21 最终修正 V2：绝对悬停 & 满宽对齐 (Absolute Stop & Full Width)
+   ========================================================================== */
+
+/* --- 1. 十大始祖：强制满宽对齐 (Force Full-Width Alignment) --- */
+
+/* 容器彻底放开限制 */
+.ancestor-lineage {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* 每一行都强制两端对齐 */
+.ancestor-row {
+    display: flex !important;
+    width: 100% !important;
+    /* 核心修改：改为 space-between，确保左右边缘与网页边界（如世界回响）完全重合 */
+    justify-content: space-between !important; 
+    margin-bottom: 40px !important;
+    gap: 0 !important; /* 让 space-between 自动计算间距 */
+}
+
+/* 既然拉宽了，卡片可以稍微再大一点点，更有气势 */
+.ancestor-row .hero-card {
+    width: 300px !important; /* 统一大尺寸，伏羲炎黄一样大 */
+}
+
+/* 修正：最后一行（5人组）卡片需要小一点才能放得下 */
+.ancestor-lineage .ancestor-row:last-child .hero-card {
+    width: 18% !important; /* 使用百分比，确保5个卡片平分宽度 */
+    min-width: 150px !important;
+}
+
+/* --- 2. 墨龙动画：绝对静止版 (Dragon Dead Stop) --- */
+
+@keyframes dragonFlySequence {
+    /* [0% - 15%] 极速进场 */
+    0% {
+        transform: translate(150%, -50%) scale(0.8);
+        opacity: 0;
+    }
+    15% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    /* [15% - 85%] 绝对悬停阶段 */
+    /* 这里的关键是：坐标完全不动 (-50%, -50%)，只做微小的缩放呼吸效果 */
+    20% {
+        transform: translate(-50%, -50%) scale(1); 
+    }
+    80% {
+        transform: translate(-50%, -50%) scale(1.02); /* 仅做极其微小的呼吸 */
+    }
+
+    /* [85% - 100%] 极速离场 */
+    85% {
+        transform: translate(-50%, -50%) scale(1.02);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-250%, -50%) scale(1.1);
+        opacity: 0;
+    }
+}
+
+.spaceship-container {
+    /* 10秒总时长：飞入1.5秒 -> 悬停7秒 -> 飞出1.5秒 */
+    animation: dragonFlySequence 10s ease-in-out forwards;
+    /* 确保层级正确，不要挡住按钮 */
+    pointer-events: none;
+    z-index: 1; 
+}
+
+/* 再次确保首屏文字在龙的前面 */
+.hero-content {
+    z-index: 10 !important;
+    position: relative;
+}
+
+
+
+
+
+/* ==========================================================================
+   2025.12.21 最终视觉 V3：始祖全屏撑满 & 飞龙完美居中 (Final Polish)
+   ========================================================================== */
+
+/* --- 1. 十大始祖：强制按比例撑满全屏 (Ancestors Full Expansion) --- */
+
+/* 容器设定 */
+.ancestor-lineage {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.ancestor-row {
+    display: flex !important;
+    justify-content: space-between !important; /* 核心：两端对齐 */
+    width: 100% !important;
+    gap: 20px !important; /* 卡片之间的间隙 */
+}
+
+/* 核心修复：针对每一行单独设定卡片宽度百分比 */
+
+/* 第一行：伏羲、女娲 (2人) -> 放大至撑满，每张卡占约 48% */
+.ancestor-lineage .ancestor-row:nth-of-type(1) .hero-card {
+    width: 48% !important; 
+    flex: 0 0 48% !important;
+    max-width: none !important; /* 解除最大宽度限制 */
+}
+
+/* 第二行：炎黄蚩尤 (3人) -> 放大至撑满，每张卡占约 31% */
+.ancestor-lineage .ancestor-row:nth-of-type(2) .hero-card {
+    width: 31% !important;
+    flex: 0 0 31% !important;
+    max-width: none !important;
+}
+
+/* 第三行：颛顼帝喾 (5人) -> 保持现状，每张卡占约 18% */
+.ancestor-lineage .ancestor-row:last-child .hero-card {
+    width: 18% !important;
+    flex: 0 0 18% !important;
+    min-width: 0 !important; /* 防止被挤爆 */
+}
+
+/* 统一图片高度适配，防止被拉得太长 */
+.ancestor-row .hero-card img {
+    width: 100% !important;
+    aspect-ratio: 3/4 !important;
+    object-fit: cover !important;
+}
+
+
+/* --- 2. 墨龙动画：降速 & 绝对居中修正 (Dragon Center Fix) --- */
+
+@keyframes dragonFlySequence {
+    /* [0% - 20%] 进场：从右侧飞入 */
+    0% {
+        transform: translate(150%, -50%) scale(0.8);
+        opacity: 0;
+    }
+    20% {
+        /* 核心修正：绝对居中。如果视觉偏左，说明图片素材本身有透明边 */
+        /* 我这里设定为 -50%, -50%，这是数学上的绝对正中心 */
+        transform: translate(-50%, -50%) scale(1); 
+        opacity: 1;
+    }
+
+    /* [20% - 85%] 悬停：极慢速呼吸，锁死在中间 */
+    85% {
+        transform: translate(-50%, -55%) scale(1.05); /* 稍微向上浮动一点点，模拟悬浮 */
+        opacity: 1;
+    }
+
+    /* [85% - 100%] 离场：向左飞出 */
+    100% {
+        transform: translate(-250%, -50%) scale(1.1);
+        opacity: 0;
+    }
+}
+
+.spaceship-container {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important; /* 锚点设在屏幕正中心 */
+    
+    /* 核心修复：缩小容器宽度 */
+    /* 之前是 85vw 导致中心点偏移，现在改为 65vw 紧贴龙身 */
+    width: 65vw !important; 
+    max-width: 900px !important;
+    height: auto !important;
+    
+    /* 速度调整：改为 18秒，更加威严缓慢 */
+    animation: dragonFlySequence 18s ease-in-out forwards;
+    
+    z-index: 5 !important; /* 确保在文字下面，背景上面 */
+    pointer-events: none;
+}
+
+/* 确保文字永远在龙的上面 */
+.hero-content {
+    z-index: 20 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
