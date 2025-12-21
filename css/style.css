@@ -768,163 +768,138 @@ header.site-header {
 
 
 
-/* 修正“我的战场”板块 */
+
+/* 修复：我的战场 卡片内边距与对齐 */
 .summary-item {
-    padding: 30px 20px !important; /* 增加内边距，防止文字贴边 */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    min-height: 180px;
-    border-left: 3px solid var(--accent) !important; /* 统一线条宽度 */
-    background: linear-gradient(90deg, rgba(0, 229, 255, 0.08), transparent) !important;
+    padding: 30px !important; /* 增加内边距，让文字离开边缘 */
+    border-left: 4px solid var(--accent) !important; /* 实体线条替代阴影 */
+    box-shadow: none !important; 
+    background: rgba(255, 255, 255, 0.03) !important;
 }
-
 .summary-item h4 {
+    margin-top: 0 !important;
     margin-bottom: 15px !important;
-    display: flex;
-    align-items: center;
-    gap: 10px;
 }
 
 
-/* 万象棱镜旋转与光效 */
-.prism-core img {
-    width: 200px !important; /* 缩小一点更精致 */
-    height: auto;
-    animation: rotatePrism 20s linear infinite; /* 慢速顺时针旋转 */
-    filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.5))
-            drop-shadow(0 0 30px rgba(232, 185, 35, 0.3));
-}
 
+/* 棱镜旋转动画 */
 @keyframes rotatePrism {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
 
-/* 底部放射线美化 */
-.prism-container {
-    padding-bottom: 60px;
-    background: radial-gradient(circle at center bottom, rgba(0, 229, 255, 0.1), transparent 70%);
+.prism-core {
+    position: relative;
+    animation: rotatePrism 20s linear infinite; /* 顺时针慢速旋转 */
 }
 
+/* 模拟底部散射彩光 */
+.prism-container::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 100px;
+    background: radial-gradient(ellipse at center, rgba(0, 229, 255, 0.3) 0%, transparent 70%);
+    filter: blur(20px);
+    z-index: -1;
+    /* 这里的彩光可以通过多个 linear-gradient 叠加实现更复杂的效果 */
+}
 
 
 
 /* 公信力板块优化 */
-.manifesto-grid {
-    grid-template-columns: 1fr 1.2fr !important; /* 调整左右比例 */
-    gap: 50px !important; /* 增加中间间距 */
-    align-items: center !important;
-}
-
 .manifesto-grid-visual img {
     aspect-ratio: 1 / 1 !important; /* 强制 1:1 */
-    object-fit: cover;
     border-radius: 12px;
-    border: 1px solid var(--border-light);
 }
 
 .manifesto-grid-content {
-    padding-right: 20px; /* 解决字贴边缘问题 */
+    padding-left: 40px !important; /* 增加左侧间距，远离图片 */
+    padding-right: 20px !important; /* 增加右侧间距，不贴边 */
+}
+
+.award-focus {
+    margin-bottom: 10px;
+    padding: 20px !important; /* 增加内部呼吸感 */
 }
 
 
 
-
-/* 思想擂台文字重叠与图片修正 */
+/* 擂台进度条文字重叠修复 */
 .arena-progress-bar {
+    height: 40px !important; /* 增加高度 */
     display: flex !important;
-    height: 40px !important; /* 给定固定高度 */
-    margin-top: 30px !important;
-    border-radius: 20px;
-    overflow: hidden;
-    line-height: 40px !important; /* 确保文字在一行 */
 }
 
+.progress-bar-yandi, .progress-bar-prometheus {
+    display: flex !important;
+    align-items: center !important;
+    white-space: nowrap !important; /* 禁止换行 */
+    padding: 0 15px !important;
+}
+
+/* 擂台右侧图 1:1 */
 .arena-visual img {
-    aspect-ratio: 1 / 1 !important; /* 强制 1:1 */
-    width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
     object-fit: cover;
     border-radius: 15px;
 }
 
-/* 移除可能导致重叠的旧样式 */
-#faction-yandi-bar, #faction-prometheus-bar {
-    display: flex;
-    align-items: center;
-    padding: 0 15px;
-    white-space: nowrap; /* 强制不换行 */
-}
 
 
-
-/* 耳畔板块对齐 */
+/* 耳畔板块对齐修复 */
 .bridge-layout {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
-    gap: 40px !important;
-    align-items: stretch !important; /* 关键：拉伸高度对齐 */
-}
-
-.clue-cards-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* 均匀分布三张卡片 */
-}
-
-.visual-container-compact {
-    height: 100%;
+    align-items: center !important; /* 关键：垂直居中对齐 */
 }
 
 .triptych-container {
-    height: 100% !important;
-    display: flex !important;
-    gap: 15px !important;
+    height: 500px !important; /* 根据左侧文字量手动微调此高度 */
 }
 
 .triptych-item img {
-    height: 100% !important;
-    object-fit: cover !important;
+    aspect-ratio: 1 / 1 !important; /* 调整为 1:1 更有设计感 */
 }
 
 
 
-/* 情感奇遇优化 */
+/* 情感奇遇图 1:1 */
 .story-intro img {
     aspect-ratio: 1 / 1 !important;
-    margin-bottom: 20px;
 }
 
+/* 表单右侧美化 */
 .story-form-card {
-    background: rgba(10, 20, 30, 0.8) !important;
-    border: 1px solid var(--accent) !important;
-    box-shadow: 0 0 30px rgba(0, 229, 255, 0.15) !important;
-    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 229, 255, 0.2) !important;
+    background: linear-gradient(145deg, rgba(10, 20, 30, 0.9), rgba(2, 6, 10, 1)) !important;
     padding: 40px !important;
+    position: relative;
 }
 
-/* 表单输入框精致化 */
-.story-form-card .form-control {
-    background: rgba(255, 255, 255, 0.03) !important;
+/* 增加类似扫码框的装饰角 */
+.story-form-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 20px; height: 20px;
+    border-top: 2px solid var(--accent); border-left: 2px solid var(--accent);
+}
+
+.form-control {
     border: none !important;
-    border-bottom: 1px solid rgba(0, 229, 255, 0.4) !important;
-    border-radius: 0 !important;
-    padding: 10px 5px !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+    background: rgba(255,255,255,0.02) !important;
     transition: 0.3s;
 }
 
-.story-form-card .form-control:focus {
+.form-control:focus {
     background: rgba(0, 229, 255, 0.05) !important;
     border-bottom-color: var(--accent) !important;
 }
-
-.story-form-card .btn {
-    width: 100%;
-    margin-top: 20px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
 
 
 
