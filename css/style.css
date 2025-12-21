@@ -1638,3 +1638,65 @@ select.form-control option {
         scroll-snap-align: center !important;
     }
 }
+
+
+
+/* ==========================================================================
+   手机端专属：排版上移、按钮对齐、居中补丁
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* 1. 导航栏：滑走即消失，隐藏登录，Logo居中 */
+    header.site-header {
+        position: absolute !important; /* 滑动后留在顶端，不再跟随 */
+        justify-content: center !important;
+        background: transparent !important;
+        border: none !important;
+    }
+    .hide-on-mobile, .header-actions { display: none !important; }
+
+    /* 2. 性能：不加载手机端背景大图，改用纯黑 */
+    #hero-bg {
+        background-image: none !important;
+        background-color: #02060a !important;
+    }
+
+    /* 3. 视觉重心：整体向上提，解决“偏下”问题 */
+    .hero-content {
+        margin-top: -10vh !important; /* 向上平移 */
+        padding-top: 0 !important;
+        text-align: center !important;
+    }
+
+    /* 4. 第一行字：两行显示，字号收缩 */
+    #hero-line-1 {
+        font-size: 1.65rem !important;
+        line-height: 1.4 !important;
+        white-space: normal !important;
+        margin-bottom: 20px !important;
+    }
+
+    /* 5. 第二行字：比例对齐 */
+    #hero-line-2 {
+        font-size: 1.05rem !important;
+        line-height: 1.6 !important;
+        max-width: 85% !important;
+        margin: 0 auto !important;
+    }
+
+    /* 6. 按钮：绝对等宽、等高、文字居中 */
+    .hero-actions {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 15px !important;
+    }
+    .hero-actions .btn {
+        width: 210px !important; /* 两个按钮强制等宽 */
+        height: 50px !important; /* 两个按钮强制等高 */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
