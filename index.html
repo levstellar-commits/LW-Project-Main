@@ -54,6 +54,32 @@
         <a href="#" onclick="toggleSourceEcho(); return false;" class="nav-item-glowing">
             <span class="icon-symbol">◎</span> 宇宙源力
         </a>
+
+
+<style>
+  /* 简单的样式：大屏幕隐藏，小屏幕显示 */
+  .pwa-btn { display: none; }
+  @media (max-width: 768px) {
+    .pwa-btn { 
+        display: inline-block; 
+        margin-left: 10px;
+        font-size: 12px;
+        color: #00e5ff !important; /* 科幻青色 */
+        border: 1px solid #00e5ff;
+        padding: 4px 10px;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+  }
+</style>
+
+
+
+
+
+
+
+
         <a href="#" onclick="openInstallGuide(); return false;" class="pwa-btn">
             ⚡ 接入终端
         </a>
@@ -62,6 +88,8 @@
         <a href="javascript:void(0);" onclick="openLoginModal()" class="btn ghost btn-small">登录/注册</a>
     </div>
 </header>
+
+
 
 <main>
 
@@ -1067,7 +1095,7 @@
         <div class="card co-builder-card">
             <div class="icon">创</div>
             <h3>成为「星尘贡献者」</h3>
-            <p>面向所有爱好者、创作者与思想者。您可以通过“思想擂台”辩论、参与“都市情感奇遇记”等IP创作。每一个闪光的思想，都是点亮宇宙的星尘。</p>
+            <p>面向所有爱好者、创作者与思想者的召唤。您可以通过“思想擂台”辩论、参与“都市情感奇遇记”等融入这个宇宙的IP创作。您的每一个闪光的思想，都是点亮宇宙的宝贵星尘。</p>
             <a href="#stories" class="btn ghost">加入内容共创</a>
         </div>
     </div>
@@ -1248,7 +1276,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "arena": "神话的缔造者，是史前人类还是天外来客？",
         "stories": "每一个平凡的瞬间，都可能蕴含着撼动世界的叙事原型。",
         "contact": "别只点赞，合作是把故事带到世界的邀约。",
-        "default": "我是解大为，正在读取你的探索路径..."
+        "default": "我是解大为，欢迎来到我的战场..."
     };
 
     function speak(text) {
@@ -1331,6 +1359,35 @@ document.addEventListener('DOMContentLoaded', () => {
         avatar.style.cursor = 'pointer';
     });
 });
+
+
+
+
+// 监听全局点击事件，实现点击图片出金边
+document.addEventListener('click', function (e) {
+    // 检查点击的是否是卡片里的图片
+    const target = e.target.closest('.card img, .hero-card img, .pic, .ip-card-img');
+    
+    // 先移除所有已存在的金边
+    document.querySelectorAll('.img-glow-active').forEach(el => {
+        el.classList.remove('img-glow-active');
+    });
+
+    // 如果点中了目标，就加上金边
+    if (target) {
+        target.classList.add('img-glow-active');
+        // 如果是 .pic 这种 div 背景图，直接加在它身上
+        e.stopPropagation();
+    }
+});
+
+
+
+
+
+
+
+
 </script>
 
 
