@@ -1384,16 +1384,26 @@ document.addEventListener('click', function (e) {
 
 
 
-
-
-
-
-
-
-
 </script>
 
 
+
+
+
+<script>
+// 仅针对手机端的专项排版修正
+if (window.innerWidth <= 768) {
+    // 1. 第一行文字分行：在“墨龙，”后面强行断句
+    const line1 = document.getElementById('hero-line-1');
+    if(line1) line1.innerHTML = "我驾驭墨龙，<br>在代码与神谕之间潜行。";
+
+    // 2. 第二行文字：电脑端原本就有 <br>，手机端我们确保它字号合适
+    
+    // 3. 导航栏居中：找到品牌容器并标记
+    const brand = document.querySelector('.brand');
+    if(brand) brand.style.margin = "0 auto";
+}
+</script>
 
 
 
