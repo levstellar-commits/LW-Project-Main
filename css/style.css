@@ -1125,8 +1125,80 @@ header.site-header {
 
 
 
+/* 3.1 强制显示下拉列表文字 */
+select.form-control {
+    color: #ffffff !important;
+    background-color: #0b1116 !important; /* 必须有实色背景，否则下拉弹出层可能透明 */
+}
+
+select.form-control option {
+    background-color: #0b1116 !important;
+    color: #ffffff !important;
+    padding: 10px;
+}
+
+
+/* 1.1 第三行文字颜色美化 (采用科幻青) */
+#hero-line-3 {
+    color: var(--accent) !important; /* 改为科幻青，更有层次感 */
+    font-weight: 500;
+    text-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+    font-size: 1.4rem !important;
+}
+
+/* 1.2 右侧按钮对齐与立体化 (增加实色边框与内阴影) */
+.hero-actions .btn.ghost {
+    width: 180px !important; /* 与左侧按钮对齐高度/宽度感 */
+    height: 52px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    border-radius: 6px !important;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1), 0 4px 15px rgba(0,0,0,0.3) !important;
+    transition: all 0.3s ease;
+}
+
+.hero-actions .btn.ghost:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2) !important;
+    transform: translateY(-2px);
+}
 
 
 
+/* 激活态金边效果 */
+.img-active-gold {
+    outline: 4px solid var(--accent-gold) !important;
+    outline-offset: -4px;
+    box-shadow: 0 0 30px rgba(232, 185, 35, 0.9) !important;
+    filter: brightness(1.1);
+    z-index: 100;
+    position: relative;
+}
+
+
+
+/* 隐藏结尾项目元信息 */
+#about details, 
+#about summary {
+    display: none !important;
+}
+
+
+
+/* 确保三人排撑满全宽 */
+.ancestor-row:nth-of-type(2) {
+    display: flex !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    max-width: 1300px !important;
+    gap: 30px !important;
+}
+
+.ancestor-row:nth-of-type(2) .hero-card {
+    flex: 1 !important; /* 强制平分空间 */
+}
 
 
