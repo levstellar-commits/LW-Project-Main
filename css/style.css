@@ -1036,9 +1036,106 @@ header.site-header {
 }
 
 
+/* 1.1 解大为介绍文字改为白色 */
+#hero-line-3 {
+    color: #ffffff !important;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* 1.2 次要按钮样式优化 (实色毛玻璃感) */
+.hero-actions .btn.ghost {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #fff !important;
+}
+.hero-actions .btn.ghost:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-color: #fff !important;
+}
+
+/* 1.3 首屏底部自然过渡遮罩 */
+.hero-vignette {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px; /* 渐变区域高度 */
+    background: linear-gradient(to bottom, transparent, #02060a) !important;
+    z-index: 4;
+    pointer-events: none;
+}
 
 
 
+/* 始祖卡片大小同步与全宽排版 */
+.ancestor-row {
+    width: 100% !important;
+    max-width: var(--site-width) !important; /* 对齐 1300px 主宽度 */
+    display: flex !important;
+    justify-content: center !important;
+    gap: 30px !important; /* 统一间距 */
+}
+
+/* 统一所有始祖卡片的尺寸 */
+.ancestor-row .hero-card {
+    flex: 0 1 320px !important; /* 增加宽度 */
+    transition: transform 0.3s ease;
+}
+
+/* 伏羲女娲依然居中，但通过 margin 保持独立感 */
+.ancestor-row:first-of-type {
+    max-width: 800px !important; /* 两人排时稍微收拢，显得更精致 */
+    margin: 0 auto;
+}
+
+
+
+.prism-core::after {
+    content: "";
+    position: absolute;
+    top: 60%; /* 从棱镜中心偏下开始投射 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 300px;
+    /* 投射彩光 */
+    background: conic-gradient(from 150deg at 50% 0%, 
+        transparent, 
+        rgba(0, 229, 255, 0.3), 
+        rgba(255, 0, 255, 0.2), 
+        rgba(232, 185, 35, 0.3), 
+        transparent);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    filter: blur(25px);
+    z-index: 1;
+    mix-blend-mode: screen; /* 让彩光与背景融合 */
+}
+
+
+
+/* 激活态金边样式 */
+.img-glow-active {
+    outline: 3px solid var(--accent-gold) !important;
+    outline-offset: -3px;
+    box-shadow: 0 0 30px rgba(232, 185, 35, 0.8) !important;
+    z-index: 10;
+    position: relative;
+}
+
+
+
+/* 3.1 强制显示下拉列表文字 */
+select.form-control {
+    color: #ffffff !important;
+    background-color: #0b1116 !important; /* 必须有实色背景，否则下拉弹出层可能透明 */
+}
+
+select.form-control option {
+    background-color: #0b1116 !important;
+    color: #ffffff !important;
+    padding: 10px;
+}
 
 
 
