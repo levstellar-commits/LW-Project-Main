@@ -605,3 +605,89 @@ header.site-header {
     filter: brightness(1.2);
     box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
 }
+
+
+
+/* ==========================================================================
+   针对“主角角色卡片”的专项优化 (修复显示不全)
+   ========================================================================== */
+
+/* 1. 约束角色网格高度，防止卡片被无限拉长 */
+.character-grid {
+    align-items: start !important; /* 强制对齐顶部，防止卡片高度随行自动撑满 */
+    gap: 20px !important;
+}
+
+/* 2. 核心修正：强制角色图显示比例，确保不裁剪 */
+.hero-card .pic {
+    width: 100% !important;
+    aspect-ratio: 3 / 4 !important; /* 严格执行 3:4 */
+    height: auto !important;
+    background-size: cover !important; /* 改为 cover 确保填满但不拉伸 */
+    background-position: center 10% !important; /* 视觉重心上移，保住头部 */
+    border-radius: 8px 8px 0 0 !important;
+    display: block !important;
+}
+
+/* 3. 卡片整体美化：增加层次感 */
+.hero-card {
+    display: flex !important;
+    flex-direction: column !important;
+    background: rgba(20, 30, 40, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    overflow: hidden !important;
+    height: auto !important; /* 让卡片高度随内容自适应，不要被系统定死 */
+}
+
+/* 4. 文字区域间距压缩，让整体更紧凑精致 */
+.hero-card .name {
+    font-size: 1.1rem !important;
+    margin: 12px 12px 4px 12px !important;
+    color: var(--accent-gold) !important; /* 名字用传说金，更有质感 */
+}
+
+.hero-card .role {
+    font-size: 0.85rem !important;
+    margin: 0 12px 8px 12px !important;
+    opacity: 0.8 !important;
+}
+
+.hero-card .desc-sm {
+    padding: 0 12px 15px 12px !important;
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* 5. 底部按钮位置锁定 */
+.hero-card .card-footer {
+    margin-top: auto !important; /* 将按钮推向底部 */
+    padding: 10px 12px !important;
+    border-top: 1px solid rgba(255,255,255,0.05) !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
