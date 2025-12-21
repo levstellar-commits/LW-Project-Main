@@ -1186,19 +1186,76 @@ select.form-control option {
     display: none !important;
 }
 
-
-
-/* 确保三人排撑满全宽 */
-.ancestor-row:nth-of-type(2) {
-    display: flex !important;
-    justify-content: space-between !important;
-    width: 100% !important;
-    max-width: 1300px !important;
-    gap: 30px !important;
+/* --- 1. 合作共建按钮：升级为对称按钮 --- */
+.hero-actions .btn.btn-ghost-neon {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    color: #fff !important;
+    min-width: 180px;
+    height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.hero-actions .btn.btn-ghost-neon:hover {
+    border-color: var(--accent-gold) !important;
+    background: rgba(232, 185, 35, 0.15) !important;
+    box-shadow: 0 0 20px rgba(232, 185, 35, 0.4);
 }
 
-.ancestor-row:nth-of-type(2) .hero-card {
-    flex: 1 !important; /* 强制平分空间 */
+/* --- 2. 始祖图同步放大：精准布局 --- */
+/* 伏羲女娲行：左右各一个，居中放大 */
+.fuxi-nuwa-row {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 40px !important;
+}
+.fuxi-nuwa-row .hero-card {
+    width: 320px !important; /* 强制大尺寸 */
+    flex: none !important;
+}
+
+/* 炎黄蚩尤行：三足鼎立 */
+.yan-huang-chi-row {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 30px !important;
+}
+.yan-huang-chi-row .hero-card {
+    width: 280px !important; /* 同步调整尺寸 */
+    flex: none !important;
+}
+
+/* 悬停同步放大效果 */
+.ancestor-row .hero-card:hover {
+    transform: scale(1.06) !important;
+    z-index: 10;
+}
+
+/* --- 3. 统一金边特效 (强制覆盖蓝边) --- */
+.card:hover, .hero-card:hover, .ip-card:hover, .project-card:hover {
+    outline: none !important;
+    border-color: var(--accent-gold) !important;
+    box-shadow: 0 0 25px rgba(232, 185, 35, 0.7) !important;
+}
+
+/* --- 4. 关于板块居中修正 --- */
+#about {
+    text-align: center !important;
+}
+#about .about-grid {
+    display: flex !important;
+    justify-content: center !important; /* 强制居中 */
+    flex-wrap: wrap;
+    gap: 30px;
+}
+#about .card {
+    flex: 0 1 320px !important;
+    text-align: left;
+    margin: 0 !important;
 }
 
 
