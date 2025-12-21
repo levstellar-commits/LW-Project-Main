@@ -668,6 +668,75 @@ header.site-header {
 
 
 
+/* 强制萌宠卡片图片比例与主角同步 */
+.mascot-card .pic {
+    width: 100% !important;
+    aspect-ratio: 3 / 4 !important; /* 统一宇宙视觉规范 */
+    height: auto !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    border-radius: 8px 8px 0 0 !important;
+}
+
+.mascot-grid {
+    align-items: start !important;
+}
+
+
+
+/* 修正飞龙：延长时长至 15s，增加丝滑感 */
+.spaceship-container {
+    animation: dragonCoolFlow 15s cubic-bezier(0.4, 0, 0.2, 1) infinite !important;
+}
+
+@keyframes dragonCoolFlow {
+    0% {
+        left: 110vw; 
+        transform: translate(0, -50%) scale(0.7);
+        opacity: 0;
+    }
+    /* 快速入场 */
+    10% {
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    /* 在中心超长停留/微动 占总时长的 70% */
+    80% {
+        left: 50%;
+        transform: translate(-50%, -52%) scale(1.02); /* 缓慢上下浮动 */
+        opacity: 1;
+    }
+    /* 优雅离场 */
+    95%, 100% {
+        left: -110vw;
+        transform: translate(-100%, -50%) scale(1.1);
+        opacity: 0;
+    }
+}
+
+
+/* 强制找回星空背景 */
+#hero-bg {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    /* 确保路径正确，如果报错请检查 images 文件夹下是否有此图 */
+    background: url('../assets/images/hero-bg.jpg') no-repeat center center !important;
+    background-size: cover !important;
+    z-index: 1 !important; /* 放在最底层 */
+}
+
+/* 确保 Hero 内容在背景之上 */
+.hero-content {
+    z-index: 10 !important;
+}
+.hero-visuals {
+    z-index: 2 !important;
+}
+
 
 
 
