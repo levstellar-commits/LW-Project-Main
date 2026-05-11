@@ -527,7 +527,55 @@
 
 
 
+/* ==========================================================================
+   [新增] 同步主页的双行导航栏样式 (Header & Nav)
+   ========================================================================== */
+header.site-header {
+    height: 80px;
+    background: rgba(2, 6, 10, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px;
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 9999;
+}
+.brand { display: flex; align-items: center; gap: 15px; }
+.brand img { width: 44px; height: 44px; }
+.brand-text { display: flex; flex-direction: column; justify-content: center; }
+.brand-title { font-size: 1.2rem; font-weight: 700; color: #fff; line-height: 1.1; }
+.brand-subtitle { font-size: 0.8rem; color: #aaa; letter-spacing: 1px; }
 
+.site-nav { margin-left: auto; margin-right: 40px; display: flex; gap: 30px; }
+
+/* 核心：双行文字排版 */
+.nav-item-dual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+    text-decoration: none;
+}
+.nav-item-dual strong {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    transition: 0.3s;
+}
+.nav-item-dual span {
+    font-size: 0.65rem;
+    color: var(--accent);
+    opacity: 0.8;
+    margin-top: 3px;
+}
+.nav-item-dual:hover strong { color: var(--accent-gold); }
+
+/* 按钮与手机端隐藏 */
+.header-actions .btn-small { padding: 8px 20px; font-size: 0.9rem; border-radius: 4px; }
+@media (max-width: 768px) {
+    .site-nav { display: none !important; }
+    header.site-header { padding: 0 15px; height: 60px; }
+}
 
 
 
