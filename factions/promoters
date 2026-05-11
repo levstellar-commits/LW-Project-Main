@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>矩阵布道者 - 文明阵营档案 | 立维宇宙</title>
+  
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/subpage.css">
+
+  <style>
+    /* ======================================================= */
+    /* 矩阵布道者专属：流媒体卡片与信号广播样式 */
+    /* ======================================================= */
+    .broadcast-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+        gap: 30px;
+    }
+    
+    .video-card {
+        background: #0f0913;
+        border-radius: 12px;
+        overflow: hidden;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(244, 63, 94, 0.1);
+    }
+    
+    .video-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(244, 63, 94, 0.2);
+        border-color: rgba(244, 63, 94, 0.4);
+    }
+
+    /* 封面与播放按钮 */
+    .video-thumbnail {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: #1a1a1a;
+        overflow: hidden;
+    }
+
+    .video-thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity 0.3s ease, transform 0.5s ease;
+        opacity: 0.85;
+    }
+
+    .video-card:hover .video-thumbnail img {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    .play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.9);
+        width: 60px;
+        height: 60px;
+        background: rgba(244, 63, 94, 0.8);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(4px);
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 0 15px rgba(244, 63, 94, 0.5);
+        z-index: 2;
+    }
+
+    .play-btn::after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 10px 0 10px 16px;
+        border-color: transparent transparent transparent #fff;
+        margin-left: 4px; /* 微调居中 */
+    }
+
+    .video-card:hover .play-btn {
+        transform: translate(-50%, -50%) scale(1.1);
+        background: rgba(244, 63, 94, 1);
+        box-shadow: 0 0 30px rgba(244, 63, 94, 0.8);
+    }
+
+    /* 视频时长胶囊 */
+    .video-duration {
+        position: absolute;
+        bottom: 12px;
+        right: 12px;
+        background: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 0.8rem;
+        font-weight: bold;
+        z-index: 2;
+    }
+
+    /* 视频信息区 */
+    .video-info {
+        padding: 20px;
+        position: relative;
+    }
+
+    .video-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 12px;
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .video-stats {
+        display: flex;
+        gap: 15px;
+        font-size: 0.8rem;
+        color: #a1a1aa;
+        margin-bottom: 15px;
+    }
+    
+    .video-stats span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .video-author {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 15px;
+        border-top: 1px dashed rgba(255,255,255,0.1);
+        font-size: 0.9rem;
+        color: #f43f5e;
+        font-weight: bold;
+    }
+    
+    .video-tag {
+        font-size: 0.75rem;
+        color: #fff;
+        background: #f43f5e;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-weight: normal;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+  
+  <main>
+    <section class="subpage-hero" style="background-image: url('../assets/images/cover_promoters_bg.jpg');">
+        <div class="subpage-hero-overlay" style="background: linear-gradient(to right, rgba(20, 5, 10, 0.85), rgba(0, 0, 0, 0.5));">
+            <p class="breadcrumb"><a href="../index.html">首页</a> &gt; <a href="javascript:void(0);" onclick="window.history.back()">文明阵营</a> &gt; 矩阵布道者</p>
+            <h1>📡 矩阵布道者</h1>
+            <h2 style="color: #f43f5e;">将我们的频段，广播至每一个平行宇宙。</h2>
+        </div>
+    </section>
+
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="faction-manifesto" style="border-left-color: #f43f5e; background: rgba(244, 63, 94, 0.05);">
+                <p>这里是专属<strong>视频剪辑师、解说UP主、配音CV与混剪达人</strong>的扩音枢纽。</p>
+                <p>再宏大的神话，如果不被传唱，也只是一堆休眠的代码。你们是立维宇宙的“信号放大器”：用高燃的 BGM 配合原画剪出让人头皮发麻的预告片，用深入浅出的解说让小白瞬间入坑，或是用声优的嗓音赋予冰冷文字以灵魂。把素材扔进时间线，渲染出属于你的高维广播吧！</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="content-section-title">
+                <h3 style="border-left: 4px solid #f43f5e; padding-left: 15px; display: inline-block;">全息广播波段</h3>
+                <span style="font-size:1rem; color:#f43f5e; font-weight:normal; margin-left:15px;">总信号辐射量：340万次播放</span>
+            </div>
+            
+            <div class="broadcast-grid">
+                
+                <a href="#" class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-btn"></div>
+                        <span class="video-duration">03:45</span>
+                        <img src="../assets/images/video_thumb_1.jpg" alt="高燃混剪">
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">【立维宇宙】前方高能！赛博神话史诗级视觉混剪（戴上耳机）</div>
+                        <div class="video-stats">
+                            <span>▶ 125.4万 播放</span>
+                            <span>💬 8,902 弹幕</span>
+                        </div>
+                        <div class="video-author">
+                            <span>UP：剪辑狂魔-零式</span>
+                            <span class="video-tag">高燃AMV</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-btn"></div>
+                        <span class="video-duration">12:20</span>
+                        <img src="../assets/images/video_thumb_2.jpg" alt="世界观解说">
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">一口气看懂：归墟底层究竟藏着什么？三分钟梳理核心时间线！</div>
+                        <div class="video-stats">
+                            <span>▶ 84.2万 播放</span>
+                            <span>⭐ 1.2万 收藏</span>
+                        </div>
+                        <div class="video-author">
+                            <span>UP：星海引路人</span>
+                            <span class="video-tag">硬核科普</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-btn"></div>
+                        <span class="video-duration">01:15</span>
+                        <img src="../assets/images/video_thumb_3.jpg" alt="CV配音">
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">“我不需要神明，我就是协议本身。” —— 女娲系统觉醒台词配音挑战</div>
+                        <div class="video-stats">
+                            <span>▶ 42.8万 播放</span>
+                            <span>🔊 30万+ 转发</span>
+                        </div>
+                        <div class="video-author">
+                            <span>CV：赛博百灵鸟</span>
+                            <span class="video-tag">声优企划</span>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+            <div style="text-align: center; margin-top: 50px;">
+                <button class="btn ghost" style="border-color: #f43f5e; color: #f43f5e; padding: 12px 35px; border-radius: 8px;">载入更多频段 📶</button>
+            </div>
+        </section>
+        
+        <section class="content-section" style="margin-top: 80px;">
+            <div class="content-section-title">
+                <h3 style="border-left: 4px solid var(--accent-gold); padding-left: 15px; display: inline-block;">核心波段塔</h3>
+                <span style="font-size:1rem; color:var(--accent-gold); font-weight:normal; margin-left:15px;">现象级创作者认证</span>
+            </div>
+            
+            <div class="author-grid">
+                <div class="author-card">
+                    <div class="author-avatar" style="border-color: #f43f5e; box-shadow: 0 0 20px rgba(244, 63, 94, 0.4);"></div>
+                    <div class="author-name">剪辑狂魔-零式</div>
+                    <div class="author-title" style="color: #f43f5e;">累计播放: 200W+</div>
+                </div>
+                <div class="author-card">
+                    <div class="author-avatar" style="border-color: #f43f5e;"></div>
+                    <div class="author-name">星海引路人</div>
+                    <div class="author-title" style="color: #f43f5e;">累计播放: 150W+</div>
+                </div>
+                <div class="author-card">
+                    <div class="author-avatar" style="border-color: #f43f5e;"></div>
+                    <div class="author-name">赛博百灵鸟</div>
+                    <div class="author-title" style="color: #f43f5e;">音频波段: 80W+</div>
+                </div>
+                <div class="author-card" style="border: 1px dashed rgba(244, 63, 94, 0.3); background: transparent;">
+                    <div class="author-avatar" style="background: transparent; border: 2px dashed rgba(244, 63, 94, 0.3); box-shadow: none; display:flex; justify-content:center; align-items:center; color: #f43f5e;">▶</div>
+                    <div class="author-name" style="color: #aaa;">频段空缺</div>
+                    <div class="author-title" style="color: #666;">等待你的投币</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="call-to-arms">
+            <h2 style="color: #fff; margin-bottom: 20px;">打破次元壁，只需一次精彩的剪辑。</h2>
+            <p style="color: #ccc; margin-bottom: 30px; max-width: 650px; margin-left: auto; margin-right: auto; line-height: 1.8;">
+                立维宇宙官方将定期开放**核心美术素材包、音乐原声带及剧本残卷**的高清下载权限。<br>将你的二创视频链接提交至本台，优质作品将被官方账号全网推流，甚至直接被采纳为官方宣传片，享受流量与版权的双重分成。
+            </p>
+            <a href="mailto:creator@levythos.com?subject=矩阵布道者视频投稿" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 40px; border:none; border-radius: 8px; background: linear-gradient(135deg, #f43f5e, #be123c); color:#fff; font-weight: bold; box-shadow: 0 8px 25px rgba(244, 63, 94, 0.3);">[ 投递我的视频信号 ]</a>
+        </section>
+    </div>
+  </main>
+  
+  <footer style="margin-top: 80px;"> 
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px; padding: 40px; border-top: 1px solid rgba(244, 63, 94, 0.2); background: #000;">
+      <div>
+          <div style="font-weight:700; color: #f43f5e;">Levythos · 立维宇宙 · 全息广播台</div>
+          <div class="muted" style="margin-top:6px; color:#666; font-size: 0.85rem;">© 2026 Levythos Media Network. 保持信号畅通。</div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+function loadHeader() {
+    fetch('/header.html')
+        .then(response => {
+            if (!response.ok) throw new Error('网络响应不佳');
+            return response.text();
+        })
+        .then(data => {
+            const headerPlaceholder = document.getElementById('header-placeholder');
+            if (headerPlaceholder) { headerPlaceholder.innerHTML = data; }
+        })
+        .catch(error => console.error('加载导航栏失败:', error));
+}
+document.addEventListener('DOMContentLoaded', () => { loadHeader(); });
+</script>
+
+<a href="javascript:history.back()" class="mobile-back-fab" aria-label="返回上一页" style="background: rgba(244, 63, 94, 0.1); color: #f43f5e; border: 1px solid #f43f5e;">
+    <span class="icon">←</span> <span class="text">断开</span>
+</a>
+
+</body>
+</html>
