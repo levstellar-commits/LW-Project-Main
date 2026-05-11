@@ -2166,3 +2166,51 @@ select.form-control option {
     font-weight: 600 !important;
     margin-top: 2px !important;
 }
+
+
+
+/* ==========================================================================
+   LOGO 位置修正与中英文两端对齐补丁
+   ========================================================================== */
+
+/* 1. 整体向右平移：避开 60px 宽的侧边栏 */
+.brand {
+    margin-left: 65px !important; /* 60px柱子宽度 + 5px呼吸间距 */
+    transition: all 0.3s ease;
+}
+
+/* 2. 品牌文字容器：确保宽度由中文标题决定 */
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    width: fit-content; /* 容器宽度紧贴文字 */
+}
+
+/* 3. 中文主标题：微调间距 */
+.brand-title {
+    letter-spacing: 2px !important; /* 给中文一点间距，让底部英文更好对齐 */
+    text-align: center;
+}
+
+/* 4. 英文副标题：实现两端绝对对齐 */
+.brand-subtitle {
+    font-size: 0.8rem !important; /* 稍微缩小一点字号，保证对齐的视觉美感 */
+    letter-spacing: 0 !important; /* 清除之前的固定间距 */
+    margin-top: -2px !important;
+    
+    /* 核心对齐逻辑 */
+    text-align: justify;
+    text-align-last: justify; /* 强制最后一行（也是唯一一行）两端对齐 */
+    width: 100%; /* 撑满父容器（即中文的宽度） */
+    
+    /* 兼容性处理 */
+    display: block;
+}
+
+/* 5. 针对移动端的特殊处理：手机端没有侧边栏，LOGO 恢复居中或原位 */
+@media (max-width: 768px) {
+    .brand {
+        margin-left: 0 !important;
+        justify-content: center;
+    }
+}
