@@ -1927,10 +1927,138 @@ select.form-control option {
 
 
 
+/* ==========================================================================
+   第四次微调补丁：首屏细节与两侧罗马柱视觉升级
+   ========================================================================== */
+
+/* 【修复点2】查阅工业白皮书按钮：科幻青发光边框 */
+.hero-actions .btn-outline-cyan {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: 0.3s;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    background: rgba(0, 229, 255, 0.08); /* 淡淡的青色底 */
+    box-shadow: inset 0 0 10px rgba(0, 229, 255, 0.1), 0 0 15px rgba(0,0,0,0.5);
+    text-decoration: none;
+}
+.hero-actions .btn-outline-cyan:hover {
+    background: rgba(0, 229, 255, 0.2);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+/* 【修复点3】左侧阵营符号：恢复彩色，提高亮度 */
+.pillar-marquee span {
+    font-size: 1.5rem;
+    filter: none !important; /* 取消之前的黑白滤镜，恢复彩色 Emoji */
+}
+.pillar-marquee {
+    opacity: 0.45 !important; /* 提高平时状态的亮度 (原来是0.2) */
+}
+.cyber-pillar:hover .pillar-marquee {
+    opacity: 0.8 !important; /* 鼠标悬浮时更亮 */
+}
+
+/* 【修复点4】右侧档案头像：增加科幻全息默认图 (纯CSS绘制，无需找图片) */
+.mini-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    /* 科技感深渊渐变底色 */
+    background: radial-gradient(circle at center, rgba(0, 229, 255, 0.3) 0%, rgba(0, 0, 0, 0.8) 80%),
+                linear-gradient(135deg, rgba(20,30,40,1) 0%, rgba(2,6,10,1) 100%);
+    box-shadow: inset 0 0 8px rgba(0, 229, 255, 0.6);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mini-avatar::after {
+    content: "👤"; /* 默认的用户小图标 */
+    font-size: 1.2rem;
+    opacity: 0.6;
+    /* 用滤镜把默认的灰色人影调成发光的青色调 */
+    filter: hue-rotate(180deg) sepia(1) saturate(5) hue-rotate(135deg); 
+}
 
 
+/* ==========================================================================
+   主页视觉焦点强化补丁 (针对副标题、次按钮、侧边栏加宽与高亮)
+   ========================================================================== */
 
+/* 1. 提升首屏副标题的亮度和辨识度 */
+#hero-line-2 {
+    font-size: 1.35rem !important; /* 字号放大一丢丢 */
+    color: #ffffff !important; /* 强制纯白，去除灰度 */
+    font-weight: 500 !important; /* 稍微加粗，增加分量感 */
+    letter-spacing: 2px !important; /* 增加字间距，更显大气 */
+    /* 核心：黑色实心底影防干扰 + 青色发光轮廓 */
+    text-shadow: 0 3px 5px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 229, 255, 0.6) !important; 
+    opacity: 1 !important;
+}
 
+/* 2. 第二按钮（白皮书）微调：有色彩但不抢戏 */
+.hero-actions .btn-outline-cyan {
+    background: rgba(0, 229, 255, 0.15) !important; /* 半透明青色底 */
+    border: 1px solid rgba(0, 229, 255, 0.6) !important; /* 青色边框 */
+    color: #e0f7fa !important; /* 文字带点极浅的青蓝色 */
+    box-shadow: 0 4px 15px rgba(0, 229, 255, 0.1) !important; /* 淡淡的底光 */
+    backdrop-filter: blur(5px) !important;
+}
+.hero-actions .btn-outline-cyan:hover {
+    background: rgba(0, 229, 255, 0.35) !important; /* 鼠标悬停变亮 */
+    border-color: #00e5ff !important;
+    color: #fff !important;
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.5) !important;
+}
+
+/* 3. 侧边栏（罗马柱）加宽与指示性史诗级增强 */
+/* 默认加宽到 75px (原来是 60px) */
+.cyber-pillar {
+    width: 75px !important; 
+}
+/* 鼠标悬停时进一步加宽到 95px (原来是 80px) */
+#pillar-left:hover, #pillar-right:hover {
+    width: 95px !important;
+}
+
+/* 让滚动的小图标平时就亮一点，吸引眼球 */
+.pillar-marquee {
+    opacity: 0.6 !important; 
+}
+
+/* 将竖向文字变成极其醒目的“实体铭牌” */
+.cyber-pillar .vertical-text {
+    font-size: 1.15rem !important; /* 字号放大 */
+    font-weight: 900 !important;
+    border: none !important;
+    padding: 25px 10px !important; /* 加长铭牌 */
+    border-radius: 8px !important;
+    letter-spacing: 5px !important;
+    white-space: nowrap !important;
+    z-index: 10 !important;
+}
+
+/* 左侧铭牌：黑字 + 金色渐变底 */
+#pillar-left .vertical-text {
+    background: linear-gradient(180deg, #fceabb 0%, #f8b500 100%) !important;
+    color: #000000 !important;
+    box-shadow: 0 0 20px rgba(248, 181, 0, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.5) !important;
+}
+
+/* 右侧铭牌：黑字 + 科幻青渐变底 */
+#pillar-right .vertical-text {
+    background: linear-gradient(180deg, #00f2fe 0%, #4facfe 100%) !important;
+    color: #000000 !important;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.5) !important;
+}
 
 
 
