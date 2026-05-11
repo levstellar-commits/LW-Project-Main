@@ -2115,3 +2115,54 @@ select.form-control option {
     box-shadow: 0 0 20px rgba(0, 242, 254, 0.6) !important;
 }
 
+
+
+/* ==========================================================================
+   品牌大气化与侧边栏构图回归补丁
+   ========================================================================== */
+
+/* 1. 还原侧边栏宽度：让构图重新变宽广，不再拥挤 */
+.cyber-pillar {
+    width: 60px !important; /* 回归标准宽度 */
+}
+/* 悬停时稍微张开即可 */
+#pillar-left:hover, #pillar-right:hover {
+    width: 75px !important;
+}
+
+/* 2. 侧边栏铭牌微调：宽度自适应窄边栏 */
+.cyber-pillar .vertical-text {
+    font-size: 1rem !important; /* 稍微缩小字号以适配窄边栏 */
+    padding: 20px 8px !important;
+    letter-spacing: 4px !important;
+}
+
+/* 3. 品牌区域史诗级增强：更大气、更清晰 */
+.brand {
+    gap: 20px !important; /* 增大图标和文字的间距 */
+}
+
+/* 放大左侧 LOGO 图标 */
+.brand img {
+    width: 58px !important; 
+    height: 58px !important;
+    filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.5)) !important; /* 给图标加点发光 */
+    display: block !important; /* 确保它不再被隐藏 */
+}
+
+/* 放大“立维宇宙”主文字 */
+.brand-title {
+    font-size: 1.8rem !important; /* 从1.2rem直接提到1.8rem */
+    font-weight: 800 !important;
+    letter-spacing: 3px !important;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4) !important;
+}
+
+/* 优化“LEVYTHOS”副标题 */
+.brand-subtitle {
+    font-size: 0.9rem !important; /* 略微放大 */
+    color: var(--accent) !important; /* 强制使用科幻青，增加层级感 */
+    letter-spacing: 4px !important;
+    font-weight: 600 !important;
+    margin-top: 2px !important;
+}
