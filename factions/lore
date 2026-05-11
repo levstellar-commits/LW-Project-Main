@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>基因记录官 - 文明阵营档案 | 立维宇宙</title>
+  
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/subpage.css">
+
+  <style>
+    /* ======================================================= */
+    /* 基因记录官专属：维基数据库与词条式排版 */
+    /* ======================================================= */
+    .wiki-container {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .wiki-entry-card {
+        background: rgba(10, 20, 35, 0.7);
+        border: 1px solid rgba(0, 206, 209, 0.15);
+        border-radius: 4px;
+        padding: 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+    }
+
+    .wiki-entry-card:hover {
+        border-color: var(--accent);
+        background: rgba(10, 25, 45, 0.9);
+        box-shadow: 0 0 25px rgba(0, 206, 209, 0.1);
+    }
+
+    /* 词条头部：类似文件页签 */
+    .wiki-header {
+        background: rgba(0, 206, 209, 0.05);
+        padding: 12px 20px;
+        border-bottom: 1px solid rgba(0, 206, 209, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .wiki-tag {
+        font-size: 0.75rem;
+        background: rgba(0, 206, 209, 0.2);
+        color: #00ced1;
+        padding: 2px 8px;
+        border-radius: 2px;
+        text-transform: uppercase;
+    }
+
+    .wiki-body {
+        padding: 20px;
+    }
+
+    .wiki-title {
+        font-size: 1.4rem;
+        color: #fff;
+        margin-bottom: 12px;
+        font-weight: 700;
+    }
+
+    .wiki-summary {
+        font-size: 0.95rem;
+        color: #b0c4de;
+        line-height: 1.7;
+        margin-bottom: 15px;
+        border-left: 3px solid rgba(255,255,255,0.1);
+        padding-left: 15px;
+    }
+
+    .wiki-footer {
+        padding: 12px 20px;
+        font-size: 0.85rem;
+        color: #666;
+        background: rgba(0,0,0,0.2);
+        display: flex;
+        gap: 20px;
+    }
+
+    /* 进度条：模拟设定完整度 */
+    .completeness-bar {
+        height: 4px;
+        background: rgba(255,255,255,0.05);
+        width: 100px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 10px;
+        border-radius: 2px;
+        overflow: hidden;
+    }
+    .completeness-fill {
+        height: 100%;
+        background: #00ced1;
+    }
+
+    /* 搜索框模拟：增加代入感 */
+    .wiki-search-mock {
+        background: rgba(0,0,0,0.3);
+        border: 1px solid rgba(255,255,255,0.1);
+        padding: 15px 25px;
+        border-radius: 30px;
+        color: #888;
+        margin-bottom: 40px;
+        display: flex;
+        justify-content: space-between;
+        cursor: text;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+  
+  <main>
+    <section class="subpage-hero" style="background-image: url('../assets/images/cover_lore_bg.jpg');">
+        <div class="subpage-hero-overlay" style="background: linear-gradient(135deg, rgba(5,15,30,0.9), rgba(0,0,0,0.5));">
+            <p class="breadcrumb"><a href="../index.html">首页</a> &gt; <a href="javascript:void(0);" onclick="window.history.back()">文明阵营</a> &gt; 基因记录官</p>
+            <h1>🧬 基因记录官</h1>
+            <h2 style="color: #00ced1;">编纂宇宙的底层代码，将混乱的传说化为永恒的秩序。</h2>
+        </div>
+    </section>
+
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="faction-manifesto" style="border-left-color: #00ced1; background: rgba(0, 206, 209, 0.03);">
+                <p>这里是专属<strong>世界观设定控、考据党与维基百科狂热者</strong>的理性圣殿。</p>
+                <p>如果说小说家创造了故事，那么记录官则定义了“真相”。立维宇宙的每一项底层逻辑——从“灵能”在宏观宇宙的波函数表现，到远古神祇的血统进化树，再到各大阵营的职权边界。你的任务是剔除神话中的修辞，用最精准、最严谨的词条，构建起这片星海的视觉与逻辑地基。</p>
+            </div>
+        </section>
+
+        <div class="wiki-search-mock">
+            <span>输入关键词检索宇宙底层词条... (如：归墟、玉髓、女娲协议)</span>
+            <span>🔍</span>
+        </div>
+
+        <section class="content-section">
+            <div class="content-section-title">
+                <h3 style="border-left: 4px solid #00ced1; padding-left: 15px; display: inline-block;">核心编纂条目</h3>
+                <span style="font-size:1rem; color:#00ced1; font-weight:normal; margin-left:15px;">已索引 256 个文明节点</span>
+            </div>
+            
+            <div class="wiki-container">
+                
+                <a href="#" class="wiki-entry-card">
+                    <div class="wiki-header">
+                        <span class="wiki-tag">分类：世界法则</span>
+                        <span style="font-size: 0.8rem; color: #444;">ID: LORE-AX-001</span>
+                    </div>
+                    <div class="wiki-body">
+                        <div class="wiki-title">「灵能」的生物基因表达模型</div>
+                        <div class="wiki-summary">
+                            记录摘要：灵能并非虚无的力量，而是一种存在于碳基生物内质网中的特殊蛋白质折叠。记录官通过对“星灵灵”等物种的基因测序发现，灵能丰度与个体的多维空间感知呈正相关关系...
+                        </div>
+                    </div>
+                    <div class="wiki-footer">
+                        <span>记录官：大百科领航员</span>
+                        <span>解密等级：S级</span>
+                        <span>设定完整度：<div class="completeness-bar"><div class="completeness-fill" style="width: 85%;"></div></div> 85%</span>
+                    </div>
+                </a>
+
+                <a href="#" class="wiki-entry-card">
+                    <div class="wiki-header">
+                        <span class="wiki-tag" style="background: rgba(232, 185, 35, 0.2); color: #e8b923;">分类：地理/遗迹</span>
+                        <span style="font-size: 0.8rem; color: #444;">ID: LORE-ST-042</span>
+                    </div>
+                    <div class="wiki-body">
+                        <div class="wiki-title">「归墟」深海高压对时间的稀释效应</div>
+                        <div class="wiki-summary">
+                            记录摘要：通过对归墟最底层沉积岩的放射性元素比对，记录官确定该区域存在强烈的引力透镜效应。在归墟一年，等同于地表文明的十二年。这解释了为何远古神祇在陨落后仍能保持活性...
+                        </div>
+                    </div>
+                    <div class="wiki-footer">
+                        <span>记录官：时间胶囊</span>
+                        <span>解密等级：A级</span>
+                        <span>设定完整度：<div class="completeness-bar"><div class="completeness-fill" style="width: 60%;"></div></div> 60%</span>
+                    </div>
+                </a>
+
+                <a href="#" class="wiki-entry-card">
+                    <div class="wiki-header">
+                        <span class="wiki-tag" style="background: rgba(255, 51, 102, 0.2); color: #ff3366;">分类：族群社会</span>
+                        <span style="font-size: 0.8rem; color: #444;">ID: LORE-GR-012</span>
+                    </div>
+                    <div class="wiki-body">
+                        <div class="wiki-title">《九黎部族：赛博义体改造史录》</div>
+                        <div class="wiki-summary">
+                            记录摘要：重新定义了“魔神”形象。九黎部族并非邪恶种族，而是首批尝试将青铜机关与神经系统深度融合的实验性先遣文明。所谓“三头六臂”，极可能是多路并行信号处理器的视觉误读...
+                        </div>
+                    </div>
+                    <div class="wiki-footer">
+                        <span>记录官：考据狂魔S</span>
+                        <span>解密等级：公开</span>
+                        <span>设定完整度：<div class="completeness-bar"><div class="completeness-fill" style="width: 95%;"></div></div> 95%</span>
+                    </div>
+                </a>
+
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn ghost" style="border-color: #00ced1; color: #00ced1;">同步中央云端，加载更多词条...</button>
+            </div>
+        </section>
+        
+        <section class="content-section" style="margin-top: 80px;">
+            <div class="content-section-title">
+                <h3 style="border-left: 4px solid var(--accent-gold); padding-left: 15px; display: inline-block;">首席记录官</h3>
+                <span style="font-size:1rem; color:var(--accent-gold); font-weight:normal; margin-left:15px;">全知全觉者群像</span>
+            </div>
+            
+            <div class="author-grid">
+                <div class="author-card">
+                    <div class="author-avatar" style="border-color: #00ced1;"></div>
+                    <div class="author-name">大百科领航员</div>
+                    <div class="author-title">编纂词条: 124 条</div>
+                </div>
+                <div class="author-card">
+                    <div class="author-avatar" style="border-color: #00ced1;"></div>
+                    <div class="author-name">时间胶囊</div>
+                    <div class="author-title">编纂词条: 89 条</div>
+                </div>
+                <div class="author-card">
+                    <div class="author-avatar" style="border-color: #00ced1;"></div>
+                    <div class="author-name">考据狂魔S</div>
+                    <div class="author-title">编纂词条: 56 条</div>
+                </div>
+                <div class="author-card" style="border: 1px dashed rgba(0, 206, 209, 0.3); background: transparent;">
+                    <div class="author-avatar" style="background: transparent; border: 2px dashed rgba(0, 206, 209, 0.3); box-shadow: none;"></div>
+                    <div class="author-name" style="color: #aaa;">待录入</div>
+                    <div class="author-title" style="color: #666;">Wiki 需要你</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="call-to-arms">
+            <h2 style="color: #fff; margin-bottom: 20px;">如果你不记录，文明将无迹可寻。</h2>
+            <p style="color: #ccc; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.8;">
+                我们不生产幻想，我们只是幻想的公证员。<br>你的每一段分析、每一个补充的设定，都将成为立维宇宙官网唯一认定的“官方正史”，供万千创作者查阅引用。
+            </p>
+            <a href="mailto:creator@levythos.com?subject=基因记录官申请" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 40px; border:none; border-radius: 6px; background: linear-gradient(135deg, #00ced1, #008b8b); color:#fff; font-weight: bold;">[ 申请编纂权限 ]</a>
+        </section>
+    </div>
+  </main>
+  
+  <footer style="margin-top: 80px;"> 
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px; padding: 40px; border-top: 1px solid rgba(0, 206, 209, 0.1); background: #000;">
+      <div>
+          <div style="font-weight:700; color: #00ced1;">Levythos · 立维宇宙 · 维基核心</div>
+          <div class="muted" style="margin-top:6px; color:#666; font-size: 0.85rem;">© 2026 Levythos Archives. 设定共创共享协议。</div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+function loadHeader() {
+    fetch('/header.html')
+        .then(response => {
+            if (!response.ok) throw new Error('网络响应不佳');
+            return response.text();
+        })
+        .then(data => {
+            const headerPlaceholder = document.getElementById('header-placeholder');
+            if (headerPlaceholder) { headerPlaceholder.innerHTML = data; }
+        })
+        .catch(error => console.error('加载导航栏失败:', error));
+}
+document.addEventListener('DOMContentLoaded', () => { loadHeader(); });
+</script>
+
+<a href="javascript:history.back()" class="mobile-back-fab" aria-label="返回上一页" style="background: rgba(0, 206, 209, 0.1); color: #00ced1; border: 1px solid #00ced1;">
+    <span class="icon">←</span> <span class="text">目录</span>
+</a>
+
+</body>
+</html>
