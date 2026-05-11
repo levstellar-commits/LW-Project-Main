@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>初元先知会 - 文明阵营档案 | 立维宇宙</title>
+  
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/subpage.css">
+
+  <style>
+    /* ======================================================= */
+    /* 初元先知会专属：黑金殿堂与黑曜石碑样式 */
+    /* ======================================================= */
+    .pantheon-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+        gap: 40px;
+    }
+    
+    .prophet-card {
+        background: linear-gradient(145deg, #161616, #0a0a0a);
+        border: 1px solid rgba(212, 175, 55, 0.3); /* 典雅的暗金色 */
+        border-radius: 2px; /* 故意使用极小圆角，显得像石碑般庄重 */
+        padding: 40px 30px;
+        position: relative;
+        transition: all 0.5s ease;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.05);
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* 烫金边角装饰 */
+    .prophet-card::before, .prophet-card::after {
+        content: '';
+        position: absolute;
+        width: 15px; height: 15px;
+        border: 1px solid #d4af37;
+        transition: all 0.3s ease;
+    }
+    .prophet-card::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+    .prophet-card::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+    .prophet-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 25px 50px rgba(212, 175, 55, 0.15), inset 0 0 0 1px rgba(212, 175, 55, 0.2);
+    }
+
+    .prophet-card:hover::before, .prophet-card:hover::after {
+        width: 100%; height: 100%;
+        opacity: 0.1;
+    }
+
+    /* 巨大的背景引号水印 */
+    .quote-mark {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-family: Georgia, serif;
+        font-size: 6rem;
+        color: rgba(212, 175, 55, 0.08);
+        line-height: 1;
+        pointer-events: none;
+    }
+
+    .prophet-quote {
+        font-size: 1.05rem;
+        color: #e5e7eb;
+        line-height: 1.8;
+        font-weight: 300;
+        margin-bottom: 30px;
+        position: relative;
+        z-index: 2;
+        letter-spacing: 0.5px;
+    }
+
+    .prophet-profile {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: auto;
+        padding-top: 20px;
+        border-top: 1px solid rgba(212, 175, 55, 0.2);
+        z-index: 2;
+    }
+
+    .prophet-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid #d4af37;
+        background: #222;
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+    }
+
+    .prophet-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .prophet-name {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #d4af37; /* 鎏金色 */
+        letter-spacing: 1px;
+    }
+
+    .prophet-title {
+        font-size: 0.8rem;
+        color: #9ca3af;
+        margin-top: 3px;
+    }
+
+    /* 专属金印徽章 */
+    .prophet-seal {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        width: 40px;
+        height: 40px;
+        opacity: 0.8;
+        background-image: radial-gradient(circle, rgba(212, 175, 55, 0.2) 20%, transparent 60%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        color: rgba(212, 175, 55, 0.5);
+    }
+
+  </style>
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+  
+  <main>
+    <section class="subpage-hero" style="background-image: url('../assets/images/cover_prophets_bg.jpg');">
+        <div class="subpage-hero-overlay" style="background: linear-gradient(135deg, rgba(10, 8, 5, 0.9), rgba(0, 0, 0, 0.7));">
+            <p class="breadcrumb"><a href="../index.html">首页</a> &gt; <a href="javascript:void(0);" onclick="window.history.back()">文明阵营</a> &gt; 初元先知会</p>
+            <h1>🏛️ 初元先知会</h1>
+            <h2 style="color: #d4af37;">以智慧与资本，为初生的宇宙指引航向。</h2>
+        </div>
+    </section>
+
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="faction-manifesto" style="border-left-color: #d4af37; background: rgba(212, 175, 55, 0.05);">
+                <p>这里是立维宇宙的最高智库与荣誉殿堂，专属<strong>战略投资人、学界泰斗与产业领袖</strong>。</p>
+                <p>一个宏大 IP 的崛起，离不开底层逻辑的严密支撑与资本的燃料。先知会的成员，或许不直接撰写小说，也不渲染图片，但他们的学术背书为立维宇宙赋予了“降维打击”般的真实感；他们的资本注入与产业资源，则让这片星海拥有了跨越虚拟与现实的力量。此碑所刻，皆为创世基石。</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="content-section-title">
+                <h3 style="border-left: 4px solid #d4af37; padding-left: 15px; display: inline-block;">创世箴言碑林</h3>
+                <span style="font-size:1rem; color:#d4af37; font-weight:normal; margin-left:15px;">已入驻 3 位荣誉先知</span>
+            </div>
+            
+            <div class="pantheon-grid">
+                
+                <div class="prophet-card">
+                    <div class="quote-mark">"</div>
+                    <div class="prophet-quote">
+                        “立维宇宙巧妙地将《山海经》的图腾崇拜与硬科幻的戴森球理论结合。它不仅是一个极具商业潜力的文化 IP，更是一场关于东方哲学如何在赛博时代重生的深刻推演。我非常看好其在全版权领域的衍生价值。”
+                    </div>
+                    <div class="prophet-profile">
+                        <div class="prophet-avatar" style="background-image: url('../assets/images/avatar_investor.jpg'); background-size: cover;"></div>
+                        <div class="prophet-info">
+                            <span class="prophet-name">陈远图 先生</span>
+                            <span class="prophet-title">星曜资本 创始合伙人 / 领投方</span>
+                        </div>
+                    </div>
+                    <div class="prophet-seal">♚</div>
+                </div>
+
+                <div class="prophet-card">
+                    <div class="quote-mark">"</div>
+                    <div class="prophet-quote">
+                        “很多科幻作品对‘维度’的理解浮于表面，但立维宇宙团队与我探讨的‘高维引力折叠模型’，在物理学逻辑上是能自洽的。看到年轻人用严谨的科学态度去解构古老神话，这让我感到惊喜。”
+                    </div>
+                    <div class="prophet-profile">
+                        <div class="prophet-avatar" style="background-image: url('../assets/images/avatar_scientist.jpg'); background-size: cover;"></div>
+                        <div class="prophet-info">
+                            <span class="prophet-name">Dr. 沈知微</span>
+                            <span class="prophet-title">理论物理学家 / 本作科学总顾问</span>
+                        </div>
+                    </div>
+                    <div class="prophet-seal">⚛</div>
+                </div>
+
+                <div class="prophet-card">
+                    <div class="quote-mark">"</div>
+                    <div class="prophet-quote">
+                        “神话是人类童年时期的梦。立维宇宙的可贵之处在于，它没有生搬硬套古典神怪，而是提取了其‘抗争’与‘探寻’的文化内核，用现代化的视觉语言重新编码。这是真正意义上的文化出海密码。”
+                    </div>
+                    <div class="prophet-profile">
+                        <div class="prophet-avatar" style="background-image: url('../assets/images/avatar_scholar.jpg'); background-size: cover;"></div>
+                        <div class="prophet-info">
+                            <span class="prophet-name">林默 教授</span>
+                            <span class="prophet-title">古典神话学泰斗 / 世界观架构导师</span>
+                        </div>
+                    </div>
+                    <div class="prophet-seal">✦</div>
+                </div>
+
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <p style="color: #666; font-size: 0.9rem; letter-spacing: 2px;">— 殿堂深处，更多尊位仍在静候 —</p>
+            </div>
+        </section>
+
+        <section class="call-to-arms" style="border-top: 1px solid rgba(212, 175, 55, 0.2); margin-top: 60px; padding-top: 60px; background: transparent;">
+            <h2 style="color: #d4af37; margin-bottom: 20px;">敲响殿堂之门</h2>
+            <p style="color: #a3a3a3; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.8;">
+                初元先知会实行<strong>严格的定向邀请与闭门审核制</strong>。<br>如果您是投资机构代表、资深媒体人、跨界品牌主或各学术领域的领军人物，并希望参与立维宇宙的顶层架构规划或深度商业开发，请使用机构邮箱与我们的联合创始人直接联络。
+            </p>
+            <a href="mailto:vip@levythos.com?subject=先知会入驻意向沟通" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 45px; border: 1px solid #d4af37; border-radius: 2px; background: rgba(212, 175, 55, 0.1); color:#d4af37; font-weight: bold; transition: all 0.3s ease;">[ 呈递尊享拜帖 ]</a>
+        </section>
+    </div>
+  </main>
+  
+  <footer style="margin-top: 80px;"> 
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px; padding: 40px; border-top: 1px solid rgba(212, 175, 55, 0.2); background: #050505;">
+      <div>
+          <div style="font-weight:700; color: #d4af37;">Levythos · 立维宇宙 · 荣誉智库</div>
+          <div class="muted" style="margin-top:6px; color:#555; font-size: 0.85rem;">© 2026 Levythos Pantheon. 向所有指路星辰致敬。</div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+function loadHeader() {
+    fetch('/header.html')
+        .then(response => {
+            if (!response.ok) throw new Error('网络响应不佳');
+            return response.text();
+        })
+        .then(data => {
+            const headerPlaceholder = document.getElementById('header-placeholder');
+            if (headerPlaceholder) { headerPlaceholder.innerHTML = data; }
+        })
+        .catch(error => console.error('加载导航栏失败:', error));
+}
+document.addEventListener('DOMContentLoaded', () => { loadHeader(); });
+</script>
+
+<a href="javascript:history.back()" class="mobile-back-fab" aria-label="返回上一页" style="background: rgba(212, 175, 55, 0.1); color: #d4af37; border: 1px solid #d4af37;">
+    <span class="icon">←</span> <span class="text">殿堂外</span>
+</a>
+
+</body>
+</html>
