@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>万象造物主 - 文明阵营档案 | 立维宇宙</title>
+  
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/subpage.css">
+
+  <style>
+    /* ======================================================= */
+    /* 万象造物主专属：重工实体与万象工坊样式 */
+    /* ======================================================= */
+    .workshop-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 30px;
+    }
+    
+    .object-card {
+        background: #0d0d0d;
+        border: 2px solid rgba(249, 115, 22, 0.2);
+        border-radius: 4px;
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        text-decoration: none;
+        overflow: hidden;
+    }
+    
+    /* 模拟机械锁扣装饰 */
+    .object-card::before, .object-card::after {
+        content: '';
+        position: absolute;
+        width: 10px; height: 10px;
+        border: 2px solid #f97316;
+        opacity: 0.5;
+    }
+    .object-card::before { top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
+    .object-card::after { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
+
+    .object-card:hover {
+        border-color: #f97316;
+        box-shadow: 0 0 30px rgba(249, 115, 22, 0.15);
+        transform: translateY(-5px);
+    }
+
+    .object-image-wrapper {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        background: #1a1a1a;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(249, 115, 22, 0.1);
+    }
+
+    .object-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+
+    .object-card:hover img {
+        transform: scale(1.1);
+    }
+
+    .object-info {
+        padding: 20px;
+    }
+
+    .object-spec {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 0.75rem;
+        color: #f97316;
+        margin-bottom: 8px;
+        display: flex;
+        gap: 10px;
+    }
+
+    .object-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 10px;
+    }
+
+    .object-desc {
+        font-size: 0.9rem;
+        color: #888;
+        line-height: 1.5;
+        margin-bottom: 15px;
+    }
+
+    .object-author {
+        font-size: 0.85rem;
+        color: var(--accent-gold);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .material-tag {
+        font-size: 0.7rem;
+        border: 1px solid rgba(255,255,255,0.2);
+        padding: 2px 6px;
+        border-radius: 2px;
+        color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+  
+  <main>
+    <section class="subpage-hero" style="background-image: url('../assets/images/cover_creators_bg.jpg');">
+        <div class="subpage-hero-overlay" style="background: linear-gradient(135deg, rgba(30, 10, 0, 0.85), rgba(0, 0, 0, 0.7));">
+            <p class="breadcrumb"><a href="../index.html">首页</a> &gt; <a href="javascript:void(0);" onclick="window.history.back()">文明阵营</a> &gt; 万象造物主</p>
+            <h1>⚒️ 万象造物主</h1>
+            <h2 style="color: #f97316;">打破虚幻的边界，让神话在现实中降临。</h2>
+        </div>
+    </section>
+
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="faction-manifesto" style="border-left-color: #f97316; background: rgba(249, 115, 22, 0.05);">
+                <p>这里是专属<strong>手办职人、Cosplayer、微缩模型玩家与独立开发者</strong>的创世工坊。</p>
+                <p>如果文字是灵魂，画作是躯壳，那么你们就是赋予宇宙“实体”的最终环节。当一张飞船草图变成桌上的 3D 打印模型，当一段描述变成一套震撼的盔甲，当立维宇宙的某个角色活生生地出现在现实中——那一刻，两个世界便完成了重合。拿起你的喷笔、裁缝剪与刻刀，来完成这场最后的“万象共创”。</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="content-section-title">
+                <h3 style="border-left: 4px solid #f97316; padding-left: 15px; display: inline-block;">实物降临库</h3>
+                <span style="font-size:1rem; color:#f97316; font-weight:normal; margin-left:15px;">已备案 12 组实体资产</span>
+            </div>
+            
+            <div class="workshop-grid">
+                
+                <a href="#" class="object-card">
+                    <div class="object-image-wrapper">
+                        <img src="../assets/images/creation_figure.jpg" alt="星灵灵手办">
+                    </div>
+                    <div class="object-info">
+                        <div class="object-spec"><span>TYPE: GK_FIGURE</span> <span>SCALE: 1/7</span></div>
+                        <div class="object-title">星灵灵：初元觉醒限量涂装</div>
+                        <div class="object-desc">纯手工白模修整与涂装，翅膀采用透明树脂注入光导纤维，完美还原了插画中那种“流动的星光”质感。</div>
+                        <div class="object-author">
+                            <span>匠人：涂装魔术师-K</span>
+                            <span class="material-tag">树脂 / 亚克力</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="object-card">
+                    <div class="object-image-wrapper">
+                        <img src="../assets/images/creation_cosplay.jpg" alt="路霄雲Cosplay">
+                    </div>
+                    <div class="object-info">
+                        <div class="object-spec" style="color: #e8b923;"><span>TYPE: COSPLAY</span> <span>DUR: 420H</span></div>
+                        <div class="object-title">「路霄雲」2074 街头全套重装</div>
+                        <div class="object-desc">耗时四个月纯手工缝制的义体背带与仿生皮肤。重点还原了胸口的引力核心，内置呼吸灯效可与手机蓝牙同步。</div>
+                        <div class="object-author">
+                            <span>匠人：零号实验体</span>
+                            <span class="material-tag">皮革 / LED / EVA</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="object-card">
+                    <div class="object-image-wrapper">
+                        <img src="../assets/images/creation_prop.jpg" alt="青铜阵盘复刻">
+                    </div>
+                    <div class="object-info">
+                        <div class="object-spec" style="color: #ff3366;"><span>TYPE: PROP</span> <span>VER: REAL_METAL</span></div>
+                        <div class="object-title">1:1 复刻·伏羲八卦铜镍合金阵盘</div>
+                        <div class="object-desc">采用失蜡法古法铸造，再经过现代精密数控机床二次雕琢细节纹理，净重 3.5KG，这也许就是古代文明的重量。</div>
+                        <div class="object-author">
+                            <span>匠人：赛博炼金士</span>
+                            <span class="material-tag">铜镍合金 / 绿松石</span>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn ghost" style="border-color: #f97316; color: #f97316;">[ 开启工坊，载入更多实物... ]</button>
+            </div>
+        </section>
+        
+        <section class="content-section" style="margin-top: 80px;">
+            <div class="content-section-title">
+                <h3 style="border-left: 4px solid var(--accent-gold); padding-left: 15px; display: inline-block;">首席造物主</h3>
+                <span style="font-size:1rem; color:var(--accent-gold); font-weight:normal; margin-left:15px;">实体赋能英雄榜</span>
+            </div>
+            
+            <div class="author-grid">
+                <div class="author-card">
+                    <div class="author-avatar" style="border-color: #f97316; box-shadow: 0 0 10px rgba(249, 115, 22, 0.2);"></div>
+                    <div class="author-name">涂装魔术师-K</div>
+                    <div class="author-title">贡献物产: 5 件</div>
+                </div>
+                <div class="author-card">
+                    <div class="author-avatar" style="border-color: #f97316;"></div>
+                    <div class="author-name">赛博炼金士</div>
+                    <div class="author-title">贡献物产: 3 件</div>
+                </div>
+                <div class="author-card">
+                    <div class="author-avatar" style="border-color: #f97316;"></div>
+                    <div class="author-name">零号实验体</div>
+                    <div class="author-title">贡献物产: 2 组</div>
+                </div>
+                <div class="author-card" style="border: 1px dashed rgba(249, 115, 22, 0.3); background: transparent;">
+                    <div class="author-avatar" style="background: transparent; border: 2px dashed rgba(249, 115, 22, 0.3); box-shadow: none;"></div>
+                    <div class="author-name" style="color: #aaa;">锻造台空缺</div>
+                    <div class="author-title" style="color: #666;">等待你的原石</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="call-to-arms">
+            <h2 style="color: #fff; margin-bottom: 20px;">只要你动手，神话就不再是传说。</h2>
+            <p style="color: #ccc; margin-bottom: 30px; max-width: 650px; margin-left: auto; margin-right: auto; line-height: 1.8;">
+                无论是 3D 打印的小摆件，还是全套昂贵的 Cosplay 盔甲。<br>将你的实体化历程与最终成品上传，官方将提供高价值的技术支持与商业合作，并有机会将你的作品收录进入全球巡回展览计划。
+            </p>
+            <a href="mailto:creator@levythos.com?subject=实体作品展示" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 40px; border:none; border-radius: 4px; background: linear-gradient(135deg, #f97316, #c2410c); color:#fff; font-weight: bold; box-shadow: 0 8px 16px rgba(249, 115, 22, 0.2);">[ 交付我的实体契约 ]</a>
+        </section>
+    </div>
+  </main>
+  
+  <footer style="margin-top: 80px;"> 
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px; padding: 40px; border-top: 1px solid rgba(249, 115, 22, 0.2); background: #000;">
+      <div>
+          <div style="font-weight:700; color: #f97316;">Levythos · 立维宇宙 · 实物中枢</div>
+          <div class="muted" style="margin-top:6px; color:#666; font-size: 0.85rem;">© 2026 Levythos Manufacturing. 万象皆由心生，亦由手成。</div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+function loadHeader() {
+    fetch('/header.html')
+        .then(response => {
+            if (!response.ok) throw new Error('网络响应不佳');
+            return response.text();
+        })
+        .then(data => {
+            const headerPlaceholder = document.getElementById('header-placeholder');
+            if (headerPlaceholder) { headerPlaceholder.innerHTML = data; }
+        })
+        .catch(error => console.error('加载导航栏失败:', error));
+}
+document.addEventListener('DOMContentLoaded', () => { loadHeader(); });
+</script>
+
+<a href="javascript:history.back()" class="mobile-back-fab" aria-label="返回上一页" style="background: rgba(249, 115, 22, 0.1); color: #f97316; border: 1px solid #f97316;">
+    <span class="icon">←</span> <span class="text">工坊</span>
+</a>
+
+</body>
+</html>
