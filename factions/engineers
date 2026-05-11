@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>遗迹架构师 - 文明阵营档案 | 立维宇宙</title>
+  
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/subpage.css">
+
+  <style>
+    /* ======================================================= */
+    /* 遗迹架构师专属：科研终端与数据面板样式 */
+    /* ======================================================= */
+    .engineer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 30px;
+    }
+    
+    .engineer-card {
+        background: rgba(5, 15, 20, 0.85); /* 深邃的实验室色调 */
+        border: 1px solid rgba(0, 255, 170, 0.2);
+        padding: 25px;
+        border-radius: 4px;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+    }
+    
+    /* 侧边科技感呼吸灯条 */
+    .engineer-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 4px; height: 100%;
+        background: #00ffaa;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        opacity: 0.8;
+    }
+    
+    .engineer-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(0, 255, 170, 0.5);
+        box-shadow: 0 10px 30px rgba(0, 255, 170, 0.15), inset 0 0 20px rgba(0, 255, 170, 0.05);
+    }
+    
+    .engineer-card:hover::before {
+        width: 100%;
+        opacity: 0.05; /* 悬停时背景微微发绿光 */
+    }
+    
+    .eng-meta { 
+        font-family: 'Courier New', Courier, monospace; /* 程序员等宽字体 */
+        font-size: 0.85rem; 
+        color: #00ffaa; 
+        margin-bottom: 15px; 
+        display: flex; 
+        justify-content: space-between; 
+        border-bottom: 1px dashed rgba(0,255,170,0.3); 
+        padding-bottom: 8px; 
+    }
+    
+    .eng-title { 
+        font-size: 1.2rem; 
+        font-weight: 700; 
+        color: #fff; 
+        margin-bottom: 15px; 
+        line-height: 1.4; 
+    }
+    
+    .eng-excerpt { 
+        font-size: 0.9rem; 
+        color: #a0b0b5; 
+        line-height: 1.6; 
+        flex-grow: 1; 
+        margin-bottom: 20px; 
+        font-family: 'Courier New', Courier, monospace;
+        background: rgba(0,0,0,0.4);
+        padding: 10px;
+        border-left: 2px solid #555;
+    }
+    
+    .eng-author { 
+        font-size: 0.9rem; 
+        color: #888; 
+        display: flex; 
+        align-items: center; 
+        font-weight: bold;
+    }
+    
+    .eng-author span { color: #00ffaa; margin-right: 8px; font-size: 1.2rem; }
+  </style>
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+  
+  <main>
+    <section class="subpage-hero" style="background-image: url('../assets/images/cover_engineers_bg.jpg');">
+        <div class="subpage-hero-overlay" style="background: linear-gradient(to right, rgba(0,20,10,0.8), rgba(0,0,0,0.6));">
+            <p class="breadcrumb"><a href="../index.html">首页</a> &gt; <a href="javascript:void(0);" onclick="window.history.back()">文明阵营</a> &gt; 遗迹架构师</p>
+            <h1>📐 遗迹架构师</h1>
+            <h2 style="color: #00ffaa;">在物理定律的边界，我们丈量神话的尺度。</h2>
+        </div>
+    </section>
+
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="faction-manifesto" style="border-left-color: #00ffaa;">
+                <p>这里是专属<strong>理工科大牛、考据狂人与硬科幻发烧友</strong>的绝对理性结界。</p>
+                <p>神话不是魔法，而是尚未被解析的物理定律。从玉髓作为高密度能量载体的晶体学推导，到利用广义相对论计算建木星门的引力坍缩阈值，再到夏商周青铜器纹理中的量子密钥破译……只要你能用严密的逻辑与方程式将幻想落地，填补世界观的底层物理逻辑，你就是宇宙底层代码的“遗迹架构师”。</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="content-section-title">
+                <h3 style="border-left: 4px solid #00ffaa; padding-left: 15px; display: inline-block;">核心推演终端</h3>
+                <span style="font-size:1rem; color:#00ffaa; font-weight:normal; margin-left:15px;">已验算 3 组底层模型</span>
+            </div>
+            
+            <div class="engineer-grid">
+                
+                <a href="#" class="engineer-card">
+                    <div class="eng-meta"><span>DIR: /physics/energy/</span> <span>STATUS: 验证通过</span></div>
+                    <div class="eng-title">《基于弱相互作用力的“玉髓”储能机制假设》</div>
+                    <div class="eng-excerpt">
+                        > 摘要：本文推导了玉髓内部的拓扑绝缘体结构。计算表明，当灵能密度达到临界值时，玉髓晶格将发生自发对称性破缺，实现室温下的超导储能...
+                    </div>
+                    <div class="eng-author">
+                        <span>⎔</span> 研究员代号：薛定谔的猫薄荷
+                    </div>
+                </a>
+
+                <a href="#" class="engineer-card">
+                    <div class="eng-meta"><span style="color:var(--accent-gold);">DIR: /astrophysics/stargate/</span> <span>STATUS: 验算中</span></div>
+                    <div class="eng-title">《归墟引力井与建木星门跃迁的轨道力学模型》</div>
+                    <div class="eng-excerpt">
+                        > 附送 Python 仿真源码。模拟结果显示，若要保证穿过建木星门时的潮汐力不撕裂舰体，必须在洛希极限外300公里处开启反物质引擎...
+                    </div>
+                    <div class="eng-author">
+                        <span>⎔</span> 研究员代号：引力波冲浪手
+                    </div>
+                </a>
+
+                <a href="#" class="engineer-card">
+                    <div class="eng-meta"><span style="color:#ff3366;">DIR: /archeology/xia-shang/</span> <span>STATUS: 交叉比对</span></div>
+                    <div class="eng-title">《三星堆神树阵列与多维跃迁天线共振分析》</div>
+                    <div class="eng-excerpt">
+                        > 考据报告：对比《山海经》坐标与三星堆出土青铜神树的枝干夹角，发现其完美符合分形天线的黄金分割率，极可能是远古用于呼叫地外文明的定向广播阵列...
+                    </div>
+                    <div class="eng-author">
+                        <span>⎔</span> 研究员代号：碳十四勘探者
+                    </div>
+                </a>
+
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn ghost" style="border-color: #00ffaa; color: #00ffaa;">[+] 接入算力池载入更多...</button>
+            </div>
+        </section>
+        
+        <section class="content-section" style="margin-top: 80px;">
+            <div class="content-section-title">
+                <h3 style="border-left: 4px solid var(--accent-gold); padding-left: 15px; display: inline-block;">首席架构师</h3>
+                <span style="font-size:1rem; color:var(--accent-gold); font-weight:normal; margin-left:15px;">真理验算委员会</span>
+            </div>
+            
+            <div class="author-grid">
+                
+                <div class="author-card">
+                    <div class="author-avatar" style="border-color: #00ffaa;"></div>
+                    <div class="author-name">薛定谔的猫薄荷</div>
+                    <div class="author-title" style="color: #00ffaa; font-family: monospace;">贡献算力: 1024 TFLOPS</div>
+                </div>
+                
+                <div class="author-card">
+                    <div class="author-avatar" style="border-color: #00ffaa;"></div>
+                    <div class="author-name">引力波冲浪手</div>
+                    <div class="author-title" style="color: #00ffaa; font-family: monospace;">推演模型: 15 个</div>
+                </div>
+                
+                <div class="author-card">
+                    <div class="author-avatar" style="border-color: #00ffaa;"></div>
+                    <div class="author-name">碳十四勘探者</div>
+                    <div class="author-title" style="color: #00ffaa; font-family: monospace;">考据文献: 27 篇</div>
+                </div>
+                
+                <div class="author-card" style="border: 1px dashed rgba(0,255,170,0.3); background: transparent;">
+                    <div class="author-avatar" style="background: transparent; border: 2px dashed rgba(0,255,170,0.3); box-shadow: none;"></div>
+                    <div class="author-name" style="color: #aaa;">虚位以待</div>
+                    <div class="author-title" style="color: #666; font-family: monospace;">Waiting for input_</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="call-to-arms">
+            <h2 style="color: #fff; margin-bottom: 20px;">宇宙的真理，等待你的验算。</h2>
+            <p style="color: #ccc; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.8;">
+                用公式给科幻插上翅膀，用考据为神话铸造地基。<br>你的研究报告将直接补全《立维宇宙设定集》的物理与历史底层架构，并作为官方钦定的“宇宙常数”被所有创作者遵循。
+            </p>
+            <a href="mailto:creator@levythos.com?subject=遗迹架构师申请" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 40px; border:none; border-radius: 6px; background: linear-gradient(135deg, #00ffaa, #009966); color:#000; font-weight: bold; font-family: monospace;">> 提交验证方程 (加入实验室) _</a>
+        </section>
+    </div>
+  </main>
+  
+  <footer style="margin-top: 80px;"> 
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px; padding: 40px; border-top: 1px solid rgba(0,255,170,0.2); background: #000;">
+      <div>
+          <div style="font-weight:700; color:#00ffaa;">Levythos · 立维宇宙 · 阵营档案</div>
+          <div class="muted" style="margin-top:6px; color:#666; font-size: 0.85rem; font-family: monospace;">© 2026 Levythos Global. System Online.</div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+function loadHeader() {
+    fetch('/header.html')
+        .then(response => {
+            if (!response.ok) throw new Error('网络响应不佳');
+            return response.text();
+        })
+        .then(data => {
+            const headerPlaceholder = document.getElementById('header-placeholder');
+            if (headerPlaceholder) {
+                headerPlaceholder.innerHTML = data;
+            }
+        })
+        .catch(error => console.error('加载导航栏失败:', error));
+}
+document.addEventListener('DOMContentLoaded', () => { loadHeader(); });
+</script>
+
+<a href="javascript:history.back()" class="mobile-back-fab" aria-label="返回上一页" style="background: rgba(0,255,170,0.2); color:#00ffaa; border: 1px solid #00ffaa;">
+    <span class="icon">←</span> <span class="text" style="font-family: monospace;">RETURN</span>
+</a>
+
+</body>
+</html>
