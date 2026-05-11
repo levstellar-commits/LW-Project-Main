@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>时空观测员 - 文明阵营档案 | 立维宇宙</title>
+  
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/subpage.css">
+
+  <style>
+    /* ======================================================= */
+    /* 时空观测员专属：玻璃拟态与梦境记忆标本样式 */
+    /* ======================================================= */
+    .memory-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 35px;
+    }
+    
+    .memory-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(12px); /* 玻璃模糊效果 */
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(192, 132, 252, 0.2);
+        border-radius: 16px;
+        padding: 30px;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* 卡片内部的霓虹光晕 */
+    .memory-card::before {
+        content: '';
+        position: absolute;
+        top: -50px; left: -50px;
+        width: 100px; height: 100px;
+        background: radial-gradient(circle, rgba(192, 132, 252, 0.4) 0%, transparent 70%);
+        border-radius: 50%;
+        opacity: 0.5;
+        transition: all 0.5s ease;
+    }
+    
+    .memory-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        border-color: rgba(192, 132, 252, 0.6);
+        box-shadow: 0 15px 40px rgba(192, 132, 252, 0.2);
+        background: rgba(255, 255, 255, 0.05);
+    }
+    
+    .memory-card:hover::before {
+        transform: scale(2);
+        opacity: 0.8;
+    }
+    
+    .obs-meta { 
+        font-size: 0.8rem; 
+        color: #c084fc; 
+        margin-bottom: 20px; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .obs-badge {
+        background: rgba(192, 132, 252, 0.15);
+        padding: 4px 10px;
+        border-radius: 20px;
+        border: 1px solid rgba(192, 132, 252, 0.3);
+    }
+    
+    .obs-title { 
+        font-size: 1.3rem; 
+        font-weight: 700; 
+        color: #fff; 
+        margin-bottom: 15px; 
+        line-height: 1.4; 
+        z-index: 1; /* 确保文字在光晕之上 */
+    }
+    
+    .obs-excerpt { 
+        font-size: 0.95rem; 
+        color: #d1d5db; 
+        line-height: 1.8; 
+        flex-grow: 1; 
+        margin-bottom: 25px; 
+        font-style: italic;
+        z-index: 1;
+    }
+    
+    .obs-author { 
+        font-size: 0.9rem; 
+        color: #9ca3af; 
+        display: flex; 
+        align-items: center; 
+        justify-content: space-between;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        padding-top: 15px;
+        z-index: 1;
+    }
+    
+    .obs-author .resonance { 
+        color: #e879f9; 
+        font-weight: bold; 
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+  
+  <main>
+    <section class="subpage-hero" style="background-image: url('../assets/images/cover_observers_bg.jpg');">
+        <div class="subpage-hero-overlay" style="background: linear-gradient(135deg, rgba(20, 5, 30, 0.85), rgba(0, 0, 0, 0.6));">
+            <p class="breadcrumb"><a href="../index.html">首页</a> &gt; <a href="javascript:void(0);" onclick="window.history.back()">文明阵营</a> &gt; 时空观测员</p>
+            <h1>👁️ 时空观测员</h1>
+            <h2 style="color: #c084fc;">收集碳基生物的悲欢，为冰冷的宇宙注入灵魂。</h2>
+        </div>
+    </section>
+
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="faction-manifesto" style="border-left-color: #c084fc; background: rgba(192, 132, 252, 0.05);">
+                <p>这里是专属<strong>每一个普通人、造梦者与生活体验家</strong>的情感档案库。</p>
+                <p>在立维宇宙中，最高维度的力量不是科技，而是“共鸣”。地铁里某个疲惫打工人的叹息、一次诡异又搞笑的相亲经历、亦或是一场光怪陆离的清明梦……这些看似微不足道的“人类行为样本”，正是维持宇宙多元运转的情感能量。记录下你生活中的奇遇与脑洞，你就是这颗星球的时空观测员。</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="content-section-title">
+                <h3 style="border-left: 4px solid #c084fc; padding-left: 15px; display: inline-block;">情感样本采集舱</h3>
+                <span style="font-size:1rem; color:#c084fc; font-weight:normal; margin-left:15px;">已封存 8,402 个记忆切片</span>
+            </div>
+            
+            <div class="memory-grid">
+                
+                <a href="#" class="memory-card">
+                    <div class="obs-meta">
+                        <span class="obs-badge">分类: 奇葩相亲学</span> 
+                        <span>编号 #8092</span>
+                    </div>
+                    <div class="obs-title">“相亲对象说他上辈子是九黎部的”</div>
+                    <div class="obs-excerpt">
+                        “昨天相亲遇到个极品，问我信不信量子纠缠。我还没回话，他突然神神秘秘地说，他的义体神经隐隐作痛，怀疑附近有天庭的监视器……我当时连咖啡都没喝完就跑了，这算是触发隐藏剧情了吗？”
+                    </div>
+                    <div class="obs-author">
+                        <span>提供者：逃跑的拿铁</span>
+                        <span class="resonance"><span>❤️</span> 共鸣 9.8k</span>
+                    </div>
+                </a>
+
+                <a href="#" class="memory-card">
+                    <div class="obs-meta">
+                        <span class="obs-badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border-color: rgba(56, 189, 248, 0.3);">分类: 梦境重现</span> 
+                        <span>编号 #8115</span>
+                    </div>
+                    <div class="obs-title">跌入归墟深海的第三个梦</div>
+                    <div class="obs-excerpt">
+                        “连续三天做同一个梦。梦里没有水，只有漂浮的发光水母和巨大的青铜齿轮。有个声音一直用我听不懂的频率对我说：‘醒来，协议已经启动。’今天早起发现枕头全湿了……”
+                    </div>
+                    <div class="obs-author">
+                        <span>提供者：重度嗜睡症患者</span>
+                        <span class="resonance" style="color:#38bdf8;"><span>🌀</span> 共鸣 1.2w</span>
+                    </div>
+                </a>
+
+                <a href="#" class="memory-card">
+                    <div class="obs-meta">
+                        <span class="obs-badge" style="background: rgba(251, 191, 36, 0.15); color: #fbbf24; border-color: rgba(251, 191, 36, 0.3);">分类: 人类行为观察</span> 
+                        <span>编号 #7901</span>
+                    </div>
+                    <div class="obs-title">早高峰地铁里的赛博丧尸</div>
+                    <div class="obs-excerpt">
+                        “早晨8点半的13号线，观测到约300名碳基生物。他们目光涣散地盯着发光矩形（手机），不发一言。我合理怀疑，这座城市正在通过地铁系统悄悄抽干他们的‘灵能’来维持结界运转。”
+                    </div>
+                    <div class="obs-author">
+                        <span>提供者：角落里的蘑菇</span>
+                        <span class="resonance" style="color:#fbbf24;"><span>⚡</span> 共鸣 4.5k</span>
+                    </div>
+                </a>
+
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn ghost" style="border-color: #c084fc; color: #c084fc; padding: 12px 30px; border-radius: 30px;">提取更多记忆样本</button>
+            </div>
+        </section>
+        
+        <section class="content-section" style="margin-top: 80px;">
+            <div class="content-section-title">
+                <h3 style="border-left: 4px solid var(--accent-gold); padding-left: 15px; display: inline-block;">高级观测员</h3>
+                <span style="font-size:1rem; color:var(--accent-gold); font-weight:normal; margin-left:15px;">情感雷达排位</span>
+            </div>
+            
+            <div class="author-grid">
+                <div class="author-card">
+                    <div class="author-avatar" style="border-color: #c084fc; box-shadow: 0 0 15px rgba(192, 132, 252, 0.3);"></div>
+                    <div class="author-name">角落里的蘑菇</div>
+                    <div class="author-title" style="color: #e879f9;">贡献样本: 42 份</div>
+                </div>
+                <div class="author-card">
+                    <div class="author-avatar" style="border-color: #c084fc;"></div>
+                    <div class="author-name">重度嗜睡症患者</div>
+                    <div class="author-title" style="color: #e879f9;">贡献样本: 38 份</div>
+                </div>
+                <div class="author-card">
+                    <div class="author-avatar" style="border-color: #c084fc;"></div>
+                    <div class="author-name">逃跑的拿铁</div>
+                    <div class="author-title" style="color: #e879f9;">贡献样本: 15 份</div>
+                </div>
+                <div class="author-card" style="border: 1px dashed rgba(192, 132, 252, 0.3); background: transparent;">
+                    <div class="author-avatar" style="background: transparent; border: 2px dashed rgba(192, 132, 252, 0.3); box-shadow: none;"></div>
+                    <div class="author-name" style="color: #aaa;">观测位空缺</div>
+                    <div class="author-title" style="color: #666;">下一个故事由你讲述</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="call-to-arms">
+            <h2 style="color: #fff; margin-bottom: 20px;">你的荒诞日常，是宇宙的绝版典藏。</h2>
+            <p style="color: #ccc; margin-bottom: 30px; max-width: 650px; margin-left: auto; margin-right: auto; line-height: 1.8;">
+                不需要硬核的科幻知识，也不需要顶级的绘画技巧。<br>只要你有一双善于发现生活“BUG”的眼睛，或是一个光怪陆离的梦境。将你的情感样本上传至终端，它可能会成为官方小说里的某个彩蛋，或是改变世界线走向的蝴蝶翅膀。
+            </p>
+            <a href="mailto:creator@levythos.com?subject=情感样本上传" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 40px; border:none; border-radius: 30px; background: linear-gradient(135deg, #c084fc, #9333ea); color:#fff; font-weight: bold; box-shadow: 0 10px 20px rgba(147, 51, 234, 0.3);">[ 上传我的记忆碎片 ]</a>
+        </section>
+    </div>
+  </main>
+  
+  <footer style="margin-top: 80px;"> 
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px; padding: 40px; border-top: 1px solid rgba(192, 132, 252, 0.15); background: #000;">
+      <div>
+          <div style="font-weight:700; color:#c084fc;">Levythos · 立维宇宙 · 观测中枢</div>
+          <div class="muted" style="margin-top:6px; color:#666; font-size: 0.85rem;">© 2026 Levythos Archives. 情感共鸣协议启动中。</div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+function loadHeader() {
+    fetch('/header.html')
+        .then(response => {
+            if (!response.ok) throw new Error('网络响应不佳');
+            return response.text();
+        })
+        .then(data => {
+            const headerPlaceholder = document.getElementById('header-placeholder');
+            if (headerPlaceholder) { headerPlaceholder.innerHTML = data; }
+        })
+        .catch(error => console.error('加载导航栏失败:', error));
+}
+document.addEventListener('DOMContentLoaded', () => { loadHeader(); });
+</script>
+
+<a href="javascript:history.back()" class="mobile-back-fab" aria-label="返回上一页" style="background: rgba(192, 132, 252, 0.1); color: #c084fc; border: 1px solid #c084fc;">
+    <span class="icon">←</span> <span class="text">返回</span>
+</a>
+
+</body>
+</html>
