@@ -1732,54 +1732,106 @@ select.form-control option {
     color: var(--accent-gold);
 }
 
-/* 2. 左侧常驻唤醒把手 (电脑端) */
-#drawer-trigger {
+/* ==========================================================================
+   赛博罗马柱 (电脑) & 悬浮指令舱 (手机) & 抽屉系统
+   ========================================================================== */
+
+/* 1. 赛博罗马柱 (电脑端两侧常驻) */
+.cyber-pillar {
     position: fixed;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(232, 185, 35, 0.15);
-    border: 1px solid var(--accent-gold);
-    border-left: none;
-    padding: 20px 8px;
-    border-radius: 0 8px 8px 0;
-    cursor: pointer;
+    top: 0;
+    height: 100vh;
+    width: 40px;
+    background: linear-gradient(to bottom, rgba(2,6,10,0.95), rgba(20,30,40,0.95));
     z-index: 9000;
-    backdrop-filter: blur(5px);
-    transition: 0.3s;
-    box-shadow: 0 0 15px rgba(232, 185, 35, 0.2);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    border-left: 1px solid rgba(255,255,255,0.05);
+    border-right: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
 }
-#drawer-trigger:hover {
-    background: rgba(232, 185, 35, 0.3);
-    padding-left: 15px;
+
+#pillar-left {
+    left: 0;
+    border-right: 2px solid var(--accent-gold);
 }
-.vertical-text {
+#pillar-left:hover { width: 60px; background: rgba(232, 185, 35, 0.1); box-shadow: 10px 0 30px rgba(232, 185, 35, 0.2); }
+
+#pillar-right {
+    right: 0;
+    border-left: 2px solid var(--accent);
+}
+#pillar-right:hover { width: 60px; background: rgba(0, 229, 255, 0.1); box-shadow: -10px 0 30px rgba(0, 229, 255, 0.2); }
+
+.cyber-pillar .vertical-text {
     writing-mode: vertical-rl;
     text-orientation: upright;
+    color: #fff;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 6px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    z-index: 2;
+}
+#pillar-left .vertical-text { color: var(--accent-gold); }
+#pillar-right .vertical-text { color: var(--accent); }
+
+/* 2. 悬浮指令舱 (手机端防误触 FAB) */
+#mobile-fab {
+    position: fixed;
+    bottom: max(30px, env(safe-area-inset-bottom) + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, rgba(2,6,10,0.95), rgba(20,30,40,0.95));
+    border: 1px solid var(--accent-gold);
     color: var(--accent-gold);
+    padding: 12px 30px;
+    border-radius: 30px;
     font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 2px;
+    font-size: 0.95rem;
+    z-index: 9000;
+    box-shadow: 0 0 20px rgba(232, 185, 35, 0.3), inset 0 0 10px rgba(232,185,35,0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(10px);
+}
+#mobile-fab:active {
+    transform: translateX(-50%) scale(0.95);
+    background: var(--accent-gold);
+    color: #000;
+}
+
+/* 隐藏控制 */
+@media (max-width: 768px) {
+    .hide-on-mobile { display: none !important; }
+}
+@media (min-width: 769px) {
+    .hide-on-desktop { display: none !important; }
 }
 
 /* 3. 抽屉遮罩与面板基础设定 */
 .drawer-overlay {
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(5px);
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
     z-index: 99999;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease;
 }
 .drawer-panel {
     position: absolute;
-    background: rgba(10, 15, 25, 0.95);
-    border: 1px solid rgba(0, 229, 255, 0.3);
-    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    background: rgba(8, 12, 18, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 50px rgba(0,0,0,0.9);
     display: flex;
     flex-direction: column;
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .drawer-header {
@@ -1797,12 +1849,12 @@ select.form-control option {
 }
 .close-drawer:hover { color: var(--accent-gold); transform: rotate(90deg); }
 
-/* 4. 八大阵营卡片排版 */
+/* 4. 八大阵营卡片排版 (保留原样) */
 .drawer-grid {
     padding: 30px;
     overflow-y: auto;
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 电脑端2列 */
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 .drawer-card {
@@ -1833,54 +1885,39 @@ select.form-control option {
 .d-desc { margin: 0 0 4px 0; font-size: 0.8rem; color: #aaa; line-height: 1.4; }
 .d-desc strong { color: var(--accent-gold); font-weight: normal; }
 
-/* 5. 响应式布局：电脑端侧滑 (Left) vs 手机端底滑 (Bottom) */
+/* 5. 响应式抽屉弹出逻辑：电脑端天降 (Top) vs 手机端底滑 (Bottom) */
 @media (min-width: 769px) {
     .drawer-panel {
-        top: 0; left: 0;
-        width: 800px; /* 电脑端宽度 */
+        top: 0; left: 50%;
+        transform: translate(-50%, -100%);
+        width: 1000px; 
         max-width: 90vw;
-        height: 100vh;
-        transform: translateX(-100%); /* 默认隐藏在左侧 */
-        border-right: 2px solid var(--accent);
+        height: 85vh;
+        border-radius: 0 0 16px 16px;
+        border-bottom: 3px solid var(--accent-gold);
     }
     .drawer-panel.active {
-        transform: translateX(0); /* 滑出 */
+        transform: translate(-50%, 0);
     }
 }
 
 @media (max-width: 768px) {
-    /* 手机端隐藏左侧悬浮把手，改用首屏按钮和导航栏唤醒 */
-    #drawer-trigger { display: none !important; }
-    
     .drawer-panel {
         bottom: 0; left: 0;
         width: 100vw;
-        height: 85vh; /* 占屏幕85% */
+        height: 85vh;
         border-radius: 20px 20px 0 0;
-        transform: translateY(100%); /* 默认隐藏在底部 */
-        border-top: 2px solid var(--accent);
+        transform: translateY(100%);
+        border-top: 2px solid var(--accent-gold);
+        padding-bottom: env(safe-area-inset-bottom);
     }
     .drawer-panel.active {
-        transform: translateY(0); /* 滑出 */
+        transform: translateY(0);
     }
     .drawer-grid {
-        grid-template-columns: 1fr; /* 手机端单列垂直排列 */
+        grid-template-columns: 1fr;
         padding: 20px;
+        gap: 15px;
     }
     .drawer-header { padding: 15px 20px; }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
