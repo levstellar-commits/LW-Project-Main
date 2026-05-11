@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>深空器物师 - 文明阵营档案 | 立维宇宙</title>
+  
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/subpage.css">
+
+  <style>
+    /* ======================================================= */
+    /* 深空器物师专属：沉浸式概念画廊样式 */
+    /* ======================================================= */
+    .artifact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+    }
+    
+    .artifact-card {
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid rgba(0, 229, 255, 0.2);
+        transition: all 0.4s ease;
+        background: #000;
+        display: block; /* 保证链接区块完整 */
+    }
+    
+    .artifact-card img {
+        width: 100%;
+        aspect-ratio: 16 / 9; /* 强制画廊比例为宽屏影视感 */
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s;
+        display: block;
+    }
+    
+    /* 悬停时的画廊特效：图片放大微暗，浮出文字 */
+    .artifact-card:hover {
+        border-color: var(--accent);
+        box-shadow: 0 10px 40px rgba(0, 229, 255, 0.3);
+    }
+    .artifact-card:hover img {
+        transform: scale(1.08);
+        opacity: 0.5; /* 图片变暗，衬托文字 */
+    }
+    
+    .artifact-info {
+        position: absolute;
+        bottom: 0; left: 0; width: 100%;
+        padding: 30px 20px 20px 20px;
+        background: linear-gradient(to top, rgba(2,6,10,0.95) 0%, rgba(2,6,10,0.6) 60%, transparent 100%);
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.4s ease;
+        pointer-events: none; /* 让鼠标穿透文字，保持图片交互 */
+    }
+    .artifact-card:hover .artifact-info {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    
+    .artifact-meta { font-size: 0.8rem; color: var(--accent); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;}
+    .artifact-title { font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 5px; }
+    .artifact-author { font-size: 0.9rem; color: var(--accent-gold); }
+
+    /* 手机端适配：默认显示文字，不依赖悬停 */
+    @media (max-width: 768px) {
+        .artifact-info { transform: translateY(0); opacity: 1; padding: 40px 15px 15px 15px; }
+        .artifact-card img { opacity: 0.8; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+  
+  <main>
+    <section class="subpage-hero" style="background-image: url('../assets/images/cover_artists_bg.jpg');">
+        <div class="subpage-hero-overlay">
+            <p class="breadcrumb"><a href="../index.html">首页</a> &gt; <a href="javascript:void(0);" onclick="window.history.back()">文明阵营</a> &gt; 深空器物师</p>
+            <h1>⚙️ 深空器物师</h1>
+            <h2>以凡人之手，锻造神祇的武备与星舰。</h2>
+        </div>
+    </section>
+
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="faction-manifesto">
+                <p>这里是专属<strong>画师、3D建模师与UI界面设计师</strong>的重工画廊。</p>
+                <p>文字构建了宇宙的骨骼，而你们赋予它血肉与鳞甲。从伏羲推演八卦的青铜阵列，到穿梭于归墟深海的重型考察舰，再到赛博义体的UI交互界面……你的每一张概念图、每一次3D渲染，都在将“神话”物理化。拿起你的画笔和光标，来定义这个宇宙的视觉法则。</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="content-section-title">
+                <h3 style="border-left: 4px solid var(--accent); padding-left: 15px; display: inline-block;">视觉概念长廊</h3>
+                <span style="font-size:1rem; color:var(--accent); font-weight:normal; margin-left:15px;">已实装 4 个设计图纸</span>
+            </div>
+            
+            <div class="artifact-grid">
+                
+                <a href="#" class="artifact-card">
+                    <img src="../assets/images/gallery_spaceship.jpg" alt="归墟考察舰概念">
+                    <div class="artifact-info">
+                        <div class="artifact-meta">分类: 星舰概念设计</div>
+                        <div class="artifact-title">深潜级考察舰「嘲风号」</div>
+                        <div class="artifact-author">画师代号：多边形狂徒</div>
+                    </div>
+                </a>
+
+                <a href="#" class="artifact-card">
+                    <img src="../assets/images/gallery_mecha.jpg" alt="炎帝兵主战甲">
+                    <div class="artifact-info">
+                        <div class="artifact-meta" style="color: #ff3366;">分类: 重工机甲设定</div>
+                        <div class="artifact-title">蚩尤系·外骨骼战甲原画</div>
+                        <div class="artifact-author">画师代号：机核原质</div>
+                    </div>
+                </a>
+
+                <a href="#" class="artifact-card">
+                    <img src="../assets/images/gallery_bronze.jpg" alt="青铜八卦阵盘">
+                    <div class="artifact-info">
+                        <div class="artifact-meta" style="color: var(--accent-gold);">分类: 法器3D渲染</div>
+                        <div class="artifact-title">伏羲八卦·玉髓储能阵盘</div>
+                        <div class="artifact-author">建模师代号：光影织造者</div>
+                    </div>
+                </a>
+
+                <a href="#" class="artifact-card">
+                    <img src="../assets/images/gallery_ui.jpg" alt="神祇终端UI">
+                    <div class="artifact-info">
+                        <div class="artifact-meta" style="color: #00ffaa;">分类: 终端界面 UI</div>
+                        <div class="artifact-title">「天庭」中枢系统交互界面</div>
+                        <div class="artifact-author">UI设计师：赛博修女</div>
+                    </div>
+                </a>
+
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn ghost">载入更多蓝图...</button>
+            </div>
+        </section>
+        
+        <section class="content-section" style="margin-top: 80px;">
+            <div class="content-section-title">
+                <h3 style="border-left: 4px solid var(--accent-gold); padding-left: 15px; display: inline-block;">首席器物师</h3>
+                <span style="font-size:1rem; color:var(--accent-gold); font-weight:normal; margin-left:15px;">杰出视觉贡献者</span>
+            </div>
+            
+            <div class="author-grid">
+                
+                <div class="author-card">
+                    <div class="author-avatar"></div>
+                    <div class="author-name">多边形狂徒</div>
+                    <div class="author-title">贡献蓝图: 15 张</div>
+                </div>
+                
+                <div class="author-card">
+                    <div class="author-avatar"></div>
+                    <div class="author-name">机核原质</div>
+                    <div class="author-title">贡献蓝图: 9 张</div>
+                </div>
+                
+                <div class="author-card">
+                    <div class="author-avatar"></div>
+                    <div class="author-name">光影织造者</div>
+                    <div class="author-title">贡献模型: 6 个</div>
+                </div>
+                
+                <div class="author-card" style="border: 1px dashed rgba(255,255,255,0.3); background: transparent;">
+                    <div class="author-avatar" style="background: transparent; border: 2px dashed rgba(255,255,255,0.3); box-shadow: none;"></div>
+                    <div class="author-name" style="color: #aaa;">虚位以待</div>
+                    <div class="author-title" style="color: #666;">下一个造物主</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="call-to-arms">
+            <h2 style="color: #fff; margin-bottom: 20px;">宇宙的轮廓，等待你的勾勒。</h2>
+            <p style="color: #ccc; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.8;">
+                画师、建模师、视觉极客们，集结于此。<br>你的设计将直接定义立维宇宙的视觉标准，甚至被3D打印成为实体模型，或进入最终的游戏与影视管线。
+            </p>
+            <a href="mailto:creator@levythos.com?subject=深空器物师申请" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 40px; border:none; border-radius: 6px; background: linear-gradient(135deg, #00e5ff, #008ba3); color:#000;">上传我的设计 (接入终端)</a>
+        </section>
+    </div>
+  </main>
+  
+  <footer style="margin-top: 80px;"> 
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px; padding: 40px; border-top: 1px solid rgba(255,255,255,0.1); background: #000;">
+      <div>
+          <div style="font-weight:700">Levythos · 立维宇宙 · 阵营档案</div>
+          <div class="muted" style="margin-top:6px; color:#666; font-size: 0.85rem;">© 2026 Levythos Global. 保留所有权利。</div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+function loadHeader() {
+    fetch('/header.html')
+        .then(response => {
+            if (!response.ok) throw new Error('网络响应不佳');
+            return response.text();
+        })
+        .then(data => {
+            const headerPlaceholder = document.getElementById('header-placeholder');
+            if (headerPlaceholder) {
+                headerPlaceholder.innerHTML = data;
+            }
+        })
+        .catch(error => console.error('加载导航栏失败:', error));
+}
+document.addEventListener('DOMContentLoaded', () => { loadHeader(); });
+</script>
+
+<a href="javascript:history.back()" class="mobile-back-fab" aria-label="返回上一页">
+    <span class="icon">←</span> <span class="text">返回</span>
+</a>
+
+</body>
+</html>
