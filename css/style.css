@@ -1732,8 +1732,12 @@ select.form-control option {
     color: var(--accent-gold);
 }
 
+
+
+
+
 /* ==========================================================================
-   赛博罗马柱 (电脑) & 悬浮指令舱 (手机) & 抽屉系统
+   赛博罗马柱 (电脑) & 悬浮指令舱 (手机) & 抽屉系统 (带滚动动画版)
    ========================================================================== */
 
 /* 1. 赛博罗马柱 (电脑端两侧常驻) */
@@ -1741,7 +1745,7 @@ select.form-control option {
     position: fixed;
     top: 0;
     height: 100vh;
-    width: 40px;
+    width: 60px; /* 加宽到 60px */
     background: linear-gradient(to bottom, rgba(2,6,10,0.95), rgba(20,30,40,0.95));
     z-index: 9000;
     cursor: pointer;
@@ -1750,35 +1754,78 @@ select.form-control option {
     align-items: center;
     justify-content: center;
     transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-    border-left: 1px solid rgba(255,255,255,0.05);
-    border-right: 1px solid rgba(255,255,255,0.05);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    overflow: hidden; /* 防止内部滚动图溢出 */
 }
 
-#pillar-left {
-    left: 0;
-    border-right: 2px solid var(--accent-gold);
-}
-#pillar-left:hover { width: 60px; background: rgba(232, 185, 35, 0.1); box-shadow: 10px 0 30px rgba(232, 185, 35, 0.2); }
+#pillar-left { left: 0; border-right: 2px solid var(--accent-gold); }
+#pillar-left:hover { width: 80px; background: rgba(232, 185, 35, 0.1); }
 
-#pillar-right {
-    right: 0;
-    border-left: 2px solid var(--accent);
-}
-#pillar-right:hover { width: 60px; background: rgba(0, 229, 255, 0.1); box-shadow: -10px 0 30px rgba(0, 229, 255, 0.2); }
+#pillar-right { right: 0; border-left: 2px solid var(--accent); }
+#pillar-right:hover { width: 80px; background: rgba(0, 229, 255, 0.1); }
 
+/* 文字加半透明黑底，防止被滚动背景干扰 */
 .cyber-pillar .vertical-text {
+    position: relative;
+    z-index: 5;
+    background: rgba(0,0,0,0.7); 
+    padding: 20px 5px;
+    border-radius: 8px;
     writing-mode: vertical-rl;
     text-orientation: upright;
     color: #fff;
     font-weight: 800;
-    font-size: 1rem;
+    font-size: 1.1rem;
     letter-spacing: 6px;
-    text-shadow: 0 0 10px rgba(255,255,255,0.5);
-    z-index: 2;
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
 }
-#pillar-left .vertical-text { color: var(--accent-gold); }
-#pillar-right .vertical-text { color: var(--accent); }
+#pillar-left .vertical-text { color: var(--accent-gold); border: 1px solid rgba(232,185,35,0.3); }
+#pillar-right .vertical-text { color: var(--accent); border: 1px solid rgba(0,229,255,0.3); }
+
+/* 新增：滚动展墙背景动画 */
+.pillar-marquee {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.2; /* 平时暗淡 */
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+.cyber-pillar:hover .pillar-marquee { opacity: 0.6; }
+
+.marquee-track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.marquee-down .marquee-track { animation: scroll-v-down 25s linear infinite; }
+.marquee-up .marquee-track { animation: scroll-v-up 25s linear infinite; }
+
+@keyframes scroll-v-down {
+    0% { transform: translateY(-50%); }
+    100% { transform: translateY(0); }
+}
+@keyframes scroll-v-up {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+}
+
+.mini-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    background: rgba(255,255,255,0.1);
+    object-fit: cover;
+}
+.pillar-marquee span { font-size: 1.5rem; filter: grayscale(100%); }
 
 /* 2. 悬浮指令舱 (手机端防误触 FAB) */
 #mobile-fab {
@@ -1806,15 +1853,10 @@ select.form-control option {
     color: #000;
 }
 
-/* 隐藏控制 */
-@media (max-width: 768px) {
-    .hide-on-mobile { display: none !important; }
-}
-@media (min-width: 769px) {
-    .hide-on-desktop { display: none !important; }
-}
+@media (max-width: 768px) { .hide-on-mobile { display: none !important; } }
+@media (min-width: 769px) { .hide-on-desktop { display: none !important; } }
 
-/* 3. 抽屉遮罩与面板基础设定 */
+/* 3. 抽屉系统核心样式 */
 .drawer-overlay {
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
@@ -1841,83 +1883,55 @@ select.form-control option {
     padding: 20px 30px;
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
-.close-drawer {
-    font-size: 2rem;
-    color: #fff;
-    cursor: pointer;
-    transition: 0.3s;
-}
+.close-drawer { font-size: 2rem; color: #fff; cursor: pointer; transition: 0.3s; }
 .close-drawer:hover { color: var(--accent-gold); transform: rotate(90deg); }
 
-/* 4. 八大阵营卡片排版 (保留原样) */
 .drawer-grid {
-    padding: 30px;
-    overflow-y: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    padding: 30px; overflow-y: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
 }
 .drawer-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 8px;
-    padding: 15px;
-    display: flex;
-    gap: 15px;
-    transition: 0.3s;
-    cursor: pointer;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px; padding: 15px; display: flex; gap: 15px; transition: 0.3s; cursor: pointer;
+    text-decoration: none; /* 保证作为a标签时没有下划线 */
 }
 .drawer-card:hover {
-    background: rgba(0, 229, 255, 0.05);
-    border-color: var(--accent);
-    transform: translateY(-3px);
+    background: rgba(0, 229, 255, 0.05); border-color: var(--accent); transform: translateY(-3px);
 }
 .d-icon {
-    font-size: 2rem;
-    background: rgba(0,0,0,0.3);
-    border-radius: 8px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 2rem; background: rgba(0,0,0,0.3); border-radius: 8px; padding: 10px;
+    display: flex; align-items: center; justify-content: center;
 }
 .d-info h4 { margin: 0 0 8px 0; color: #fff; font-size: 0.95rem; }
 .d-desc { margin: 0 0 4px 0; font-size: 0.8rem; color: #aaa; line-height: 1.4; }
 .d-desc strong { color: var(--accent-gold); font-weight: normal; }
 
-/* 5. 响应式抽屉弹出逻辑：电脑端天降 (Top) vs 手机端底滑 (Bottom) */
 @media (min-width: 769px) {
     .drawer-panel {
-        top: 0; left: 50%;
-        transform: translate(-50%, -100%);
-        width: 1000px; 
-        max-width: 90vw;
-        height: 85vh;
-        border-radius: 0 0 16px 16px;
-        border-bottom: 3px solid var(--accent-gold);
+        top: 0; left: 50%; transform: translate(-50%, -100%);
+        width: 1000px; max-width: 90vw; height: 85vh;
+        border-radius: 0 0 16px 16px; border-bottom: 3px solid var(--accent-gold);
     }
-    .drawer-panel.active {
-        transform: translate(-50%, 0);
-    }
+    .drawer-panel.active { transform: translate(-50%, 0); }
 }
 
 @media (max-width: 768px) {
     .drawer-panel {
-        bottom: 0; left: 0;
-        width: 100vw;
-        height: 85vh;
-        border-radius: 20px 20px 0 0;
-        transform: translateY(100%);
-        border-top: 2px solid var(--accent-gold);
-        padding-bottom: env(safe-area-inset-bottom);
+        bottom: 0; left: 0; width: 100vw; height: 85vh;
+        border-radius: 20px 20px 0 0; transform: translateY(100%);
+        border-top: 2px solid var(--accent-gold); padding-bottom: env(safe-area-inset-bottom);
     }
-    .drawer-panel.active {
-        transform: translateY(0);
-    }
-    .drawer-grid {
-        grid-template-columns: 1fr;
-        padding: 20px;
-        gap: 15px;
-    }
+    .drawer-panel.active { transform: translateY(0); }
+    .drawer-grid { grid-template-columns: 1fr; padding: 20px; gap: 15px; }
     .drawer-header { padding: 15px 20px; }
 }
+
+
+
+
+
+
+
+
+
+
+
