@@ -52,9 +52,10 @@
         <a href="#press" class="nav-item-dual"><strong>纪元·星门日志</strong><span>项目动态/新闻</span></a>
         <a href="#contact" class="nav-item-dual"><strong>缔约·宇宙共建</strong><span>B2B合作/投资</span></a>
     </nav>
-    <div class="header-actions">
-        <a href="javascript:void(0);" onclick="openDrawer()" class="btn ghost btn-small hide-on-mobile" style="border-color: var(--accent-gold); color: var(--accent-gold);">接入文明终端</a>
-    </div>
+<div class="header-actions">
+            <a href="javascript:void(0);" onclick="openDrawer()" class="btn ghost btn-small hide-on-mobile" style="border-color: var(--accent-gold); color: var(--accent-gold);">接入文明终端</a>
+        </div>
+    </div> </header>
 
 
 </header>
@@ -1385,8 +1386,18 @@ if (window.innerWidth <= 768) {
 
 
 
-<div id="drawer-trigger" onclick="openDrawer()">
-    <span class="vertical-text">文明阵营档案</span>
+<div id="pillar-left" class="cyber-pillar hide-on-mobile" onclick="openDrawer()">
+    <div class="pillar-texture"></div>
+    <span class="vertical-text">文明阵营</span>
+</div>
+
+<div id="pillar-right" class="cyber-pillar hide-on-mobile" onclick="openDrawer()">
+    <div class="pillar-texture"></div>
+    <span class="vertical-text">档案终端</span>
+</div>
+
+<div id="mobile-fab" class="hide-on-desktop" onclick="openDrawer()">
+    <span class="fab-icon">⚡</span> 阵营档案
 </div>
 
 <div id="civilization-drawer-overlay" class="drawer-overlay" style="display:none;">
