@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>星海译经人 - 文明阵营档案 | 立维宇宙</title>
+  
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/subpage.css">
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+  
+  <main>
+    <section class="subpage-hero" style="background-image: url('../assets/images/cover_writers_bg.jpg');">
+        <div class="subpage-hero-overlay">
+            <p class="breadcrumb"><a href="../index.html">首页</a> &gt; <a href="javascript:void(0);" onclick="window.history.back()">文明阵营</a> &gt; 星海译经人</p>
+            <h1>✍️ 星海译经人</h1>
+            <h2>在文明的断层中，我们用文字缝合宇宙的记忆。</h2>
+        </div>
+    </section>
+
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="faction-manifesto">
+                <p>这里是专属<strong>小说家、诗人、编剧与文字发烧友</strong>的隐秘阵地。</p>
+                <p>神话从不只有一个版本。官方的史书只能记录星辰的坠落，而个体的外传、诗歌与解读，才能填满宇宙的血肉。无论你是为某个角色续写前传，还是用诗歌破译远古的箴言，只要你的文字触及了这片宇宙的脉搏，你就是“星海译经人”。</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="content-section-title">
+                <h3 style="border-left: 4px solid var(--accent); padding-left: 15px; display: inline-block;">最新收录卷宗</h3>
+                <span style="font-size:1rem; color:var(--accent); font-weight:normal; margin-left:15px;">已解密 3 份档案</span>
+            </div>
+            
+            <div class="archive-grid">
+                <a href="#" class="archive-card">
+                    <div class="archive-meta"><span>分类: 人物外传</span> <span>权限: 公开</span></div>
+                    <div class="archive-title">《路霄雲：霓虹下的第一次呼吸》</div>
+                    <div class="archive-excerpt">“那不是雨，那是城市正在排出多余的数据。我在2074年的街头醒来，手里握着一块本不该存在于这个时代的青铜碎片……”</div>
+                    <div class="archive-author">
+                        <span style="font-size:1.2rem;">👤</span> 作者代号：孤星执笔
+                    </div>
+                </a>
+
+                <a href="#" class="archive-card">
+                    <div class="archive-meta"><span style="color:var(--accent2, #e8b923);">分类: 宇宙诗歌</span> <span>权限: 公开</span></div>
+                    <div class="archive-title">《掷骰子之年》</div>
+                    <div class="archive-excerpt">当神明抛下十二面体的骰子，<br>上海的江水倒灌进了星空。<br>我们在冰封的夏日里寻找火种，<br>却只听见伏羲在量子态中叹息。</div>
+                    <div class="archive-author">
+                        <span style="font-size:1.2rem;">👤</span> 作者代号：暗物质吟游者
+                    </div>
+                </a>
+
+                <a href="#" class="archive-card">
+                    <div class="archive-meta"><span style="color:#ff3366;">分类: 神话解读</span> <span>权限: 公开</span></div>
+                    <div class="archive-title">《论“女娲”在赛博纪元的硬件表现》</div>
+                    <div class="archive-excerpt">如果不把女娲看作神，而是一套拥有自我修复协议的行星级AI呢？所谓“炼石补天”，极可能是填补大气层防御网的漏洞……</div>
+                    <div class="archive-author">
+                        <span style="font-size:1.2rem;">👤</span> 作者代号：碳基观察员
+                    </div>
+                </a>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn ghost">载入更多卷宗...</button>
+            </div>
+        </section>
+        
+        <section class="content-section" style="margin-top: 80px;">
+            <div class="content-section-title">
+                <h3 style="border-left: 4px solid var(--accent-gold); padding-left: 15px; display: inline-block;">首席译经人</h3>
+                <span style="font-size:1rem; color:var(--accent-gold); font-weight:normal; margin-left:15px;">杰出贡献者群像</span>
+            </div>
+            <div class="author-grid">
+                <div class="author-card">
+                    <div class="author-avatar"></div>
+                    <div class="author-name">孤星执笔</div>
+                    <div class="author-title">贡献卷宗: 12 篇</div>
+                </div>
+                <div class="author-card">
+                    <div class="author-avatar"></div>
+                    <div class="author-name">暗物质吟游者</div>
+                    <div class="author-title">贡献卷宗: 8 篇</div>
+                </div>
+                <div class="author-card">
+                    <div class="author-avatar"></div>
+                    <div class="author-name">碳基观察员</div>
+                    <div class="author-title">贡献卷宗: 5 篇</div>
+                </div>
+                <div class="author-card" style="border: 1px dashed rgba(255,255,255,0.3); background: transparent;">
+                    <div class="author-avatar" style="background: transparent; border: 2px dashed rgba(255,255,255,0.3); box-shadow: none;"></div>
+                    <div class="author-name" style="color: #aaa;">虚位以待</div>
+                    <div class="author-title" style="color: #666;">下一个译经人</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="call-to-arms">
+            <h2 style="color: #fff; margin-bottom: 20px;">你的文字，足以改变宇宙的结局。</h2>
+            <p style="color: #ccc; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.8;">
+                只要你对立维宇宙的世界观有共鸣，即可申请成为【星海译经人】。<br>你的作品将被收录进官方《宇宙编年史》，并有机会被开发为实体出版物或微剧。
+            </p>
+            <a href="mailto:creator@levythos.com?subject=星海译经人申请" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 40px; border:none; border-radius: 6px; background: linear-gradient(135deg, #e8b923, #d4a010); color:#000;">提交我的残卷 (加入阵营)</a>
+        </section>
+    </div>
+  </main>
+  
+  <footer style="margin-top: 80px;"> 
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px; padding: 40px; border-top: 1px solid rgba(255,255,255,0.1); background: #000;">
+      <div>
+          <div style="font-weight:700">Levythos · 立维宇宙 · 阵营档案</div>
+          <div class="muted" style="margin-top:6px; color:#666; font-size: 0.85rem;">© 2026 Levythos Global. 保留所有权利。</div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+function loadHeader() {
+    fetch('/header.html')
+        .then(response => {
+            if (!response.ok) throw new Error('网络响应不佳');
+            return response.text();
+        })
+        .then(data => {
+            const headerPlaceholder = document.getElementById('header-placeholder');
+            if (headerPlaceholder) {
+                headerPlaceholder.innerHTML = data;
+            }
+        })
+        .catch(error => console.error('加载导航栏失败:', error));
+}
+document.addEventListener('DOMContentLoaded', () => { 
+    loadHeader(); 
+});
+</script>
+
+<a href="javascript:history.back()" class="mobile-back-fab" aria-label="返回上一页">
+    <span class="icon">←</span> <span class="text">返回</span>
+</a>
+
+</body>
+</html>
