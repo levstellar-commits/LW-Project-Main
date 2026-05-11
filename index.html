@@ -77,7 +77,8 @@
         </div>
     </div>
 
-<h1 class="hero-line" id="hero-line-1" style="font-size: 3.2rem;">
+    <div class="hero-content">
+        <h1 class="hero-line" id="hero-line-1" style="font-size: 3.2rem;">
             不要做旁观者，<br>来做这片宇宙的缔造者。
         </h1>
         <p class="hero-title" id="hero-line-2" style="font-size: 1.1rem; line-height: 1.8; opacity: 0.9;">
@@ -87,7 +88,6 @@
             <a href="javascript:void(0);" onclick="openDrawer()" class="btn btn-primary">申请文明驻留</a>
             <a href="#contact" class="btn btn-ghost-neon">查阅工业白皮书</a>
         </div>
-
     </div>
 </section>
 
@@ -1387,12 +1387,23 @@ if (window.innerWidth <= 768) {
 
 
 <div id="pillar-left" class="cyber-pillar hide-on-mobile" onclick="openDrawer()">
-    <div class="pillar-texture"></div>
+    <div class="pillar-marquee marquee-down">
+        <div class="marquee-track">
+            <span>✍️</span><span>⚙️</span><span>🔬</span><span>🧬</span><span>👁️</span><span>🛠️</span><span>🎬</span><span>🏛️</span>
+            <span>✍️</span><span>⚙️</span><span>🔬</span><span>🧬</span><span>👁️</span><span>🛠️</span><span>🎬</span><span>🏛️</span>
+        </div>
+    </div>
     <span class="vertical-text">文明阵营</span>
 </div>
 
-<div id="pillar-right" class="cyber-pillar hide-on-mobile" onclick="openDrawer()">
-    <div class="pillar-texture"></div>
+<div id="pillar-right" class="cyber-pillar hide-on-mobile" onclick="alert('共建者档案展墙终端，即将上线...')">
+    <div class="pillar-marquee marquee-up">
+        <div class="marquee-track">
+            <div class="mini-avatar"></div><div class="mini-avatar"></div><div class="mini-avatar"></div>
+            <div class="mini-avatar"></div><div class="mini-avatar"></div><div class="mini-avatar"></div>
+            <div class="mini-avatar"></div><div class="mini-avatar"></div><div class="mini-avatar"></div>
+        </div>
+    </div>
     <span class="vertical-text">档案终端</span>
 </div>
 
@@ -1411,70 +1422,62 @@ if (window.innerWidth <= 768) {
         </div>
         
         <div class="drawer-grid">
-            <div class="drawer-card">
+            <a href="factions/writers.html" class="drawer-card">
                 <div class="d-icon">✍️</div>
                 <div class="d-info">
                     <h4>【星海译经人】· 史诗与残卷编撰</h4>
                     <p class="d-desc"><strong>专属：</strong>小说家、诗人、编剧的文字阵地。</p>
-                    <p class="d-desc"><strong>展示：</strong>人物外传、诗歌、神话解读。</p>
                 </div>
-            </div>
-            <div class="drawer-card">
+            </a>
+            <a href="factions/artists.html" class="drawer-card">
                 <div class="d-icon">⚙️</div>
                 <div class="d-info">
                     <h4>【深空器物师】· 视觉与重工设计</h4>
                     <p class="d-desc"><strong>专属：</strong>画师、建模师、UI设计师的画廊。</p>
-                    <p class="d-desc"><strong>展示：</strong>飞船概念、机甲、青铜法器渲染。</p>
                 </div>
-            </div>
-            <div class="drawer-card">
+            </a>
+            <a href="factions/engineers.html" class="drawer-card">
                 <div class="d-icon">🔬</div>
                 <div class="d-info">
                     <h4>【遗迹架构师】· 物理与硬科幻推演</h4>
                     <p class="d-desc"><strong>专属：</strong>理工科博士、考据党的硬核实验室。</p>
-                    <p class="d-desc"><strong>展示：</strong>储能公式推导、轨道计算、历史考据。</p>
                 </div>
-            </div>
-            <div class="drawer-card">
+            </a>
+            <a href="factions/lore.html" class="drawer-card">
                 <div class="d-icon">🧬</div>
                 <div class="d-info">
                     <h4>【基因记录官】· 宇宙法则考据</h4>
                     <p class="d-desc"><strong>专属：</strong>百科编纂者、设定控的维基百科。</p>
-                    <p class="d-desc"><strong>展示：</strong>世界观规则深度拆解和词条补充。</p>
                 </div>
-            </div>
-            <div class="drawer-card">
+            </a>
+            <a href="factions/observers.html" class="drawer-card">
                 <div class="d-icon">👁️</div>
                 <div class="d-info">
                     <h4>【时空观测员】· 情感样本采集</h4>
-                    <p class="d-desc"><strong>专属：</strong>分享奇遇故事的粉丝情感引擎。</p>
-                    <p class="d-desc"><strong>展示：</strong>相亲奇葩事、梦境重现等观察记录。</p>
+                    <p class="d-desc"><strong>专属：</strong>粉丝分享奇遇故事的情感引擎。</p>
                 </div>
-            </div>
-            <div class="drawer-card">
+            </a>
+            <a href="factions/creators.html" class="drawer-card">
                 <div class="d-icon">🛠️</div>
                 <div class="d-info">
                     <h4>【万象造物主】· 实体与微观赋能</h4>
                     <p class="d-desc"><strong>专属：</strong>手艺人、Coser、手办玩家的工坊。</p>
-                    <p class="d-desc"><strong>展示：</strong>微缩模型、Cosplay记录、手工周边。</p>
                 </div>
-            </div>
-            <div class="drawer-card">
+            </a>
+            <a href="factions/promoters.html" class="drawer-card">
                 <div class="d-icon">🎬</div>
                 <div class="d-info">
                     <h4>【矩阵布道者】· 传播与二创剪辑</h4>
                     <p class="d-desc"><strong>专属：</strong>视频剪辑师、混剪达人、自媒体。</p>
-                    <p class="d-desc"><strong>展示：</strong>二创微剧、配音作品或解说视频。</p>
                 </div>
-            </div>
-            <div class="drawer-card">
+            </a>
+            <a href="factions/prophets.html" class="drawer-card">
                 <div class="d-icon">🏛️</div>
                 <div class="d-info">
                     <h4>【初元先知会】· 殿堂级共建智库</h4>
                     <p class="d-desc"><strong>专属：</strong>投资人、学界大佬、专家的荣誉位。</p>
-                    <p class="d-desc"><strong>展示：</strong>核心寄语或学术背书。</p>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </div>
