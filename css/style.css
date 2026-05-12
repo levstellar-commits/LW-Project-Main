@@ -2286,7 +2286,47 @@ select.form-control option {
 
 
 
+/* =========================================================
+   UI 细节强效补丁 (Logo、防遮挡、净化文字)
+   ========================================================= */
 
+/* 1. 左上角 Logo 重塑：去生硬、加大气 */
+.brand-title {
+    /* 换成高定衬线体（宋体/明体），瞬间有了文化底蕴和史诗感 */
+    font-family: 'Noto Serif SC', 'Songti SC', 'STZhongsong', serif !important; 
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    letter-spacing: 4px !important;
+}
+.brand-subtitle {
+    font-family: 'Inter', sans-serif !important; 
+    font-size: 13px !important; /* 把小气的 0.9rem 加大 */
+    letter-spacing: 6px !important; /* 拉开字母间距，国际大牌都这么干 */
+    text-transform: uppercase !important;
+    margin-top: 4px !important;
+    color: var(--accent-gold) !important; /* 用传说金提亮 */
+}
+
+/* 2. 右上角按钮防遮挡：给右侧悬浮柱子腾出呼吸空间 */
+.header-actions {
+    margin-right: 80px !important; /* 强制往左推，彻底避开右侧的 60px 侧边栏 */
+}
+
+/* 4. 净化底部四大板块的“脏字” */
+.summary-item .desc-sm {
+    font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif !important; /* 强制使用干净的无衬线现代字体 */
+    font-size: 15px !important; /* 放大字号，醒目易读 */
+    line-height: 1.8 !important; /* 撑开行距，去拥挤感 */
+    color: rgba(255, 255, 255, 0.9) !important; /* 提高明度，去掉“灰脏感” */
+    font-weight: 400 !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,1) !important; /* 加一层锐利的黑色底阴影，让字在深色背景上彻底“洗干净” */
+}
+/* 顺便把四大板块的小标题也提提神 */
+.summary-item h4 {
+    font-size: 18px !important;
+    margin-bottom: 12px !important;
+    color: #fff !important;
+}
 
 
 
