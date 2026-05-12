@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>路霄雲同人短篇《雾中人》 - 观测档案 | 立维宇宙</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .reading-container { max-width: 800px; margin: 0 auto; background: rgba(10, 15, 20, 0.95); padding: 50px 60px; border: 1px solid rgba(255, 255, 255, 0.1); border-top: 3px solid var(--accent-gold); border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+    .story-text { font-family: "Noto Serif SC", "Songti SC", serif; font-size: 1.15rem; line-height: 2.2; color: rgba(255,255,255,0.85); text-align: justify; }
+    .story-text p { margin-bottom: 1.5em; text-indent: 2em; }
+    .story-text p.dialogue { color: #fff; text-indent: 0; padding-left: 2em; border-left: 2px solid rgba(232, 185, 35, 0.5); }
+    .story-meta { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px dashed rgba(255,255,255,0.1); }
+    @media (max-width: 768px) { .reading-container { padding: 30px 20px; } .story-text { font-size: 1.05rem; } }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main>
+    <section class="subpage-hero" style="background-image: url('http://googleusercontent.com/image_collection/image_retrieval/5122524226605156420');">
+        <div class="subpage-hero-overlay">
+            <p class="breadcrumb"><a href="../../index.html">首页</a> &gt; <a href="javascript:void(0);" onclick="window.history.back()">共创阵营</a> &gt; 绝密档案</p>
+            <h1>《雾中人》</h1>
+            <h2 style="font-family: 'Noto Serif SC', serif; font-weight: 300;">—— 路霄雲 2074 遗失纪事</h2>
+        </div>
+    </section>
+
+    <div class="subpage-content" style="margin-top: -60px; position: relative; z-index: 10;">
+        <section class="content-section">
+            <div class="reading-container">
+                <div class="story-meta">
+                    <span class="a-tag" style="background: rgba(232, 185, 35, 0.15); color: var(--accent-gold); padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; margin-right: 15px;">正史收录短篇</span>
+                    <span style="color: #888; font-size: 0.9rem;">观测者：碳基打字机 | 权限等级：Lv.2</span>
+                </div>
+                <div class="story-text">
+                    <p>上海的雨，总是带着一股金属生锈的腥味。2074年的深秋，补天之城下城区的霓虹灯在水洼里碎成一片片光斑。</p>
+                    <p>路霄雲靠在‘老鬼机修店’的卷帘门旁，手里夹着一根没有点燃的合成烟。他的目光穿透了拥挤的仿生人群，盯着街角那个模糊的影子。那是一个不该出现在这里的人，或者说，一个不该出现在这条时间线上的残影。</p>
+                    <p class="dialogue">“你到底在找什么？路老板。” 旁边正在调试义体的老鬼头也不抬地问。</p>
+                    <p class="dialogue">“找一个错误。” 路霄雲淡淡地回答，“一个连宇宙本身都想掩盖的语法错误。”</p>
+                    <p>话音刚落，街角的雾气突然异常翻滚。原本刺耳的悬浮车引擎声瞬间被抽离，周围的空气粘稠得像琥珀。路霄雲没有犹豫，他知道，‘门’又一次被某种力量强行撕开了。</p>
+                    <p>他将合成烟扔进水洼，大步走入浓雾。在他的视网膜视界里，一行暗金色的警告正在疯狂闪烁：</p>
+                    <p style="text-align: center; color: var(--accent); font-family: monospace; font-size: 0.9rem; margin: 2em 0; text-indent: 0;">
+                        [警告] 检测到高维神格入侵。法则完整度：89%... 正在下降。
+                    </p>
+                    <p>路霄雲闭上眼睛。当他再次睁开时，瞳孔深处已亮起属于他那个时代的幽蓝光芒。“既然来了，就别急着走。”他对着空无一人的迷雾轻声说道。</p>
+                </div>
+                <div style="text-align: center; margin-top: 60px;">
+                    <p style="color: #666; font-size: 0.85rem; margin-bottom: 20px;">- 试读结束 -</p>
+                    <button class="btn btn-primary" onclick="alert('完整档案需要Lv.2降临者敕令，请先建立锚点。')">解锁剩余 8,400 字档案</button>
+                </div>
+            </div>
+        </section>
+    </div>
+  </main>
+  <a href="javascript:history.back()" class="mobile-back-fab" aria-label="返回"><span class="icon">←</span> <span class="text">关闭卷宗</span></a>
+
+  <script>
+    fetch('../../header.html').then(r => r.text()).then(html => {
+        document.getElementById('header-placeholder').innerHTML = html;
+    });
+  </script>
+</body>
+</html>
