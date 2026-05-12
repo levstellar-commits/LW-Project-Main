@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>宇宙编年史·民间纪事扩写 - 观测档案 | 立维宇宙</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .terminal-window { background: #05080c; border: 1px solid #333; border-top: 25px solid #1a1a1a; border-radius: 6px; padding: 30px; font-family: 'Courier New', Courier, monospace; position: relative; }
+    .terminal-window::before { content: '● ● ●'; position: absolute; top: -20px; left: 15px; color: #555; font-size: 12px; letter-spacing: 2px; }
+    .log-entry { margin-bottom: 30px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 20px; }
+    .log-date { color: var(--accent-gold); font-weight: bold; margin-bottom: 10px; display: block; }
+    .log-text { color: #00e5ff; opacity: 0.85; line-height: 1.8; }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main>
+    <section class="subpage-hero" style="background-image: url('../../assets/images/co_09.jpg');">
+        <div class="subpage-hero-overlay">
+            <p class="breadcrumb"><a href="../../index.html">首页</a> &gt; 基因记录官 &gt; 设定补全</p>
+            <h1>宇宙编年史·民间纪事扩写</h1>
+            <h2>被正史遗漏的碎片，由降临者补全。</h2>
+        </div>
+    </section>
+
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="quote-block" style="border-color: #555;">
+                <p>创作者 <strong>历史的尘埃</strong>：官方编年史只记录了神祇与始祖的博弈，我查阅了《补天之城》的背景资料，尝试补全 2074 年底层平民的真实生活状态档案。</p>
+            </div>
+
+            <div class="terminal-window">
+                <div class="log-entry">
+                    <span class="log-date">> LOG_ID: 2074-11-04 // 坐标：补天城区 B4 垃圾处理站</span>
+                    <div class="log-text">今天站里运来了一批报废的“刑天”级警用义体。老赵偷偷卸下了两个视觉传感器，打算拿到黑市去换两张纯净水的配给票。他说，这些机器生前看尽了城里的肮脏，死后至少能换一口干净的水。</div>
+                </div>
+
+                <div class="log-entry">
+                    <span class="log-date">> LOG_ID: 2074-12-21 // 坐标：地下黑客酒吧 “迷雾”</span>
+                    <div class="log-text">听说有人在深网里捕捉到了类似“女娲协议”的底层波段。酒保大笑说那是辐射病引起的幻觉。但有个带着兜帽的远行者（我猜他叫路霄雲）在吧台留了一枚老式硬币，说：“幻觉，有时候是宇宙还没准备好向你展示的真相。”</div>
+                </div>
+                
+                <p style="color: #666; font-size: 0.8rem;">[ 终端提示：当前权限仅支持解密 2 条日志。 ]</p>
+            </div>
+        </section>
+    </div>
+  </main>
+  <a href="javascript:history.back()" class="mobile-back-fab"><span class="icon">←</span> <span class="text">退出终端</span></a>
+  <script>fetch('../../header.html').then(r => r.text()).then(h => document.getElementById('header-placeholder').innerHTML = h);</script>
+</body>
+</html>
