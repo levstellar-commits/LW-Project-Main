@@ -530,6 +530,8 @@
 /* ==========================================================================
    [新增] 同步主页的双行导航栏样式 (Header & Nav)
    ========================================================================== */
+
+
 header.site-header {
     height: 80px;
     background: rgba(2, 6, 10, 0.9);
@@ -539,13 +541,42 @@ header.site-header {
     padding: 0 40px;
     position: fixed; top: 0; left: 0; width: 100%; z-index: 9999;
 }
-.brand { display: flex; align-items: center; gap: 15px; }
+
+/* 完美同步主页的大气 Logo 排版 */
+.brand { display: flex; align-items: center; gap: 15px; margin-left: 65px; }
 .brand img { width: 44px; height: 44px; }
-.brand-text { display: flex; flex-direction: column; justify-content: center; }
-.brand-title { font-size: 1.2rem; font-weight: 700; color: #fff; line-height: 1.1; }
-.brand-subtitle { font-size: 0.8rem; color: #aaa; letter-spacing: 1px; }
+.brand-text { 
+    display: flex !important; 
+    flex-direction: column !important; 
+    width: 145px !important; 
+}
+.brand-title { 
+    font-family: 'Noto Serif SC', 'Songti SC', 'STZhongsong', serif !important; 
+    font-size: 28px !important; 
+    font-weight: 900 !important; 
+    color: #ffffff !important; 
+    text-align: justify !important;
+    text-align-last: justify !important; 
+    line-height: 1.1 !important;
+}
+.brand-subtitle { 
+    font-size: 14.5px !important; 
+    font-weight: 700 !important; 
+    color: #00e5ff !important; 
+    margin-top: 5px !important;
+    text-align: center !important;
+    letter-spacing: 5.5px !important; 
+    margin-right: -5.5px !important; 
+    line-height: 1 !important;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.4) !important;
+    display: block !important;
+    width: 100% !important;
+}
 
 .site-nav { margin-left: auto; margin-right: 40px; display: flex; gap: 30px; }
+.header-actions { margin-right: 90px !important; }
+
+
 
 /* 核心：双行文字排版 */
 .nav-item-dual {
