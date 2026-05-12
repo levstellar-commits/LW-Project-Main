@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>独立漫画《星环之下》 - 星联文明 | 立维宇宙</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .manga-reader { max-width: 800px; margin: 0 auto; background: #fff; padding: 10px; border-radius: 4px; box-shadow: 0 0 50px rgba(255,255,255,0.1); position: relative;}
+    /* 添加一点复古网点纸噪点感 */
+    .manga-reader::after { content:''; position:absolute; inset:0; background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABZJREFUeNpi2rVrf2QAAzL4////ZAAgwAIL1wI60Y2SAAAAAElFTkSuQmCC') repeat; opacity: 0.2; pointer-events:none;}
+    .manga-reader img { width: 100%; display: block; margin-bottom: 5px; filter: grayscale(100%) contrast(1.3); }
+    .manga-info { text-align: center; margin-bottom: 40px; }
+    .manga-info h1 { font-family: "Noto Sans SC", sans-serif; font-weight: 900; letter-spacing: 5px; margin-bottom: 10px; font-size: 2.5rem;}
+    .manga-nav { display: flex; justify-content: center; gap: 20px; margin-top: 30px; }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main>
+    <section class="subpage-hero" style="background-image: url('../../assets/images/ali_10.jpg'); filter: grayscale(100%);">
+        <div class="subpage-hero-overlay" style="background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, var(--bg-deep) 100%);">
+            <p class="breadcrumb"><a href="../../index.html">首页</a> &gt; 星联文明 &gt; 原创漫画</p>
+        </div>
+    </section>
+    <div class="subpage-content" style="margin-top: -100px; position: relative; z-index: 10;">
+        <div class="manga-info">
+            <span class="a-tag" style="background: #fff; color: #000;">连载中</span>
+            <h1>星环之下</h1>
+            <p style="color: #aaa; font-size: 1.1rem;">缔约者：漫研社 | 标签：赛博朋克、机甲、黑白漫</p>
+        </div>
+        <section class="content-section">
+            <div class="manga-reader">
+                <img src="../../assets/images/ali_10.jpg" alt="漫画第1页">
+                <img src="../../assets/images/ali_10.jpg" alt="漫画第2页">
+            </div>
+            <div class="manga-nav">
+                <button class="btn ghost" disabled>上一话</button>
+                <button class="btn btn-outline-cyan" onclick="alert('需要消耗 10 算力（点赞）以解锁下一话')">解锁下一话</button>
+            </div>
+        </section>
+    </div>
+  </main>
+  <a href="javascript:history.back()" class="mobile-back-fab"><span class="icon">←</span> <span class="text">退出阅读</span></a>
+  <script>fetch('../../header.html').then(r => r.text()).then(h => document.getElementById('header-placeholder').innerHTML = h);</script>
+</body>
+</html>
