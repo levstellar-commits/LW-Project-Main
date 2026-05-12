@@ -2424,7 +2424,62 @@ select.form-control option {
     text-shadow: 0 0 25px rgba(232, 185, 35, 0.6), 0 4px 10px rgba(0, 0, 0, 0.8) !important; 
 }
 
+/* 1. 先补上你原文件末尾缺失的那个右大括号，闭合黑洞！！！ */
+}
 
+/* =========================================================
+   绝杀补丁 2.1：修复语法黑洞 + 强制覆盖内联样式
+   ========================================================= */
+
+/* --- 1. 左上角 Logo 英文副标题绝对拉齐 --- */
+.brand-subtitle {
+    font-size: 14.5px !important; /* 字号稍微放大 */
+    font-weight: 700 !important; 
+    color: #00e5ff !important; 
+    margin-top: 5px !important;
+    
+    text-align: center !important;
+    text-align-last: auto !important; /* 取消之前的无效justify */
+    /* 用精确的字间距把 LEVYTHOS 撑开，和上方的中文等宽 */
+    letter-spacing: 5.5px !important; 
+    margin-right: -5.5px !important; /* 抵消最后一个字母的间距，保证绝对居中 */
+    
+    line-height: 1 !important;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.4) !important; /* 加点科幻光晕 */
+    display: block !important;
+    width: 100% !important;
+}
+
+/* --- 2. 核心大标题：强力洗掉 HTML 里的黑影，换史诗级字体 --- */
+#executive-summary .section-header h2 {
+    /* 强行更换为史诗感极强的宋体/明朝体 */
+    font-family: 'Noto Serif SC', 'Songti SC', 'STZhongsong', serif !important;
+    font-size: 42px !important; /* 大幅放大 */
+    font-weight: 700 !important; 
+    
+    /* 斩断之前 h2 全局背景渐变裁切导致的“发霉”感 */
+    background: none !important; 
+    -webkit-background-clip: border-box !important;
+    -webkit-text-fill-color: #ffffff !important; 
+    
+    color: #ffffff !important; /* 纯白高亮主体 */
+    /* 强行洗掉 HTML 里的 rgba(0,0,0,0.8) 黑影，换成干净的白/青色辉光 */
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4), 
+                 0 0 40px rgba(0, 229, 255, 0.2) !important; 
+                 
+    letter-spacing: 4px !important; 
+    line-height: 1.5 !important;
+    margin-bottom: 20px !important;
+}
+
+/* “史前一万年” 专属传说金高亮 */
+#executive-summary .section-header h2 span {
+    color: #e8b923 !important; 
+    font-weight: 900 !important; 
+    letter-spacing: 6px !important;
+    text-shadow: 0 0 25px rgba(232, 185, 35, 0.8) !important; 
+    padding: 0 10px !important;
+}
 
 
 
