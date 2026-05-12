@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>炎帝阵营粉丝自制UI原型 - 观测档案 | 立维宇宙</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .ui-showcase { background: #1a0800; border: 1px solid #ff4500; border-radius: 12px; padding: 40px; box-shadow: 0 0 40px rgba(255, 69, 0, 0.15); margin-top: 30px; }
+    .ui-header { display: flex; align-items: center; border-bottom: 1px solid rgba(255,69,0,0.3); padding-bottom: 20px; margin-bottom: 30px; }
+    .ui-header h3 { margin: 0; color: #ff6347; font-size: 1.8rem; letter-spacing: 2px; }
+    .color-palette { display: flex; gap: 10px; margin-top: 20px; }
+    .color-box { width: 40px; height: 40px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); }
+    .ui-feature-img { width: 100%; border-radius: 8px; border: 2px solid rgba(255,69,0,0.5); box-shadow: 0 10px 30px rgba(255,69,0,0.3); }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main>
+    <section class="subpage-hero" style="background-image: url('../../assets/images/co_04.jpg');">
+        <div class="subpage-hero-overlay" style="background: linear-gradient(180deg, rgba(30,0,0,0.6) 0%, var(--bg-deep) 100%);">
+            <p class="breadcrumb"><a href="../../index.html">首页</a> &gt; <a href="javascript:history.back()">共创阵营</a> &gt; 视觉交互</p>
+            <h1 style="color: #ff6347; text-shadow: 0 0 20px rgba(255,69,0,0.8);">炎帝阵营·战术UI原型</h1>
+            <h2>“星火不熄，指令不灭。”</h2>
+        </div>
+    </section>
+
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="project-intel-card" style="border-left-color: #ff4500;">
+                <div class="intel-item"><div class="label">交互设计师</div><div class="value">UI_Master</div></div>
+                <div class="intel-item"><div class="label">设计语言</div><div class="value">高维火种 (High-D Flame)</div></div>
+            </div>
+
+            <div class="ui-showcase">
+                <div class="ui-header">
+                    <h3>HUD 视窗主界面 (概念图)</h3>
+                </div>
+                <div class="text-image-split">
+                    <div class="split-text">
+                        <p style="color: #ddd; line-height: 1.8;">以炎帝阵营的图腾为核心，去除了繁琐的边框，采用全息投影的扁平化质感。当系统算力满载时，边缘会触发火焰特效的呼吸灯。</p>
+                        <h4 style="color: #ff4500; margin-top: 30px;">专属配色提取 (HEX)：</h4>
+                        <div class="color-palette">
+                            <div class="color-box" style="background: #ff4500;" title="主色: 炎爆红"></div>
+                            <div class="color-box" style="background: #e8b923;" title="辅助: 传说金"></div>
+                            <div class="color-box" style="background: #1a0800;" title="底色: 焦土黑"></div>
+                            <div class="color-box" style="background: #ffffff;" title="文本: 高亮白"></div>
+                        </div>
+                    </div>
+                    <div class="split-image">
+                        <img src="../../assets/images/co_04.jpg" alt="UI设计图" class="ui-feature-img">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 40px;">
+                <button class="btn btn-outline-cyan" style="border-color: #ff4500; color: #ff4500;" onclick="alert('即将下载 Figma 开源设计源文件')">下载 Figma 源文件 (Lv.2)</button>
+            </div>
+        </section>
+    </div>
+  </main>
+  <a href="javascript:history.back()" class="mobile-back-fab" style="background: #1a0800; border: 1px solid #ff4500;"><span class="icon" style="color: #ff4500;">←</span> <span class="text" style="color: #ff4500;">退出全息UI</span></a>
+  <script>fetch('../../header.html').then(r => r.text()).then(h => document.getElementById('header-placeholder').innerHTML = h);</script>
+</body>
+</html>
