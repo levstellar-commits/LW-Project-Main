@@ -1578,38 +1578,57 @@ function closeDrawer() {
             <p class="lv-modal-subtitle">验证身份波段，确立你的文明坐标</p>
         </div>
         
-        <div class="lv-privilege-box" style="background: rgba(0,0,0,0.4); border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 6px; padding: 12px; margin-bottom: 20px;">
-            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                <span style="font-size: 18px;">🔓</span>
+        <div class="lv-privilege-box" style="background: rgba(0,0,0,0.4); border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 6px; padding: 12px; margin-bottom: 20px; max-height: 120px; overflow-y: auto;">
+            <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px;">
+                <span style="font-size: 16px; margin-top: 2px;">🔓</span>
                 <div>
-                    <div style="color: var(--accent); font-size: 13px; font-weight: bold;">Lv.1 基础观测者敕令 (本次解锁)</div>
-                    <div style="color: #888; font-size: 11px;">获取基础宇宙编号，开启共振点赞与绝密档案阅览权限。</div>
+                    <div style="color: var(--accent); font-size: 13px; font-weight: bold;">Lv.1 观测者敕令 (本次解锁)</div>
+                    <div style="color: #888; font-size: 11px;">获取宇宙坐标，开启共振点赞与基础档案阅览。</div>
                 </div>
             </div>
-            <div style="display: flex; align-items: center; gap: 10px; opacity: 0.5;">
-                <span style="font-size: 18px;">🔒</span>
+            <div style="display: flex; align-items: flex-start; gap: 10px; opacity: 0.7; margin-bottom: 12px;">
+                <span style="font-size: 16px; margin-top: 2px;">🔒</span>
                 <div>
-                    <div style="color: var(--accent-gold); font-size: 13px; font-weight: bold;">Lv.2 高阶降临者敕令 (深度参与解锁)</div>
-                    <div style="color: #888; font-size: 11px;">参与同人共创或缔约任务后解锁。可自定义专属阵营，生成高清专属降临敕令凭证。</div>
+                    <div style="color: var(--accent-gold); font-size: 13px; font-weight: bold;">Lv.2 降临者敕令 (互动解锁)</div>
+                    <div style="color: #888; font-size: 11px;">提交奇遇档案后解锁，生成专属高清敕令凭证。</div>
+                </div>
+            </div>
+            <div style="display: flex; align-items: flex-start; gap: 10px; opacity: 0.4;">
+                <span style="font-size: 16px; margin-top: 2px;">🔒</span>
+                <div>
+                    <div style="color: #fff; font-size: 13px; font-weight: bold;">Lv.3~5 高阶敕令 (缔造/执星/源始)</div>
+                    <div style="color: #888; font-size: 11px;">作品收录正史、获取宇宙治理权、共享IP资产红利。</div>
                 </div>
             </div>
         </div>
 
         <div class="lv-modal-body">
-            <button class="lv-btn-social wechat">
-                <span class="icon">🟢</span> 微信一键共振登录
-            </button>
-            <button class="lv-btn-social qq">
-                <span class="icon">🔵</span> QQ终端快速接入
-            </button>
-            <div class="lv-divider"><span>或使用频段验证</span></div>
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <button class="lv-btn-social wechat" style="flex: 1; margin: 0; padding: 10px; font-size: 13px;">
+                    <span class="icon">🟢</span> 微信接入
+                </button>
+                <button class="lv-btn-social qq" style="flex: 1; margin: 0; padding: 10px; font-size: 13px;">
+                    <span class="icon">🔵</span> QQ接入
+                </button>
+            </div>
+
+            <div class="lv-divider"><span>或使用独立频段注册/登录</span></div>
+            
             <div class="lv-input-group">
-                <input type="text" placeholder="输入手机号 / 观测者代号" class="lv-input">
+                <input type="text" placeholder="设置文明代号 (对外展示的昵称)" class="lv-input" style="border-color: rgba(232, 185, 35, 0.4);">
             </div>
             <div class="lv-input-group">
-                <input type="password" placeholder="输入访问密钥 / 验证码" class="lv-input">
+                <input type="text" placeholder="设置登录账号 (用户名/手机号)" class="lv-input">
             </div>
+            <div class="lv-input-group">
+                <input type="password" placeholder="设置访问密钥 (密码)" class="lv-input">
+            </div>
+            
             <button class="lv-btn-primary" onclick="alert('系统提示：星门节点正在备案，下月正式开启！');">建立锚点 (立即解锁 Lv.1)</button>
+            
+            <div style="text-align: center; margin-top: 15px;">
+                 <a href="javascript:void(0);" onclick="alert('切换至登录模式')" style="color: #888; font-size: 12px; text-decoration: underline;">已有终端记录？点击直接登录</a>
+            </div>
         </div>
     </div>
 </div>
