@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>实验电子乐专辑《星轨》 - 星联文明 | 立维宇宙</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .album-header { display: flex; gap: 50px; align-items: center; margin-bottom: 50px; }
+    .album-cover { width: 280px; height: 280px; border-radius: 12px; box-shadow: 0 20px 50px rgba(0, 229, 255, 0.4); border: 1px solid rgba(0,229,255,0.5); }
+    .track-list { width: 100%; border-collapse: collapse; margin-top: 20px; background: rgba(255,255,255,0.02); border-radius: 8px; overflow: hidden;}
+    .track-list th { text-align: left; padding: 15px 20px; color: #888; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: normal; background: rgba(0,0,0,0.5);}
+    .track-list td { padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ddd; transition: 0.2s;}
+    .track-list tr:hover td { background: rgba(0, 229, 255, 0.1); color: #fff; cursor: pointer; }
+    .play-icon { color: var(--accent); opacity: 0; transition: 0.2s; margin-right: 10px;}
+    .track-list tr:hover .play-icon { opacity: 1; }
+    @media (max-width: 768px) { .album-header { flex-direction: column; align-items: center; text-align: center; } }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main>
+    <section class="subpage-hero" style="background-image: url('../../assets/images/ali_09.jpg'); height: 35vh;">
+        <div class="subpage-hero-overlay" style="background: linear-gradient(180deg, rgba(0,0,0,0) 0%, var(--bg-deep) 100%);"></div>
+    </section>
+    <div class="subpage-content" style="margin-top: -150px; position: relative; z-index: 10;">
+        <div class="album-header">
+            <img src="../../assets/images/ali_09.jpg" alt="星轨专辑封面" class="album-cover">
+            <div>
+                <span class="a-tag">EP / 独立音乐</span>
+                <h1 style="margin: 15px 0; font-size: 3.5rem; text-shadow: 0 0 20px rgba(255,255,255,0.2);">星轨 (Star Trails)</h1>
+                <h3 style="margin: 0 0 20px 0; color: #aaa;">缔约者：合成器玩家</h3>
+                <button class="btn btn-primary" style="border-radius: 30px; padding: 12px 35px;" onclick="alert('系统提示：音频数据流加载中...')">▶ 播放全碟</button>
+            </div>
+        </div>
+        <section class="content-section">
+            <table class="track-list">
+                <thead><tr><th width="10%">#</th><th width="70%">曲目名称 (Title)</th><th width="20%">时长</th></tr></thead>
+                <tbody>
+                    <tr><td><span class="play-icon">▶</span> 1</td><td>引力弹弓 (Gravity Slingshot)</td><td>04:12</td></tr>
+                    <tr><td><span class="play-icon">▶</span> 2</td><td>脉冲星低语 (Pulsar Whisper)</td><td>03:45</td></tr>
+                    <tr><td><span class="play-icon">▶</span> 3</td><td>奥尔特云的尽头 (Edge of Oort Cloud)</td><td>05:30</td></tr>
+                    <tr><td><span class="play-icon">▶</span> 4</td><td>绝对零度 (Absolute Zero)</td><td>02:58</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+  </main>
+  <a href="javascript:history.back()" class="mobile-back-fab"><span class="icon">←</span> <span class="text">切回星联</span></a>
+  <script>fetch('../../header.html').then(r => r.text()).then(h => document.getElementById('header-placeholder').innerHTML = h);</script>
+</body>
+</html>
