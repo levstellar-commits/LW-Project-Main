@@ -2367,7 +2367,7 @@ select.form-control option {
     opacity: 1 !important; 
     margin: 0 !important;
     -webkit-font-smoothing: antialiased !important; /* 开启系统级抗锯齿，字边缘极其锋利干净 */
-
+}
 
 /* =========================================================
    视觉焦点升级补丁 (针对 Logo 与核心 Slogan)
@@ -2425,7 +2425,7 @@ select.form-control option {
 }
 
 /* 1. 先补上你原文件末尾缺失的那个右大括号，闭合黑洞！！！ */
-}
+
 
 /* =========================================================
    绝杀补丁 2.1：修复语法黑洞 + 强制覆盖内联样式
@@ -2482,4 +2482,78 @@ select.form-control option {
 }
 
 
+/* ==========================================================================
+   新增：共创与星联板块 动态卡片专属样式 (差异化设计)
+   ========================================================================== */
 
+/* 1. 共创档案卡片 (官方认可感、烫金档案风) */
+.co-card {
+    position: relative;
+    background: linear-gradient(180deg, rgba(20,30,40,0.9) 0%, rgba(10,15,20,0.95) 100%) !important;
+    border: 1px solid rgba(232, 185, 35, 0.2) !important;
+    border-bottom: 3px solid var(--accent-gold) !important; /* 底部传说金重音 */
+    padding: 12px;
+}
+.co-card:hover {
+    border-color: var(--accent-gold) !important;
+    box-shadow: 0 10px 30px rgba(232, 185, 35, 0.2) !important;
+    transform: translateY(-8px);
+}
+.co-card .card-badge {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: rgba(232, 185, 35, 0.9);
+    color: #000;
+    font-size: 0.7rem; font-weight: 800;
+    padding: 3px 8px; border-radius: 4px;
+    z-index: 10;
+}
+.co-card .ip-card-img {
+    aspect-ratio: 3/4 !important; /* 保持矩阵统一比例 */
+    border-radius: 4px !important;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.co-card .ip-card-info {
+    padding: 15px 5px 5px 5px !important;
+}
+.co-card .author {
+    font-size: 0.75rem; color: var(--accent-gold); margin-top: 5px; font-family: monospace;
+}
+
+/* 2. 星联文明卡片 (外部节点、赛博终端风) */
+.ali-card {
+    background: rgba(2, 6, 10, 0.8) !important;
+    border: 1px solid rgba(0, 229, 255, 0.1) !important;
+    border-left: 3px solid var(--accent) !important; /* 左侧科幻青信标 */
+    padding: 12px;
+}
+.ali-card:hover {
+    border-color: var(--accent) !important;
+    box-shadow: 0 10px 30px rgba(0, 229, 255, 0.15) !important;
+    transform: translateY(-8px);
+}
+.ali-card .card-badge {
+    position: absolute;
+    top: 20px; left: 20px;
+    background: rgba(0, 229, 255, 0.9);
+    color: #000;
+    font-size: 0.7rem; font-weight: 800;
+    padding: 3px 8px; border-radius: 4px;
+    z-index: 10;
+}
+.ali-card .ip-card-img {
+    aspect-ratio: 3/4 !important; 
+    border-radius: 4px !important;
+    opacity: 0.85; /* 略微暗淡，突出赛博感 */
+    transition: opacity 0.3s;
+}
+.ali-card:hover .ip-card-img { opacity: 1; }
+.ali-card .ip-card-info {
+    padding: 15px 5px 5px 5px !important;
+}
+.ali-card .author {
+    font-size: 0.75rem; color: var(--accent); margin-top: 5px;
+}
+.ali-card .ip-card-info strong {
+    font-family: "Noto Serif SC", serif !important; /* 独立作品保留一点文化感 */
+}
