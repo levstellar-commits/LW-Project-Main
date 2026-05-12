@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>桌游《诸子百家：乱世》 - 星联文明 | 立维宇宙</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .boardgame-stats { display: flex; justify-content: space-around; background: rgba(232, 185, 35, 0.05); padding: 20px; border-radius: 8px; border: 1px solid rgba(232, 185, 35, 0.3); margin-bottom: 40px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);}
+    .stat-item { text-align: center; }
+    .stat-icon { font-size: 2.5rem; margin-bottom: 10px; }
+    .stat-text { color: var(--accent-gold); font-weight: bold; }
+    .component-list { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; color: #ccc; list-style:none; padding:0; }
+    .component-list li { background: linear-gradient(135deg, rgba(20,30,40,0.9), rgba(10,15,20,0.9)); padding: 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); border-left: 3px solid var(--accent-gold); }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main>
+    <section class="subpage-hero" style="background-image: url('../../assets/images/ali_05.jpg');">
+        <div class="subpage-hero-overlay">
+            <p class="breadcrumb"><a href="../../index.html">首页</a> &gt; 星联文明 &gt; 桌面游戏</p>
+            <h1>桌游《诸子百家：乱世》</h1>
+            <h2 style="color: var(--accent-gold);">赛博轴心时代的思想博弈。</h2>
+        </div>
+    </section>
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="boardgame-stats">
+                <div class="stat-item"><div class="stat-icon">👥</div><div class="stat-text">2 - 4 人</div></div>
+                <div class="stat-item"><div class="stat-icon">⏳</div><div class="stat-text">60 - 90 分钟</div></div>
+                <div class="stat-item"><div class="stat-icon">🧠</div><div class="stat-text">重度：3.2 / 5</div></div>
+                <div class="stat-item"><div class="stat-icon">🎂</div><div class="stat-text">14 岁以上</div></div>
+            </div>
+            <div class="text-image-split">
+                <div class="split-text">
+                    <h3 style="color: var(--accent-gold);">企划内容 (What's in the Box)</h3>
+                    <p>由 <strong>纸上谈兵局</strong> 设计的非对称对抗桌游。在立维宇宙的某个平行末世，玩家将分别扮演儒、墨、道、法四大阵营的领袖，利用机甲兵力与思想流派的“模因武器”争夺核心都市的控制权。</p>
+                    <ul class="component-list mt-small">
+                        <li>1x 全息投影感版图</li>
+                        <li>48x 阵营定制亚克力兵模</li>
+                        <li>120x “典籍”战术卡牌</li>
+                        <li>4x 玩家专属阵营操作板</li>
+                    </ul>
+                </div>
+                <div class="split-image"><img src="../../assets/images/ali_05.jpg" alt="桌游配件" style="border-radius: 8px; box-shadow:0 10px 30px rgba(232,185,35,0.2);"></div>
+            </div>
+        </section>
+    </div>
+  </main>
+  <a href="javascript:history.back()" class="mobile-back-fab"><span class="icon">←</span> <span class="text">离开牌桌</span></a>
+  <script>fetch('../../header.html').then(r => r.text()).then(h => document.getElementById('header-placeholder').innerHTML = h);</script>
+</body>
+</html>
