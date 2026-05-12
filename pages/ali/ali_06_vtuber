@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>虚拟偶像“瑶光” - 星联文明 | 立维宇宙</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .vtuber-profile { display: flex; gap: 40px; background: rgba(15, 5, 25, 0.95); padding: 40px; border-radius: 12px; border: 1px solid rgba(180, 0, 255, 0.4); box-shadow: 0 0 40px rgba(150, 0, 255, 0.2); }
+    .vtuber-model { flex: 1; border: 2px dashed rgba(0, 229, 255, 0.5); padding: 10px; border-radius: 8px; position: relative; animation: pulseBorder 2s infinite; }
+    .vtuber-model::after { content: 'LIVE 2D CONNECTED'; position: absolute; top: 20px; right: 20px; background: rgba(0,229,255,0.2); color: #00e5ff; font-weight: bold; padding: 5px 10px; font-size: 0.8rem; border-radius: 4px; }
+    .vtuber-data { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .status-online { display: inline-block; width: 12px; height: 12px; background: #00ff00; border-radius: 50%; box-shadow: 0 0 15px #00ff00; margin-right: 10px; animation: blink 1s infinite; }
+    .data-bar { margin-top: 20px; }
+    .bar-bg { width: 100%; height: 8px; background: #222; border-radius: 4px; margin-top: 8px; overflow: hidden;}
+    .bar-fill { height: 100%; background: linear-gradient(90deg, #00e5ff, #b500ff); }
+    @keyframes pulseBorder { 0% { border-color: rgba(0,229,255,0.2); } 50% { border-color: rgba(0,229,255,0.8); } 100% { border-color: rgba(0,229,255,0.2); } }
+    @keyframes blink { 50% { opacity: 0.5; } }
+    @media (max-width: 768px) { .vtuber-profile { flex-direction: column; } }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main>
+    <section class="subpage-hero" style="background-image: url('../../assets/images/ali_06.jpg');">
+        <div class="subpage-hero-overlay" style="background: linear-gradient(180deg, rgba(20,0,40,0.5) 0%, rgba(5,2,10,1) 100%);">
+            <p class="breadcrumb"><a href="../../index.html">首页</a> &gt; 星联文明 &gt; 虚拟主播</p>
+            <h1 style="color: #e0b0ff; text-shadow: 0 0 30px rgba(180, 0, 255, 0.8);">虚拟偶像 “瑶光”</h1>
+            <h2 style="color: #00e5ff;">来自星联的数字歌姬，已连接至主控网络。</h2>
+        </div>
+    </section>
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="vtuber-profile">
+                <div class="vtuber-model"><img src="../../assets/images/ali_06.jpg" alt="瑶光Live2D" style="border-radius: 4px; width:100%;"></div>
+                <div class="vtuber-data">
+                    <h2 style="margin-top:0; color:#fff;">瑶光 Yaoguang_AI</h2>
+                    <p style="color: #aaa; margin-bottom: 30px;"><span class="status-online"></span>系统状态：全息直连中 / 情感模块100%</p>
+                    <p><strong>缔约方：</strong> V-Project 企划室<br><strong>声带模型：</strong> SynthV 混合生成</p>
+                    <div class="data-bar"><label style="color:#ccc;">心智演算负载</label><div class="bar-bg"><div class="bar-fill" style="width: 45%;"></div></div></div>
+                    <div class="data-bar"><label style="color:#ccc;">粉丝共振指数</label><div class="bar-bg"><div class="bar-fill" style="width: 88%;"></div></div></div>
+                    <button class="btn" style="margin-top: 30px; background: #b500ff; color: #fff; border:none; padding:15px;" onclick="alert('即将跳转至该主播的直播频段...')">▶ 订阅星际直播源</button>
+                </div>
+            </div>
+        </section>
+    </div>
+  </main>
+  <a href="javascript:history.back()" class="mobile-back-fab"><span class="icon">←</span> <span class="text">断开连接</span></a>
+  <script>fetch('../../header.html').then(r => r.text()).then(h => document.getElementById('header-placeholder').innerHTML = h);</script>
+</body>
+</html>
