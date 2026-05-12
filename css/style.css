@@ -2283,85 +2283,94 @@ select.form-control option {
 .a-btn { color: var(--accent); font-size: 12px; text-decoration: none; border: 1px solid var(--accent); padding: 4px 10px; border-radius: 15px;}
 .a-btn:hover { background: var(--accent); color: #000; }
 
+
+
+
+
 /* =========================================================
-   终极净化与高定重塑 (彻底修复发糊、生硬、对齐问题)
+   终极无透明度·纯净高亮补丁 (解决发糊、对齐、醒目问题)
    ========================================================= */
 
-/* 1. 左上角 Logo 升级：去僵硬，换高定衬线体，英文加大 */
+/* --- 1. 左上角 Logo 升级：中英对齐，纯实心色 --- */
 .brand-title {
     font-family: 'Noto Serif SC', 'Songti SC', 'STZhongsong', serif !important; 
     font-size: 26px !important; 
-    font-weight: 700 !important;
-    letter-spacing: 5px !important;
-    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3) !important;
+    font-weight: 900 !important; /* 加粗到极致 */
+    letter-spacing: 6px !important;
+    color: #ffffff !important; /* 纯实心白 */
+    text-shadow: none !important; 
+    text-align: center !important;
 }
 .brand-subtitle {
     font-family: 'Inter', sans-serif !important; 
-    font-size: 13px !important;
-    letter-spacing: 8px !important;
-    color: var(--accent-gold) !important;
-    margin-top: 4px !important;
+    font-size: 14px !important;
+    font-weight: 900 !important; /* 英文加粗，拒绝拉胯 */
+    letter-spacing: 9px !important; /* 拉开间距，与中文等宽齐平 */
+    color: #00e5ff !important; /* 纯实心科幻青 */
+    margin-top: 2px !important;
+    text-align: center !important;
+    display: block !important;
 }
 
-/* 2. 右上角按钮防遮挡：强制向左推，避开侧边栏 */
+/* --- 2. 右上角按钮防遮挡 --- */
 .header-actions {
     margin-right: 90px !important;
 }
 
-/* 3. 宣言标签强制绝对居中、放大 */
+/* --- 3. 宣言标签：胶囊抗溢出形态，绝对醒目 --- */
 #executive-summary .section-header > div {
-    display: table !important; 
-    margin: 0 auto 20px auto !important;
-    font-size: 15px !important;
-    padding: 6px 20px !important;
+    display: inline-block !important; 
+    margin: 0 auto 25px auto !important;
+    font-size: 16px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important; /* 纯白字 */
+    background: #004d5a !important; /* 实心深青底色，拒绝透明！ */
+    border: 2px solid #00e5ff !important; /* 亮青色加粗描边 */
+    padding: 10px 25px !important;
+    border-radius: 50px !important; /* 胶囊圆角，怎么折行都像个精美的徽章 */
+    letter-spacing: 3px !important;
+    box-shadow: 0 5px 20px rgba(0, 229, 255, 0.4) !important;
+    max-width: 95% !important; /* 屏幕变小自动折行，绝不溢出 */
+    line-height: 1.6 !important;
 }
 
-/* 4. 四大核心板块：彻底去脏、去油、放大 */
-/* 强制覆盖之前所有发糊的代码 */
-.summary-item, .method-card {
-    border-left: none !important;
-    box-shadow: none !important;
-    background: none !important;
-}
-
+/* --- 4. 四大核心板块：去透明度，换纯白字，绝对干净 --- */
 .summary-grid .card.summary-item {
-    background: rgba(15, 22, 30, 0.6) !important;
-    border: 1px solid rgba(0, 229, 255, 0.2) !important;
+    background: #0d131a !important; /* 纯实心深蓝色，完全不透明！ */
+    border: 1px solid #1a3644 !important; /* 实心边框 */
     padding: 40px 30px !important;
-    box-shadow: none !important;
-    backdrop-filter: blur(10px) !important;
+    border-left: none !important; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important; /* 给盒子加阴影，不给字加 */
     border-radius: 8px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important;
 }
 
 .summary-grid .card.summary-item h4 {
     font-family: "Noto Serif SC", "Songti SC", "STZhongsong", serif !important;
     font-size: 22px !important;
-    color: #e8b923 !important;
+    color: #e8b923 !important; /* 纯实心金 */
     margin-top: 0 !important;
     margin-bottom: 18px !important;
-    font-weight: bold !important;
+    font-weight: 900 !important;
     letter-spacing: 2px !important;
-    text-shadow: none !important; /* 彻底去除脏阴影 */
+    text-shadow: none !important; /* 绝对不要文字阴影 */
 }
 
 .summary-grid .card.summary-item h4 .accent-num {
-    font-family: 'Inter', sans-serif !important;
-    color: #00e5ff !important;
+    color: #00e5ff !important; /* 纯实心青 */
     font-size: 20px !important;
+    font-weight: 900 !important;
     margin-right: 8px !important;
 }
 
 .summary-grid .card.summary-item .desc-sm {
     font-family: "PingFang SC", "Microsoft YaHei", sans-serif !important; 
-    font-size: 16px !important;
+    font-size: 16px !important; 
     line-height: 1.9 !important;
-    color: rgba(255, 255, 255, 0.85) !important;
-    font-weight: 300 !important;
+    color: #ffffff !important; /* 核心：纯实心白！绝对不用任何透明度 */
+    font-weight: 400 !important; /* 恢复正常粗细，太细也会发虚 */
     letter-spacing: 1.5px !important;
-    text-shadow: none !important; /* 绝对不要文字阴影！去脏的终极秘诀 */
+    text-shadow: none !important; /* 去除脏阴影 */
+    opacity: 1 !important; /* 强制完全不透明 */
     margin: 0 !important;
 }
 
