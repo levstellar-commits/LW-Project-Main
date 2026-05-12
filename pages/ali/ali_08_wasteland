@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>废土微缩景观《旧日拾荒》 - 星联文明 | 立维宇宙</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .diorama-showcase { display: flex; flex-direction: column; gap: 40px; margin-top: 40px;}
+    .diorama-item { position: relative; border: 1px solid rgba(255,255,255,0.1); padding: 15px; background: #050505; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);}
+    .diorama-item img { width: 100%; border-radius: 4px; filter: contrast(1.15) saturate(0.8); }
+    .diorama-caption { position: absolute; bottom: 30px; left: 30px; background: rgba(0,0,0,0.85); padding: 15px 25px; border-left: 4px solid var(--accent-gold); color: #fff; font-family: "Noto Serif SC", serif; font-size: 1.1rem;}
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main>
+    <section class="subpage-hero" style="background-image: url('../../assets/images/ali_08.jpg'); filter: sepia(0.3);">
+        <div class="subpage-hero-overlay">
+            <p class="breadcrumb"><a href="../../index.html">首页</a> &gt; 星联文明 &gt; 实体造物</p>
+            <h1 style="color: var(--accent-gold);">微缩景观《旧日拾荒》</h1>
+            <h2>末日不是终结，只是铁锈与青苔的狂欢。</h2>
+        </div>
+    </section>
+    <div class="subpage-content">
+        <section class="content-section text-center">
+            <p style="color: #aaa; max-width: 800px; margin: 0 auto; line-height: 1.8; font-size: 1.1rem;">
+                缔约者 <strong>废土拾荒者</strong> 擅长使用废弃元件构建 1:64 比例的末世微缩场景。他的作品完美契合了立维宇宙中“文明轮回与废墟美学”的命题。
+            </p>
+            <div class="diorama-showcase">
+                <div class="diorama-item">
+                    <img src="../../assets/images/ali_08.jpg" alt="废墟模型">
+                    <div class="diorama-caption">场景 I：沉睡的算力节点</div>
+                </div>
+                <div class="diorama-item">
+                    <img src="../../assets/images/ali_08.jpg" alt="废墟细节" style="aspect-ratio: 21/9; object-fit: cover;">
+                    <div class="diorama-caption">细节特写：长满苔藓的赛博义体</div>
+                </div>
+            </div>
+        </section>
+    </div>
+  </main>
+  <a href="javascript:history.back()" class="mobile-back-fab"><span class="icon">←</span> <span class="text">离开展馆</span></a>
+  <script>fetch('../../header.html').then(r => r.text()).then(h => document.getElementById('header-placeholder').innerHTML = h);</script>
+</body>
+</html>
