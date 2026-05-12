@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>羽菱萱角色印象曲Demo - 观测档案 | 立维宇宙</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .audio-player-mock { background: #0b1116; border: 1px solid rgba(0,229,255,0.3); border-radius: 12px; padding: 30px; text-align: center; margin: 40px auto; max-width: 600px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+    .wave-visual { height: 60px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><path d="M0,10 Q5,20 10,10 T20,10 T30,10 T40,10" stroke="%2300e5ff" fill="transparent" stroke-width="2"/></svg>') repeat-x; background-size: 50px 100%; opacity: 0.7; margin-bottom: 20px; }
+    .play-controls button { background: var(--accent); border: none; width: 60px; height: 60px; border-radius: 50%; font-size: 24px; cursor: pointer; color: #000; box-shadow: 0 0 15px rgba(0,229,255,0.4); }
+    .lyrics { font-style: italic; color: #aaa; line-height: 2; margin-top: 30px; }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main>
+    <section class="subpage-hero" style="background-image: url('../../assets/images/co_08.jpg');">
+        <div class="subpage-hero-overlay">
+            <p class="breadcrumb"><a href="../../index.html">首页</a> &gt; 立维音乐社 &gt; 角色音轨</p>
+            <h1>羽菱萱角色印象曲《风语》</h1>
+            <h2 style="color: var(--accent);">“你能听到，数据流淌的声音吗？”</h2>
+        </div>
+    </section>
+
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="project-intel-card">
+                <div class="intel-item"><div class="label">作曲/编曲</div><div class="value">立维音乐社 (合成器实验组)</div></div>
+                <div class="intel-item"><div class="label">曲风</div><div class="value">Ambient / Synthwave</div></div>
+            </div>
+
+            <div class="audio-player-mock">
+                <img src="../../assets/images/co_08.jpg" alt="封面" style="width:120px; height:120px; border-radius:50%; margin: 0 auto 20px auto; border: 3px solid rgba(255,255,255,0.1); animation: spin 10s linear infinite;">
+                <h3 style="margin:0 0 5px 0;">风语 (Whisper of Data)</h3>
+                <p style="color:#888; font-size:0.8rem; margin:0 0 20px 0;">Demo Version - 03:42</p>
+                <div class="wave-visual"></div>
+                <div class="play-controls">
+                    <button onclick="alert('系统提示：正在缓冲音频数据...')">▶</button>
+                </div>
+            </div>
+
+            <div class="text-center lyrics">
+                <p>在零与一的夹缝中穿行，<br>
+                我不寻找实体，我只拾取回音。<br>
+                风吹过霓虹的废墟，<br>
+                那是始祖的呼吸，还是防火墙的悲鸣？</p>
+            </div>
+        </section>
+    </div>
+  </main>
+  <a href="javascript:history.back()" class="mobile-back-fab"><span class="icon">←</span> <span class="text">停止播放</span></a>
+  <style>@keyframes spin { 100% { transform: rotate(360deg); } }</style>
+  <script>fetch('../../header.html').then(r => r.text()).then(h => document.getElementById('header-placeholder').innerHTML = h);</script>
+</body>
+</html>
