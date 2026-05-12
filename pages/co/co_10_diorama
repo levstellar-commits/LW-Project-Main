@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>微缩模型：三星堆机械祭坛 - 观测档案 | 立维宇宙</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .craft-step { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; }
+    .step-num { font-size: 3rem; font-weight: 900; color: rgba(232, 185, 35, 0.3); line-height: 1; }
+    .step-text h4 { margin: 0 0 5px 0; color: #fff; }
+    .step-text p { margin: 0; color: #888; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main>
+    <section class="subpage-hero" style="background-image: url('../../assets/images/co_10.jpg');">
+        <div class="subpage-hero-overlay">
+            <p class="breadcrumb"><a href="../../index.html">首页</a> &gt; 万象造物主 &gt; 实体显化</p>
+            <h1>微缩模型：三星堆青铜树</h1>
+            <h2>用胶板与齿轮，重铸三千年前的星际天线。</h2>
+        </div>
+    </section>
+
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="text-image-split">
+                <div class="split-image"><img src="../../assets/images/co_10.jpg" alt="青铜树模型成品" style="border: 2px solid var(--accent-gold);"></div>
+                <div class="split-text">
+                    <h3 style="color: var(--accent-gold);">“神话是古代的科幻”</h3>
+                    <p>创作者 <strong>胶佬_Lite</strong>：立维宇宙的世界观启发了我。如果三星堆的青铜神树不是祭祀用品，而是上古先民为了呼叫太空舰队而建造的引力波天线呢？我耗时 3 个月，手工打造了这尊 1:35 的微缩机械祭坛。</p>
+                    <div style="margin-top: 20px;">
+                        <span class="a-tag">纯手工制作</span>
+                        <span class="a-tag">金属涂装</span>
+                        <span class="a-tag">LED光纤发光</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" style="margin-top: 50px;">
+            <h3>制作日志 (Making-of)</h3>
+            <div class="craft-step">
+                <div class="step-num">01</div>
+                <div class="step-text">
+                    <h4>骨架搭建</h4>
+                    <p>使用黄铜管作为主干，确保结构能够支撑后续的树脂零件。树枝部分采用了可弯曲的铝丝，以还原原本文物的扭曲感。</p>
+                </div>
+            </div>
+            <div class="craft-step">
+                <div class="step-num">02</div>
+                <div class="step-text">
+                    <h4>赛博零件植入</h4>
+                    <p>在青铜鸟和果实的位置，我植入了从废旧手表里拆出的齿轮和微型步进电机，将其改造为“雷达接收器”。</p>
+                </div>
+            </div>
+            <div class="craft-step">
+                <div class="step-num">03</div>
+                <div class="step-text">
+                    <h4>光纤穿线与旧化涂装</h4>
+                    <p>在树干内部预埋了 0.5mm 的导光光纤。外表采用珐琅漆进行洗盖，模拟出青铜器出土时的铜绿斑驳感，但在裂缝处透出幽蓝色的科技光芒。</p>
+                </div>
+            </div>
+        </section>
+    </div>
+  </main>
+  <a href="javascript:history.back()" class="mobile-back-fab"><span class="icon">←</span> <span class="text">离开工坊</span></a>
+  <script>fetch('../../header.html').then(r => r.text()).then(h => document.getElementById('header-placeholder').innerHTML = h);</script>
+</body>
+</html>
