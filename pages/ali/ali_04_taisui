@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>概念集《太岁》 - 星联文明 | 立维宇宙</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    body { background-color: #050000; }
+    .san-warning { background: rgba(255, 0, 0, 0.1); border: 1px solid #ff0000; color: #ff0000; padding: 15px; text-align: center; font-weight: 900; letter-spacing: 3px; margin-bottom: 40px; }
+    .art-frame { border: 10px solid #111; padding: 20px; background: #000; box-shadow: 0 20px 40px rgba(255,0,0,0.1); margin-bottom: 40px; text-align: center; }
+    .art-frame img { filter: contrast(1.2) brightness(0.7) sepia(50%) hue-rotate(-50deg); transition: 0.5s; width:100%; max-width:600px;}
+    .art-frame:hover img { filter: contrast(1.2) brightness(1); }
+    .art-title { margin-top: 15px; font-family: "Noto Serif SC", serif; color: #888; font-size: 1rem; letter-spacing: 5px; }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main>
+    <section class="subpage-hero" style="background-image: url('../../assets/images/ali_04.jpg'); filter: grayscale(80%);">
+        <div class="subpage-hero-overlay" style="background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, #050000 100%);">
+            <p class="breadcrumb"><a href="../../index.html">首页</a> &gt; 星联文明 &gt; 概念美术</p>
+            <h1 style="color: #ff0032; font-family: 'Noto Serif SC', serif; text-shadow: 0 0 30px rgba(255,0,0,0.8);">《太岁》</h1>
+            <h2 style="color: #666;">凝视深渊，深渊长出了无数只眼睛。</h2>
+        </div>
+    </section>
+    <div class="subpage-content">
+        <div class="san-warning">[ ⚠️ 警告：当前卷宗包含不可名状的视觉投影，请保持心智稳定 ]</div>
+        <section class="content-section" style="max-width: 800px; margin: 0 auto;">
+            <p style="text-align: center; color: #aaa; margin-bottom: 40px; line-height: 2;">
+                缔约者 <strong>深渊画会</strong>：“在立维宇宙的历史断层中，被隔绝在地球之外的不仅有神明，还有那些从泥土里爬出来的上古憎恶。《太岁》企划，旨在还原东方语境下的终极恐惧。”
+            </p>
+            <div class="art-frame"><img src="../../assets/images/ali_04.jpg" alt="视肉"><div class="art-title">卷一 · 视肉</div></div>
+            <div class="art-frame"><img src="../../assets/images/ali_04.jpg" alt="缸中之神"><div class="art-title">卷二 · 缸中之神</div></div>
+        </section>
+    </div>
+  </main>
+  <a href="javascript:history.back()" class="mobile-back-fab" style="background: #111; border: 1px solid #333;"><span class="icon" style="color:#ff0032;">←</span> <span class="text" style="color:#888;">闭眼离开</span></a>
+  <script>fetch('../../header.html').then(r => r.text()).then(h => document.getElementById('header-placeholder').innerHTML = h);</script>
+</body>
+</html>
