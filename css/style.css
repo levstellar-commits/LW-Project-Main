@@ -2369,7 +2369,55 @@ select.form-control option {
     -webkit-font-smoothing: antialiased !important; /* 开启系统级抗锯齿，字边缘极其锋利干净 */
 
 
+/* =========================================================
+   绝杀补丁 2.0：Logo对齐与史诗级标题重塑
+   ========================================================= */
 
+/* --- 1. 左上角 Logo 英文副标题大气化 & 绝对拉齐 --- */
+.brand-subtitle {
+    font-size: 14.5px !important; /* 字号稍微放大一丢丢 */
+    font-weight: 700 !important; /* 从 900 降到 700，减弱笨重感，提升高级感 */
+    color: #00e5ff !important; 
+    margin-top: 5px !important;
+    
+    /* 核心修复：单行单词无法自动对齐，改用精确的字间距撑满 145px 的容器 */
+    text-align: center !important;
+    letter-spacing: 5.5px !important; /* 拉开字母间距 */
+    margin-right: -5.5px !important; /* 抵消最后一个字母的间距，保证绝对居中和对齐 */
+    line-height: 1 !important;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.4) !important; /* 加一点微弱的霓虹发光 */
+}
+
+/* --- 2. 核心大标题：去“脏黑”，换史诗级宋体，放大字号 --- */
+#executive-summary .section-header h2 {
+    /* 强行更换为史诗感极强的宋体/明朝体 */
+    font-family: 'Noto Serif SC', 'Songti SC', 'STZhongsong', serif !important;
+    
+    /* 尺寸与粗细优化 */
+    font-size: 42px !important; /* 从32px大幅提升，镇住全场 */
+    font-weight: 700 !important; /* 宋体下 700 的骨架最漂亮，不要用 900 */
+    
+    /* 彻底清除发霉发黑的旧样式 (清除内联的黑色阴影和全局渐变) */
+    background: none !important; 
+    -webkit-background-clip: border-box !important;
+    -webkit-text-fill-color: #ffffff !important; 
+    color: #ffffff !important; /* 主体使用极致纯净的白色 */
+    
+    /* 重塑高级发光感 (白光内核 + 微弱的科幻青色外晕) */
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 
+                 0 0 40px rgba(0, 229, 255, 0.15) !important;
+                 
+    letter-spacing: 4px !important; /* 稍微收敛字间距，让长句紧凑有力 */
+    line-height: 1.5 !important;
+}
+
+/* 针对大标题中的“史前一万年”进行特殊高亮 */
+#executive-summary .section-header h2 span {
+    color: #e8b923 !important; /* 维持传说金 */
+    font-weight: 900 !important; /* 强调字眼可以加粗 */
+    letter-spacing: 6px !important;
+    text-shadow: 0 0 25px rgba(232, 185, 35, 0.7) !important; /* 加上金色辉光 */
+}
 
 
 
