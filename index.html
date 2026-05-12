@@ -1639,36 +1639,36 @@ function closeLoginModal() {
 
 <script>
 /* =========================================================
-   立维宇宙：共创与星联板块 动态随机盲盒加载系统 (安全防打脸版)
+   立维宇宙：共创与星联板块 动态随机盲盒加载系统 (1对1完美闭环版)
    ========================================================= */
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. 数据池：降临者共创 (同人作品，采用“企划/手稿/同人”命名，极客且无风险)
+    // 📁 对应 GitHub 文件夹：pages/co/ (全 10 个独立文件)
     const coCreationData = [
-        { title: "《归墟》场景概念白模", author: "建模师_K", type: "场景设定", img: "assets/images/co_01.jpg" },
-        { title: "墨龙机甲废稿回收计划", author: "序列_007", type: "概念手稿", img: "assets/images/co_02.jpg" },
-        { title: "路霄雲同人短篇《雾中人》", author: "碳基打字机", type: "同人短文", img: "assets/images/co_03.jpg" },
-        { title: "炎帝阵营粉丝自制UI原型", author: "UI_Master", type: "视觉交互", img: "assets/images/co_04.jpg" },
-        { title: "补天之城：霓虹招牌设计集", author: "赛博建工局", type: "平面视觉", img: "assets/images/co_05.jpg" },
-        { title: "深潜者外骨骼3D打印图纸", author: "硬核军工控", type: "实体工程", img: "assets/images/co_06.jpg" },
-        { title: "赛博版《山海经》异兽草图", author: "画师_阿青", type: "衍生插画", img: "assets/images/co_07.jpg" },
-        { title: "羽菱萱角色印象曲Demo", author: "立维音乐社", type: "同人音乐", img: "assets/images/co_08.jpg" },
-        { title: "宇宙编年史·民间纪事扩写", author: "历史的尘埃", type: "世界观设定", img: "assets/images/co_09.jpg" },
-        { title: "微缩模型：三星堆青铜树", author: "胶佬_Lite", type: "模型涂装", img: "assets/images/co_10.jpg" }
+        { title: "深空墨龙机甲", author: "建模师_K", type: "场景设定", img: "assets/images/co_01.jpg", link: "pages/co/co_01_molong.html" }, // 编号01 (你可以把第一版给你的 molong 改成这个名字)
+        { title: "墨龙机甲废稿回收计划", author: "序列_007", type: "概念手稿", img: "assets/images/co_02.jpg", link: "pages/co/co_02_molong_sketch.html" }, // 编号02 (刚刚补充的废稿页)
+        { title: "路霄雲同人短篇《雾中人》", author: "碳基打字机", type: "同人短文", img: "assets/images/co_03.jpg", link: "pages/co/co_03_wuzhongren.html" }, // 编号03
+        { title: "炎帝阵营粉丝自制UI原型", author: "UI_Master", type: "视觉交互", img: "assets/images/co_04.jpg", link: "pages/co/co_04_yandi_ui.html" }, // 编号04 (刚刚补充的炎帝UI页)
+        { title: "补天之城：霓虹招牌设计集", author: "赛博建工局", type: "平面视觉", img: "assets/images/co_05.jpg", link: "pages/co/co_05_signage.html" }, // 编号05
+        { title: "深潜者外骨骼3D打印图纸", author: "硬核军工控", type: "实体工程", img: "assets/images/co_06.jpg", link: "pages/co/co_06_gear.html" }, // 编号06
+        { title: "赛博版《山海经》异兽草图", author: "画师_阿青", type: "衍生插画", img: "assets/images/co_07.jpg", link: "pages/co/co_07_shanhai.html" }, // 编号07
+        { title: "羽菱萱角色印象曲Demo", author: "立维音乐社", type: "同人音乐", img: "assets/images/co_08.jpg", link: "pages/co/co_08_music.html" }, // 编号08
+        { title: "宇宙编年史·民间纪事扩写", author: "历史的尘埃", type: "世界观设定", img: "assets/images/co_09.jpg", link: "pages/co/co_09_lore.html" }, // 编号09
+        { title: "微缩模型：三星堆青铜树", author: "胶佬_Lite", type: "模型涂装", img: "assets/images/co_10.jpg", link: "pages/co/co_10_diorama.html" } // 编号10
     ];
 
-    // 2. 数据池：星联缔约文明 (独立项目，采用“独立游戏/微电影/桌游”命名)
+    // 📁 对应 GitHub 文件夹：pages/ali/ (全 10 个独立文件)
     const allianceData = [
-        { title: "《霓虹蜉蝣》独立短片企划", author: "王大伟", type: "微电影企划", img: "assets/images/ali_01.jpg" },
-        { title: "解谜Demo《机关榫卯》", author: "独立像素室", type: "独立游戏", img: "assets/images/ali_02.jpg" },
-        { title: "《折叠长安》视觉小说草案", author: "盛唐幻梦", type: "视觉小说", img: "assets/images/ali_03.jpg" },
-        { title: "中式克苏鲁概念集《太岁》", author: "深渊画会", type: "概念集", img: "assets/images/ali_04.jpg" },
-        { title: "桌游《诸子百家：乱世》", author: "纸上谈兵局", type: "桌面游戏", img: "assets/images/ali_05.jpg" },
-        { title: "虚拟偶像“瑶光”Live2D", author: "V-Project", type: "虚拟主播", img: "assets/images/ali_06.jpg" },
-        { title: "《戴森球建筑指南》大纲", author: "星际包工头", type: "科幻小说", img: "assets/images/ali_07.jpg" },
-        { title: "废土微缩景观《旧日拾荒》", author: "废土拾荒者", type: "实体造物", img: "assets/images/ali_08.jpg" },
-        { title: "实验电子乐专辑《星轨》", author: "合成器玩家", type: "独立音乐", img: "assets/images/ali_09.jpg" },
-        { title: "独立漫画《星环之下》", author: "漫研社", type: "原创漫画", img: "assets/images/ali_10.jpg" }
+        { title: "《霓虹蜉蝣》独立短片企划", author: "王大伟", type: "微电影企划", img: "assets/images/ali_01.jpg", link: "pages/ali/ali_01_movie.html" }, 
+        { title: "解谜Demo《机关榫卯》", author: "独立像素室", type: "独立游戏", img: "assets/images/ali_02.jpg", link: "pages/ali/ali_02_game.html" }, 
+        { title: "《折叠长安》视觉小说草案", author: "盛唐幻梦", type: "视觉小说", img: "assets/images/ali_03.jpg", link: "pages/ali/ali_03_changan.html" }, 
+        { title: "中式克苏鲁概念集《太岁》", author: "深渊画会", type: "概念集", img: "assets/images/ali_04.jpg", link: "pages/ali/ali_04_taisui.html" }, 
+        { title: "桌游《诸子百家：乱世》", author: "纸上谈兵局", type: "桌面游戏", img: "assets/images/ali_05.jpg", link: "pages/ali/ali_05_boardgame.html" }, 
+        { title: "虚拟偶像“瑶光”Live2D", author: "V-Project", type: "虚拟主播", img: "assets/images/ali_06.jpg", link: "pages/ali/ali_06_vtuber.html" }, 
+        { title: "《戴森球建筑指南》大纲", author: "星际包工头", type: "科幻小说", img: "assets/images/ali_07.jpg", link: "pages/ali/ali_07_dyson.html" }, 
+        { title: "废土微缩景观《旧日拾荒》", author: "废土拾荒者", type: "实体造物", img: "assets/images/ali_08.jpg", link: "pages/ali/ali_08_wasteland.html" }, 
+        { title: "实验电子乐专辑《星轨》", author: "合成器玩家", type: "独立音乐", img: "assets/images/ali_09.jpg", link: "pages/ali/ali_09_music.html" }, 
+        { title: "独立漫画《星环之下》", author: "漫研社", type: "原创漫画", img: "assets/images/ali_10.jpg", link: "pages/ali/ali_10_manga.html" } 
     ];
 
     function shuffleArray(array) {
@@ -1683,13 +1683,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return array;
     }
 
-    // 绝杀：在这里加入 onclick 拦截！点击不会跳转 404，而是弹出高逼格提示！
     function createCardHTML(item, cardClass) {
         const badgeHTML = `<div class="card-badge">${item.type}</div>`;
         return `
             <div class="card ip-card ${cardClass}" style="display: none;">
                 ${badgeHTML}
-                <a href="#" onclick="alert('终端提示：该创作者的【${item.title}】档案正在星门网络中解密，将于下个纪元（版本）开放阅览。'); return false;">
+                <a href="${item.link}">
                     <img class="ip-card-img" src="${item.img}" alt="${item.title}" loading="lazy" onerror="this.src='assets/images/placeholder1.jpg'">
                 </a>
                 <div class="ip-card-info">
@@ -1708,14 +1707,9 @@ document.addEventListener('DOMContentLoaded', () => {
             this.cardClass = cardClass;
             this.currentIndex = 0;
             this.batchSize = 5;
-            
             if(!this.container) return;
-            
             this.renderNextBatch();
-            
-            if(this.btn) {
-                this.btn.addEventListener('click', () => this.renderNextBatch());
-            }
+            if(this.btn) this.btn.addEventListener('click', () => this.renderNextBatch());
         }
 
         renderNextBatch() {
@@ -1723,7 +1717,6 @@ document.addEventListener('DOMContentLoaded', () => {
             for(let i = this.currentIndex; i < endIndex; i++) {
                 const htmlStr = createCardHTML(this.data[i], this.cardClass);
                 this.container.insertAdjacentHTML('beforeend', htmlStr);
-                
                 const newCard = this.container.lastElementChild;
                 setTimeout(() => {
                     newCard.style.display = 'flex';
@@ -1731,24 +1724,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, (i - this.currentIndex) * 100);
             }
             this.currentIndex = endIndex;
-            if (this.currentIndex >= this.data.length && this.btn) {
-                this.btn.style.display = 'none';
-            }
+            if (this.currentIndex >= this.data.length && this.btn) this.btn.style.display = 'none';
         }
     }
 
-    const style = document.createElement('style');
-    style.innerHTML = `
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    `;
-    document.head.appendChild(style);
+    if (!document.getElementById('fade-in-style')) {
+        const style = document.createElement('style');
+        style.id = 'fade-in-style';
+        style.innerHTML = `@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }`;
+        document.head.appendChild(style);
+    }
 
     new SectionRenderer(coCreationData, 'co-creation-grid', 'btn-more-co', 'co-card');
     new SectionRenderer(allianceData, 'alliance-grid', 'btn-more-ali', 'ali-card');
 });
+
+
 </script>
 
 
