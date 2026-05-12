@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>深潜者外骨骼3D打印图纸 - 观测档案 | 立维宇宙</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .blueprint-box { background: rgba(0, 229, 255, 0.05); border: 1px dashed var(--accent); padding: 20px; font-family: monospace; color: var(--accent); }
+    .material-list { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; color: #ccc; font-size: 0.9rem; }
+    .material-list li { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main>
+    <section class="subpage-hero" style="background-image: url('../../assets/images/co_06.jpg');">
+        <div class="subpage-hero-overlay" style="background: linear-gradient(180deg, rgba(0,20,40,0.4) 0%, #02060a 100%);">
+            <p class="breadcrumb"><a href="../../index.html">首页</a> &gt; 归墟重工 &gt; 实体工程</p>
+            <h1>深潜者外骨骼3D打印图纸</h1>
+            <h2>开源协议：允许个人非商业级实体验证</h2>
+        </div>
+    </section>
+
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="text-image-split">
+                <div class="split-text">
+                    <h3 style="color: var(--accent);">工程日志 V1.2</h3>
+                    <p>“归墟”的水压不仅是物理层面的，更是精神维度的。为了让海世鑫的深海行者们能够抵御深渊低语，我逆向工程了原著小说中的抗压护甲，并将其拆解为 42 个可 3D 打印的零件模块。</p>
+                    <div class="blueprint-box">
+                        <strong>[ 打印参数要求 ]</strong>
+                        <ul class="material-list">
+                            <li>推荐耗材：碳纤维尼龙 (CF-PA)</li>
+                            <li>填充率：≥ 60%</li>
+                            <li>层高精度：0.12mm</li>
+                            <li>支撑类型：树状支撑</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="split-image"><img src="../../assets/images/co_06.jpg" alt="3D图纸"></div>
+            </div>
+            
+            <div style="text-align:center; margin-top:40px;">
+                <button class="btn btn-outline-cyan" onclick="alert('需要矩阵铸造师 (Lv.3) 敕令即可下载 .STL 模型包')">🔽 下载 .STL 打印源文件</button>
+            </div>
+        </section>
+    </div>
+  </main>
+  <a href="javascript:history.back()" class="mobile-back-fab"><span class="icon">←</span> <span class="text">断开直连</span></a>
+  <script>fetch('../../header.html').then(r => r.text()).then(h => document.getElementById('header-placeholder').innerHTML = h);</script>
+</body>
+</html>
