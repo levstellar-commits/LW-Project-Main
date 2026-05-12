@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>《戴森球建筑指南》大纲 - 星联文明 | 立维宇宙</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .wiki-panel { background: rgba(10,12,15,0.9); border: 1px solid #333; padding: 50px; font-family: "Noto Sans SC", sans-serif; line-height: 2; color: #ccc; border-top: 4px solid var(--accent); box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
+    .wiki-title { color: #fff; font-size: 1.8rem; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px dashed rgba(0,229,255,0.3); }
+    .wiki-toc { background: rgba(0,229,255,0.05); padding: 20px; border: 1px solid rgba(0,229,255,0.2); margin-bottom: 30px; float: right; width: 300px; margin-left: 40px; border-radius:4px;}
+    .wiki-toc ul { list-style: none; padding-left: 0; margin: 0; }
+    .wiki-toc li { margin-bottom: 10px; }
+    .wiki-toc a { color: var(--accent); text-decoration: none; display: flex; align-items:center;}
+    .wiki-toc a::before { content: '■'; margin-right: 10px; font-size:10px;}
+    .wiki-toc a:hover { color: #fff; }
+    @media (max-width: 768px) { .wiki-toc { float: none; width: 100%; margin-left: 0; } }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main>
+    <section class="subpage-hero" style="background-image: url('../../assets/images/ali_07.jpg');">
+        <div class="subpage-hero-overlay">
+            <p class="breadcrumb"><a href="../../index.html">首页</a> &gt; 星联文明 &gt; 硬科幻文献</p>
+            <h1 style="letter-spacing: 4px;">《戴森球建筑指南》</h1>
+            <h2 style="color: var(--accent);">写给碳基生物的恒星级工程纪要。</h2>
+        </div>
+    </section>
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="wiki-panel mt-medium">
+                <div class="wiki-toc">
+                    <h4 style="color: #fff; margin-top: 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom:10px;">工程目录 (Index)</h4>
+                    <ul>
+                        <li><a href="#">卷一：引力坍缩与地基</a></li>
+                        <li><a href="#">卷二：水星拆解方案</a></li>
+                        <li><a href="#">卷三：太阳帆阵列受力分析</a></li>
+                        <li><a href="#">卷四：给银河系的遗书</a></li>
+                    </ul>
+                </div>
+                <h3 class="wiki-title">项目概述</h3>
+                <p>这不是一部小说，这是一份工程外包合同。故事讲述了人类在面临恒星枯竭时，将整个水星拆解，用于建造包裹太阳的戴森球（Dyson Sphere）的宏大历程。</p>
+                <p>本作硬核到什么程度？作者在附录中给出了太阳风压对百万公里级太阳帆的扭矩计算公式。在立维宇宙的设定中，这被视为某个平行宇宙文明在终结前发出的最后一份“施工蓝图”。</p>
+                <h3 class="wiki-title" style="margin-top: 40px; clear: both;">摘要节选</h3>
+                <p style="font-style: italic; color: #888; border-left: 3px solid var(--accent); padding-left: 20px; background: rgba(255,255,255,0.02); padding: 20px;">
+                    “第一批铺设的太阳帆，面积相当于三个地球。当它们在水星轨道展开时，地球上的我们连续 14 天没有看到完整的日出。那不是日食，那是人类亲手为神明拉上的窗帘。”
+                </p>
+            </div>
+        </section>
+    </div>
+  </main>
+  <a href="javascript:history.back()" class="mobile-back-fab"><span class="icon">←</span> <span class="text">合上指南</span></a>
+  <script>fetch('../../header.html').then(r => r.text()).then(h => document.getElementById('header-placeholder').innerHTML = h);</script>
+</body>
+</html>
