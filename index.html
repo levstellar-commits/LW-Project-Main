@@ -52,14 +52,11 @@
         <a href="#press" class="nav-item-dual"><strong>纪元·星门日志</strong><span>项目动态/新闻</span></a>
         <a href="#contact" class="nav-item-dual"><strong>缔约·宇宙共建</strong><span>B2B合作/投资</span></a>
     </nav>
+
+
 <div class="header-actions">
-<a href="#" class="nav-item-dual" onclick="event.preventDefault(); openLoginModal();"><strong>接入终端</strong><span>(获取敕令)</span></a>
-
-
-        </div>
-    </div> </header>
-
-
+        <a href="#" class="nav-item-dual" onclick="event.preventDefault(); openLoginModal();"><strong>接入终端</strong><span>(获取敕令)</span></a>
+    </div>
 </header>
 
 
@@ -404,18 +401,13 @@
         <h2 class="section-title">【万象·降临者共创】</h2>
         <p class="section-desc">被立维正史收录的同人造物（概念设计 / 短文 / 衍生艺术）</p>
     </div>
-    <div class="lv-curated-grid">
-        <div class="lv-curated-card">
-            <img src="assets/images/placeholder1.jpg" alt="同人造物" class="curated-img">
-            <div class="curated-info">
-                <h4>深空墨龙机甲概念图</h4>
-                <p>创作者：[星海译经人] 序列_007</p>
-            </div>
-             <a href="#" class="curated-link" onclick="event.preventDefault(); openLoginModal();">前往作者领地观测 ↗</a>
+    
+    <div id="co-creation-grid" class="grid-5 ip-grid">
         </div>
-    </div>
-    <div class="center-action" style="text-align: center; margin-top: 20px;">
-<button class="lv-btn-outline" onclick="openLoginModal()">+ 提交你的观测档案 (申请正史收录)</button>
+    
+    <div class="center-action" style="text-align: center; margin-top: 40px;">
+        <button id="btn-more-co" class="lv-btn-outline" style="min-width: 200px;">+ 展开更多降临者档案</button>
+        <button class="btn btn-primary" style="margin-left: 15px;" onclick="openLoginModal()">提交我的观测档案 (申请正史收录)</button>
     </div>
 </section>
 
@@ -427,17 +419,15 @@
     <p style="text-align:center; color:var(--text-muted); font-size:14px; margin-bottom:30px;">
         立维宇宙绝不吞噬多元色彩。持有【降临敕令】的创作者，可在此留下你的独立实验项目或原创作品坐标。
     </p>
-    <div class="lv-alliance-list">
-        <div class="alliance-item">
-            <span class="a-tag">原创小说</span>
-            <span class="a-name">《赛博聊斋志异》</span>
-            <span class="a-author">缔约者：王大伟</span>
-            <a href="pages/submit-alliance.html" class="a-btn" onclick="event.preventDefault(); openLoginModal();">开启星门 ↗</a>
+    
+    <div id="alliance-grid" class="grid-5 ip-grid">
         </div>
+    
+    <div class="center-action" style="text-align: center; margin-top: 40px;">
+        <button id="btn-more-ali" class="lv-btn-outline" style="min-width: 200px;">+ 链接更多星联文明</button>
+        <a href="pages/submit-alliance.html" class="btn ghost" style="margin-left: 15px;" onclick="event.preventDefault(); openLoginModal();">登记我的宇宙坐标 ↗</a>
     </div>
 </section>
-
-
 
 
 
@@ -1647,7 +1637,119 @@ function closeLoginModal() {
 }
 </script>
 
+<script>
+/* =========================================================
+   立维宇宙：共创与星联板块 动态随机盲盒加载系统 (安全防打脸版)
+   ========================================================= */
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. 数据池：降临者共创 (同人作品，采用“企划/手稿/同人”命名，极客且无风险)
+    const coCreationData = [
+        { title: "《归墟》场景概念白模", author: "建模师_K", type: "场景设定", img: "assets/images/co_01.jpg" },
+        { title: "墨龙机甲废稿回收计划", author: "序列_007", type: "概念手稿", img: "assets/images/co_02.jpg" },
+        { title: "路霄雲同人短篇《雾中人》", author: "碳基打字机", type: "同人短文", img: "assets/images/co_03.jpg" },
+        { title: "炎帝阵营粉丝自制UI原型", author: "UI_Master", type: "视觉交互", img: "assets/images/co_04.jpg" },
+        { title: "补天之城：霓虹招牌设计集", author: "赛博建工局", type: "平面视觉", img: "assets/images/co_05.jpg" },
+        { title: "深潜者外骨骼3D打印图纸", author: "硬核军工控", type: "实体工程", img: "assets/images/co_06.jpg" },
+        { title: "赛博版《山海经》异兽草图", author: "画师_阿青", type: "衍生插画", img: "assets/images/co_07.jpg" },
+        { title: "羽菱萱角色印象曲Demo", author: "立维音乐社", type: "同人音乐", img: "assets/images/co_08.jpg" },
+        { title: "宇宙编年史·民间纪事扩写", author: "历史的尘埃", type: "世界观设定", img: "assets/images/co_09.jpg" },
+        { title: "微缩模型：三星堆青铜树", author: "胶佬_Lite", type: "模型涂装", img: "assets/images/co_10.jpg" }
+    ];
 
+    // 2. 数据池：星联缔约文明 (独立项目，采用“独立游戏/微电影/桌游”命名)
+    const allianceData = [
+        { title: "《霓虹蜉蝣》独立短片企划", author: "王大伟", type: "微电影企划", img: "assets/images/ali_01.jpg" },
+        { title: "解谜Demo《机关榫卯》", author: "独立像素室", type: "独立游戏", img: "assets/images/ali_02.jpg" },
+        { title: "《折叠长安》视觉小说草案", author: "盛唐幻梦", type: "视觉小说", img: "assets/images/ali_03.jpg" },
+        { title: "中式克苏鲁概念集《太岁》", author: "深渊画会", type: "概念集", img: "assets/images/ali_04.jpg" },
+        { title: "桌游《诸子百家：乱世》", author: "纸上谈兵局", type: "桌面游戏", img: "assets/images/ali_05.jpg" },
+        { title: "虚拟偶像“瑶光”Live2D", author: "V-Project", type: "虚拟主播", img: "assets/images/ali_06.jpg" },
+        { title: "《戴森球建筑指南》大纲", author: "星际包工头", type: "科幻小说", img: "assets/images/ali_07.jpg" },
+        { title: "废土微缩景观《旧日拾荒》", author: "废土拾荒者", type: "实体造物", img: "assets/images/ali_08.jpg" },
+        { title: "实验电子乐专辑《星轨》", author: "合成器玩家", type: "独立音乐", img: "assets/images/ali_09.jpg" },
+        { title: "独立漫画《星环之下》", author: "漫研社", type: "原创漫画", img: "assets/images/ali_10.jpg" }
+    ];
+
+    function shuffleArray(array) {
+        let curId = array.length;
+        while (0 !== curId) {
+            let randId = Math.floor(Math.random() * curId);
+            curId -= 1;
+            let tmp = array[curId];
+            array[curId] = array[randId];
+            array[randId] = tmp;
+        }
+        return array;
+    }
+
+    // 绝杀：在这里加入 onclick 拦截！点击不会跳转 404，而是弹出高逼格提示！
+    function createCardHTML(item, cardClass) {
+        const badgeHTML = `<div class="card-badge">${item.type}</div>`;
+        return `
+            <div class="card ip-card ${cardClass}" style="display: none;">
+                ${badgeHTML}
+                <a href="#" onclick="alert('终端提示：该创作者的【${item.title}】档案正在星门网络中解密，将于下个纪元（版本）开放阅览。'); return false;">
+                    <img class="ip-card-img" src="${item.img}" alt="${item.title}" loading="lazy" onerror="this.src='assets/images/placeholder1.jpg'">
+                </a>
+                <div class="ip-card-info">
+                    <strong>${item.title}</strong>
+                    <div class="author">缔约者：${item.author}</div>
+                </div>
+            </div>
+        `;
+    }
+
+    class SectionRenderer {
+        constructor(dataArray, containerId, btnId, cardClass) {
+            this.data = shuffleArray([...dataArray]);
+            this.container = document.getElementById(containerId);
+            this.btn = document.getElementById(btnId);
+            this.cardClass = cardClass;
+            this.currentIndex = 0;
+            this.batchSize = 5;
+            
+            if(!this.container) return;
+            
+            this.renderNextBatch();
+            
+            if(this.btn) {
+                this.btn.addEventListener('click', () => this.renderNextBatch());
+            }
+        }
+
+        renderNextBatch() {
+            let endIndex = Math.min(this.currentIndex + this.batchSize, this.data.length);
+            for(let i = this.currentIndex; i < endIndex; i++) {
+                const htmlStr = createCardHTML(this.data[i], this.cardClass);
+                this.container.insertAdjacentHTML('beforeend', htmlStr);
+                
+                const newCard = this.container.lastElementChild;
+                setTimeout(() => {
+                    newCard.style.display = 'flex';
+                    newCard.style.animation = 'fadeInUp 0.5s ease forwards';
+                }, (i - this.currentIndex) * 100);
+            }
+            this.currentIndex = endIndex;
+            if (this.currentIndex >= this.data.length && this.btn) {
+                this.btn.style.display = 'none';
+            }
+        }
+    }
+
+    const style = document.createElement('style');
+    style.innerHTML = `
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    `;
+    document.head.appendChild(style);
+
+    new SectionRenderer(coCreationData, 'co-creation-grid', 'btn-more-co', 'co-card');
+    new SectionRenderer(allianceData, 'alliance-grid', 'btn-more-ali', 'ali-card');
+});
+</script>
 
 
 </body>
