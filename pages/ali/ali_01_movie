@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>《霓虹蜉蝣》独立短片企划 - 星联文明 | 立维宇宙</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .cinema-player { background: #000; aspect-ratio: 16/9; width: 100%; border-radius: 12px; border: 1px solid rgba(0, 229, 255, 0.3); position: relative; display: flex; justify-content: center; align-items: center; margin-bottom: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.9); overflow: hidden; }
+    .cinema-player img { position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0.4; filter: blur(4px); transition: 0.5s; }
+    .cinema-player:hover img { opacity: 0.6; filter: blur(2px); }
+    .play-btn { position: relative; z-index: 10; background: rgba(0, 229, 255, 0.9); width: 80px; height: 80px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; color: #000; cursor: pointer; transition: 0.3s; box-shadow: 0 0 40px rgba(0, 229, 255, 0.8); }
+    .play-btn:hover { transform: scale(1.15); background: #fff; box-shadow: 0 0 60px #00e5ff; }
+    .director-note { border-left: 4px solid var(--accent); padding-left: 20px; color: #ccc; font-size: 1.05rem; line-height: 1.8; background: rgba(0,229,255,0.05); padding: 15px; border-radius: 0 8px 8px 0;}
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main>
+    <section class="subpage-hero" style="background-image: url('../../assets/images/ali_01.jpg');">
+        <div class="subpage-hero-overlay">
+            <p class="breadcrumb"><a href="../../index.html">首页</a> &gt; <a href="javascript:history.back()">星联文明</a> &gt; 微电影</p>
+            <h1 style="letter-spacing: 8px; text-shadow: 0 0 20px #00e5ff;">《霓虹蜉蝣》</h1>
+            <h2 style="color: var(--accent);">赛博朋克与庄周梦蝶的影像实验</h2>
+        </div>
+    </section>
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="cinema-player">
+                <img src="../../assets/images/ali_01.jpg" alt="视频背景">
+                <div class="play-btn" onclick="alert('终端提示：先导预告片正在星门网络中渲染，下个纪元开放。')">▶</div>
+            </div>
+            <div class="text-image-split">
+                <div class="split-text">
+                    <h3 style="color: #fff;">影片档案</h3>
+                    <p><strong>导演/制片：</strong> 王大伟<br><strong>片长：</strong> 15分钟 (独立短片)<br><strong>宇宙接入点：</strong> 补天之城 2074 衍生支线</p>
+                    <div class="director-note mt-medium">“在 2074 年的上海，如果你的义体神经元被植入了一段庄子的记忆代码，你还能分清霓虹灯下的废墟和梦中的蝴蝶吗？”</div>
+                </div>
+                <div class="split-image"><img src="../../assets/images/ali_01.jpg" alt="海报" style="border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);"></div>
+            </div>
+        </section>
+    </div>
+  </main>
+  <a href="javascript:history.back()" class="mobile-back-fab"><span class="icon">←</span> <span class="text">退出影院</span></a>
+  <script>fetch('../../header.html').then(r => r.text()).then(h => document.getElementById('header-placeholder').innerHTML = h);</script>
+</body>
+</html>
