@@ -2370,53 +2370,58 @@ select.form-control option {
 
 
 /* =========================================================
-   绝杀补丁 2.0：Logo对齐与史诗级标题重塑
+   视觉焦点升级补丁 (针对 Logo 与核心 Slogan)
    ========================================================= */
 
-/* --- 1. 左上角 Logo 英文副标题大气化 & 绝对拉齐 --- */
-.brand-subtitle {
-    font-size: 14.5px !important; /* 字号稍微放大一丢丢 */
-    font-weight: 700 !important; /* 从 900 降到 700，减弱笨重感，提升高级感 */
-    color: #00e5ff !important; 
-    margin-top: 5px !important;
-    
-    /* 核心修复：单行单词无法自动对齐，改用精确的字间距撑满 145px 的容器 */
+/* --- 1. 左上角 Logo 英文大气对齐补丁 --- */
+.brand-text {
+    width: auto !important; /* 取消写死的宽度，让内容自然撑开 */
+    align-items: center !important; 
+}
+.brand-title {
+    letter-spacing: 4px !important; /* 给中文增加一点呼吸感 */
+    margin-right: -4px !important; /* 抵消最后一个字的间距偏移 */
     text-align: center !important;
-    letter-spacing: 5.5px !important; /* 拉开字母间距 */
-    margin-right: -5.5px !important; /* 抵消最后一个字母的间距，保证绝对居中和对齐 */
-    line-height: 1 !important;
-    text-shadow: 0 0 10px rgba(0, 229, 255, 0.4) !important; /* 加一点微弱的霓虹发光 */
+    text-align-last: center !important;
+}
+.brand-subtitle {
+    font-size: 14px !important; /* 字号微调大一丢丢，但不突兀 */
+    letter-spacing: 11.5px !important; /* 核心：用超大字间距强行拉宽，与中文等宽，极具大片高级感 */
+    margin-right: -11.5px !important; /* 必须加这一句！抵消末尾字符的间距，确保绝对居中 */
+    font-weight: 800 !important;
+    text-align: center !important;
+    text-align-last: center !important;
+    color: #00e5ff !important; /* 保持科幻青 */
+    opacity: 0.9 !important;
 }
 
-/* --- 2. 核心大标题：去“脏黑”，换史诗级宋体，放大字号 --- */
+/* --- 2. 核心 Slogan 修复发黑、换字体、视觉放大 --- */
 #executive-summary .section-header h2 {
-    /* 强行更换为史诗感极强的宋体/明朝体 */
-    font-family: 'Noto Serif SC', 'Songti SC', 'STZhongsong', serif !important;
+    /* 换用极具史诗感的大明体/宋体，最契合神话科幻题材 */
+    font-family: 'Noto Serif SC', 'Songti SC', 'STZhongsong', serif !important; 
+    font-size: 40px !important; /* 字号显著放大 (原为32px) */
+    font-weight: 900 !important;
     
-    /* 尺寸与粗细优化 */
-    font-size: 42px !important; /* 从32px大幅提升，镇住全场 */
-    font-weight: 700 !important; /* 宋体下 700 的骨架最漂亮，不要用 900 */
-    
-    /* 彻底清除发霉发黑的旧样式 (清除内联的黑色阴影和全局渐变) */
+    /* 核心修复：抹除导致发黑的全局渐变遮罩属性 */
     background: none !important; 
-    -webkit-background-clip: border-box !important;
-    -webkit-text-fill-color: #ffffff !important; 
-    color: #ffffff !important; /* 主体使用极致纯净的白色 */
+    -webkit-text-fill-color: #ffffff !important; /* 强制纯白实体字 */
+    color: #ffffff !important; 
     
-    /* 重塑高级发光感 (白光内核 + 微弱的科幻青色外晕) */
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 
-                 0 0 40px rgba(0, 229, 255, 0.15) !important;
-                 
-    letter-spacing: 4px !important; /* 稍微收敛字间距，让长句紧凑有力 */
-    line-height: 1.5 !important;
+    line-height: 1.6 !important;
+    letter-spacing: 4px !important;
+    /* 推荐颜色搭配：纯白主字 + 科幻青色环境光晕，既干净又醒目 */
+    text-shadow: 0 0 30px rgba(0, 229, 255, 0.4), 0 4px 10px rgba(0, 0, 0, 0.8) !important; 
 }
 
-/* 针对大标题中的“史前一万年”进行特殊高亮 */
+/* --- 3. 强化“史前一万年”关键字的冲击力 --- */
 #executive-summary .section-header h2 span {
-    color: #e8b923 !important; /* 维持传说金 */
-    font-weight: 900 !important; /* 强调字眼可以加粗 */
-    letter-spacing: 6px !important;
-    text-shadow: 0 0 25px rgba(232, 185, 35, 0.7) !important; /* 加上金色辉光 */
+    font-family: 'Noto Serif SC', 'Songti SC', 'STZhongsong', serif !important; 
+    font-size: 48px !important; /* 关键词再放大一号，形成视觉重心 */
+    -webkit-text-fill-color: var(--accent-gold) !important; /* 强制金色实体 */
+    color: var(--accent-gold) !important;
+    padding: 0 8px !important;
+    /* 传说金专属发光效果，底侧加深阴影防遮挡 */
+    text-shadow: 0 0 25px rgba(232, 185, 35, 0.6), 0 4px 10px rgba(0, 0, 0, 0.8) !important; 
 }
 
 
