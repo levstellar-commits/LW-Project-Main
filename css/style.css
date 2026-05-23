@@ -680,8 +680,169 @@ select.form-control option { background-color: #0b1116; color: #ffffff; padding:
 }
 
 
-.lv-modal-overlay { 
-    display: none !important; 
+/* 让登录框平时隐形，不占地方；只有被点击时才会浮现出来 */
+.lv-modal-overlay {
+    position: fixed !important; 
+    top: 0 !important; 
+    left: 0 !important; 
+    width: 100% !important; 
+    height: 100% !important;
+    background: rgba(2, 6, 10, 0.85) !important; /* 背后网页变暗 */
+    backdrop-filter: blur(10px) !important;      /* 背后网页变模糊 */
+    display: none;                               /* 默认彻底隐藏 */
+    justify-content: center !important; 
+    align-items: center !important; 
+    z-index: 99999 !important;                   /* 盖在网页最上层 */
+    opacity: 0; 
+    transition: opacity 0.3s ease !important;
+}
+
+/* 当点击“接入终端”或“收藏”时，系统会给它加上 .active，它就会单独跳出来 */
+.lv-modal-overlay.active { 
+    display: flex !important; 
+    opacity: 1 !important; 
 }
 
 
+/* ==========================================================================
+   星门准入协议：完美颜色格式还原补丁（对齐 image_db0067.png）
+   ========================================================================== */
+
+/* 1. 全局外部半透明遮罩层背景 */
+.lv-modal-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(2, 6, 10, 0.85) !important; /* 深度黑夜变暗 */
+    backdrop-filter: blur(10px) !important;
+    display: none;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 99999 !important;
+    opacity: 0;
+    transition: opacity 0.3s ease !important;
+}
+
+.lv-modal-overlay.active {
+    display: flex !important;
+    opacity: 1 !important;
+}
+
+/* 2. 弹窗大外框：严格还原暗黑半透明背景、精细青色边框线与发光 */
+.lv-modal-overlay .glass-panel {
+    background: #04080f !important; /* 强制极深暗黑底色，杜绝任何穿帮白 */
+    border: 1px solid #00e5ff !important; /* 纯正科幻青外线框 */
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.25) !important; /* 青色能流环境外发光 */
+    width: 440px !important;
+    padding: 40px 30px !important;
+    border-radius: 8px !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+}
+
+/* 3. 右上角关闭按钮：还原为无背景、无纯白方块、纯净青色 X */
+.lv-modal-close {
+    position: absolute !important;
+    top: 24px !important;
+    right: 24px !important;
+    background: transparent !important; /* 彻底剔除白方块背景 */
+    border: none !important;
+    color: #00e5ff !important; /* 纯正青色小叉 */
+    font-size: 22px !important;
+    font-weight: normal !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+}
+.lv-modal-close:hover {
+    color: #ffffff !important;
+    filter: drop-shadow(0 0 5px #00e5ff);
+}
+
+/* 4. 标题与文字颜色格式 */
+.lv-modal-title {
+    font-family: 'Inter', 'Noto Sans SC', sans-serif !important;
+    font-size: 24px !important;
+    font-weight: bold !important;
+    color: #e8b923 !important; /* 标志性的东方传说金 */
+    text-align: center !important;
+    letter-spacing: 3px !important;
+    margin: 0 0 12px 0 !important;
+}
+.lv-modal-subtitle {
+    color: #00e5ff !important; /* 验证身份波段使用科幻青 */
+    font-size: 13px !important;
+    text-align: center !important;
+    margin: 0 0 25px 0 !important;
+    opacity: 0.9 !important;
+}
+
+/* 5. 微信接入与 QQ 接入按钮：彻底洗掉白色大方块，还原为暗黑内衬与彩色发光边框 */
+.lv-btn-social {
+    background: rgba(0, 0, 0, 0.4) !important; /* 极深黑色内衬底面 */
+    border-radius: 4px !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease !important;
+}
+.lv-btn-social.wechat {
+    border: 1px solid #00c864 !important; /* 专属微信绿线框 */
+    color: #00c864 !important;
+}
+.lv-btn-social.wechat:hover {
+    background: rgba(0, 200, 100, 0.15) !important;
+    box-shadow: 0 0 12px rgba(0, 200, 100, 0.3) !important;
+}
+.lv-btn-social.qq {
+    border: 1px solid #0096ff !important; /* 专属 QQ 蓝线框 */
+    color: #0096ff !important;
+}
+.lv-btn-social.qq:hover {
+    background: rgba(0, 150, 255, 0.15) !important;
+    box-shadow: 0 0 12px rgba(0, 150, 255, 0.3) !important;
+}
+
+/* 中间的分隔文字线 */
+.lv-divider span {
+    background: #04080f !important; /* 背景色与其等色衔接 */
+    color: #556270 !important;
+}
+
+/* 6. 三个核心输入栏（设置文明代号等）：彻底清除刺眼白色，还原为暗黑半透明底面、精细暗金/灰色外线框 */
+.lv-input {
+    width: 100% !important;
+    background: rgba(0, 0, 0, 0.5) !important; /* 极深半透明底，杜绝变白 */
+    border: 1px solid rgba(255, 255, 255, 0.15) !important; /* 默认浅灰色边框 */
+    color: #ffffff !important; /* 输入文字强制全高亮白 */
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+    border-radius: 4px !important;
+    box-sizing: border-box !important;
+    transition: border-color 0.2s ease !important;
+}
+/* 针对第一个输入框（带暗金色边框）的特别对齐处理 */
+.lv-input-group:first-of-type .lv-input,
+.lv-input[style*="border-color"] {
+    border-color: rgba(232, 185, 35, 0.4) !important; /* 原本的微光暗金框线 */
+}
+.lv-input:focus {
+    border-color: #00e5ff !important; /* 聚焦时高亮科幻青 */
+    outline: none !important;
+}
+
+/* 7. 建立锚点大按钮：完全维持原本的实心高亮亮青色（Cyan）色块 */
+.lv-btn-primary {
+    background: #00e5ff !important; /* 实心亮青色 */
+    border: none !important;
+    color: #000000 !important; /* 黑字 */
+    font-weight: bold !important;
+    font-size: 15px !important;
+    letter-spacing: 2px !important;
+    box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3) !important;
+    margin-top: 20px !important;
+}
+.lv-btn-primary:hover {
+    filter: brightness(1.1) !important;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.5) !important;
+}
