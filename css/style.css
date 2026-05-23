@@ -740,33 +740,6 @@ header.site-header {
 
 
 
-/* 耳畔图文对齐 */
-.bridge-layout {
-    align-items: center !important; /* 垂直居中对齐 */
-}
-.visual-container-compact .triptych-item img {
-    aspect-ratio: 1 / 1 !important; /* 修改为 1:1 */
-}
-
-/* 情感奇遇 1:1 图与表单精致化 */
-.story-intro img {
-    aspect-ratio: 1 / 1 !important;
-}
-
-/* 提升右边表单美感 */
-.story-form-card {
-    border: 1px solid rgba(0, 229, 255, 0.3) !important;
-    box-shadow: 0 0 20px rgba(0, 229, 255, 0.1), inset 0 0 10px rgba(0,0,0,0.5) !important;
-    padding: 40px !important;
-}
-.form-control {
-    border-bottom: 1px solid rgba(255,255,255,0.2) !important;
-    background: transparent !important;
-    padding-left: 0 !important;
-}
-
-
-
 
 /* 修正“我的战场”板块 */
 .summary-item {
@@ -4529,7 +4502,101 @@ select.form-control option {
 
 
 
+/* ==========================================================================
+   【天问到耳畔终极对齐】斩断全局 1:1 限制 + 强制 5 6 7 三个容器完美等高充盈
+   ========================================================================== */
 
+/* 1. 强制左右两列高度绝对齐平 */
+#bridge-immersive-full .bridge-layout {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 40px !important;
+    align-items: stretch !important; /* 核心：强行拉平左右两侧总高度，让上下绝对对齐 */
+}
+
+/* 2. 左侧 4 号三大卡片高度完美平分 */
+#bridge-immersive-full .clue-cards-column {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important; /* 上下均分空隙 */
+    gap: 16px !important; /* 紧凑间距，限制过大体积 */
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#bridge-immersive-full .clue-cards-column .card.scene {
+    flex: 1 !important; /* 强制三个卡片平分左侧高度，大小完全一致 */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; /* 文字垂直居中 */
+    padding: 16px 20px !important; /* 极致压低内边距，让高度变得秀气舒服 */
+    margin: 0 !important;
+    background: rgba(13, 22, 33, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 3. 右侧 5 6 7 三张图约 3:1 容器终极充满 */
+#bridge-immersive-full .visual-container-compact {
+    flex: 1.1 !important; /* 给右侧配图区稍微宽一点的视觉比重 */
+    height: auto !important; /* 释放所有高度旧规则限制 */
+    display: flex !important;
+}
+
+#bridge-immersive-full .triptych-container {
+    display: flex !important;
+    flex-direction: row !important; /* 严格强制横向排布 */
+    gap: 14px !important; /* 图片中间的间距 */
+    width: 100% !important;
+    height: 100% !important; /* 强制填满右侧容器高度 */
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#bridge-immersive-full .triptych-item {
+    flex: 1 !important; /* 5, 6, 7 三个图片容器绝对等宽 */
+    height: 100% !important; /* 强制百分百撑满高度 */
+    position: relative !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(0, 229, 255, 0.2) !important; /* 赋予高级感的科幻青细边框 */
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* 核心指令：让图片无视原图比例，强制平铺充盈 */
+#bridge-immersive-full .triptych-item img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important; /* 强制填满父级容器高度 */
+    object-fit: cover !important; /* 极其重要：保证图片即使变成长条也不会拉伸变形，自动裁剪边缘 */
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+/* 4. 保底全息文字提示：如果在本地真的没找到图，也会在方块里显示发光中文字，绝不露丑 */
+.img-fallback-text {
+    font-family: monospace, system-ui;
+    font-size: 13px;
+    color: var(--accent-gold);
+    text-shadow: 0 0 8px rgba(232, 185, 35, 0.4);
+    z-index: 1;
+    pointer-events: none;
+    text-align: center;
+    padding: 10px;
+}
+
+/* 5. 手机端自适应自动降级为上下堆叠 */
+@media (max-width: 768px) {
+    #bridge-immersive-full .bridge-layout {
+        flex-direction: column !important;
+    }
+    #bridge-immersive-full .triptych-container {
+        height: 240px !important;
+    }
+}
 
 
 
