@@ -1000,45 +1000,54 @@
 </section>
 
 
-<section id="bridge-immersive-full" class="section-divider section-container">
+<section id="bridge-immersive-full" class="section-divider section-container" style="padding: 80px 24px !important;">
     <div class="bridge-header text-center">
         <h2>从天问到耳畔 · 当宏问归于日常</h2>
         <p class="desc">宏大的文明辩论，最终都要在我们身边寻找“证据”。这些荒诞或温暖的瞬间，正是“宇宙真理最微小、最真实的“样本”。</p>
         <p class="desc">远古造神，当代重构。两者不是割裂，而是同一条数据链的加密与解密：我们都在用”情感“来修正”代码“。正是这些日常的微小闪光，为我们提供了神祇基因或天外来客最可信的“线索样本”。</p>
     </div>
 
-    <div class="bridge-layout">
-        <div class="clue-cards-column">
-            <article class="card scene clue-card-a">
+    <!-- 用 flex 布局强行拉平左右高度对齐，并适应电脑端横排 -->
+    <div class="bridge-layout" style="display: flex !important; flex-direction: row !important; gap: 40px !important; align-items: stretch !important; width: 100% !important;">
+        
+        <!-- 左侧文字区：通过 justify-content 让三个方块均分并撑满相同高度 -->
+        <div class="clue-cards-column" style="flex: 1 !important; display: flex !important; flex-direction: column !important; justify-content: space-between !important; gap: 16px !important; height: auto !important; margin: 0 !important; padding: 0 !important;">
+            <article class="card scene clue-card-a" style="flex: 1 !important; display: flex !important; flex-direction: column !important; justify-content: center !important; padding: 20px 24px !important; margin: 0 !important;">
                 <h4>编码线索一：第六感，好像来过！</h4>
                 <p class="desc-sm">在某个陌生场景，你清晰地预感到接下来会发生什么。这不仅仅可能是似曾相识，而更可能是”时空轨迹“在脑中提前闪现。这是”时间之眼“基因觉醒的线索。</p>
             </article>
 
-            <article class="card scene clue-card-b">
+            <article class="card scene clue-card-b" style="flex: 1 !important; display: flex !important; flex-direction: column !important; justify-content: center !important; padding: 20px 24px !important; margin: 0 !important;">
                 <h4>基因样本二：你记得的，世界不记得</h4>
                 <p class="desc-sm">你坚信某件事发生过，但所有证据和人都否定你。这种”集体记忆错位“，暗示了人类记忆很可能是被某种高维力量重写或篡改后留下的情感碎片。</p>
             </article>
 
-            <article class="card scene clue-card-c">
+            <article class="card scene clue-card-c" style="flex: 1 !important; display: flex !important; flex-direction: column !important; justify-content: center !important; padding: 20px 24px !important; margin: 0 !important;">
                 <h4>悖论印记三：梦中之物，现实相见</h4>
                 <p class="desc-sm">你梦见了某些从未见过的人或事，本来以为只是梦，醒来后竟然在日常生活中发现真实存在，会不会觉得不可思议？其实，这暗示了潜意识很可能正在与高维宇宙的物质流进行非线性同步。</p>
             </article>
         </div>
 
-        <aside class="visual-container-compact">
-            <div class="triptych-container">
-                <div class="triptych-item">
-                    <img src="assets/images/thumb_bridge_1.jpg" alt="第六感" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #00e5ff20, #02060a)';" />
-                    <div class="img-fallback-text">🧬 第六感</div>
+        <!-- 右侧图片区：通过 display: flex 让它跟随左侧高度自适应 -->
+        <aside class="visual-container-compact" style="flex: 1.1 !important; display: flex !important; height: auto !important; margin: 0 !important; padding: 0 !important;">
+            <div class="triptych-container" style="display: flex !important; flex-direction: row !important; gap: 16px !important; width: 100% !important; height: 100% !important; margin: 0 !important; padding: 0 !important;">
+                
+                <!-- 三个图片容器：严格等宽，高度 100% 填满 -->
+                <div class="triptych-item clue-pic-box" style="flex: 1 !important; height: 100% !important; position: relative !important; border-radius: 8px !important; overflow: hidden !important; margin: 0 !important; background: #090e15;">
+                    <img src="assets/images/thumb_bridge_1.jpg" alt="第六感" onerror="this.style.display='none';" style="display: block !important; width: 100% !important; height: 100% !important; object-fit: cover !important; position: absolute !important; top: 0 !important; left: 0 !important; aspect-ratio: auto !important;" />
+                    <div class="img-fallback-text" style="display: block !important; z-index: 1; font-weight: bold; color: #e8b923; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); white-space: nowrap;">🧬 第六感</div>
                 </div>
-                <div class="triptych-item">
-                    <img src="assets/images/thumb_bridge_2.jpg" alt="曼德拉效应" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #e8b92320, #02060a)';" />
-                    <div class="img-fallback-text">⏳ 曼德拉效应</div>
+                
+                <div class="triptych-item clue-pic-box" style="flex: 1 !important; height: 100% !important; position: relative !important; border-radius: 8px !important; overflow: hidden !important; margin: 0 !important; background: #090e15;">
+                    <img src="assets/images/thumb_bridge_2.jpg" alt="曼德拉效应" onerror="this.style.display='none';" style="display: block !important; width: 100% !important; height: 100% !important; object-fit: cover !important; position: absolute !important; top: 0 !important; left: 0 !important; aspect-ratio: auto !important;" />
+                    <div class="img-fallback-text" style="display: block !important; z-index: 1; font-weight: bold; color: #e8b923; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); white-space: nowrap;">⏳ 曼德拉效应</div>
                 </div>
-                <div class="triptych-item">
-                    <img src="assets/images/thumb_bridge_3.jpg" alt="梦境" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #00e5ff10, #02060a)';" />
-                    <div class="img-fallback-text">🔮 梦境空间</div>
+                
+                <div class="triptych-item clue-pic-box" style="flex: 1 !important; height: 100% !important; position: relative !important; border-radius: 8px !important; overflow: hidden !important; margin: 0 !important; background: #090e15;">
+                    <img src="assets/images/thumb_bridge_3.jpg" alt="梦境空间" onerror="this.style.display='none';" style="display: block !important; width: 100% !important; height: 100% !important; object-fit: cover !important; position: absolute !important; top: 0 !important; left: 0 !important; aspect-ratio: auto !important;" />
+                    <div class="img-fallback-text" style="display: block !important; z-index: 1; font-weight: bold; color: #e8b923; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); white-space: nowrap;">🔮 梦境空间</div>
                 </div>
+                
             </div>
         </aside>
     </div>
@@ -1048,6 +1057,18 @@
         <span class="subtle">请即刻向下滚动，进入情感采集引擎，记录你那“超出教科书”的生命瞬间。</span>
     </div>
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
 
 <section id="stories" class="section-divider section-container">
     <h2>情感奇遇：为神话叙事IP创作采集宇宙线索</h2>
@@ -1960,7 +1981,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (leftPillar) {
         // 彻底丢弃4秒的急躁闪烁，换用12秒的极慢速全息冷光扫描，使其像一个“冷静工作中的主站终端”
         setInterval(() => {
-            const txt = leftPillar.querySelector('.vertical-text');
+            const txt = leftPillar.querySelector('.vertical-text');[
             if(txt) {
                 txt.style.transition = 'box-shadow 2.5s cubic-bezier(0.4, 0, 0.2, 1)';
                 txt.style.boxShadow = '0 0 30px rgba(248, 181, 0, 0.55)';
