@@ -28,9 +28,11 @@
 </div>
 
 <div class="dawei-guide" id="dawei-guide-widget">
-    <div class="avatar" style="background-image: url('assets/images/archetype_dawei_guide.jpg');" aria-label="立维宇宙编年者解大为的头像"></div>
-    <div class="bubble">
-      <strong>解大为：</strong><span id="dawei-quote">你好，我是这个宇宙的编年者。让我为你引路...</span>
+    <div class="avatar" style="background-image: url('assets/images/archetype_dawei_guide.jpg');" onclick="toggleDaweiBubble()"></div>
+    <div class="bubble" id="dawei-bubble-box">
+        <!-- 金黄色闪烁箭头戳在对话框内部右上角 -->
+        <div class="dawei-gold-arrow" onclick="toggleDaweiBubble(event)" title="点击收起对话"></div>
+        <strong>解大为：</strong><span id="dawei-quote">英雄由契约唤醒，她/他不是被选中，而是签下了那张纸。</span>
     </div>
 </div>
 
@@ -92,26 +94,6 @@
 <a href="#contact" class="btn btn-outline-cyan">查阅工业白皮书</a>
             </div>
 
-<!-- 🟢 替换为：首屏数据实录面板（中文主导，硬核易懂，去除糊涂账） -->
-            <div class="cyber-status-panel" onclick="document.getElementById('executive-summary').scrollIntoView({behavior: 'smooth'});" style="cursor: pointer; max-width: 480px; margin: 30px auto 0 auto; background: rgba(4,7,12,0.96); border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 4px; padding: 15px 22px; text-align: left; box-shadow: 0 25px 50px rgba(0,0,0,0.95);">
-                <div style="font-family: monospace; font-size: 11px; color: var(--accent); letter-spacing: 2px; margin-bottom: 12px; font-weight: bold; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px; display: flex; justify-content: space-between;">
-                    <span>[ 立维宇宙 // 文明运营实录 ]</span>
-                    <span style="color: rgba(255,255,255,0.3);">V1.0.4 稳定版</span>
-                </div>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; font-size: 13px; color: #ffffff; font-family: system-ui, -apple-system, sans-serif;">
-                    <div><span style="color: rgba(0, 229, 255, 0.4); font-family: monospace;">·</span> 已出土世界观词条: <span id="stat-lexicon" style="color: var(--accent-gold); font-weight: 700;">129</span></div>
-                    <div><span style="color: rgba(0, 229, 255, 0.4); font-family: monospace;">·</span> 正在孵化共创案: <span id="stat-co" style="color: var(--accent); font-weight: 700;">8</span></div>
-                    <div><span style="color: rgba(0, 229, 255, 0.4); font-family: monospace;">·</span> 空间设计研报库: <span id="stat-research" style="color: #ffffff; font-weight: 700;">19</span></div>
-                    <div><span style="color: rgba(0, 229, 255, 0.4); font-family: monospace;">·</span> 档案馆终端状态: <span style="color: #00ff66; font-weight: 700; text-shadow: 0 0 8px rgba(0,255,102,0.5);">数据在线 ONLINE</span></div>
-                    
-                    <div style="grid-column: span 2; margin-top: 4px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.05); color: rgba(255,255,255,0.4); font-size: 11px; font-family: monospace; display: flex; align-items: center; gap: 8px;">
-                        <span class="static-signal-dot" style="width: 5px; height: 5px; background: #00ff66; border-radius: 50%; box-shadow: 0 0 6px #00ff66;"></span> 
-                        全息数据链校验: <span style="color: rgba(255,255,255,0.7);">已确权 // 具备法律效力资产</span>
-                    </div>
-                </div>
-            </div>
-   </div>
 </section>
 
 
@@ -136,61 +118,68 @@
     </div>
 
     <div class="lv-executive-main">
-        
-        <!-- 左侧 2x2 正方形卡片 - 强制等高对齐 -->
+    
+        <!-- 左侧：4个方块，极限瘦身缩减高度，完全在框内 -->
         <div class="lv-pillar-concepts">
             <div class="card summary-item square-card">
-                <h4>① 【源点·神话重构】</h4>
-                <p>摒弃传统修仙套路，将华夏上古神话推演为严密的文明图谱，构建“严丝合缝”的科幻因果体系。</p>
+                <div class="card-glow-border"></div>
+                <h4>① 【源点 · 神话重构】</h4>
+                <div class="desc-sm">摒弃传统修仙套路，将华夏上古神话推演为严密的文明图谱，构建“严丝合缝”的科幻因果体系。</div>
             </div>
             <div class="card summary-item square-card">
-                <h4>② 【降维·工业资产】</h4>
-                <p>从千万字核心文献到UE5高精建模。以工业级标准打造深空机甲与青铜巨兽，实现全版权资产的可视化与实体降临。</p>
+                <div class="card-glow-border"></div>
+                <h4>② 【降维 · 工业资产】</h4>
+                <div class="desc-sm">从千万字核心文献到UE5高精建模。以工业级标准打造深空机甲与青铜巨兽，实现全版权资产的可视化与实体降临。</div>
             </div>
             <div class="card summary-item square-card">
-                <h4>③ 【空间·文明显化】</h4>
-                <p>拒绝空洞概念。我们将神话叙事转译为规划设计语言，输出BIM与数字孪生资产，强势赋能线下文旅与城市空间更新。</p>
+                <div class="card-glow-border"></div>
+                <h4>③ 【空间 · 文明显化】</h4>
+                <div class="desc-sm">拒绝空洞概念。我们将神话叙事转译为规划设计语言，输出BIM与数字孪生资产，强势赋能线下文旅与城市空间更新。</div>
             </div>
             <div class="card summary-item square-card">
-                <h4>④ 【矩阵·全维共创】</h4>
-                <p>这不是单向的展示，而是全宇宙的招募。持【降临敕令】接入终端，开放全维授权共创，与我们共享永恒资产红利。</p>
+                <div class="card-glow-border"></div>
+                <h4>④ 【矩阵 · 全维共创】</h4>
+                <div class="desc-sm">这绝不是单向的展示，而是全宇宙的招募。持【降临敕令】接入终端，开放全维授权共创，与我们共享永恒资产红利。</div>
             </div>
         </div>
 
-        <!-- 右侧 新闻区 -->
-        <div class="lv-news-sidebar">
-            <div class="news-header-label">
-                <span class="news-theme-tag">前沿实验 · 空间文明运营</span>
-            </div>
-
-            <div class="news-item">
-                <div class="news-text">
-                    <h4>传统设计行业还有未来吗？——关于“空间文明运营”的前沿实验</h4>
-                    <p>依托深度存量活化方案，将传统建筑因子重塑为具备高度确权价值的情绪停留资产...</p>
+        <!-- 右侧：新闻板块，青色页签成功塞进框内顶部，右下角焊死更多按钮 -->
+        <div class="lv-news-sidebar-wrapper">
+            <!-- 塞进框内的顶部页签 -->
+            <div class="news-internal-tag">前沿实验 · 空间文明运营</div>
+            
+            <div class="lv-news-sidebar">
+                <div class="news-item">
+                    <div class="news-text">
+                        <h4>传统设计行业还有未来吗？——关于“空间文明运营”的前沿实验</h4>
+                        <p>依托深度存量活化方案，将传统建筑因子重塑为具备高度确权价值的情绪停留资产...</p>
+                    </div>
+                    <img src="assets/images/press_design_future.jpg" class="news-thumb" alt="">
                 </div>
-                <img src="assets/images/press_design_future.jpg" class="news-thumb" alt="">
+                
+                <div class="news-item">
+                    <div class="news-text">
+                        <h4>【工业白皮书】华夏始祖神话与当代多维空间转译协议大纲</h4>
+                        <p>本篇论文阐述了如何把上古神话的星图法则，转译为BIM模型与高精可视化可交付工程包...</p>
+                    </div>
+                    <img src="assets/images/press_bim_myth.jpg" class="news-thumb" alt="">
+                </div>
+                
+                <div class="news-item">
+                    <div class="news-text">
+                        <h4>数字化资产确权蓝皮书：去中心化契约下的文化母体孵化体系</h4>
+                        <p>探索跨越万年的华夏文明演化树，如何借助虚幻引擎5和数字孪生实现长线运营和红利共享...</p>
+                    </div>
+                    <img src="assets/images/press_digital_rights.jpg" class="news-thumb" alt="">
+                </div>
             </div>
             
-            <div class="news-item">
-                <div class="news-text">
-                    <h4>【工业白皮书】华夏始祖神话与当代多维空间转译协议大纲</h4>
-                    <p>本篇论文阐述了如何把上古神话的星图法则，转译为BIM模型与高精可视化可交付工程包...</p>
-                </div>
-                <img src="assets/images/press_bim_myth.jpg" class="news-thumb" alt="">
-            </div>
-            
-            <div class="news-item">
-                <div class="news-text">
-                    <h4>数字化资产确权蓝皮书：去中心化契约下的文化母体孵化体系</h4>
-                    <p>探索跨越万年的华夏文明演化树，如何借助虚幻引擎5和数字孪生实现长线运营和红利共享...</p>
-                </div>
-                <img src="assets/images/press_digital_rights.jpg" class="news-thumb" alt="">
-            </div>
-
-            <div class="news-more-wrapper">
-                <a href="#press" class="news-more-btn">查看全部研究日志 →</a>
+            <!-- 右下角专属引导按钮 -->
+            <div class="news-more-container">
+                <a href="#press" class="news-more-link">更多研报内容 ↗</a>
             </div>
         </div>
+        
     </div>
 </section>
 
@@ -915,55 +904,9 @@
         </div>
     </div>
     
-    <div class="press-layout mt-medium">
-        <div class="card">
-            <h3>项目里程碑 (Roadmap)</h3>
-            <p class="desc-sm">我们正按计划推进东方科幻宇宙的构建，每一个节点都是一个全新的起点。</p>
-            <ul class="roadmap-timeline">
-                <li class="done"><strong>机构背书:</strong> 已入孵慈溪米创</li>
-                <li class="done"><strong>基金提名:</strong> 《补天之城：上海2074》获上海文化基金提名 (2025)</li>
-                <li class="done"><strong>2024.Q4:</strong> 世界观核心架构完成</li>
-                <li class="done"><strong>2025.Q2:</strong> 核心文学作品《炎黄星曌》发布</li>
-                <li class="current"><strong>2025.Q4:</strong> 启动首部微剧《炎的弥赛亚》孵化 (当前)</li>
-                <li><strong>2026.Q2:</strong> 《炎黄：前古纪元》游戏原型公布</li>
-                <li><strong>2026.Q4:</strong> 启动首个线下城市更新文旅项目合作</li>
-            </ul>
-        </div>
-        <div class="card">
-            <h3>媒体报道 & 矩阵</h3>
-            <p class="desc-sm">来自媒体的声音，以及我们在各大平台的IP创作分享。</p>
-<div class="media-list">
-                <!-- 🟢 置顶爆款文章一：展示点赞与归档收藏数，为项目真实度与公信力背书 -->
-                <!-- 🟢 修复语法错误后的置顶爆款文章一 -->
-                    <div class="media-item" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 6px; margin-bottom: 15px; position: relative;">
-                        <img src="assets/images/media_placeholder_article.jpg" alt="传统设计行业出路" loading="lazy">
-                        <div class="media-info" style="padding-right: 140px;">
-                            <strong style="color: #fff; font-size: 15px; display: block; margin-bottom: 6px;">地产退潮后，传统设计行业还有未来吗？——关于“空间文明运营”的前沿实验</strong>
-                            <p class="desc-sm" style="margin: 0 !important; font-size: 12px; color: #888;">分类：全链行业综述 / 核心：存量资产活化与情绪停留权分配</p>
-                        </div>
-                        <div class="article-stats" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); display: flex; gap: 15px; font-family: monospace; font-size: 11px; color: var(--accent);">
-                            <span>👍 核心共鸣 +1.2k</span>
-                            <span style="color: var(--accent-gold);">📁 深度归档 +487</span>
-                        </div>
-                    </div>
-
-                <div class="media-item" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 6px设计;">
-                    <img src="assets/images/media_placeholder_video.jpg" alt="视频" loading="lazy">
-                    <div class="media-info">
-                        <strong style="color: #fff; font-size: 15px;">【工业白皮书】华夏始祖神话与当代多维空间转译协议大纲</strong>
-                        <p class="desc-sm" style="margin: 0 !important; font-size: 12px; color: #888;">平台：立维研究室 / 对应世界观底层交付代码</p>
-                    </div>
-                </div>
-            </div>
-
-    <div id="logbook" class="card mt-medium text-center">
-        <h3>创作日志 (Logbook)</h3>
-        <p class="desc-sm">记录宇宙构建的每一个脚印。持续更新是这个Levythos Universe生命的信号。</p>
-        <p class="log-entry"><strong>最新动态 (2025.10): </strong>世界观核心设定完成迭代，首部微剧《炎的弥赛亚》已正式启动孵化。</p>
-    </div>
-
+    
     <div class="logo-wall card mt-medium">
-        <h4>合作伙伴</h4>
+        <h4>文明观测接口</h4>
         <div class="partner-logo-grid">
             <div class="partner-track">
                 <div class="partner-logo">国家神话与历史研究中心</div>
@@ -1034,27 +977,15 @@
                     本次辩论无关信仰，我们以科幻的视角探讨一种可能性：远古神话叙事（如十大始祖），充满了超越时代的智慧。这些神话的缔造者，究竟是地球上一个失落的、科技水平远超我们的<b>史前高等人类文明</b>，还是降临地球、并对我们进行了文明启蒙的<b>天外智慧访客</b>？
                 </p>
             </div>
-            <div class="arena-actions">
-                <a href="#arena-debate-details" id="joinYandi" class="btn ghost btn-faction-a" aria-label="加入正方：本土起源论">
-                    <span class="faction-icon">A</span>
-                    <span>我支持【本土起源】</span>
-                </a>
-                <a href="#arena-debate-details" id="joinPrometheus" class="btn ghost btn-faction-b" aria-label="加入反方：天外干预论">
-                    <span class="faction-icon">N</span>
-                    <span>我相信【天外干预】</span>
-                </a>
+            
+            <!-- 替换原有的按钮和进度条，改为敬请期待状态 -->
+            <div class="arena-coming-soon" style="margin-top: 40px; padding: 25px; background: rgba(0, 229, 255, 0.05); border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 8px; text-align: center;">
+                <h3 style="color: var(--accent); letter-spacing: 2px; margin-bottom: 10px;">✦ 擂台系统正在校准 ✦</h3>
+                <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; margin: 0;">全网辩论接口与数据链尚未正式开放，首期议题敬请期待...</p>
             </div>
-            <div class="arena-progress-bar">
-                <div id="faction-yandi-bar" class="progress-bar-yandi">
-                    <span class="faction-name">本土起源论</span>
-                    <span id="faction-yandi-percent" class="faction-percent">50%</span>
-                </div>
-                <div id="faction-prometheus-bar" class="progress-bar-prometheus">
-                    <span id="faction-prometheus-percent" class="faction-percent">50%</span>
-                    <span class="faction-name">天外干预论</span>
-                </div>
-            </div>
-            <div class="arena-rules">
+
+            <!-- 保留规则说明 -->
+            <div class="arena-rules" style="margin-top: 30px;">
                 <h4>擂台规则</h4>
                 <ul>
                     <li>选择立场并发表观点。</li>
@@ -1062,31 +993,12 @@
                     <li>优秀观点将被收录至“宇宙编年史”。</li>
                     <li>参与IP创作，共筑世界观。</li>
                 </ul>
-                <button class="btn ghost btn-full">查看往期议题</button>
             </div>
         </div>
         <div class="arena-visual"><img src="assets/images/concept_arena_origin.jpg" alt="擂台" loading="lazy"></div>
     </div>
 </section>
 
-<section id="arena-debate-details" class="section-container" aria-label="辩论详情">
-    <div class="text-center mt-large">
-        <h2>议题：“神话”的缔造者，是史前的“人类”还是天外的“来客”？</h2>
-        <p class="desc">在此留下您的真知灼见，思想的火花将永存于宇宙的编年史中。</p>
-        <a href="#arena" class="btn ghost mt-small">返回擂台主页</a>
-    </div>
-    <div class="card text-center mt-medium">
-        <h4 id="stanceTitle">选择你的立场，加入辩论！</h4>
-    </div>
-    <div class="waline-login-prompt">
-        <div class="prompt-icon">🔑</div>
-        <div class="prompt-text">
-            <h4>参与宇宙辩论，请先登录</h4>
-            <p>选择您的立场，点击右侧 “登录” 按钮，即可发表高见 →</p>
-        </div>
-    </div>
-    <div id="waline"></div>
-</section>
 
 <section id="bridge-immersive-full" class="section-divider section-container">
     <div class="bridge-header text-center">
@@ -1115,9 +1027,18 @@
 
         <aside class="visual-container-compact">
             <div class="triptych-container">
-                <figure class="triptych-item"><img src="assets/images/thumb_bridge_1.jpg" alt="第六感" loading="lazy"></figure>
-                <figure class="triptych-item"><img src="assets/images/thumb_bridge_2.jpg" alt="曼德拉效应" loading="lazy"></figure>
-                <figure class="triptych-item"><img src="assets/images/thumb_bridge_3.jpg" alt="梦境" loading="lazy"></figure>
+                <div class="triptych-item">
+                    <img src="assets/images/thumb_bridge_1.jpg" alt="第六感" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #00e5ff20, #02060a)';" />
+                    <div class="img-fallback-text">🧬 第六感</div>
+                </div>
+                <div class="triptych-item">
+                    <img src="assets/images/thumb_bridge_2.jpg" alt="曼德拉效应" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #e8b92320, #02060a)';" />
+                    <div class="img-fallback-text">⏳ 曼德拉效应</div>
+                </div>
+                <div class="triptych-item">
+                    <img src="assets/images/thumb_bridge_3.jpg" alt="梦境" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #00e5ff10, #02060a)';" />
+                    <div class="img-fallback-text">🔮 梦境空间</div>
+                </div>
             </div>
         </aside>
     </div>
@@ -2279,10 +2200,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 </script>
-
-
-
-
 
 
 
