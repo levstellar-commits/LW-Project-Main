@@ -2561,7 +2561,128 @@ select.form-control option {
 
 
 
+/* ==========================================================================
+   新增：共创与星联板块 工业级低频质感美合补丁
+   ========================================================================== */
 
+/* 1. 子标题与描述规范化 */
+.section-subtitle {
+    font-family: 'Inter', system-ui, sans-serif !important;
+    text-transform: uppercase;
+    font-size: 0.9rem !important;
+    letter-spacing: 2px !important;
+    color: var(--accent) !important;
+    opacity: 0.8;
+}
+
+/* 2. 暗黑硬核工业档案框 (取消发光边框，改用高冷深灰) */
+.co-card, .ali-card {
+    background: #090e14 !important; /* 扎实的深色金属底 */
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    position: relative;
+    overflow: hidden;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hover时极其克制的边缘微光与上浮 */
+.co-card:hover, .ali-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* 3. 图片轻微等比缩放 */
+.img-wrapper {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.img-wrapper img {
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.co-card:hover .img-wrapper img, 
+.ali-card:hover .img-wrapper img {
+    transform: scale(1.03); /* 极其微弱的放大，防止头晕 */
+}
+
+/* 4. 极淡、慢速的全息扫描线 (5秒一次，只作为若隐若现的机械质感) */
+.scan-line {
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    height: 1px; /* 极细线 */
+    background: rgba(0, 229, 255, 0.15);
+    box-shadow: 0 0 8px rgba(0, 229, 255, 0.2);
+    opacity: 0;
+    pointer-events: none;
+}
+.co-card .scan-line {
+    background: rgba(232, 185, 35, 0.15);
+    box-shadow: 0 0 8px rgba(232, 185, 35, 0.2);
+}
+.co-card:hover .scan-line, 
+.ali-card:hover .scan-line {
+    animation: slowScan 5s infinite linear; /* 降低速度到5秒 */
+}
+
+@keyframes slowScan {
+    0% { top: -5%; opacity: 0; }
+    5% { opacity: 1; }
+    95% { opacity: 1; }
+    100% { top: 105%; opacity: 0; }
+}
+
+/* 5. 静态可信数据台 */
+.tech-info {
+    padding: 16px 18px !important;
+    background: #060a0e;
+}
+.item-title {
+    font-size: 15px;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+.meta-line {
+    font-family: 'Inter', monospace;
+    font-size: 11px;
+    color: #666; /* 降低标签亮度，保持冷静 */
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* 静态指示灯 (取消刺眼的呼吸闪烁) */
+.static-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #444; /* 平时是暗的 */
+}
+.co-card:hover .static-dot { background: var(--accent-gold); box-shadow: 0 0 6px var(--accent-gold); }
+.ali-card:hover .static-dot { background: var(--accent); box-shadow: 0 0 6px var(--accent); }
+
+/* 6. 极简工业角标 (取消动画与发光) */
+.card-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
+    background: rgba(2, 6, 10, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #aaa;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-family: monospace;
+    border-radius: 2px;
+}
 
 
 
