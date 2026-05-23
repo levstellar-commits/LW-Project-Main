@@ -3604,10 +3604,928 @@ select.form-control option {
 
 
 
+/* ==========================================================================
+   立维宇宙 UI 极致优化补丁 - 绝杀视觉
+   ========================================================================== */
+
+/* --- 1. 首屏数据面板活跃化、清爽化 (区域1) --- */
+.cyber-status-panel {
+    max-width: 520px !important;
+    background: rgba(4, 8, 15, 0.95) !important;
+    border: 2px solid #00e5ff !important; /* 加粗科幻青外框 */
+    border-radius: 8px !important;
+    padding: 24px !important;
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.25) !important;
+}
+
+.panel-main-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.status-pulse-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #00ff66;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #00ff66;
+    animation: statusBlink 2s infinite ease-in-out;
+}
+
+@keyframes statusBlink {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
+
+.status-main-title {
+    font-size: 16px !important;
+    font-weight: bold;
+    color: #ffffff !important;
+    letter-spacing: 2px;
+}
+
+.panel-data-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    text-align: center;
+}
+
+.panel-data-grid .data-box {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.panel-data-grid .data-num {
+    font-size: 26px !important; /* 巨幅放大核心数据 */
+    font-weight: 800 !important;
+    color: var(--accent-gold) !important; /* 传说金 */
+    font-family: monospace, sans-serif;
+}
+
+.panel-data-grid .data-num-online {
+    font-size: 16px !important;
+    font-weight: 800 !important;
+    color: #00ff66 !important; /* 锋利实心绿 */
+    line-height: 39px; /* 对齐高度 */
+}
+
+.panel-data-grid .data-lbl {
+    font-size: 13px !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* --- 2. 核心板块紧凑化与高度绝对对齐 (区域2 & 3) --- */
+.lv-executive-main {
+    display: grid !important;
+    grid-template-columns: 1.4fr 1fr !important; /* 精密微调左右宽度比例 */
+    gap: 35px !important; /* 缩紧空隙，3号新闻板块更贴近左侧 */
+    align-items: stretch !important; /* 强制左右两侧高度高度绝对一致对齐 */
+    width: 100% !important;
+}
+
+/* 左边四大块尺寸缩小、精緻化 */
+.lv-pillar-concepts {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+}
+
+.summary-item.square-card {
+    background: rgba(11, 18, 27, 0.95) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 8px !important;
+    padding: 24px 20px !important; /* 缩小内衬尺寸 */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center;
+    min-height: 140px !important; /* 缩小方块高度 */
+}
+
+.summary-item.square-card h4 {
+    font-size: 17px !important;
+    color: var(--accent-gold) !important;
+    margin: 0 0 10px 0 !important;
+    font-weight: 700 !important;
+}
+
+.summary-item.square-card p {
+    font-size: 14px !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+}
+
+/* 右边新闻外框容器美化：无缝贴合、对齐 */
+.lv-news-sidebar-wrapper {
+    background: rgba(15, 23, 36, 0.6) !important;
+    border: 1px solid rgba(0, 229, 255, 0.25) !important; /* 赋予高级感的科技外框 */
+    border-radius: 8px !important;
+    padding: 30px 20px 20px 20px !important;
+    position: relative;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.lv-news-sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+    justify-content: space-between !important;
+    height: 100% !important;
+}
+
+.news-item {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 12px !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    border-radius: 6px !important;
+}
+
+/* --- 3. 全站通用自媒体点赞区全息放大 (区域4) --- */
+.lv-civilization-interact-bus {
+    background: #090d14 !important; /* 改为沉稳坚实的深灰蓝背景底色 */
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 20px !important; /* 优雅的胶囊圆角 */
+    padding: 10px 24px !important; /* 放大内部填充，撑开间距 */
+    margin: 20px 16px 12px 16px !important;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6) !important;
+}
+
+.lv-civilization-interact-bus .interact-trigger-btn {
+    font-size: 15px !important; /* 大幅放大数字 */
+    font-weight: 600 !important;
+    gap: 8px !important; /* 撑开图标与数字的间距 */
+    color: #9ca3af !important; /* 提高默认状态下文字的可读白亮度 */
+}
+
+/* 放大 SVG 交互矢量图标尺寸，增强存在感 */
+.lv-civilization-interact-bus .interact-trigger-btn svg {
+    width: 18px !important;  /* 尺寸从15px提升到18px */
+    height: 18px !important;
+    stroke-width: 2.8 !important; /* 加粗图标线条 */
+}
+
+/* 独立悬停时的动态流光特效 */
+.lv-civilization-interact-bus .btn-like:hover svg,
+.lv-civilization-interact-bus .btn-like:hover {
+    color: #ff4757 !important;
+    filter: drop-shadow(0 0 8px rgba(255, 71, 87, 0.6)) !important;
+}
+
+.lv-civilization-interact-bus .btn-collect:hover svg,
+.lv-civilization-interact-bus .btn-collect:hover {
+    color: var(--accent-gold) !important;
+    filter: drop-shadow(0 0 8px rgba(232, 185, 35, 0.6)) !important;
+}
+
+.lv-civilization-interact-bus .btn-comment:hover svg,
+.lv-civilization-interact-bus .btn-comment:hover {
+    color: #00e5ff !important;
+    filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.6)) !important;
+}
+
+.lv-civilization-interact-bus .btn-share:hover svg,
+.lv-civilization-interact-bus .btn-share:hover {
+    color: #747d8c !important;
+}
+
+
+
+/* ==========================================================================
+   追加：解大为收起动效 + 3号方块缩至舒服尺寸 + 4号高度等高绝对对齐
+   ========================================================================== */
+
+/* 让解大为组件横向排布 */
+#dawei-guide-widget {
+    display: flex !important;
+    flex-direction: row-reverse !important; 
+    align-items: center !important;
+    gap: 8px;
+}
+
+/* 绘制控制隐藏的闪烁微缩箭头 */
+.dawei-toggle-arrow {
+    width: 22px; height: 22px; cursor: pointer;
+    background: rgba(2, 6, 10, 0.9);
+    border: 1px solid #00e5ff; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+    transition: all 0.3s ease;
+}
+.dawei-toggle-arrow::after {
+    content: ""; width: 0; height: 0;
+    border-top: 4px solid transparent; border-bottom: 4px solid transparent;
+    border-left: 6px solid #00e5ff;
+    transition: transform 0.3s ease;
+}
+
+/* 箭头呼吸闪烁特效 */
+#dawei-guide-widget:not(.collapsed) .dawei-toggle-arrow {
+    animation: arrowBlink 2s infinite ease-in-out;
+}
+@keyframes arrowBlink {
+    0%, 100% { opacity: 0.5; box-shadow: 0 0 5px rgba(0,229,255,0.2); }
+    50% { opacity: 1; box-shadow: 0 0 12px rgba(0,229,255,0.7); }
+}
+
+/* 关键折叠动作：隐藏气泡 */
+#dawei-guide-widget.collapsed .dawei-toggle-arrow::after {
+    transform: rotate(180deg);
+}
+#dawei-guide-widget.collapsed .bubble {
+    opacity: 0 !important; max-width: 0 !important; padding: 0 !important; margin: 0 !important; border: none !important; pointer-events: none !important;
+}
+.dawei-guide .bubble {
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    max-width: 240px; overflow: hidden;
+}
+
+/* 3号四大块瘦身成舒服尺寸：还原暗金标题色与纯白高对比度大字 */
+.lv-executive-main {
+    display: grid !important;
+    grid-template-columns: 1.4fr 1fr !important; /* 重新划分比例 */
+    gap: 32px !important;
+    align-items: stretch !important; /* 4号核心指令：强行拉平左右两侧总高度，达成上下绝对对齐 */
+}
+
+.summary-item.square-card {
+    background: #0d121a !important; /* 图中暗蓝色 */
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 6px !important;
+    padding: 24px 20px !important; /* 精简内部空隙，块体积立刻缩小到舒服尺寸 */
+    min-height: 140px !important;
+    height: 100% !important;
+}
+
+.summary-item.square-card h4 {
+    font-size: 17px !important;
+    color: #f1b80d !important; /* 图中金标题 */
+    font-weight: 700 !important;
+    margin: 0 0 14px 0 !important;
+    white-space: nowrap !important; /* 标题保持单行 */
+}
+.summary-item.square-card h4 .title-num {
+    color: #f1b80d; margin-right: 4px; font-family: monospace;
+}
+
+.summary-item.square-card .desc-sm {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    color: #ffffff !important; /* 图中纯白字 */
+    opacity: 0.9 !important;
+    font-weight: 400 !important;
+    text-align: justify;
+}
+
+.card-glow-border {
+    position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+    background: linear-gradient(90deg, #f1b80d 0%, transparent 60%);
+    opacity: 0.3;
+}
+
+/* 4号右侧新闻栏外框：撑开高度，与左侧无缝对齐呼应 */
+.lv-news-sidebar-wrapper {
+    background: rgba(14, 22, 35, 0.2) !important;
+    border: 1px solid rgba(0, 229, 255, 0.15) !important;
+    border-radius: 6px !important;
+    padding: 24px 16px 16px 16px !important;
+    height: 100% !important;
+}
+.lv-news-sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    justify-content: space-between !important;
+    height: 100% !important;
+}
+.news-item {
+    flex: 1 !important; /* 让右边新闻组件等比拉伸去对齐左边的高 */
+}
+
+
+
+/* ==========================================================================
+   URGENT RE-FIX: 金黄闪烁箭头 + 左4块极限压缩 + 右新闻内化页签与更多
+   ========================================================================== */
+
+/* 1. 彻底修正解大为定位：去掉无用的圆圈箭头样式 */
+.dawei-toggle-arrow { display: none !important; }
+
+/* 在对话框（bubble）内部右上方安放金黄色闪烁箭头 */
+.dawei-guide .bubble {
+    position: relative !important;
+    padding-top: 16px !important; /* 给顶部留出箭头的空间 */
+    border: 1px solid var(--accent, #00e5ff) !important;
+    background: rgba(2, 6, 10, 0.95) !important;
+}
+
+.dawei-gold-arrow {
+    position: absolute !important;
+    top: 8px !important;
+    right: 12px !important;
+    width: 0 !important;
+    height: 0 !important;
+    border-top: 5px solid transparent !important;
+    border-bottom: 5px solid transparent !important;
+    border-left: 7px solid #e8b923 !important; /* 纯正金黄色小箭头 */
+    cursor: pointer !important;
+    z-index: 10 !important;
+    transition: transform 0.3s ease !important;
+}
+
+/* 金黄色呼吸高亮闪烁，明明白白告诉用户这里能点 */
+.dawei-guide:not(.collapsed) .dawei-gold-arrow {
+    animation: goldArrowBlink 1.5s infinite ease-in-out !important;
+}
+
+@keyframes goldArrowBlink {
+    0%, 100% { opacity: 0.4; filter: drop-shadow(0 0 2px #e8b923); }
+    50% { opacity: 1; filter: drop-shadow(0 0 8px #e8b923) brightness(1.3); }
+}
+
+/* 彻底折叠状态下的容器形态 */
+#dawei-guide-widget.collapsed .dawei-gold-arrow {
+    transform: rotate(180deg) !important; /* 收起后箭头反转朝左 */
+    top: 50% !important;
+    right: -25px !important; /* 挂在头像旁边边缘 */
+    margin-top: -5px !important;
+}
+#dawei-guide-widget.collapsed .bubble {
+    opacity: 0 !important;
+    max-width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    pointer-events: none !important;
+}
+
+/* 2. 3号左边四个块：极致压低高度、缩减多余留白 */
+.lv-executive-main {
+    display: grid !important;
+    grid-template-columns: 1.45fr 1fr !important;
+    gap: 28px !important;
+    align-items: stretch !important; /* 确保左右高度齐平 */
+}
+
+.lv-pillar-concepts {
+    gap: 12px !important; /* 缩短行距 */
+}
+
+.summary-item.square-card {
+    min-height: 90px !important; /* 斩断原本巨型空洞的高度限制 */
+    height: auto !important;
+    padding: 14px 16px !important; /* 极简内边距 */
+    background: #090e15 !important;
+}
+
+.summary-item.square-card h4 {
+    font-size: 15px !important; /* 缩小标题 */
+    margin: 0 0 6px 0 !important;
+    color: #e8b923 !important;
+}
+
+.summary-item.square-card .desc-sm {
+    font-size: 12.5px !important; /* 紧凑、秀气的详情字号 */
+    line-height: 1.45 !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* 3. 4号右侧新闻：将页签彻底内化整合 + 新增右下角“更多”对齐 */
+.lv-news-sidebar-wrapper {
+    position: relative !important;
+    padding: 42px 16px 45px 16px !important; /* 顶部给内化标签留位置，底部给更多链接留位置 */
+    background: #090e15 !important;
+    border: 1px solid rgba(0, 229, 255, 0.2) !important;
+}
+
+/* 塞进框内顶部的青蓝色页签样式 */
+.news-internal-tag {
+    position: absolute !important;
+    top: 12px !important;
+    left: 16px !important;
+    font-size: 11px !important;
+    font-weight: bold !important;
+    color: #00e5ff !important;
+    background: rgba(0, 229, 255, 0.1) !important;
+    border: 1px solid rgba(0, 229, 255, 0.3) !important;
+    padding: 2px 10px !important;
+    border-radius: 3px !important;
+    letter-spacing: 0.5px;
+}
+
+/* 右下角更多链接盒子 */
+.news-more-container {
+    position: absolute !important;
+    bottom: 12px !important;
+    right: 16px !important;
+    text-align: right !important;
+}
+
+.news-more-link {
+    font-size: 12px !important;
+    color: var(--accent, #00e5ff) !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+    transition: all 0.2s ease;
+}
+.news-more-link:hover {
+    color: #ffffff !important;
+    text-shadow: 0 0 6px #00e5ff;
+}
+
+.lv-news-sidebar {
+    gap: 10px !important;
+}
+.news-item {
+    padding: 8px !important;
+}
 
 
 
 
+/* ==========================================================================
+   立维宇宙：执行摘要板块（Slogan下面）终极视觉重构
+   ========================================================================== */
+
+/* 1. 彻底去除 1 圈出的顶部那一根黄线/色块 */
+#executive-summary .section-header div[style*="background"] {
+    display: none !important;
+}
+
+/* 2. 核心布局重组：左侧 2x2 精致方块 + 右侧同步拉宽的新闻栏 */
+.lv-executive-main {
+    display: grid !important;
+    grid-template-columns: 1.45fr 1fr !important; /* 精密微调左右比例，把3（新闻栏）往左拉宽 */
+    gap: 28px !important;                          /* 紧凑而舒适的中间间距 */
+    align-items: stretch !important;               /* 关键：让左右两侧高度绝对100%齐平，上下完美对齐 */
+    width: 100% !important;
+    margin-top: 40px !important;
+}
+
+/* 3. 左侧：4个方块（2）极限瘦身、缩小至舒服尺寸 */
+.lv-pillar-concepts {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;                          /* 紧凑行距与列距 */
+    height: 100% !important;
+}
+
+.summary-item.square-card {
+    background: #090e15 !important;                /* 换用极其扎实、高冷的暗黑深蓝金属底色 */
+    border: 1px solid rgba(255, 255, 255, 0.08) !important; /* 极致细边框 */
+    border-radius: 6px !important;                 /* 精致的小圆角 */
+    padding: 20px 22px !important;                 /* 极限压缩内边距，块体积立刻缩小，变得极其秀气 */
+    min-height: 110px !important;                  /* 斩断原本巨型空洞的高度限制 */
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;            /* 文字垂直居中 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+}
+
+/* 4. 高级感卡片 Hover 动效：暗金微光边框 */
+.summary-item.square-card:hover {
+    transform: translateY(-4px) !important;
+    border-color: rgba(232, 185, 35, 0.6) !important; /* 高级暗金色微光，绝不刺眼 */
+    box-shadow: 0 12px 30px rgba(232, 185, 35, 0.12) !important;
+}
+
+/* 5. 修复卡片内部文字发黄、发乱：规范字体 */
+.summary-item.square-card h4 {
+    font-size: 15.5px !important;                  /* 缩小标题字号，精致化 */
+    color: #e8b923 !important;                     /* 采用正统传说金 */
+    font-weight: 700 !important;
+    margin: 0 0 8px 0 !important;
+    white-space: nowrap !important;                /* 强行绝对单行，禁止换行破坏队形 */
+    letter-spacing: 0.5px !important;
+}
+
+.summary-item.square-card .desc-sm {
+    font-family: system-ui, -apple-system, sans-serif !important;
+    font-size: 13px !important;                    /* 秀气的详情字号 */
+    line-height: 1.55 !important;
+    color: rgba(255, 255, 255, 0.85) !important;   /* 干净高对比度的实心白 */
+    opacity: 1 !important;
+    margin: 0 !important;
+    text-align: justify !important;                /* 两端对齐 */
+}
+
+/* 顶部暗金指示微线条 */
+.card-glow-border {
+    position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+    background: linear-gradient(90deg, #e8b923 0%, transparent 70%);
+    opacity: 0.25;
+}
+
+/* 6. 右侧新闻栏（3）外框：完美对接高度，内化整合标签与更多 */
+.lv-news-sidebar-wrapper {
+    position: relative !important;
+    background: #090e15 !important;                /* 左右底色等值，视觉高度统一 */
+    border: 1px solid rgba(0, 229, 255, 0.25) !important; /* 科幻青高冷外框 */
+    border-radius: 6px !important;
+    padding: 42px 18px 45px 18px !important;       /* 顶部留白给页签，底部留白给“更多” */
+    height: 100% !important;                       /* 强制等高 */
+    display: flex !important;
+    flex-direction: column !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 塞进框内顶部的科幻青页签 */
+.news-internal-tag {
+    position: absolute !important;
+    top: 12px !important;
+    left: 18px !important;
+    font-size: 11px !important;
+    font-weight: bold !important;
+    color: #00e5ff !important;
+    background: rgba(0, 229, 255, 0.1) !important;
+    border: 1px solid rgba(0, 229, 255, 0.3) !important;
+    padding: 2px 10px !important;
+    border-radius: 3px !important;
+    letter-spacing: 1px;
+}
+
+/* 右下角“更多研报内容”链接焊死 */
+.news-more-container {
+    position: absolute !important;
+    bottom: 12px !important;
+    right: 18px !important;
+    text-align: right !important;
+}
+
+.news-more-link {
+    font-size: 12px !important;
+    color: #00e5ff !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+    transition: all 0.2s ease;
+}
+.news-more-link:hover {
+    color: #ffffff !important;
+    text-shadow: 0 0 8px #00e5ff;
+}
+
+/* 新闻内部组件等比均分拉伸 */
+.lv-news-sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    justify-content: space-between !important;
+    height: 100% !important;
+}
+
+.news-item {
+    flex: 1 !important;                            /* 核心：三条新闻均分拉满高度，达成像素级对齐 */
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 10px !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;                /* 缩略图与文字水平居中对齐 */
+    gap: 14px !important;
+    border-radius: 4px !important;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.news-item:hover {
+    background: rgba(0, 229, 255, 0.04) !important;
+    border-color: rgba(0, 229, 255, 0.4) !important;
+}
+
+.news-thumb {
+    width: 96px !important;                        /* 微微缩小图片，防止抢戏 */
+    height: 68px !important;
+    border-radius: 4px !important;
+}
+
+.news-text h4 {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    margin: 0 0 4px 0 !important;
+}
+
+.news-text p {
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    margin: 0 !important;
+}
+
+
+
+
+/* ====================== 执行摘要终极强制瘦身 + 高度对齐 ====================== */
+#executive-summary .lv-executive-main {
+    display: grid !important;
+    grid-template-columns: 1.65fr 1fr !important;   /* 左侧稍窄，右侧适当放宽 */
+    gap: 28px !important;
+    align-items: stretch !important;               /* 关键：强制左右高度一致 */
+    min-height: 420px !important;                  /* 整体容器高度控制 */
+}
+
+#executive-summary .lv-pillar-concepts {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+    height: 100% !important;
+}
+
+/* 四个方块极致瘦身 */
+#executive-summary .square-card {
+    padding: 18px 20px !important;           /* 大幅减少内边距 */
+    min-height: 105px !important;            /* 核心：强制缩小高度 */
+    height: auto !important;
+    background: #0a1018 !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    border-radius: 6px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+
+#executive-summary .square-card h4 {
+    font-size: 15px !important;
+    margin: 0 0 9px 0 !important;
+    line-height: 1.3 !important;
+    white-space: nowrap !important;
+    color: #e8b923 !important;
+}
+
+#executive-summary .square-card .desc-sm {
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+    color: rgba(255,255,255,0.9) !important;
+    margin: 0 !important;
+}
+
+/* 右侧新闻栏适配放宽 + 高度对齐 */
+#executive-summary .lv-news-sidebar-wrapper {
+    height: 100% !important;
+    padding: 38px 18px 45px 18px !important;
+    background: #0a1018 !important;
+    border: 1px solid rgba(0,229,255,0.2) !important;
+}
+
+#executive-summary .lv-news-sidebar {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    justify-content: space-between !important;
+}
+
+#executive-summary .news-item {
+    flex: 1 !important;           /* 让三条新闻自动均分高度 */
+    min-height: 105px !important;
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+   排版对齐与视觉优化补丁
+   ========================================================================== */
+
+/* --- 1. 【修复点1】公信力（雨果奖/星云奖）排版对齐 --- */
+.manifesto-grid {
+    grid-template-columns: 1.2fr 1.8fr !important; /* 优化左右比例，给文字更多空间 */
+    align-items: stretch !important; /* 强制左右等高 */
+    gap: 40px !important;
+}
+
+.manifesto-grid-visual {
+    display: flex;
+    align-items: center;
+}
+
+.manifesto-grid-visual img {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.manifesto-grid-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.award-focus {
+    padding: 20px !important;
+    background: rgba(255,255,255,0.03) !important;
+    border-left: 3px solid var(--accent-gold) !important; /* 用金色边框提神 */
+    border-radius: 0 8px 8px 0;
+    transition: background 0.3s ease;
+}
+
+.award-focus:hover {
+    background: rgba(255,255,255,0.06) !important;
+}
+
+.award-focus h5 {
+    color: var(--accent) !important;
+    font-size: 1rem !important;
+    margin: 0 0 10px 0 !important;
+}
+
+.award-focus p {
+    font-size: 0.85rem !important;
+    color: rgba(255,255,255,0.8) !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+    text-align: justify;
+}
+
+
+/* --- 2. 【修复点5】天问到耳畔：左侧压缩，右侧3图按比例撑满对齐 --- */
+#bridge-immersive-full .bridge-layout {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 40px !important;
+    align-items: stretch !important; /* 核心：强制左右容器高度绝对一致 */
+}
+
+/* 左侧文字区：4的调整 */
+#bridge-immersive-full .clue-cards-column {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important; /* 上下均分铺满高度 */
+    gap: 15px !important; /* 减小卡片之间的间距 */
+    margin: 0 !important;
+}
+
+#bridge-immersive-full .clue-cards-column .card.scene {
+    flex: 1 !important; /* 强制3个卡片等高 */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    padding: 20px 25px !important; /* 压缩内边距，让高度变小 */
+    margin: 0 !important;
+}
+
+#bridge-immersive-full .clue-cards-column .card.scene h4 {
+    margin: 0 0 8px 0 !important;
+    font-size: 1.05rem !important;
+    color: var(--accent-gold) !important;
+}
+
+#bridge-immersive-full .clue-cards-column .card.scene p {
+    margin: 0 !important;
+    font-size: 0.85rem !important;
+    line-height: 1.6 !important;
+}
+
+/* 右侧图片区：5、6、7的调整 */
+#bridge-immersive-full .visual-container-compact {
+    flex: 1.2 !important; /* 右侧图片容器稍微宽一点点，更有视觉张力 */
+    display: flex !important;
+}
+
+#bridge-immersive-full .triptych-container {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 15px !important;
+    width: 100% !important;
+}
+
+#bridge-immersive-full .triptych-item {
+    flex: 1 !important; /* 三张图强制等宽 */
+    margin: 0 !important;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    /* 这里不写死死板的aspect-ratio，因为flex stretch会自动拉成适合高度的长条形(约3:1) */
+}
+
+#bridge-immersive-full .triptych-item img {
+    width: 100% !important;
+    height: 100% !important; /* 强行拉伸填满父容器的高度 */
+    object-fit: cover !important; /* 保证图片不变形，自动裁切边缘 */
+}
+
+/* 移动端恢复上下排布 */
+@media (max-width: 992px) {
+    #bridge-immersive-full .bridge-layout {
+        flex-direction: column !important;
+    }
+    #bridge-immersive-full .triptych-container {
+        height: 300px !important; /* 手机端给个固定高度 */
+    }
+}
+
+
+
+
+
+/* ==========================================================================
+   【天问到耳畔板块】上下绝对对齐 + 3张图片约3:1比例完美撑满终极绝杀补丁
+   ========================================================================== */
+
+/* 1. 强制左右两列高度拉平对齐 */
+#bridge-immersive-full .bridge-layout {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 40px !important;
+    align-items: stretch !important; /* 关键核心：强行拉平左右两侧总高度，让上下绝对齐平 */
+}
+
+/* 2. 左侧 4 号三大卡片排版瘦身与高度平分 */
+#bridge-immersive-full .clue-cards-column {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important; /* 均分上下空隙 */
+    gap: 16px !important; /* 缩紧卡片空隙 */
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#bridge-immersive-full .clue-cards-column .card.scene {
+    flex: 1 !important; /* 强制三个卡片高度完全一致 */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; /* 文字垂直居中 */
+    padding: 16px 20px !important; /* 极限压缩内衬尺寸，块体积立刻缩小到舒服尺寸 */
+    margin: 0 !important;
+    background: rgba(13, 22, 33, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 3. 右侧 5 6 7 三张图约 3:1 容器终极自适应拉伸 */
+#bridge-immersive-full .visual-container-compact {
+    flex: 1.1 !important; /* 适当给右侧图片区多一点点宽度，构图更大气 */
+    height: auto !important; /* 斩断原本所有被旧代码锁死的高度限制 */
+    display: flex !important;
+}
+
+#bridge-immersive-full .triptych-container {
+    display: flex !important;
+    flex-direction: row !important; /* 严格强制横向一排 */
+    gap: 14px !important; /* 图片中间的舒服间距 */
+    width: 100% !important;
+    height: 100% !important; /* 撑满父级高度 */
+}
+
+#bridge-immersive-full .triptych-item {
+    flex: 1 !important; /* 5, 6, 7 三个容器绝对等宽 */
+    height: 100% !important; /* 强制百分百撑满右侧高度 */
+    position: relative !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(0, 229, 255, 0.2) !important; /* 赋予高级感的科技外框 */
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* 强行平铺充盈图片 */
+#bridge-immersive-full .triptych-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; /* 核心：即使图片比例不对，也绝对等比裁剪铺满容器，绝不留白 */
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+/* 4. 保底全息文字提示：如果在本地真的没找到图，也会在方块里显示发光中文字，绝不露丑 */
+.img-fallback-text {
+    font-family: monospace, system-ui;
+    font-size: 13px;
+    color: var(--accent-gold);
+    text-shadow: 0 0 8px rgba(232, 185, 35, 0.4);
+    z-index: 1;
+    pointer-events: none;
+    text-align: center;
+    padding: 10px;
+}
+
+/* 5. 手机端自适应自动堆叠 */
+@media (max-width: 768px) {
+    #bridge-immersive-full .bridge-layout {
+        flex-direction: column !important;
+    }
+    #bridge-immersive-full .triptych-container {
+        height: 240px !important;
+    }
+}
 
 
 
