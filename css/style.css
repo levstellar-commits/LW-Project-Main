@@ -866,25 +866,27 @@ header.site-header {
     align-items: stretch !important; /* 关键：拉伸高度对齐 */
 }
 
+/* 天问到耳畔左侧修复 - 傻瓜版 */
 .clue-cards-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* 均匀分布三张卡片 */
-}
-
-.visual-container-compact {
-    height: 100%;
-}
-
-.triptych-container {
-    height: 100% !important;
     display: flex !important;
-    gap: 15px !important;
+    flex-direction: column !important;
+    gap: 24px !important;
 }
 
-.triptych-item img {
-    height: 100% !important;
-    object-fit: cover !important;
+.clue-cards-column .card.scene {
+    width: 100% !important;
+    background: rgba(20, 30, 40, 0.85) !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    border-radius: 10px !important;
+    padding: 28px 32px !important;
+}
+
+.clue-cards-column .card.scene h4,
+.clue-cards-column .card.scene p {
+    white-space: normal !important;
+    word-break: break-word !important;
+    line-height: 1.8 !important;
+    font-size: 1.05rem !important;
 }
 
 
@@ -2741,6 +2743,873 @@ select.form-control option {
 #pillar-right:hover .marquee-up .marquee-track {
     animation-duration: 15s !important; /* 悬停时稍微加快滚动，暗示数据交互 */
 }
+
+
+
+/* ==========================================================================
+   新增：LEVYTHOS 文明终端轻交互与去油化视觉补丁
+   ========================================================================== */
+
+/* 1. 净化首页系统面板的扫描线：使其极其隐蔽理智 */
+.cyber-status-panel {
+    position: relative;
+    overflow: hidden;
+}
+.cyber-status-panel::after {
+    content: "";
+    position: absolute;
+    top: -100%; left: 0;
+    width: 100%; height: 4px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 229, 255, 0.04), transparent);
+    animation: terminal-slow-pass 9s infinite linear; /* 极慢的速度暗示后台挂载 */
+    pointer-events: none;
+}
+@keyframes terminal-slow-pass {
+    0% { top: -100%; }
+    40% { top: 200%; }
+    100% { top: 200%; }
+}
+
+/* 2. 点赞与归档按钮去油：去除花哨气泡，回归冷峻的终端微光 */
+.article-stats span {
+    padding: 3px 8px !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 2px !important; /* 硬朗的直角化直观微改 */
+    transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* 悬停时：仅线条亮起，绝不产生剧烈位移或抢眼动画 */
+.article-stats .lv-pulse-resonance:hover {
+    border-color: rgba(0, 229, 255, 0.4) !important;
+    color: #ffffff !important;
+    background: rgba(0, 229, 255, 0.03) !important;
+}
+.article-stats .lv-depth-archive:hover {
+    border-color: rgba(232, 185, 35, 0.4) !important;
+    color: #ffffff !important;
+    background: rgba(232, 185, 35, 0.03) !important;
+}
+
+/* 本地锁定态：点赞成功后，转化为极其克制的降维深色背景与实心色 */
+.article-stats .lv-pulse-resonance.resonated {
+    background: rgba(0, 229, 255, 0.12) !important;
+    border-color: var(--accent) !important;
+    color: var(--accent) !important;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+}
+
+/* 3. 抽屉多米诺系统加速与平滑处理 */
+.drawer-panel .drawer-card {
+    opacity: 0;
+    transform: translateY(8px); /* 减小位移，防止产生页游式的浮夸弹窗感 */
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.1, 0.8, 0.2, 1) !important;
+}
+.drawer-panel.active .drawer-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ==========================================================================
+   全站标配自媒体交互数据总线（全息工业冷静风补丁）
+   ========================================================================== */
+
+.lv-terminal-interact-bus {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 4px !important;
+    padding: 6px 12px !important;
+    margin: 12px var(--site-padding, 15px) !important; /* 动态适配截图内的左右边距 */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8) !important;
+    user-select: none !important;
+}
+
+/* 单个自媒体按钮基本状态 */
+.lv-terminal-interact-bus .interact-item {
+    font-family: monospace !important;
+    font-size: 11px !important;
+    color: rgba(255, 255, 255, 0.4) !important; /* 平时极度克制暗淡，防油腻 */
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.lv-terminal-interact-bus .interact-item .icon {
+    font-style: normal !important;
+    font-size: 12px !important;
+    opacity: 0.6;
+}
+
+/* 独立悬停全息极简微光（去炫技、去彩色，换干净高冷单色） */
+.lv-terminal-interact-bus .btn-pulse:hover {
+    color: var(--accent, #00e5ff) !important;
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+}
+
+.lv-terminal-interact-bus .btn-archive:hover {
+    color: var(--accent-gold, #e8b923) !important;
+    text-shadow: 0 0 8px rgba(232, 185, 35, 0.5);
+}
+
+/* 评论解密按钮悬停时泛出白光，代表信息等待录入 */
+.lv-terminal-interact-bus .btn-decrypt:hover {
+    color: #ffffff !important;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* 脉冲共振（点赞）被游客激活后的锁定形态：变成高级淡金色，数字加粗 */
+.lv-terminal-interact-bus .btn-pulse.active {
+    color: var(--accent-gold, #e8b923) !important;
+    font-weight: bold !important;
+    text-shadow: 0 0 10px rgba(232, 185, 35, 0.6);
+}
+.lv-terminal-interact-bus .btn-pulse.active .icon {
+    opacity: 1;
+}
+
+/* 针对截图手机端的响应式压缩：防止数字过大导致换行 */
+@media (max-width: 768px) {
+    .lv-terminal-interact-bus {
+        padding: 5px 8px !important;
+        margin: 10px 12px !important;
+    }
+    .lv-terminal-interact-bus .interact-item {
+        font-size: 10px !important;
+        gap: 3px !important;
+    }
+}
+
+
+
+/* ==========================================================================
+   自媒体熟悉图标交互总线样式与大屏响应式规范布局（纯净追加）
+   ========================================================================== */
+
+.lv-selfmedia-bus {
+    display: flex !important;
+    width: 100% !important;
+    padding: 0 16px 12px 16px !important;
+    box-sizing: border-box !important;
+    margin-top: 10px !important;
+}
+
+.lv-selfmedia-bus .media-btn-group {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    width: 100% !important;
+    justify-content: flex-start !important;
+}
+
+.lv-selfmedia-bus .media-action-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    cursor: pointer !important;
+    font-family: monospace, system-ui !important;
+    font-size: 13px !important; 
+    color: rgba(255, 255, 255, 0.45) !important;
+    transition: color 0.2s ease, transform 0.1s ease !important;
+    user-select: none !important;
+    padding: 4px 0 !important;
+}
+
+.lv-selfmedia-bus .media-action-btn .media-icon {
+    font-size: 14px !important;
+    filter: grayscale(100%) opacity(0.6); 
+    transition: filter 0.2s ease;
+}
+
+/* 熟悉的自媒体式点亮悬停交互 */
+.lv-selfmedia-bus .btn-like:hover { color: #ff4757 !important; }
+.lv-selfmedia-bus .btn-like:hover .media-icon { filter: grayscale(0%) opacity(1); }
+
+.lv-selfmedia-bus .btn-collect:hover { color: #ffa502 !important; }
+.lv-selfmedia-bus .btn-collect:hover .media-icon { filter: grayscale(0%) opacity(1); }
+
+.lv-selfmedia-bus .btn-comment:hover { color: #1e90ff !important; }
+.lv-selfmedia-bus .btn-comment:hover .media-icon { filter: grayscale(0%) opacity(1); }
+
+/* 点赞锁定激活态：🔥亮起红橘光 */
+.lv-selfmedia-bus .media-action-btn.btn-like.voted {
+    color: #ff4757 !important;
+    font-weight: 700 !important;
+}
+.lv-selfmedia-bus .media-action-btn.btn-like.voted .media-icon {
+    filter: grayscale(0%) opacity(1) drop-shadow(0 0 6px rgba(255,71,87,0.6));
+}
+
+.lv-selfmedia-bus .media-action-btn:active {
+    transform: scale(0.9);
+}
+
+@media (max-width: 768px) {
+    .lv-split-core-layout {
+        grid-template-columns: 1fr !important;
+    }
+    .lv-selfmedia-bus {
+        padding: 5px 8px !important;
+        margin: 10px 12px !important;
+    }
+}
+
+
+/* ==========================================================================
+   立维宇宙：全站通用文明终端自媒体交互总线（高级全息冷静风）
+   ========================================================================== */
+.lv-civilization-interact-bus {
+    display: flex !important;
+    width: 100% !important;
+    padding: 12px 16px !important;
+    box-sizing: border-box !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    margin-top: auto !important; /* 强制推向卡片底部对齐 */
+}
+
+.lv-civilization-interact-bus .interact-action-group {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important; /* 四个按钮在行内绝对完美等分拉开 */
+    width: 100% !important;
+}
+
+.lv-civilization-interact-bus .interact-trigger-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    cursor: pointer !important;
+    font-family: 'Inter', monospace, system-ui !important; /* 极客风格的等宽数字字体 */
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    color: rgba(255, 255, 255, 0.4) !important; /* 平时极度克制暗淡，防止产生廉价的短视频信息流感 */
+    transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    user-select: none !important;
+    padding: 4px 6px !important;
+    border-radius: 4px !important;
+}
+
+/* 按钮内部图标状态微调 */
+.lv-civilization-interact-bus .interact-trigger-btn .interact-icon {
+    font-size: 13px !important;
+    filter: grayscale(100%) opacity(0.5); /* 平时图标灰度处理，高级冷静 */
+    transition: all 0.25s ease !important;
+}
+
+/* ---------- 悬停时的全息高级发光质感（差异化调色） ---------- */
+/* 1. 点赞悬停：泛出高能粒子红橙光 */
+.lv-civilization-interact-bus .btn-like:hover { 
+    color: #ff4757 !important; 
+    background: rgba(255, 71, 87, 0.06) !important;
+}
+.lv-civilization-interact-bus .btn-like:hover .interact-icon { filter: grayscale(0%) opacity(1); }
+
+/* 2. 收藏悬停：泛出档案馆的传说金光 */
+.lv-civilization-interact-bus .btn-collect:hover { 
+    color: var(--accent-gold, #e8b923) !important; 
+    background: rgba(232, 185, 35, 0.06) !important;
+}
+.lv-civilization-interact-bus .btn-collect:hover .interact-icon { filter: grayscale(0%) opacity(1); }
+
+/* 3. 评论悬停：泛出文明观测员的科幻青光 */
+.lv-civilization-interact-bus .btn-comment:hover { 
+    color: var(--accent, #00e5ff) !important; 
+    background: rgba(0, 229, 255, 0.06) !important;
+}
+.lv-civilization-interact-bus .btn-comment:hover .interact-icon { filter: grayscale(0%) opacity(1); }
+
+/* 4. 转发/传播悬停：泛出深空数据链的纯净幽蓝光 */
+.lv-civilization-interact-bus .btn-share:hover { 
+    color: #2f3542 !important; /* 调配的高纯度幽蓝 */
+    color: #5352ed !important;
+    background: rgba(83, 82, 237, 0.06) !important;
+}
+.lv-civilization-interact-bus .btn-share:hover .interact-icon { filter: grayscale(0%) opacity(1); }
+
+
+/* ---------- 脉冲共振（点赞）被本设备游客真实激活后的死锁形态 ---------- */
+.lv-civilization-interact-bus .interact-trigger-btn.btn-like.activated {
+    color: #ff4757 !important;
+    font-weight: 700 !important;
+    background: rgba(255, 71, 87, 0.1) !important;
+    text-shadow: 0 0 8px rgba(255, 71, 87, 0.5) !important;
+}
+.lv-civilization-interact-bus .interact-trigger-btn.btn-like.activated .interact-icon {
+    filter: grayscale(0%) opacity(1) drop-shadow(0 0 4px rgba(255, 71, 87, 0.6)) !important;
+}
+
+/* 轻微点击物理触感反馈 */
+.lv-civilization-interact-bus .interact-trigger-btn:active {
+    transform: scale(0.92);
+}
+
+/* ---------- 响应式边界处理：适配移动端横滑卡片防挤压 ---------- */
+@media (max-width: 768px) {
+    .lv-civilization-interact-bus {
+        padding: 8px 10px !important;
+    }
+    .lv-civilization-interact-bus .interact-trigger-btn {
+        font-size: 11px !important;
+        gap: 3px !important;
+        padding: 3px 4px !important;
+    }
+}
+
+
+
+/* ==========================================================================
+   立维宇宙：高级全息自媒体交互总线 (对标极简参考图)
+   ========================================================================== */
+
+/* 主容器：暗黑圆角小条，不抢任何风头，克制内敛 */
+.lv-civilization-interact-bus {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: auto !important;
+    background: #0d1117 !important; /* 极深的暗灰蓝底色，同参考图 */
+    border: 1px solid rgba(255, 255, 255, 0.04) !important;
+    border-radius: 6px !important;
+    padding: 8px 15px !important;
+    margin: 15px 12px 10px 12px !important; /* 卡片内的边距 */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+    user-select: none !important;
+}
+
+/* 按钮整体态：默认暗淡 */
+.lv-civilization-interact-bus .interact-trigger-btn {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    cursor: pointer !important;
+    font-family: 'Inter', monospace, sans-serif !important; 
+    font-size: 13px !important; /* 缩小字号 */
+    font-weight: 500 !important;
+    color: #6b7280 !important; /* 极度克制的暗灰色文字 */
+    transition: all 0.3s ease !important;
+}
+
+/* 矢量 SVG 图标样式：线条感 */
+.lv-civilization-interact-bus .interact-trigger-btn svg {
+    color: #6b7280; /* 图标与文字同色 */
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* ---------- 悬停交互 (Hover) ---------- */
+/* 闪电 (点赞) Hover */
+.lv-civilization-interact-bus .btn-like:hover,
+.lv-civilization-interact-bus .btn-like:hover svg { 
+    color: #ff6b6b !important; /* 猩红能流 */
+    transform: scale(1.05);
+}
+
+/* 文件夹 (收藏) Hover */
+.lv-civilization-interact-bus .btn-collect:hover,
+.lv-civilization-interact-bus .btn-collect:hover svg { 
+    color: #e8b923 !important; /* 传说金 */
+    transform: scale(1.05);
+}
+
+/* 气泡 (评论) Hover */
+.lv-civilization-interact-bus .btn-comment:hover,
+.lv-civilization-interact-bus .btn-comment:hover svg { 
+    color: #00e5ff !important; /* 科幻青 */
+    transform: scale(1.05);
+}
+
+/* 节点 (转发) Hover */
+.lv-civilization-interact-bus .btn-share:hover,
+.lv-civilization-interact-bus .btn-share:hover svg { 
+    color: #a29bfe !important; /* 幽蓝色 */
+    transform: scale(1.05);
+}
+
+/* ---------- 激活态 (点过赞后的锁死状态) ---------- */
+/* 对齐参考图：点过赞后，闪电微红，数字变亮 */
+.lv-civilization-interact-bus .interact-trigger-btn.btn-like.activated,
+.lv-civilization-interact-bus .interact-trigger-btn.btn-like.activated svg {
+    color: #ff6b6b !important;
+    font-weight: 600 !important;
+    text-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+}
+
+.lv-civilization-interact-bus .interact-trigger-btn:active {
+    transform: scale(0.9);
+}
+
+/* ---------- 移动端适配 ---------- */
+@media (max-width: 768px) {
+    .lv-civilization-interact-bus {
+        padding: 6px 12px !important;
+        margin: 10px 8px 8px 8px !important;
+    }
+    .lv-civilization-interact-bus .interact-trigger-btn {
+        font-size: 11px !important;
+        gap: 4px !important;
+    }
+    .lv-civilization-interact-bus .interact-trigger-btn svg {
+        width: 12px !important;
+        height: 12px !important;
+    }
+}
+
+
+
+
+
+
+/* ==========================================================================
+   执行摘要 - 优化最终版 (顶部框 + 左4块 + 右新闻)
+   ========================================================================== */
+
+/* 1. 顶部宽横块 - 加科技感边框 */
+.lv-wide-intro-block {
+    background: rgba(13, 22, 33, 0.92) !important;
+    border: 1px solid rgba(0, 229, 255, 0.35) !important;
+    border-radius: 12px !important;
+    padding: 38px 42px !important;
+    margin-bottom: 52px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
+    position: relative;
+}
+
+.lv-wide-intro-block::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border: 1px solid rgba(232, 185, 35, 0.15);
+    border-radius: 12px;
+    pointer-events: none;
+}
+
+/* 2. 核心布局：左2x2方块 + 右新闻栏 */
+.lv-executive-main {
+    display: grid !important;
+    grid-template-columns: 2fr 1fr !important;
+    gap: 52px !important;
+    align-items: start !important;
+    width: 100% !important;
+}
+
+/* 左侧4个方块 */
+.lv-pillar-concepts {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 28px !important;
+}
+
+.summary-item.square-card {
+    background: rgba(15, 23, 35, 0.95) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 10px !important;
+    padding: 32px 28px !important;
+    height: 100% !important;
+    min-height: 178px !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.summary-item.square-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent-gold);
+    box-shadow: 0 12px 30px rgba(232, 185, 35, 0.15);
+}
+
+.summary-item.square-card h4 {
+    color: var(--accent-gold) !important;
+    font-size: 1.25rem !important;
+    margin-bottom: 16px !important;
+    line-height: 1.3;
+    white-space: normal !important;
+}
+
+/* 右侧新闻栏 - 固定舒适高度，防止溢出 */
+.lv-news-sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+    height: 100% !important;
+}
+
+.news-item {
+    flex: 1 !important;                    /* 让三个新闻尽量均分高度 */
+    min-height: 138px !important;
+    max-height: 160px !important;          /* 控制最大高度 */
+    display: flex !important;
+    gap: 18px !important;
+    background: rgba(255,255,255,0.035) !important;
+    border: 1px solid rgba(255,255,255,0.09) !important;
+    border-radius: 8px;
+    padding: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.news-item:hover {
+    background: rgba(0, 229, 255, 0.06) !important;
+    border-color: var(--accent);
+    transform: translateY(-3px);
+}
+
+.news-thumb {
+    width: 108px !important;
+    height: 76px !important;
+    flex-shrink: 0 !important;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.news-text h4 {
+    font-size: 15.5px !important;
+    line-height: 1.45 !important;
+    margin-bottom: 10px !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.news-text p {
+    font-size: 13.8px !important;
+    line-height: 1.55 !important;
+    color: rgba(255,255,255,0.75) !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* 移动端自动堆叠 */
+@media (max-width: 992px) {
+    .lv-executive-main {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+    
+    .news-item {
+        min-height: auto !important;
+        max-height: none !important;
+    }
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+   【紧急修复】从天问到耳畔 左侧线索卡片列 - 彻底对齐 + 去“竖线”
+   ========================================================================== */
+
+#bridge-immersive-full .bridge-layout {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 40px !important;
+    align-items: start !important;     /* 改为 start 防止高度拉伸 */
+    position: relative !important;
+}
+
+#bridge-immersive-full .clue-cards-column {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* 卡片本身强制规范 */
+#bridge-immersive-full .clue-cards-column .card.scene {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 28px 32px !important;
+    border-radius: 8px !important;
+    background: rgba(20, 30, 40, 0.85) !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6) !important;
+    overflow: hidden !important;
+}
+
+/* 标题和文字强制正常横排 */
+#bridge-immersive-full .clue-cards-column .card h4,
+#bridge-immersive-full .clue-cards-column .card p {
+    white-space: normal !important;
+    word-break: break-word !important;
+    hyphens: auto !important;
+    text-align: left !important;
+    line-height: 1.65 !important;
+}
+
+/* 移除可能导致“竖线”感的左侧装饰 */
+#bridge-immersive-full .clue-cards-column .card::before {
+    display: none !important;
+}
+
+/* 右侧图片容器对齐优化 */
+#bridge-immersive-full .visual-container-compact {
+    align-self: start !important;
+}
+
+#bridge-immersive-full .triptych-container {
+    gap: 12px !important;
+    height: auto !important;
+}
+
+/* 移动端适配 */
+@media (max-width: 992px) {
+    #bridge-immersive-full .bridge-layout {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
+    
+    #bridge-immersive-full .clue-cards-column .card.scene {
+        padding: 22px 24px !important;
+    }
+}
+
+
+
+/* ====================== 执行摘要优化 ====================== */
+.lv-executive-main {
+    display: grid !important;
+    grid-template-columns: 2fr 1fr !important;
+    gap: 52px !important;
+    align-items: start !important;
+}
+
+.lv-pillar-concepts {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 28px !important;
+}
+
+/* 让4个卡片更接近正方形 */
+.summary-item.square-card {
+    background: rgba(15, 23, 35, 0.95) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 10px !important;
+    padding: 32px 28px !important;
+    min-height: 260px !important;           /* 关键：控制高度 */
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transition: all 0.3s ease;
+}
+
+.summary-item.square-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent-gold);
+    box-shadow: 0 12px 30px rgba(232, 185, 35, 0.15);
+}
+
+.summary-item.square-card h4 {
+    color: var(--accent-gold) !important;
+    font-size: 1.25rem !important;
+    margin-bottom: 16px !important;
+    line-height: 1.3;
+}
+
+/* 右侧新闻区美化 */
+.lv-news-sidebar {
+    position: relative;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+    height: 100% !important;
+}
+
+/* 左上角主题标签 */
+.news-header-label {
+    position: absolute;
+    top: -18px;
+    left: 20px;
+    z-index: 2;
+}
+
+.news-theme-tag {
+    background: rgba(0, 229, 255, 0.15);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 18px;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 229, 255, 0.4);
+    letter-spacing: 1px;
+}
+
+/* 新闻卡片 */
+.news-item {
+    flex: 1 !important;
+    min-height: 138px !important;
+    display: flex !important;
+    gap: 18px !important;
+    background: rgba(255,255,255,0.035) !important;
+    border: 1px solid rgba(255,255,255,0.09) !important;
+    border-radius: 8px;
+    padding: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.news-item:hover {
+    background: rgba(0, 229, 255, 0.06) !important;
+    border-color: var(--accent);
+    transform: translateY(-3px);
+}
+
+.news-thumb {
+    width: 108px !important;
+    height: 76px !important;
+    flex-shrink: 0 !important;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* 更多按钮 */
+.news-more-wrapper {
+    text-align: right;
+    margin-top: 12px;
+}
+
+.news-more-btn {
+    display: inline-block;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 24px;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.news-more-btn:hover {
+    background: var(--accent);
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+}
+
+
+
+@media (max-width: 992px) {
+    .lv-executive-main {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+    
+    .summary-item.square-card {
+        min-height: 220px !important;
+    }
+}
+
+
+
+
+
+/* 执行摘要核心布局 - 强制高度对齐 */
+.lv-executive-main {
+    display: grid !important;
+    grid-template-columns: 2fr 1fr !important;
+    gap: 52px !important;
+    align-items: start !important; /* 顶部对齐 */
+    min-height: 620px; /* 强制容器高度，确保左右边界对齐 */
+}
+
+.lv-pillar-concepts {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 28px !important;
+    height: 100% !important; /* 撑满容器 */
+}
+
+.summary-item.square-card {
+    background: rgba(15, 23, 35, 0.95) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 10px !important;
+    padding: 32px 28px !important;
+    height: 100% !important; /* 关键：强制每个卡片等高 */
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 260px !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.summary-item.square-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent-gold);
+}
+
+.summary-item.square-card h4 {
+    color: var(--accent-gold) !important;
+    font-size: 1.25rem !important;
+    margin-bottom: 16px !important;
+    line-height: 1.3;
+}
+
+.summary-item.square-card p {
+    flex: 1; /* 文字区域占满剩余高度 */
+    margin: 0;
+}
+
+/* 新闻区高度匹配 */
+.lv-news-sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+    height: 100% !important; /* 与左侧对齐 */
+}
+
+.news-item {
+    flex: 1 !important; /* 让新闻卡片均分高度 */
+    min-height: 138px !important;
+    display: flex !important;
+    gap: 18px !important;
+    background: rgba(255,255,255,0.035) !important;
+    border: 1px solid rgba(255,255,255,0.09) !important;
+    border-radius: 8px;
+    padding: 16px;
+    overflow: hidden;
+}
+
+.news-thumb {
+    width: 108px !important;
+    height: 76px !important;
+    flex-shrink: 0 !important;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* 顶部文字块优化 - 防止抽条 */
+.lv-wide-intro-block {
+    background: rgba(13, 22, 33, 0.92) !important;
+    border: 1px solid rgba(0, 229, 255, 0.35) !important;
+    border-radius: 12px !important;
+    padding: 38px 42px !important;
+    margin-bottom: 52px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
+    width: 100% !important;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
