@@ -2685,7 +2685,62 @@ select.form-control option {
 }
 
 
+/* ==========================================================================
+   追加：首屏系统状态面板与右侧总线 极致冷静工业级 UI 规范
+   ========================================================================== */
 
+/* 1. 状态面板基础样式 */
+.cyber-status-panel {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cyber-status-panel:hover {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9) !important;
+    transform: translateY(-3px);
+}
+
+/* 2. 静态信号灯（Hover时点亮，平时极度隐蔽理智） */
+.static-signal-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #3a4750; /* 工业冷灰 */
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+.cyber-status-panel:hover .static-signal-dot {
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+}
+
+/* 3. 右侧研究日志总线格式对齐 */
+#pillar-right {
+    border-left: 2px solid var(--accent) !important;
+}
+#pillar-right:hover {
+    background: rgba(0, 229, 255, 0.06) !important;
+    box-shadow: -5px 0 25px rgba(0, 229, 255, 0.2) !important;
+}
+#pillar-right .marquee-track {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 35px !important;
+    padding: 30px 0 !important;
+}
+#pillar-right .marquee-track span {
+    writing-mode: horizontal-tb !important; /* 保证总线英文单字正立 */
+    letter-spacing: 0 !important;
+    opacity: 0.6;
+    font-family: monospace;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--accent);
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+}
+#pillar-right:hover .marquee-up .marquee-track {
+    animation-duration: 15s !important; /* 悬停时稍微加快滚动，暗示数据交互 */
+}
 
 
 
