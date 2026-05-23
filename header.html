@@ -10,16 +10,22 @@
     </div>
     
     <nav class="site-nav">
-        <a href="/universe.html" class="nav-item-dual"><strong>源点·世界观</strong><span>设定/始祖谱系</span></a>
-        <a href="/index.html#matrix" class="nav-item-dual"><strong>全息·IP长卷</strong><span>小说/漫画/微剧</span></a>
-        <a href="/index.html#spatial" class="nav-item-dual"><strong>降临·空间显化</strong><span>实体/微缩模型</span></a>
-        <a href="/index.html#ip-souvenir-section" class="nav-item-dual"><strong>共鸣·万象市集</strong><span>周边/数字资产</span></a>
-        <a href="/index.html#press" class="nav-item-dual"><strong>纪元·星门日志</strong><span>项目动态/新闻</span></a>
-        <a href="/index.html#contact" class="nav-item-dual"><strong>缔约·宇宙共建</strong><span>B2B合作/投资</span></a>
+        <!-- 🟢 1. 升级后的全局立维百科入口，带专属淡金边框高光，对齐全站最高估值 -->
+        <a href="/encyclopedia.html" class="nav-item-dual" style="border: 1px solid rgba(232, 185, 35, 0.35); background: rgba(232, 185, 35, 0.05); border-radius: 4px; padding: 4px 10px; box-shadow: 0 0 10px rgba(232, 185, 35, 0.1);">
+            <strong style="color: var(--accent-gold);">立维百科</strong>
+            <span>文明档案馆/世界观</span>
+        </a>
+        
+        <!-- 🟢 2. 统一风格：气质词 · 功能词，半秒可读懂的高级工业感 -->
+        <a href="/index.html#matrix" class="nav-item-dual"><strong>全息·内容宇宙</strong><span>文学/有声/漫剧/UE5原型</span></a>
+        <a href="/index.html#spatial" class="nav-item-dual"><strong>降临·空间活化</strong><span>城市更新/数字孪生</span></a>
+        <a href="/index.html#ip-souvenir-section" class="nav-item-dual"><strong>共鸣·衍生品计划</strong><span>文创/数字藏品</span></a>
+        <a href="/index.html#press" class="nav-item-dual"><strong>纪元·星门日志</strong><span>文明播报/开发日志</span></a>
+        <a href="/index.html#contact" class="nav-item-dual"><strong>缔约·宇宙共建</strong><span>产业合作/文明共建</span></a>
     </nav>
     
-<div class="header-actions">
-        <a href="/index.html?action=login" class="nav-item-dual hide-on-mobile"><strong>接入终端</strong><span>(获取敕令)</span></a>
+    <div class="header-actions">
+        <!-- 🟢 3. 修复原代码里的一个小错漏：保持全局接入终端使用 openLoginModal 交互逻辑 -->
+        <a href="#" class="nav-item-dual hide-on-mobile" onclick="event.preventDefault(); openLoginModal();"><strong>接入终端</strong><span>(获取敕令)</span></a>
     </div>
 </header>
-
