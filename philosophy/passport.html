@@ -259,34 +259,11 @@
 </head>
 <body>
 
-<!-- 通用母体规范导航总线[cite: 3] -->
-<div id="header-placeholder">
-    <header class="site-header">
-        <div class="brand">
-            <a class="logo" href="../index.html" aria-label="Levythos 标志">
-                <img src="../assets/images/logo.png" alt="立维宇宙Logo" width="44" height="44" />
-            </a>
-            <div class="brand-text">
-                <div class="brand-title">立维宇宙</div>
-                <div class="brand-subtitle">LEVYTHOS</div>
-            </div>
-        </div>
-        <nav class="site-nav">
-            <a href="encyclopedia-hub.html" class="nav-item-dual" style="border: 1px solid rgba(232, 185, 35, 0.35); background: rgba(232, 185, 35, 0.05); border-radius: 4px; padding: 4px 10px;">
-                <strong style="color: var(--accent-gold);">立维百科</strong><span>文明档案馆</span>
-            </a>
-            <a href="../index.html#matrix" class="nav-item-dual"><strong>全息·内容宇宙</strong><span>文学/影视原型</span></a>
-            <a href="../index.html#spatial" class="nav-item-dual"><strong>降临·空间活化</strong><span>数字孪生</span></a>
-            <a href="../index.html#ip-souvenir-section" class="nav-item-dual"><strong>共鸣·衍生品计划</strong><span>文创设计</span></a>
-            <a href="../index.html#press" class="nav-item-dual"><strong>纪元·研究日志</strong><span>城市空间运营</span></a>
-            <a href="../index.html#contact" class="nav-item-dual"><strong>缔约·宇宙共建</strong><span>产业合作</span></a>
-        </nav>
-        <div class="header-actions">
-            <!-- 呼应体系：控制台已成功进入登录后的确权状态 -->
-            <a href="passport.html" class="nav-item-dual" style="border: 1px solid var(--accent); background: rgba(0,229,255,0.05); padding: 4px 12px; border-radius: 4px;"><strong>观测员：星河灯塔 ▽</strong><span>控制台中心已就绪</span></a>
-        </div>
-    </header>
-</div>
+
+<!-- 全站统一动态导航注入点 -->
+<div id="header-placeholder"></div>
+
+
 
 <!-- 👤 解大为全能向导 -->
 <div class="dawei-guide" id="dawei-guide-widget" style="position: fixed; bottom: 80px; right: 80px; z-index: 15000; display: flex; flex-direction: row-reverse; align-items: center; gap: 8px;">
@@ -554,6 +531,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 20000);
 });
 </script>
+
+<!-- 全站统一 Header 状态总线 -->
+<script src="../js/header.js"></script>
 
 </body>
 </html>
