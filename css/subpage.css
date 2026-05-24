@@ -609,4 +609,306 @@ header.site-header {
 }
 
 
+/* ==========================================================================
+   [同步更新] 完美对齐主页与 header-全站统一导航文字-2.html 的双行导航栏样式
+   ========================================================================== */
 
+header.site-header {
+    height: 80px !important;
+    background: rgba(2, 6, 10, 0.9) !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    display: flex !important; 
+    align-items: center !important; 
+    justify-content: space-between !important;
+    padding: 0 40px !important;
+    position: fixed !important; 
+    top: 0 !important; 
+    left: 0 !important; 
+    width: 100% !important; 
+    z-index: 9999 !important;
+}
+
+/* 强制对齐主页的大气 Logo 排版（修复子页面缩水或错位问题） */
+.brand { 
+    display: flex !important; 
+    align-items: center !important; 
+    gap: 20px !important; 
+    margin-left: 65px !important; 
+}
+.brand img { 
+    width: 58px !important; 
+    height: 58px !important; 
+    filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.5)) !important; 
+    display: block !important; 
+}
+.brand-text { 
+    display: flex !important; 
+    flex-direction: column !important; 
+    width: auto !important; 
+    align-items: center !important; 
+}
+.brand-title { 
+    font-family: 'Noto Serif SC', 'Songti SC', 'STZhongsong', serif !important; 
+    font-size: 28px !important; 
+    font-weight: 900 !important; 
+    color: #ffffff !important; 
+    text-align: center !important;
+    text-align-last: center !important; 
+    letter-spacing: 4px !important; 
+    margin-right: -4px !important; 
+    line-height: 1.1 !important;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4) !important;
+}
+.brand-subtitle { 
+    font-family: 'Inter', Arial, sans-serif !important;
+    font-size: 14.5px !important; 
+    font-weight: 800 !important; 
+    color: #00e5ff !important; 
+    margin-top: 5px !important;
+    text-align: center !important;
+    text-align-last: center !important; 
+    letter-spacing: 5.5px !important; 
+    margin-right: -5.5px !important; 
+    line-height: 1 !important;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.4) !important;
+    display: block !important;
+    width: 100% !important;
+}
+
+/* 完美同步：双行高级工业感导航菜单文字对齐 */
+.site-nav { 
+    margin-left: auto !important; 
+    margin-right: 40px !important; 
+    display: flex !important; 
+    gap: 30px !important; 
+}
+.nav-item-dual { 
+    display: flex !important; 
+    flex-direction: column !important; 
+    align-items: center !important; 
+    justify-content: center !important; 
+    line-height: 1.2 !important; 
+    text-decoration: none !important; 
+}
+.nav-item-dual strong { 
+    font-size: 0.95rem !important; 
+    font-weight: 600 !important; 
+    color: #fff !important; 
+    transition: 0.3s !important; 
+}
+.nav-item-dual span { 
+    font-size: 0.65rem !important; 
+    color: var(--accent) !important; 
+    opacity: 0.8 !important; 
+}
+.nav-item-dual:hover strong { 
+    color: var(--accent-gold) !important; 
+}
+.header-actions { 
+    margin-right: 90px !important; 
+}
+
+/* ==========================================================================
+   [全量重构] 立维百科子页面专属硬核科幻面板视效与罗马柱安全闭环
+   ========================================================================== */
+
+/* 1. 导航栏完全对齐 INDEX--20260523-15.html */
+header.site-header {
+    height: 80px !important;
+    background: rgba(2, 6, 10, 0.9) !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    display: flex !important; 
+    align-items: center !important; 
+    justify-content: space-between !important;
+    padding: 0 40px !important;
+    position: fixed !important; 
+    top: 0 !important; 
+    left: 0 !important; 
+    width: 100% !important; 
+    z-index: 9999 !important;
+}
+.brand { display: flex !important; align-items: center !important; gap: 20px !important; margin-left: 65px !important; }
+.brand img { width: 58px !important; height: 58px !important; filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.5)) !important; }
+.brand-text { display: flex !important; flex-direction: column !important; align-items: center !important; }
+.brand-title { font-family: 'Noto Serif SC', 'Songti SC', serif !important; font-size: 28px !important; font-weight: 900 !important; color: #ffffff !important; letter-spacing: 4px !important; margin-right: -4px !important; line-height: 1.1 !important; text-shadow: 0 0 15px rgba(255, 255, 255, 0.4) !important;}
+.brand-subtitle { font-family: 'Inter', sans-serif !important; font-size: 14.5px !important; font-weight: 800 !important; color: #00e5ff !important; margin-top: 5px !important; letter-spacing: 5.5px !important; margin-right: -5.5px !important; line-height: 1 !important; text-shadow: 0 0 10px rgba(0, 229, 255, 0.4) !important; display: block !important; width: 100% !important;}
+.site-nav { margin-left: auto !important; margin-right: 40px !important; display: flex !important; gap: 30px !important; }
+.nav-item-dual { display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; line-height: 1.2 !important; text-decoration: none !important; }
+.nav-item-dual strong { font-size: 0.95rem !important; font-weight: 600 !important; color: #fff !important; transition: 0.3s !important; }
+.nav-item-dual span { font-size: 0.65rem !important; color: var(--accent) !important; opacity: 0.8 !important; }
+.nav-item-dual:hover strong { color: var(--accent-gold) !important; }
+.header-actions { margin-right: 90px !important; }
+
+/* 2. 百科词条容器安全区：防止被双侧罗马柱夹死 */
+.archive-container {
+    max-width: 1200px !important;
+    margin: 120px auto 60px auto !important;
+    padding: 0 80px !important;
+    box-sizing: border-box !important;
+}
+
+/* 3. 档案馆冷荧光硬核头衔区 */
+.archive-terminal-header {
+    background: linear-gradient(90deg, rgba(0, 229, 255, 0.03), transparent) !important;
+    border-left: 4px solid var(--accent) !important;
+    padding: 24px !important;
+    margin-bottom: 40px !important;
+    border-radius: 0 8px 8px 0 !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4) !important;
+}
+.archive-meta-bus {
+    font-family: monospace !important;
+    font-size: 11px !important;
+    color: var(--accent) !important;
+    letter-spacing: 2px !important;
+    margin-bottom: 12px !important;
+    opacity: 0.85 !important;
+}
+.archive-main-title {
+    font-family: 'Noto Serif SC', 'Songti SC', serif !important;
+    font-size: 36px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    margin: 0 !important;
+    text-shadow: 0 0 20px rgba(255,255,255,0.2) !important;
+}
+.archive-main-title span {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 18px !important;
+    color: rgba(255,255,255,0.4) !important;
+    margin-left: 15px !important;
+    font-weight: 400 !important;
+}
+
+/* 4. 2x2 复合工业网格面板 */
+.archive-grid-panel {
+    display: grid !important;
+    grid-template-columns: 1.35fr 0.65fr !important;
+    gap: 30px !important;
+    align-items: start !important;
+}
+
+/* 5. 一句话定义：全息高光舱 */
+.archive-prime-definition {
+    background: rgba(13, 22, 33, 0.85) !important;
+    border: 1px solid rgba(0, 229, 255, 0.25) !important;
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.08), inset 0 0 15px rgba(0, 229, 255, 0.05) !important;
+    padding: 24px !important;
+    border-radius: 8px !important;
+    margin-bottom: 30px !important;
+    line-height: 1.7 !important;
+}
+.archive-prime-definition strong {
+    color: var(--accent-gold) !important;
+    font-size: 17px !important;
+    text-shadow: 0 0 10px rgba(232, 185, 35, 0.3) !important;
+}
+
+/* 6. 文明深度演化区 */
+.archive-lore-body h3 {
+    font-size: 20px !important;
+    color: #fff !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+    padding-bottom: 10px !important;
+    margin-top: 0 !important;
+}
+.archive-lore-body p {
+    color: rgba(255,255,255,0.85) !important;
+    font-size: 15px !important;
+    line-height: 1.85 !important;
+    text-align: justify !important;
+}
+
+/* 7. 词条横向知识图谱网络链接纽带 */
+.archive-knowledge-links {
+    margin-top: 40px !important;
+    padding-top: 20px !important;
+    border-top: 1px solid rgba(255,255,255,0.05) !important;
+    font-size: 13px !important;
+    color: #666 !important;
+}
+.archive-knowledge-links a {
+    color: var(--accent) !important;
+    text-decoration: none !important;
+    border-bottom: 1px dashed rgba(0, 229, 255, 0.4) !important;
+    padding-bottom: 2px !important;
+    margin: 0 6px !important;
+}
+.archive-knowledge-links a:hover {
+    color: var(--accent-gold) !important;
+    border-bottom-color: var(--accent-gold) !important;
+}
+
+/* 8. 右侧机甲控制台悬浮框（交付包） */
+.archive-spec-sidebar {
+    background: #060b11 !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    border-radius: 8px !important;
+    padding: 24px !important;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6) !important;
+}
+.spec-bus-item {
+    margin-bottom: 24px !important;
+}
+.spec-bus-item:last-child { margin-bottom: 0 !important; }
+.spec-bus-item .spec-label {
+    font-size: 11px !important;
+    color: #556270 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    margin-bottom: 6px !important;
+}
+.spec-bus-item .spec-value {
+    font-size: 15px !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+/* ==========================================================================
+   [立意保留] 双侧赛博罗马柱（全息数据总线）自适应样式
+   ========================================================================== */
+.cyber-pillar {
+    position: fixed !important; 
+    top: 0 !important; 
+    height: 100vh !important; 
+    width: 60px !important; 
+    background: linear-gradient(to bottom, rgba(2,6,10,0.95), rgba(20,30,40,0.95)) !important; 
+    z-index: 9000 !important; 
+    cursor: pointer !important; 
+    display: flex !important; 
+    flex-direction: column !important; 
+    align-items: center !important; 
+    justify-content: center !important; 
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) !important; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8) !important; 
+    overflow: hidden !important;
+}
+#pillar-left { left: 0 !important; border-right: 2px solid var(--accent-gold) !important; }
+#pillar-left:hover { width: 75px !important; background: rgba(232, 185, 35, 0.1) !important; }
+#pillar-right { right: 0 !important; border-left: 2px solid var(--accent) !important; }
+#pillar-right:hover { width: 75px !important; background: rgba(0, 229, 255, 0.06) !important; box-shadow: -5px 0 25px rgba(0, 229, 255, 0.2) !important; }
+
+.pillar-marquee { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.6; transition: opacity 0.3s; pointer-events: none; }
+.cyber-pillar:hover .pillar-marquee { opacity: 0.8; }
+.marquee-track { display: flex; flex-direction: column; align-items: center; gap: 25px; padding: 20px 0; width: 100%; }
+.marquee-down .marquee-track { animation: scroll-v-down 25s linear infinite; }
+.marquee-up .marquee-track { animation: scroll-v-up 25s linear infinite; gap: 40px; padding: 30px 0; }
+
+@keyframes scroll-v-down { 0% { transform: translateY(-50%); } 100% { transform: translateY(0); } }
+@keyframes scroll-v-up { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
+
+.cyber-pillar .vertical-text { position: relative; z-index: 10; background: rgba(0,0,0,0.7); padding: 20px 8px; border-radius: 8px; writing-mode: vertical-rl; text-orientation: upright; color: #fff; font-weight: 900; font-size: 1rem; letter-spacing: 4px; white-space: nowrap; border: none; }
+#pillar-left .vertical-text { background: linear-gradient(180deg, #fceabb 0%, #f8b500 100%) !important; color: #000000 !important; box-shadow: 0 0 20px rgba(248, 181, 0, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.5) !important; }
+#pillar-right .vertical-text { background: linear-gradient(180deg, #00f2fe 0%, #4facfe 100%) !important; color: #000000 !important; box-shadow: 0 0 20px rgba(0, 242, 254, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.5) !important; padding: 25px 8px !important; }
+
+/* 移动端屏蔽降级 */
+@media (max-width: 768px) {
+    .archive-container { padding: 0 20px !important; margin-top: 90px !important; }
+    .archive-grid-panel { grid-template-columns: 1fr !important; }
+    .site-nav, .header-actions, .hide-on-mobile, .cyber-pillar { display: none !important; }
+    header.site-header { position: absolute !important; justify-content: center !important; background: transparent !important; border: none !important; height: 60px !important; padding: 0 15px !important; }
+    .brand { margin-left: 0 !important; justify-content: center !important; }
+    .brand img { width: 32px !important; height: 32px !important; }
+}
