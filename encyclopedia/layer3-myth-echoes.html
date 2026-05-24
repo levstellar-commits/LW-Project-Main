@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>立维百科 · 华夏文明原型演化树 | LEVYTHOS WIKI</title>
+  
+  <!-- 严格载入主站与子页核心原生样式，保持基础变量与罗马柱底层动画完全一致 -->
+  <link rel="stylesheet" href="../style.css" onerror="this.href='style.css'" />
+  <link rel="stylesheet" href="../subpage.css" onerror="this.href='subpage.css'" />
+
+  <style>
+     /* ==========================================================================
+       LEVYTHOS DESIGN TOKEN SYSTEM (立维百科·系统级底层变量规范)
+       ========================================================================== */
+    :root {
+        --lv-bg-deep: #02060a;
+        --lv-bg-panel: rgba(20, 30, 40, 0.75);
+        --lv-accent-cyan: #00e5ff;
+        --lv-accent-gold: #e8b923;
+        --lv-text-main: #ffffff;
+        --lv-text-muted: #e2e8f0; /* 高对比、温和舒适的阅读色彩配置，防止视觉麻木 */
+        --lv-border-glow: rgba(232, 185, 35, 0.15);
+    }
+
+    body {
+        background-color: var(--lv-bg-deep) !important;
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        color: var(--lv-text-main);
+    }
+
+    /* [对齐核心框架] 强行让主站骨架两侧收缩，为固定在两侧的罗马柱留出安全舱位 */
+    main {
+        max-width: 1300px !important;
+        margin: 0 auto !important;
+        padding: 140px 80px 80px 80px !important; /* 顶部留够 140px，完美避开下沉的 site-header */
+        box-sizing: border-box !important;
+        display: block;
+    }
+
+    /* ==========================================================================
+       [高保真焊死] 顶置独立全功能导航栏底层渲染系统（对齐 INDEX--20260524-16.html）
+       ========================================================================== */
+    header.site-header {
+        height: 80px !important;
+        background: rgba(2, 6, 10, 0.95) !important;
+        backdrop-filter: blur(10px) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        display: flex !important; 
+        align-items: center !important; 
+        justify-content: space-between !important;
+        padding: 0 40px !important;
+        position: fixed !important; 
+        top: 0 !important; 
+        left: 0 !important; 
+        width: 100% !important; 
+        z-index: 9999 !important;
+        box-sizing: border-box !important;
+    }
+    .brand { display: flex !important; align-items: center !important; gap: 20px !important; margin-left: 65px !important; }
+    .brand img { width: 44px !important; height: 44px !important; filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.5)) !important; display: block !important; }
+    .brand-text { display: flex !important; flex-direction: column !important; align-items: center !important; }
+    .brand-title { font-family: 'Noto Serif SC', serif !important; font-size: 24px !important; font-weight: 900 !important; color: #fff !important; letter-spacing: 4px !important; margin-right: -4px !important; line-height: 1.1 !important; text-shadow: 0 0 15px rgba(255, 255, 255, 0.4) !important; }
+    .brand-subtitle { font-family: 'Inter', Arial, sans-serif !important; font-size: 12px !important; font-weight: 800 !important; color: #00e5ff !important; margin-top: 5px !important; letter-spacing: 5.5px !important; margin-right: -5.5px !important; line-height: 1 !important; text-shadow: 0 0 10px rgba(0, 229, 255, 0.4) !important; display: block !important; width: 100% !important; }
+    .site-nav { margin-left: auto !important; margin-right: 40px !important; display: flex !important; gap: 30px !important; }
+    .nav-item-dual { display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; line-height: 1.2 !important; text-decoration: none !important; }
+    .nav-item-dual strong { font-size: 0.95rem !important; font-weight: 600 !important; color: #fff !important; transition: 0.3s !important; }
+    .nav-item-dual span { font-size: 0.65rem !important; color: var(--accent) !important; opacity: 0.8 !important; margin-top: 3px !important; }
+    .nav-item-dual:hover strong { color: var(--accent-gold) !important; }
+    .header-actions { margin-right: 90px !important; }
+
+    /* ==========================================================================
+       [主站复刻] 左右固定定位科技罗马柱底层渲染系统
+       ========================================================================== */
+    .cyber-pillar {
+        position: fixed !important; 
+        top: 0 !important; 
+        height: 100vh !important; 
+        width: 60px !important; 
+        background: linear-gradient(to bottom, rgba(2,6,10,0.95), rgba(20,30,40,0.95)) !important; 
+        z-index: 9000 !important; 
+        cursor: pointer !important; 
+        display: flex !important; 
+        flex-direction: column !important; 
+        align-items: center !important; 
+        justify-content: center !important; 
+        transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) !important; 
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.8) !important; 
+        overflow: hidden !important;
+    }
+    #pillar-left { left: 0 !important; border-right: 2px solid var(--lv-accent-gold) !important; }
+    #pillar-left:hover { width: 75px !important; background: rgba(232, 185, 35, 0.1) !important; }
+    #pillar-right { right: 0 !important; border-left: 2px solid var(--lv-accent-cyan) !important; }
+    #pillar-right:hover { width: 75px !important; background: rgba(0, 229, 255, 0.06) !important; box-shadow: -5px 0 25px rgba(0, 229, 255, 0.2) !important; }
+
+    .pillar-marquee { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.6; transition: opacity 0.3s; pointer-events: none; }
+    .marquee-track { display: flex; flex-direction: column; align-items: center; gap: 25px; padding: 20px 0; width: 100%; }
+    .marquee-down .marquee-track { animation: scroll-v-down 25s linear infinite; }
+    .marquee-up .marquee-track { animation: scroll-v-up 25s linear infinite; gap: 40px; padding: 30px 0; }
+    
+    @keyframes scroll-v-down { 0% { transform: translateY(-50%); } 100% { transform: translateY(0); } }
+    @keyframes scroll-v-up { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
+
+    .cyber-pillar .vertical-text { position: relative; z-index: 10; background: rgba(0,0,0,0.7); padding: 20px 8px; border-radius: 8px; writing-mode: vertical-rl; text-orientation: upright; color: #fff; font-weight: 900; font-size: 1rem; letter-spacing: 4px; white-space: nowrap; border: none; }
+    #pillar-left .vertical-text { background: linear-gradient(180deg, #fceabb 0%, #f8b500 100%) !important; color: #000000 !important; box-shadow: 0 0 20px rgba(248, 181, 0, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.5) !important; }
+    #pillar-right .vertical-text { background: linear-gradient(180deg, #00f2fe 0%, #4facfe 100%) !important; color: #000000 !important; box-shadow: 0 0 20px rgba(0, 242, 254, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.5) !important; padding: 25px 8px !important; }
+
+    /* 百科核心复合槽结构 */
+    .wiki-diving-chamber { width: 100%; position: relative; box-sizing: border-box; }
+    .chamber-surface { min-height: 80vh; margin-bottom: 50px; }
+    .wiki-semi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-top: 40px; }
+    .wiki-span-all { grid-column: span 2; }
+    
+    /* 统一修改为命名空间包装，解决样式互相覆盖冲突 */
+    .lv-myth-namespace .archive-terminal-header { background: linear-gradient(90deg, rgba(232, 185, 35, 0.05), transparent); border-left: 4px solid var(--lv-accent-gold); padding: 24px; margin-bottom: 30px; border-radius: 0 8px 8px 0; }
+    .lv-myth-namespace .archive-meta-bus { font-family: "微软雅黑", sans-serif; font-size: 12px; color: var(--lv-accent-gold); letter-spacing: 2px; margin-bottom: 12px; opacity: 0.95; font-weight: bold; }
+    
+    /* 文明起源总纲面板 */
+    .lv-myth-namespace .protocol-manifesto-box { background: rgba(30, 24, 15, 0.35); border: 1px solid rgba(232, 185, 35, 0.15); border-radius: 8px; padding: 30px; margin-bottom: 30px; }
+    .lv-myth-namespace .protocol-manifesto-box h3 { font-family: monospace; color: var(--lv-accent-gold); margin: 0 0 15px 0; font-size: 1.1rem; letter-spacing: 1px; }
+    .lv-myth-namespace .protocol-grid-mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 20px; font-size: 0.88rem; color: var(--lv-text-muted); }
+    .lv-myth-namespace .protocol-grid-mini strong { color: #fff; display: block; margin-bottom: 4px; font-weight: 600; font-size: 0.95rem; }
+
+    /* 🟢 [专家意见落地] 统一引入静默呼吸区（低语模块），防止过度史诗化轰炸造成的精神疲劳 */
+    .lv-myth-namespace .myth-breath-space { padding: 40px 30px; margin: 35px 0; background: rgba(2, 6, 10, 0.95); border: 1px dashed rgba(255,255,255,0.05); text-align: center; border-radius: 6px; }
+    .lv-myth-namespace .myth-breath-space p { font-family: 'Noto Serif SC', serif; font-size: 1rem; font-style: italic; color: var(--lv-accent-cyan); margin: 0; letter-spacing: 2px; line-height: 1.8; opacity: 0.85; }
+
+    /* 编年史数据库分类筛选标签组（保持柔和灰白暗调，解决太黑太刺眼问题） */
+    .lv-myth-namespace .database-tags-filter { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 35px; }
+    .lv-myth-namespace .db-tag { font-size: 0.78rem; font-family: monospace; color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.03); padding: 5px 12px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.12); transition: 0.2s; cursor: pointer; }
+    .lv-myth-namespace .db-tag:hover { border-color: var(--lv-accent-gold); color: var(--lv-accent-gold); background: rgba(232, 185, 35, 0.04); }
+    .lv-myth-namespace .db-tag.active { border-color: var(--lv-accent-cyan); color: var(--lv-accent-cyan); background: rgba(0, 229, 255, 0.08); font-weight: 600; }
+
+    /* 🟢 [重磅新增：你要的深度脑洞专栏卡片] 未解残卷悬案组视觉样式 */
+    .lv-myth-namespace .brain-hook-sidebar { background: linear-gradient(135deg, rgba(6, 11, 19, 0.95), rgba(20, 15, 10, 0.95)); border: 1px solid rgba(232, 185, 35, 0.2); border-radius: 8px; padding: 28px; box-shadow: 0 15px 40px rgba(0,0,0,0.8); display: flex; flex-direction: column; gap: 16px; }
+    .lv-myth-namespace .brain-hook-sidebar h3 { font-family: 'Noto Serif SC', serif; font-size: 1.15rem; color: var(--lv-accent-gold); margin: 0 0 5px 0; border-bottom: 1px solid rgba(232, 185, 35, 0.15); padding-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+    .lv-myth-namespace .brain-hook-sidebar h3 span { font-family: monospace; font-size: 0.7rem; color: rgba(255,255,255,0.3); }
+    .lv-myth-namespace .hook-article-item { border-left: 2px solid rgba(255,255,255,0.1); padding-left: 14px; text-decoration: none; display: block; transition: 0.2s; }
+    .lv-myth-namespace .hook-article-item h4 { font-size: 0.9rem; color: #ffffff; margin: 0 0 4px 0; transition: 0.2s; }
+    .lv-myth-namespace .hook-article-item p { font-size: 0.78rem; color: rgba(255,255,255,0.6); margin: 0; line-height: 1.5; text-align: justify; }
+    .lv-myth-namespace .hook-article-item:hover { border-left-color: var(--lv-accent-cyan); background: rgba(0, 229, 255, 0.02); }
+    .lv-myth-namespace .hook-article-item:hover h4 { color: var(--lv-accent-cyan); }
+
+    /* 模块化统一卡片体系（Card Component Modifier System） */
+    .lv-myth-namespace .wiki-archive-item { background: rgba(6, 11, 19, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7); text-decoration: none; color: inherit; }
+    .lv-myth-namespace .wiki-archive-item.horizontal-mode { flex-direction: row; }
+    .lv-myth-namespace .wiki-archive-item.horizontal-mode .wiki-pic-vault { width: 55%; height: auto; min-height: 340px; }
+    .lv-myth-namespace .wiki-archive-item.horizontal-mode .wiki-info-vault { width: 45%; }
+    
+    .lv-myth-namespace .wiki-pic-vault { width: 100%; height: 230px; position: relative; overflow: hidden; background: #03070d; }
+    .lv-myth-namespace .wiki-pic-vault img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; filter: grayscale(15%) contrast(105%); transition: all 0.6s ease; }
+    .lv-myth-namespace .wiki-pic-shadow { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(4, 8, 15, 0) 40%, #060b13 100%); }
+    .lv-myth-namespace .wiki-archive-item.horizontal-mode .wiki-pic-shadow { background: linear-gradient(to right, rgba(4, 8, 15, 0) 40%, #060b13 100%); }
+    
+    .lv-myth-namespace .wiki-info-vault { padding: 32px; display: flex; flex-direction: column; flex-grow: 1; }
+    .lv-myth-namespace .wiki-spec-metadata { font-family: monospace; font-size: 11px; color: var(--lv-accent-gold); letter-spacing: 1.5px; display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 10px; margin-bottom: 16px; }
+    .lv-myth-namespace .wiki-info-vault h3 { font-family: 'Noto Serif SC', serif; font-size: 1.35rem; font-weight: 700; color: #ffffff; margin: 0 0 16px 0; letter-spacing: 1px; }
+    
+    /* 统一高灰白高可读正文样式 */
+    .lv-myth-namespace .wiki-lexicon-text { font-size: 0.95rem; line-height: 1.8; color: var(--lv-text-muted); margin: 0 0 24px 0; text-align: justify; }
+    .lv-myth-namespace .wiki-syntax-line { margin-bottom: 10px; line-height: 1.7; color: #ffffff; }
+    .lv-myth-namespace .wiki-syntax-line strong { color: #ffffff; font-weight: bold; background: rgba(232, 185, 35, 0.12); padding: 2px 6px; border-radius: 3px; margin-right: 4px; }
+    
+    /* 🟢 统一引入温度微观记录线样式 */
+    .lv-myth-namespace .micro-human-snippet { color: var(--lv-accent-cyan); font-size: 0.88rem; background: rgba(0, 229, 255, 0.04); padding: 8px 12px; border-radius: 4px; border-left: 2px solid var(--lv-accent-cyan); margin-top: 8px; font-style: italic; line-height: 1.6; }
+
+    .lv-myth-namespace .entry-inline-tags { display: flex; gap: 8px; margin-bottom: 12px; }
+    .lv-myth-namespace .inline-tag { font-size: 0.7rem; font-family: monospace; background: rgba(232, 185, 35, 0.06); border: 1px solid rgba(232, 185, 35, 0.2); color: var(--lv-accent-gold); padding: 2px 8px; border-radius: 2px; }
+    .lv-myth-namespace .wiki-myth-linkage { font-size: 0.82rem; color: var(--lv-accent-cyan); border-top: 1px dashed rgba(0, 229, 255, 0.15); padding-top: 14px; margin-top: auto; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; }
+
+    .lv-myth-namespace .wiki-archive-item:hover { border-color: rgba(232, 185, 35, 0.35); box-shadow: 0 22px 55px rgba(232, 185, 35, 0.15); transform: translateY(-4px); background: rgba(15, 12, 8, 0.95); }
+    .lv-myth-namespace .wiki-archive-item:hover .wiki-pic-vault img { opacity: 1.0; scale: 1.02; filter: grayscale(0%) contrast(100%); }
+    
+    /* 底部横向无缝全功能滚动图廊（物理尺寸精准焊死：290px × 180px） */
+    .lv-myth-namespace .wiki-scroll-section-title { font-family: 'Noto Serif SC', serif; font-size: 1.05rem; color: #fff; margin: 40px 0 20px 4px; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; border-left: 3px solid var(--lv-accent-gold); padding-left: 10px; }
+    .lv-myth-namespace .wiki-scroll-section-title span { font-family: monospace; font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+    
+    .lv-myth-namespace .wiki-scroll-vault { display: flex; gap: 20px; overflow-x: auto; padding: 5px 4px 20px 4px; width: 100%; box-sizing: border-box; scroll-behavior: smooth; }
+    .lv-myth-namespace .wiki-scroll-vault::-webkit-scrollbar { height: 0px; background: transparent; }
+    .lv-myth-namespace .wiki-scroll-vault { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    .lv-myth-namespace .scroll-card-item { flex: 0 0 290px; width: 290px; height: 180px; position: relative; border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #060b13; text-decoration: none; display: block; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+    .lv-myth-namespace .scroll-card-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.55; filter: grayscale(15%); transition: 0.4s; }
+    .lv-myth-namespace .scroll-card-mask { position: absolute; inset: 0; background: linear-gradient(to top, rgba(2,6,10,0.95) 25%, rgba(2,6,10,0.1) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 16px; box-sizing: border-box; }
+    .lv-myth-namespace .scroll-card-mask h4 { font-family: 'Noto Serif SC', serif; font-size: 0.88rem; color: #ffffff; margin: 0 0 4px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0.5px; }
+    .lv-myth-namespace .scroll-card-mask span { font-family: monospace; font-size: 0.65rem; color: var(--lv-accent-gold); letter-spacing: 0.5px; }
+    .lv-myth-namespace .scroll-card-item:hover { border-color: var(--lv-accent-gold); transform: translateY(-4px); box-shadow: 0 10px 20px rgba(232,185,35,0.15); }
+    .lv-myth-namespace .scroll-card-item:hover img { opacity: 0.8; filter: grayscale(0%); }
+
+    /* 手机端自适应逻辑 */
+    @media (max-width: 768px) {
+        main { padding: 90px 20px 40px 20px !important; }
+        .cyber-pillar, .hide-on-mobile, .header-actions { display: none !important; }
+        header.site-header { position: absolute !important; justify-content: center !important; background: transparent !important; border: none !important; height: 60px !important; padding: 0 15px !important; }
+        .brand { margin-left: 0 !important; justify-content: center !important; }
+        .brand img { width: 32px !important; height: 32px !important; }
+        .site-nav { display: none !important; }
+        .lv-myth-namespace .wiki-semi-grid { display: flex !important; flex-direction: column !important; gap: 20px !important; }
+        .lv-myth-namespace .wiki-archive-item.horizontal-mode { flex-direction: column !important; }
+        .lv-myth-namespace .wiki-archive-item.horizontal-mode .wiki-pic-vault { width: 100% !important; min-height: 200px !important; }
+        .lv-myth-namespace .wiki-archive-item.horizontal-mode .wiki-info-vault { width: 100% !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 通用Header，保持百分之百全要素复刻一致 -->
+  <div id="header-placeholder">
+    <header class="site-header">
+        <div class="brand">
+            <a class="logo" href="../index.html" aria-label="Levythos 标志">
+                <img src="../assets/images/logo.png" onerror="this.src='../icon-192.png'" alt="立维宇宙Logo" width="44" height="44" />
+            </a>
+            <div class="brand-text">
+                <div class="brand-title">立维宇宙</div>
+                <div class="brand-subtitle">LEVYTHOS</div>
+            </div>
+        </div>
+        <nav class="site-nav">
+            <a href="encyclopedia-hub.html" class="nav-item-dual" style="border: 1px solid rgba(232, 185, 35, 0.35); background: rgba(232, 185, 35, 0.05); border-radius: 4px; padding: 4px 10px;">
+                <strong style="color: var(--accent-gold);">立维百科</strong>
+                <span>城市空间异常观察档案</span>
+            </a>
+            <a href="../index.html#matrix" class="nav-item-dual"><strong>全息·内容宇宙</strong><span>文学/有声/漫剧/视觉原型</span></a>
+            <a href="../index.html#spatial" class="nav-item-dual"><strong>城市·空间活化</strong><span>存量更新/空间心理学</span></a>
+            <a href="../index.html#ip-souvenir-section" class="nav-item-dual"><strong>共鸣·物候万象</strong><span>设计美学/数智收藏</span></a>
+            <a href="../index.html#press" class="nav-item-dual"><strong>纪元·研究日志</strong><span>城市观察/空间文明叙事</span></a>
+            <a href="../index.html#contact" class="nav-item-dual"><strong>协作·文明共建</strong><span>产业合作/空间共创</span></a>
+        </nav>
+        <div class="header-actions">
+            <a href="#" class="nav-item-dual" onclick="event.preventDefault(); alert('正在同步观测网络...');"><strong>观测网络</strong><span>(读取档案)</span></a>
+        </div>
+    </header>
+  </div>
+
+  <main class="lv-myth-namespace">
+
+    <!-- ==================== LAYER 3 CHAMBER: 第三区（上古华夏神话原型考据） ==================== -->
+    <div class="wiki-diving-chamber chamber-surface">
+        
+        <div class="archive-terminal-header">
+            <div class="archive-meta-bus">文明发生器总线 ✦ 第三级核心文献：万年人类编年史 ✦ 状态：已解码 (MYTH ECHOES DECODED)</div>
+            <h2 class="archive-main-title">华夏文明始祖神格演绎档案馆<span>Layer 3 / 上古神话原型的硬核科幻解构</span></h2>
+        </div>
+
+        <!-- 高维起源总纲叙事 -->
+        <div class="protocol-manifesto-box">
+            <h3>THE MANIFESTO OF MYTH UNIFICATION // 华夏神话统一解释白皮书</h3>
+            <p style="font-size: 0.94rem; line-height: 1.8; color: #ffffff; margin: 0; text-align: justify;">
+                我们在第一层观察空间现象，在第二层落地现实解法。而在这第三层，我们追溯一切大地秩序的终极源头——华夏上古原型。在这里，神话不再是荒诞的修仙黑话，而是一段被时间稀释的高维工业文明遗存。立维宇宙致力于解构上古万年的时间线遗存，将太古纪元的始祖神格，还原为严谨、冷峻的物理与宏观文明演化逻辑。这是我们在当代重构文明叙事霸权的核心文献层。
+            </p>
+            <div class="protocol-grid-mini">
+                <div><strong>三大史诗史册串联</strong>将《深空琥珀》《炎黄星曌》《补天之城》串联进跨越万年的统一宏观时间演化线。</div>
+                <div><strong>十大始祖神格观测</strong>以物理天体及高维群落视角，冷静推演伏羲、女娲、蚩尤等始祖留下的物质规则。</div>
+                <div><strong>集体无意识的复位</strong>寻找华夏族群延续至今的自发社会契约、心理秩序及大地上落脚交往的行为根基。</div>
+            </div>
+        </div>
+
+        <!-- 🟢 [专家意见落地] 纯黑视觉静默呼吸区块：平抚概念过载，形成冷峻科幻电影下潜质感 -->
+        <div class="myth-breath-space">
+            <p>“那些流传了万年的上古神话，并不是远古人类对雷电的恐惧，而是上一代文明在时间长河深处发出的冰冷回响。”</p>
+        </div>
+
+        <!-- 历史演化标签筛选器 -->
+        <div class="database-tags-filter">
+            <span class="db-tag active"># 全部纪元原形</span>
+            <span class="db-tag"># 深空琥珀 (未来编年)</span>
+            <span class="db-tag"># 炎黄星曌 (神话解构)</span>
+            <span class="db-tag"># 补天之城 (时空工程)</span>
+            <span class="db-tag"># 拓扑行为秩序 (Topology)</span>
+        </div>
+
+        <div class="wiki-semi-grid">
+            
+            <!-- 文明档案 01：大跨栏卡（女娲神格时空修复工程） -->
+            <a href="entries/myth_nuwa_repair.html" class="wiki-archive-item horizontal-mode wiki-span-all">
+                <div class="wiki-pic-vault">
+                    <img src="https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?auto=format&fit=crop&w=1200&q=80" alt="女娲神格时空修复工程" />
+                    <div class="wiki-pic-shadow"></div>
+                </div>
+                <div class="wiki-info-vault">
+                    <div class="wiki-spec-metadata">
+                        <span>编年编码: ERA-01-NUWA</span>
+                        <span class="meta-lock-signal">[ 统一转译完成 ]</span>
+                    </div>
+                    <h3>【高维引力裂隙平衡：女娲神格的时空修复编年】</h3>
+                    
+                    <div class="entry-inline-tags">
+                        <span class="inline-tag">#补天之城史诗</span>
+                        <span class="inline-tag">#引力场复位工程</span>
+                        <span class="inline-tag">#超古代天体工业原型</span>
+                    </div>
+
+                    <div class="wiki-lexicon-text">
+                        <div class="wiki-syntax-line"><strong>【上古残卷】</strong>神话记载：往古之时，四极废，九州裂，天不兼覆，地不周载。女娲炼五色石以补苍天，断鳌足以立四极。</div>
+                        <div class="wiki-syntax-line"><strong>【科幻转译】</strong>太古纪元时期，近地轨道遭遇大规模局部引力塌陷，天体非线性失衡引发大范围地壳物理撕裂。观测个体“女娲”主导了这一灾难场域的微创修复：调用五种高致密轻晶体复合重力介质（五色石）缝合时空裂隙，并部署四座地轴稳定锚（四极）重新复位地轴偏角。</div>
+                        <div class="wiki-syntax-line"><strong>【空间映射】</strong>它定义了华夏文化无意识中“不对抗主体结构、局部精准缝合”的心理根基。在第二层中，直接转译为存量城市的“空间微创止血修复”方案。</div>
+                        
+                        <!-- 🟢 [专家意见落地] 增加富有人文温度的底层微观场景切片 -->
+                        <div class="micro-human-snippet">
+                            <strong>[ 现实温度切片 ]</strong> 这种古老的原型冲动流淌至今——就如齐齐哈尔那家濒临死局的边缘小店里，奶茶店老板只是听从建议改变了排队的物理方向，就避开了冷酷的视觉挤压，在存量裂隙里存活了下来。
+                        </div>
+                    </div>
+                    <div class="wiki-myth-linkage"><span>[ 核心纽带 ]</span> 对应 Layer 2 ➔ 齐齐哈尔老旧工业存量动线局部微创缝合案例</div>
+                </div>
+            </a>
+
+            <!-- 文明档案 02：标准小卡（燧人氏能量控制解构） -->
+            <a href="entries/myth_suiren_fire.html" class="wiki-archive-item">
+                <div class="wiki-pic-vault">
+                    <img src="https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?auto=format&fit=crop&w=600&q=80" alt="燧人氏能量场测调" />
+                    <div class="wiki-pic-shadow"></div>
+                </div>
+                <div class="wiki-info-vault">
+                    <div class="wiki-spec-metadata">
+                        <span>编年编码: ERA-02-SUIREN</span>
+                        <span>[ 统一转译完成 ]</span>
+                    </div>
+                    <h3>【低熵生存协议控制：燧人氏的波长能量捕获】</h3>
+                    
+                    <div class="entry-inline-tags">
+                        <span class="inline-tag">#炎黄星曌史诗</span>
+                        <span class="inline-tag">#场景稳定协议</span>
+                        <span class="inline-tag">#色谱心理依托</span>
+                    </div>
+
+                    <div class="wiki-lexicon-text">
+                        <div class="wiki-syntax-line"><strong>【上古残卷】</strong>神话记载：有圣人出，见鸟 peck 燧木发出火光，遂折燧枝钻木取火，人类由是始有熟食，名曰燧人氏。</div>
+                        <div class="wiki-syntax-line"><strong>【科幻转译】</strong>史前地表极端严寒，族群饱受非线性暗黑感官剥夺造成的心理防线瘫痪。先贤个体“燧人”通过高频机械摩擦，首次实现了低成本热能的主动捕获与特定波长（火光）的控制，在绝对低熵的黑夜中，创造了首个供情绪锚点呼吸的安全驻足圈。</div>
+                        <div class="wiki-syntax-line"><strong>【空间映射】</strong>确立了华夏族群对温和色温分割长达万年的依恋。在第二层中，直接指导了存量等待区中通过控制反射率与漫反射微光平抚人群排队焦虑的干预指标。</div>
+                        
+                        <!-- 文明温度切片 -->
+                        <div class="micro-human-snippet">
+                            <strong>[ 现实温度切片 ]</strong> 这种火光的余温在万年后依然奏效：在逼仄的医院等候区一角，柔和的暗调低色温隔栅灯被点亮，驱散了峭壁般的明暗断层，让长久处于高压等位状态的普通人，神迹般地安静了下来。
+                        </div>
+                    </div>
+                    <div class="wiki-myth-linkage"><span>[ 核心纽带 ]</span> 对应 Layer 2 ➔ 物理特定色温投影对空间焦虑指数的控制技术</div>
+                </div>
+            </a>
+
+            <!-- 🟢 [你要的深度脑洞专栏钩子] 严丝合缝神话融合未解悬案专栏（满足脑洞与深度的卡片） -->
+            <div class="brain-hook-sidebar">
+                <h3>【太古神格 · 未解残卷悬案组】 <span>[ UNRESOLVED TAXONOMY ]</span></h3>
+                
+                <a href="entries/anomaly_fuxi_nuwa.html" class="hook-article-item">
+                    <h4>01. 伏羲与女娲基因链双螺旋同构悬案 ➔</h4>
+                    <p>为什么汉代画像石中伏羲女娲皆呈现完美的双螺旋交尾形态？这绝非简单的生殖崇拜，而是暗示两人共同承载了古老高维文明在基因层面的闭环纠缠加密协议，其数据模型正与八卦拓扑空间算法高度共构...</p>
+                </a>
+                
+                <a href="entries/anomaly_yan_huang.html" class="hook-article-item">
+                    <h4>02. 炎黄星曌之战：超距重力覆灭假说 ➔</h4>
+                    <p>阪泉之战与涿鹿之战的历史叙事中，为何频繁出现“星斗易位、大雾三日、指南车定向”的描述？立维编年史研究组倾向于认为，这并非神格修仙内耗，而是由于超距重力波武器对物理空间坐标造成的底层污染...</p>
+                </a>
+                
+                <a href="entries/anomaly_chiyou_metal.html" class="hook-article-item">
+                    <h4>03. 蚩尤铜头铁额与青铜重工美学规范 ➔</h4>
+                    <p>山海经载蚩尤“食沙石，铜头铁额”。在第三层演化树中，这被重新破译为非碳基生物在极高压物质环境下演化出的重型单兵外骨骼规范。其留下的高纯度青铜美学与玉髓玉质化图腾，至今影响着大地的符号记忆...</p>
+                </a>
+
+                <a href="entries/anomaly_yugong_mountain.html" class="hook-article-item">
+                    <h4>04. 愚公移山：大型地理重塑工程的指令残留 ➔</h4>
+                    <p>太行、王屋二山的物理位移记录，在古典叙事里被归结为“夸娥氏二子负二山”。根据高维档案馆留存残卷，这更像是一次失败的史前大型地理重塑指令，导致地壳应力网络断裂，从而在族群心智中遗留下永恒的执念...</p>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- 5张定死物理尺寸（290px × 180px）无缝滚动的超古代文明原型图廊（响应图纸 image_56126c.png） -->
+        <div style="border-top: 1px dashed rgba(255, 255, 255, 0.15); margin-top: 40px; padding-top: 20px;">
+            <h3 class="wiki-scroll-section-title">
+                太古高维文明原型演化树 <span>[ CIVILIZATION CODEX // 鼠标滚轮或横向划动查看完整深入概念链接 ]</span>
+            </h3>
+            
+            <div class="wiki-scroll-vault">
+                <!-- 预埋卡槽 01 -->
+                <a href="entries/myth_sub_fuxi.html" class="scroll-card-item">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80" onerror="this.src='../assets/images/wiki_myth_sub_01.jpg'" alt="观测样本" />
+                    <div class="scroll-card-mask">
+                        <h4>【伏羲神格：二进制八卦空间拓扑逻辑】</h4>
+                        <span>深度解析: LV-MYTH-REF-01 // 允许下潜点击</span>
+                    </div>
+                </a>
+                <!-- 预埋卡槽 02 -->
+                <a href="entries/myth_sub_dayu.html" class="scroll-card-item">
+                    <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=400&q=80" onerror="this.src='../assets/images/wiki_myth_sub_02.jpg'" alt="观测样本" />
+                    <div class="scroll-card-mask">
+                        <h4>【大禹治水：九州非线性水系秩序动线】</h4>
+                        <span>深度解析: LV-MYTH-REF-02 // 允许下潜点击</span>
+                    </div>
+                </a>
+                <!-- 预埋卡槽 03 -->
+                <a href="entries/myth_sub_houyi.html" class="scroll-card-item">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80" onerror="this.src='../assets/images/wiki_myth_sub_03.jpg'" alt="观测样本" />
+                    <div class="scroll-card-mask">
+                        <h4>【后羿射日：低轨道恒星武器过载打压】</h4>
+                        <span>深度解析: LV-MYTH-REF-03 // 允许下潜点击</span>
+                    </div>
+                </a>
+                <!-- 预埋卡槽 04 -->
+                <a href="entries/myth_sub_kuafu.html" class="scroll-card-item">
+                    <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=400&q=80" onerror="this.src='../assets/images/wiki_myth_sub_04.jpg'" alt="观测样本" />
+                    <div class="scroll-card-mask">
+                        <h4>【夸父逐日：地磁场核能中子捕获衰变】</h4>
+                        <span>深度解析: LV-MYTH-REF-04 // 允许下潜点击</span>
+                    </div>
+                </a>
+                <!-- 预埋卡槽 05 -->
+                <a href="entries/myth_sub_cangjie.html" class="scroll-card-item">
+                    <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=400&q=80" onerror="this.src='../assets/images/wiki_myth_sub_05.jpg'" alt="观测样本" />
+                    <div class="scroll-card-mask">
+                        <h4>/* 仓颉符号：字符图腾全息视线压缩算法 */</h4>
+                        <span>深度解析: LV-MYTH-REF-05 // 允许下潜点击</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 纵向导航跨层级路由系统 -->
+        <div style="margin-top: 15px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05) !important; padding-top: 30px;">
+            <p style="color: rgba(255,255,255,0.4); font-size: 0.85rem; font-family: monospace;">[ 当前层检索完成 ✦ 请选择跨层级认知探索路径 / CROSS-LAYER ROUTING ]</p>
+            <div style="display: flex; gap: 16px; margin-top: 20px; flex-wrap: wrap; justify-content: center;">
+                <a href="layer2-methodology.html" style="color: #ffffff; text-decoration: none; font-size: 0.85rem; font-family: monospace; font-weight: bold; letter-spacing: 1px; border: 1px solid rgba(255, 255, 255, 0.2); padding: 12px 28px; border-radius: 4px; background: rgba(255, 255, 255, 0.02); transition: 0.3s;">← [ 上浮回归 ] LAYER 2: 空间微创修复与现实活化方案库</a>
+                <a href="layer1-observation.html" style="color: #ffffff; text-decoration: none; font-size: 0.85rem; font-family: monospace; font-weight: bold; letter-spacing: 1px; border: 1px solid rgba(255, 255, 255, 0.2); padding: 12px 28px; border-radius: 4px; background: rgba(255, 255, 255, 0.02); transition: 0.3s;">← [ 顶层检索 ] LAYER 1: 城市空间异常观察文献库</a>
+                <a href="layer4-industrial-assets.html" style="color: var(--lv-accent-cyan); text-decoration: none; font-size: 0.85rem; font-family: monospace; font-weight: bold; letter-spacing: 1px; border: 1px solid rgba(0, 229, 255, 0.4); padding: 12px 28px; border-radius: 4px; background: rgba(0, 229, 255, 0.05); transition: 0.3s; box-shadow: 0 0 15px rgba(0, 229, 255, 0.1);">[ 资产校准 ] LAYER 4: 器物图腾白皮书 · 3D高精数字孪生模型馆 ➔</a>
+            </div>
+        </div>
+
+    </div>
+
+  </main>
+
+  <!-- 通用动态抓取更新引擎 -->
+  <script>
+  function loadHeader() {
+      fetch('../header.html')
+          .then(response => {
+              if (!response.ok) throw new Error('CORS限制或找不到文件');
+              return response.text();
+          })
+          .then(data => {
+              const headerPlaceholder = document.getElementById('header-placeholder');
+              if (headerPlaceholder) {
+                  headerPlaceholder.innerHTML = data;
+                  console.log("[SERVER BUS] 动态拉取通用Header同步成功。");
+              }
+          })
+          .catch(error => {
+              console.warn('本地协议运行中，已触发静态HTML原生原地保真显化：', error.message);
+          });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+      loadHeader(); 
+  });
+  </script>
+
+  <!-- 左右固定科技罗马柱底层系统，高保真百分之百全要素复刻一致 -->
+  <div id="pillar-left" class="cyber-pillar hide-on-mobile">
+      <div class="pillar-marquee marquee-down">
+          <div class="marquee-track">
+              <span>✍️</span><span>⚙️</span><span>🔬</span><span>🧬</span><span>👁️</span><span>🛠️</span><span>🎬</span><span>🏛️</span>
+              <span>✍️</span><span>⚙️</span><span>🔬</span><span>🧬</span><span>👁️</span><span>🛠️</span><span>🎬</span><span>🏛️</span>
+          </div>
+      </div>
+      <span class="vertical-text">✦ 8大领域入口</span>
+  </div>
+
+  <div id="pillar-right" class="cyber-pillar hide-on-mobile" title="查看最新空间实验与文明日志" onclick="window.location.href='../index.html#press';">
+      <div class="pillar-marquee marquee-up">
+          <div class="marquee-track">
+              <span>阅</span><span>档</span><span>志</span><span>筑</span>
+              <span>阅</span><span>档</span><span>志</span><span>筑</span>
+          </div>
+      </div>
+      <span class="vertical-text" style="background: linear-gradient(180deg, #00f2fe 0%, #4facfe 100%) !important; color: #000000 !important; font-weight: 900 !important; letter-spacing: 4px !important; padding: 25px 8px !important;">✦ 研究档案</span>
+  </div>
+
+  <a href="javascript:history.back()" class="mobile-back-fab" aria-label="返回上一页">
+      <span class="icon">←</span> <span class="text">返回</span>
+  </a>
+
+</body>
+</html>
