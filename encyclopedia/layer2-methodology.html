@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>立维百科 · 空间修复方法论系统 | LEVYTHOS WIKI</title>
+  
+  <!-- 严格载入主站与子页核心原生样式，保持基础变量与罗马柱底层动画完全一致 -->
+  <link rel="stylesheet" href="../style.css" onerror="this.href='style.css'" />
+  <link rel="stylesheet" href="../subpage.css" onerror="this.href='subpage.css'" />
+
+  <style>
+     /* ==========================================================================
+       LEVYTHOS WIKI ENCYCLOPEDIA STYLES (立维百科·全局框架与原生高亮样式)
+       ========================================================================== */
+    :root {
+        --bg-deep: #02060a;
+        --bg-panel: rgba(20, 30, 40, 0.75);
+        --accent: #00e5ff;
+        --accent-gold: #e8b923;
+        --text-main: #ffffff;
+        --text-muted: rgba(255, 255, 255, 0.8);
+        --border-light: rgba(255, 255, 255, 0.15);
+    }
+
+    body {
+        background-color: #02060a !important;
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        color: #fff;
+    }
+
+    /* 🟢 [对齐核心框架] 强行让主站骨架两侧收缩，为固定在两侧的罗马柱留出绝对不穿帮的安全舱位 */
+    main {
+        max-width: 1300px !important;
+        margin: 0 auto !important;
+        padding: 140px 80px 80px 80px !important; /* 顶部留够 140px，完美避开下沉的 site-header */
+        box-sizing: border-box !important;
+        display: block;
+    }
+
+    /* ==========================================================================
+       [高保真焊死] 顶置独立全功能导航栏底层渲染系统（对齐 INDEX--20260524-16.html）
+       ========================================================================== */
+    header.site-header {
+        height: 80px !important;
+        background: rgba(2, 6, 10, 0.95) !important;
+        backdrop-filter: blur(10px) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        display: flex !important; 
+        align-items: center !important; 
+        justify-content: space-between !important;
+        padding: 0 40px !important;
+        position: fixed !important; 
+        top: 0 !important; 
+        left: 0 !important; 
+        width: 100% !important; 
+        z-index: 9999 !important;
+        box-sizing: border-box !important;
+    }
+    .brand { display: flex !important; align-items: center !important; gap: 20px !important; margin-left: 65px !important; }
+    .brand img { width: 44px !important; height: 44px !important; filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.5)) !important; display: block !important; }
+    .brand-text { display: flex !important; flex-direction: column !important; align-items: center !important; }
+    .brand-title { font-family: 'Noto Serif SC', serif !important; font-size: 24px !important; font-weight: 900 !important; color: #fff !important; letter-spacing: 4px !important; margin-right: -4px !important; line-height: 1.1 !important; text-shadow: 0 0 15px rgba(255, 255, 255, 0.4) !important; }
+    .brand-subtitle { font-family: 'Inter', Arial, sans-serif !important; font-size: 12px !important; font-weight: 800 !important; color: #00e5ff !important; margin-top: 5px !important; letter-spacing: 5.5px !important; margin-right: -5.5px !important; line-height: 1 !important; text-shadow: 0 0 10px rgba(0, 229, 255, 0.4) !important; display: block !important; width: 100% !important; }
+    .site-nav { margin-left: auto !important; margin-right: 40px !important; display: flex !important; gap: 30px !important; }
+    .nav-item-dual { display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; line-height: 1.2 !important; text-decoration: none !important; }
+    .nav-item-dual strong { font-size: 0.95rem !important; font-weight: 600 !important; color: #fff !important; transition: 0.3s !important; }
+    .nav-item-dual span { font-size: 0.65rem !important; color: var(--accent) !important; opacity: 0.8 !important; margin-top: 3px !important; }
+    .nav-item-dual:hover strong { color: var(--accent-gold) !important; }
+    .header-actions { margin-right: 90px !important; }
+
+    /* ==========================================================================
+       [主站复刻] 左右固定定位科技罗马柱底层渲染系统
+       ========================================================================== */
+    .cyber-pillar {
+        position: fixed !important; 
+        top: 0 !important; 
+        height: 100vh !important; 
+        width: 60px !important; 
+        background: linear-gradient(to bottom, rgba(2,6,10,0.95), rgba(20,30,40,0.95)) !important; 
+        z-index: 9000 !important; 
+        cursor: pointer !important; 
+        display: flex !important; 
+        flex-direction: column !important; 
+        align-items: center !important; 
+        justify-content: center !important; 
+        transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) !important; 
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.8) !important; 
+        overflow: hidden !important;
+    }
+    #pillar-left { left: 0 !important; border-right: 2px solid var(--accent-gold) !important; }
+    #pillar-left:hover { width: 75px !important; background: rgba(232, 185, 35, 0.1) !important; }
+    #pillar-right { right: 0 !important; border-left: 2px solid var(--accent) !important; }
+    #pillar-right:hover { width: 75px !important; background: rgba(0, 229, 255, 0.06) !important; box-shadow: -5px 0 25px rgba(0, 229, 255, 0.2) !important; }
+
+    .pillar-marquee { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.6; transition: opacity 0.3s; pointer-events: none; }
+    .marquee-track { display: flex; flex-direction: column; align-items: center; gap: 25px; padding: 20px 0; width: 100%; }
+    .marquee-down .marquee-track { animation: scroll-v-down 25s linear infinite; }
+    .marquee-up .marquee-track { animation: scroll-v-up 25s linear infinite; gap: 40px; padding: 30px 0; }
+    
+    @keyframes scroll-v-down { 0% { transform: translateY(-50%); } 100% { transform: translateY(0); } }
+    @keyframes scroll-v-up { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
+
+    .cyber-pillar .vertical-text { position: relative; z-index: 10; background: rgba(0,0,0,0.7); padding: 20px 8px; border-radius: 8px; writing-mode: vertical-rl; text-orientation: upright; color: #fff; font-weight: 900; font-size: 1rem; letter-spacing: 4px; white-space: nowrap; border: none; }
+    #pillar-left .vertical-text { background: linear-gradient(180deg, #fceabb 0%, #f8b500 100%) !important; color: #000000 !important; box-shadow: 0 0 20px rgba(248, 181, 0, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.5) !important; }
+    #pillar-right .vertical-text { background: linear-gradient(180deg, #00f2fe 0%, #4facfe 100%) !important; color: #000000 !important; box-shadow: 0 0 20px rgba(0, 242, 254, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.5) !important; padding: 25px 8px !important; }
+
+    /* 百科核心排版槽 */
+    .wiki-diving-chamber { width: 100% !important; position: relative; box-sizing: border-box; }
+    .chamber-surface { min-height: 80vh; margin-bottom: 50px; }
+    .chamber-abyss { border-top: 1px dashed rgba(0, 229, 255, 0.15) !important; padding-top: 60px; margin-top: 40px; }
+    .wiki-semi-grid { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 32px !important; margin-top: 40px !important; }
+    .wiki-span-all { grid-column: span 2 !important; }
+    
+    /* 汉字化全息控制台抬头 */
+    .archive-terminal-header { background: linear-gradient(90deg, rgba(0, 229, 255, 0.05), transparent) !important; border-left: 4px solid var(--accent) !important; padding: 24px !important; margin-bottom: 30px !important; border-radius: 0 8px 8px 0 !important; }
+    .archive-meta-bus { font-family: "微软雅黑", sans-serif !important; font-size: 12px !important; color: var(--accent) !important; letter-spacing: 2px !important; margin-bottom: 12px !important; opacity: 0.95 !important; font-weight: bold; }
+    .archive-main-title { font-family: 'Noto Serif SC', serif !important; font-size: 36px !important; font-weight: 800 !important; color: #ffffff !important; margin: 0 !important; }
+    .archive-main-title span { font-family: 'Inter', sans-serif !important; font-size: 18px !important; color: rgba(255,255,255,0.4) !important; margin-left: 15px !important; font-weight: 400 !important; }
+
+    /* 🟢 [方法论升级] 空间病理学总纲专属视觉面板 */
+    .protocol-manifesto-box { background: rgba(232, 185, 35, 0.03); border: 1px solid rgba(232, 185, 35, 0.15); border-radius: 8px; padding: 30px; margin-bottom: 40px; }
+    .protocol-manifesto-box h3 { font-family: monospace; color: var(--accent-gold); margin: 0 0 15px 0; font-size: 1.1rem; letter-spacing: 1px; }
+    .protocol-grid-mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 20px; font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+    .protocol-grid-mini strong { color: #fff; display: block; margin-bottom: 4px; font-weight: 600; }
+
+    /* 🟢 [未来数据库预留] 病理学标签筛选器 */
+    .database-tags-filter { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 35px; }
+    .db-tag { font-size: 0.78rem; font-family: monospace; color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.03); padding: 4px 12px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.08); transition: 0.2s; cursor: pointer; }
+    .db-tag:hover { border-color: var(--accent); color: var(--accent); background: rgba(0, 229, 255, 0.05); }
+    .db-tag.active { border-color: var(--accent-gold); color: var(--accent-gold); background: rgba(232, 185, 35, 0.08); }
+
+    /* 卡片高亮炫酷特效 */
+    .wiki-archive-item { background: rgba(6, 11, 19, 0.85) !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; border-radius: 8px !important; overflow: hidden !important; display: flex !important; flex-direction: column !important; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important; box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7) !important; text-decoration: none !important; color: inherit !important; }
+    .wiki-archive-item.horizontal-mode { flex-direction: row !important; }
+    .wiki-archive-item.horizontal-mode .wiki-pic-vault { width: 55% !important; height: auto !important; min-height: 340px; }
+    .wiki-archive-item.horizontal-mode .wiki-info-vault { width: 45% !important; }
+    
+    /* 大幅恢复图片基础亮度和清晰度，透亮自然 */
+    .wiki-pic-vault { width: 100%; height: 230px; position: relative; overflow: hidden; background: #03070d; }
+    .wiki-pic-vault img { width: 100% !important; height: 100% !important; object-fit: cover !important; opacity: 0.85 !important; filter: grayscale(15%) contrast(110%); transition: all 0.6s ease !important; }
+    .wiki-pic-shadow { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(4, 8, 15, 0) 40%, #060b13 100%) !important; }
+    .wiki-archive-item.horizontal-mode .wiki-pic-shadow { background: linear-gradient(to right, rgba(4, 8, 15, 0) 40%, #060b13 100%) !important; }
+    
+    .wiki-info-vault { padding: 32px !important; display: flex !important; flex-direction: column !important; flex-grow: 1; }
+    .wiki-spec-metadata { font-family: monospace !important; font-size: 11px !important; color: var(--accent) !important; letter-spacing: 1.5px; display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important; padding-bottom: 10px; margin-bottom: 16px; }
+    .wiki-spec-metadata .meta-lock-signal { color: var(--accent-gold) !important; font-weight: bold; }
+    .wiki-info-vault h3 { font-family: 'Noto Serif SC', serif !important; font-size: 1.35rem !important; font-weight: 700 !important; color: #ffffff !important; margin: 0 0 16px 0 !important; letter-spacing: 1px; }
+    
+    /* 四段式写作语法精细排版 */
+    .wiki-lexicon-text { font-size: 0.92rem !important; line-height: 1.8 !important; color: rgba(255, 255, 255, 0.75) !important; margin: 0 0 24px 0 !important; text-align: justify; }
+    .wiki-syntax-line { margin-bottom: 8px; line-height: 1.7; }
+    .wiki-syntax-line:last-child { margin-bottom: 0; }
+    .wiki-syntax-line strong { color: #ffffff !important; font-weight: bold; }
+
+    /* 🟢 [数据库颗粒感] 自定义行内标签组样式 */
+    .entry-inline-tags { display: flex; gap: 8px; margin-bottom: 12px; }
+    .inline-tag { font-size: 0.7rem; font-family: monospace; background: rgba(0, 229, 255, 0.05); border: 1px solid rgba(0, 229, 255, 0.15); color: var(--accent); padding: 1px 6px; border-radius: 2px; }
+
+    .wiki-myth-linkage { font-size: 0.82rem !important; color: var(--accent-gold) !important; border-top: 1px dashed rgba(232, 185, 35, 0.15) !important; padding-top: 14px !important; margin-top: auto !important; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; }
+    .wiki-myth-linkage span { color: rgba(255, 255, 255, 0.3) !important; font-family: monospace; }
+    
+    /* 悬停炫酷泛光特效 */
+    .wiki-archive-item:hover { border-color: rgba(0, 229, 255, 0.35) !important; box-shadow: 0 22px 55px rgba(0, 229, 255, 0.15) !important; transform: translateY(-4px) !important; background: rgba(10, 18, 30, 0.95) !important; }
+    .wiki-archive-item:hover .wiki-pic-vault img { opacity: 1.0 !important; scale: 1.02 !important; filter: grayscale(0%) contrast(100%) !important; }
+    
+    /* 🟢 未来接口预留卡槽专用高亮虚线框样式 */
+    .wiki-archive-item.future-slot-mode { background: transparent !important; border: 1px dashed rgba(255,255,255,0.12) !important; box-shadow: none !important; min-height: 230px; display: flex; align-items: center; justify-content: center; text-align: center; color: rgba(255,255,255,0.25) !important; cursor: pointer; }
+    .wiki-archive-item.future-slot-mode:hover { border-color: rgba(232, 185, 35, 0.3) !important; color: var(--accent-gold) !important; background: rgba(232, 185, 35, 0.02) !important; }
+
+    .wiki-diving-indicator { text-align: center; padding: 40px 0; }
+    .diving-pulse-wire { width: 1px; height: 50px; background: linear-gradient(to bottom, var(--accent-gold), transparent); margin: 12px auto 0 auto; animation: pulse-wire-anim 2s infinite ease-in-out; }
+    @keyframes pulse-wire-anim { 0%, 100% { height: 30px; opacity: 0.2; } 50% { height: 60px; opacity: 0.8; } }
+
+    /* 手机端自适应逻辑 */
+    @media (max-width: 768px) {
+        main { padding: 90px 20px 40px 20px !important; }
+        .cyber-pillar, .hide-on-mobile, .header-actions { display: none !important; }
+        header.site-header { position: absolute !important; justify-content: center !important; background: transparent !important; border: none !important; height: 60px !important; padding: 0 15px !important; }
+        .brand { margin-left: 0 !important; justify-content: center !important; }
+        .brand img { width: 32px !important; height: 32px !important; }
+        .site-nav { display: none !important; }
+        .wiki-semi-grid { display: flex !important; flex-direction: column !important; gap: 20px !important; }
+        .wiki-archive-item.horizontal-mode { flex-direction: column !important; }
+        .wiki-archive-item.horizontal-mode .wiki-pic-vault { width: 100% !important; min-height: 200px !important; }
+        .wiki-archive-item.horizontal-mode .wiki-info-vault { width: 100% !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 通用Header，保持百分之百全要素复刻一致 -->
+  <div id="header-placeholder">
+    <header class="site-header">
+        <div class="brand">
+            <a class="logo" href="../index.html" aria-label="Levythos 标志">
+                <img src="../assets/images/logo.png" onerror="this.src='../icon-192.png'" alt="立维宇宙Logo" width="44" height="44" />
+            </a>
+            <div class="brand-text">
+                <div class="brand-title">立维宇宙</div>
+                <div class="brand-subtitle">LEVYTHOS</div>
+            </div>
+        </div>
+        <nav class="site-nav">
+            <a href="encyclopedia-hub.html" class="nav-item-dual" style="border: 1px solid rgba(232, 185, 35, 0.35); background: rgba(232, 185, 35, 0.05); border-radius: 4px; padding: 4px 10px;">
+                <strong style="color: var(--accent-gold);">立维百科</strong>
+                <span>城市空间异常观察档案</span>
+            </a>
+            <a href="../index.html#matrix" class="nav-item-dual"><strong>全息·内容宇宙</strong><span>文学/有声/漫剧/视觉原型</span></a>
+            <a href="../index.html#spatial" class="nav-item-dual"><strong>城市·空间活化</strong><span>存量更新/空间心理学</span></a>
+            <a href="../index.html#ip-souvenir-section" class="nav-item-dual"><strong>共鸣·物候万象</strong><span>设计美学/数智收藏</span></a>
+            <a href="../index.html#press" class="nav-item-dual"><strong>纪元·研究日志</strong><span>城市观察/空间文明叙事</span></a>
+            <a href="../index.html#contact" class="nav-item-dual"><strong>协作·文明共建</strong><span>产业合作/空间共创</span></a>
+        </nav>
+        <div class="header-actions">
+            <a href="#" class="nav-item-dual" onclick="event.preventDefault(); alert('正在同步观测网络...');"><strong>观测网络</strong><span>(读取档案)</span></a>
+        </div>
+    </header>
+  </div>
+
+  <main>
+
+    <!-- ==================== LAYER 2 CHAMBER: 第二区（临床排雷与微创干预方案） ==================== -->
+    <div class="wiki-diving-chamber chamber-surface">
+        
+        <div class="archive-terminal-header">
+            <div class="archive-meta-bus">空间干预总线 ✦ 第二级核心文献：现实复位方法论系统 ✦ 状态：可分发 (ASSETS ACTIVE)</div>
+            <h2 class="archive-main-title">空间微创修复与存量活化方案库<span>Layer 2 / 空间叙事转译与实体排雷处方</span></h2>
+        </div>
+
+        <!-- 🟢 [专家重磅引入] 空间病理学总纲 —— LEVYTHOS SPATIAL INTERVENTION PROTOCOL -->
+        <div class="protocol-manifesto-box">
+            <h3>LEVYTHOS SPATIAL INTERVENTION PROTOCOL // 立维空间干预协议总纲</h3>
+            <p style="font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.75); margin: 0; text-align: justify;">
+                我们不进行盲目的大拆大建。立维宇宙将物理空间视为一种拥有情绪与记忆循环的生命结构。多数存量资产的低效死局，并不来源于建筑本身的缺失，而源于动线失衡、光环境压迫、节奏断裂引发的心理撤离。我们的干预原则是：<strong>不砸墙、不停业、不制造公域流量幻觉</strong>。优先恢复自然驻留，优先建立低压社交，将神话叙事克制地转译为空间层面的文明修复工程。
+            </p>
+            <div class="protocol-grid-mini">
+                <div><strong>零硬装低成本重构</strong>借由场景控制模板，精准诊断物理空间冰冷感，夺回区域绝对定价权。</div>
+                <div><strong>拒绝爆款投流猎杀</strong>物理组织买卖双方的私域停留场，摆脱平台无底线竞价的抽干死循环。</div>
+                <div><strong>华夏原始图腾复位</strong>拒绝拼凑网文黑话，将古老叙事作为存量空间活化的底层连续性根基。</div>
+            </div>
+        </div>
+
+        <!-- 🟢 [拓展接口预留 1] 未来数百个案例检索标签系统 -->
+        <div class="database-tags-filter">
+            <span class="db-tag active"># 全部样本</span>
+            <span class="db-tag"># 低成本活化 (Low-Cost)</span>
+            <span class="db-tag"># 不停业修复 (Non-Stop)</span>
+            <span class="db-tag"># 高温动线修复 (Thermal-Flow)</span>
+            <span class="db-tag"># 社区停留恢复 (Retention)</span>
+            <span class="db-tag"># 地方叙事保留 (Narrative)</span>
+            <span class="db-tag"># 低压社交场 (Low-Pressure)</span>
+        </div>
+
+        <div class="wiki-semi-grid">
+            
+            <!-- 🟢 空间档案 01：大跨栏卡（西双版纳孔雀谷度假区案例，对齐 image_55a1e9.jpg 逻辑） -->
+            <a href="entries/case_peacock_valley.html" class="wiki-archive-item horizontal-mode wiki-span-all">
+                <div class="wiki-pic-vault">
+                    <img src="https://images.unsplash.com/photo-1540959733332-eab4deceeaf7?auto=format&fit=crop&w=1200&q=80" alt="西双版纳孔雀谷温泉度假区空间修复" />
+                    <div class="wiki-pic-shadow"></div>
+                </div>
+                <div class="wiki-info-vault">
+                    <div class="wiki-spec-metadata">
+                        <span>干预编号: LV-CASE-01-SOUTH</span>
+                        <span class="meta-lock-signal">[ 空间复位完成 ]</span>
+                    </div>
+                    <h3>【千万级低效资产重构：西双版纳孔雀谷微创翻盘】</h3>
+                    
+                    <!-- 颗粒化标签接口 -->
+                    <div class="entry-inline-tags">
+                        <span class="inline-tag">#低成本活化</span>
+                        <span class="inline-tag">#高温动线修复</span>
+                        <span class="inline-tag">#全业态全时段复合变现</span>
+                    </div>
+
+                    <div class="wiki-lexicon-text">
+                        <div class="wiki-syntax-line"><strong>【空间病灶】</strong>文旅空间深陷“单一卖门票”的死局，面临淡季无客、旺季留不住人的恶性循环。原有动线存在严重断点，游客泡完温泉后随即选择离场，大量冷区废地未能转化出二次消费，导致千万级资产效能低效消耗。</div>
+                        <div class="wiki-syntax-line"><strong>【干预手段】</strong>坚决叫停盲目的重装改造。通过热力图锁定动线漏点，实施精准“微创手术”：在核心路线周边闲置草坪上植入浅滩互动等轻资产造景，斩断客流失血；零硬装成本引入全城选美、草坪狂欢等高势能事件填补淡季空白；同时在死角废地精准置入烘焙茶饮与宴会餐饮。</div>
+                        <div class="wiki-syntax-line"><strong>【实际增效】</strong>打破“单日票”魔咒，成功让游客停留时长由“泡完即走”强行拉长至半日至一天半；成功将物理死角盘活为造血环路，实现低效资产全时段的复合变现。</div>
+                    </div>
+                    <div class="wiki-myth-linkage"><span>[ 文明转译 ]</span> 补天之城的时空修复 ↔ 破损文旅动线的低成本局部缝合与血脉连通</div>
+                </div>
+            </a>
+
+            <!-- 🟢 空间档案 02：标准小卡（齐齐哈尔博峰运动案例，对齐 image_55a209.jpg 逻辑） -->
+            <a href="entries/case_bofeng_sports.html" class="wiki-archive-item">
+                <div class="wiki-pic-vault">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="齐齐哈尔博峰运动跆拳道馆空间活化" />
+                    <div class="wiki-pic-shadow"></div>
+                </div>
+                <div class="wiki-info-vault">
+                    <div class="wiki-spec-metadata">
+                        <span>干预编号: LV-CASE-02-NORTH</span>
+                        <span>[ 空间复位完成 ]</span>
+                    </div>
+                    <h3>【社区小微实体降维打击：齐齐哈尔博峰运动重构】</h3>
+                    
+                    <div class="entry-inline-tags">
+                        <span class="inline-tag">#不停业修复</span>
+                        <span class="inline-tag">#低压社交场</span>
+                        <span class="inline-tag">#夺回绝对定价权</span>
+                    </div>
+
+                    <div class="wiki-lexicon-text">
+                        <div class="wiki-syntax-line"><strong>【空间病灶】</strong>三线城市的社区小微空间陷入严重的低端价格内卷。场地硬件简陋陈旧，导致家长客户在决策时仅进行单一的低价恶性比价，店面自然进店率极低，缺乏对溢价的绝对控制权。</div>
+                        <div class="wiki-syntax-line"><strong>【干预手段】</strong>进行全轻资产的视觉与动线重调。在入口门面植入连载级的强视觉锚点，瞬间撕掉“廉价标签”；将原本看不见的专业实力外显，在必经动线上前置具有心理压迫感的“荣誉阵列”；同时将干热平庸的传统冷板凳等待区，改造成具备社交裂变属性的高颜值“家长社交吧”。</div>
+                        <div class="wiki-syntax-line"><strong>【实际增效】</strong>让原本狭窄的街边小店爆发出了核心大店的品牌气场，通过动线与信任资产的精准配置抹平价格敏感度，跑通高溢价盈利模型，实现营业额的现场翻倍与高口碑自传播。</div>
+                    </div>
+                    <div class="wiki-myth-linkage"><span>[ 文明转译 ]</span> 始祖图腾的尊卑依托 ↔ 物理边界内的信任控制与溢价机制确立</div>
+                </div>
+            </a>
+
+            <!-- 🟢 空间档案 03：标准小卡（开发者、画师、实体商户去中心化机制） -->
+            <a href="entries/protocol_sovereign_IP.html" class="wiki-archive-item">
+                <div class="wiki-pic-vault">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" alt="去中心化独立母体生态" />
+                    <div class="wiki-pic-shadow"></div>
+                </div>
+                <div class="wiki-info-vault">
+                    <div class="wiki-spec-metadata">
+                        <span>干预编号: LV-PROTOCOL-03</span>
+                        <span>[ 协议分发 ]</span>
+                    </div>
+                    <h3>【去中心化主权生态：星尘贡献者互利契约】</h3>
+                    
+                    <div class="entry-inline-tags">
+                        <span class="inline-tag">#主权IP生态</span>
+                        <span class="inline-tag">#零前期授权费</span>
+                        <span class="inline-tag">#技术所有权隔离</span>
+                    </div>
+
+                    <div class="wiki-lexicon-text">
+                        <div class="wiki-syntax-line"><strong>【空间病灶】</strong>传统独立画师、手艺人与实体商户长期受困于大厂平台的流量勒索与黑盒算法限流，陷入“生产花钱、销售投流”的双边烧钱陷阱，利润均被中间竞价场抽干。</div>
+                        <div class="wiki-syntax-line"><strong>【干预手段】</strong>将立维宇宙千万字的核心文学资产与标准3D模型降维开放为“开源开发者文档”。向创作者颁发具备独特美学身份的【Levythos 文明通行证】，不设复杂审批，允许自由调用初始资产开发周边与联名产品，利用技术资产占股进行后期净利润分成。</div>
+                        <div class="wiki-syntax-line"><strong>【实际增效】</strong>成功组建不依赖资本收编的“微型部落化”商业自循环。利用 AI Agent 智能体在全网物色被传统传统乙方割怕的死忠极客，提供纯粹由共识和版权确权资产驱动的防护处方。</div>
+                    </div>
+                    <div class="wiki-myth-linkage"><span>[ 文明转译 ]</span> 上古华夏的结绳契约 ↔ 摆脱平台围猎的去中心化主权财富秩序</div>
+                </div>
+            </a>
+
+            <!-- 🟢 [拓展接口预留 2] 未来上百个案例持续扩充的 HTML 占位卡槽（当你有新案例时，直接复制上方卡片格式替换掉本槽即可） -->
+            <div class="wiki-archive-item future-slot-mode" onclick="alert('立维空间文明诊断机构：新档案持续接入校准中...');">
+                <div>
+                    <span style="font-size: 1.5rem; display: block; margin-bottom: 8px;">+</span>
+                    <span style="font-family: monospace; font-size: 0.8rem; letter-spacing: 1px;">[ 接入新空间观测样本 / ATTACH NEW ARCHIVE SLOT ]</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 纵向导航路由系统，完全复刻第一层逻辑 -->
+        <div style="margin-top: 60px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05) !important; padding-top: 40px;">
+            <p style="color: rgba(255,255,255,0.3); font-size: 0.85rem; font-family: monospace;">[ 当前层检索完成 ✦ 请选择跨层级认知探索路径 / CROSS-LAYER ROUTING ]</p>
+            <div style="display: flex; gap: 16px; margin-top: 20px; flex-wrap: wrap; justify-content: center;">
+                <a href="layer1-observation.html" style="color: #ffffff; text-decoration: none; font-size: 0.85rem; font-family: monospace; font-weight: bold; letter-spacing: 1px; border: 1px solid rgba(255, 255, 255, 0.2); padding: 12px 28px; border-radius: 4px; background: rgba(255, 255, 255, 0.02); transition: 0.3s;">← [ 上浮检索 ] LAYER 1: 城市空间异常观察文献库</a>
+                <a href="layer3-myth-echoes.html" style="color: var(--accent-gold); text-decoration: none; font-size: 0.85rem; font-family: monospace; font-weight: bold; letter-spacing: 1px; border: 1px solid rgba(232, 185, 35, 0.4); padding: 12px 28px; border-radius: 4px; background: rgba(232, 185, 35, 0.05); transition: 0.3s; box-shadow: 0 0 15px rgba(232, 185, 35, 0.1);">[ 下潜深造 ] LAYER 3: 万年史册演化树 · 华夏始祖神格研究区 🪐</a>
+                <a href="layer4-industrial-assets.html" style="color: var(--accent); text-decoration: none; font-size: 0.85rem; font-family: monospace; font-weight: bold; letter-spacing: 1px; border: 1px solid rgba(0, 229, 255, 0.4); padding: 12px 28px; border-radius: 4px; background: rgba(0, 229, 255, 0.05); transition: 0.3s; box-shadow: 0 0 15px rgba(0, 229, 255, 0.1);">[ 资产校准 ] LAYER 4: 器物图腾白皮书 · 3D高精数字孪生模型馆 ➔</a>
+            </div>
+        </div>
+
+    </div>
+
+  </main>
+
+  <!-- 通用动态抓取更新引擎 -->
+  <script>
+  function loadHeader() {
+      fetch('../header.html')
+          .then(response => {
+              if (!response.ok) throw new Error('CORS限制或找不到文件');
+              return response.text();
+          })
+          .then(data => {
+              const headerPlaceholder = document.getElementById('header-placeholder');
+              if (headerPlaceholder) {
+                  headerPlaceholder.innerHTML = data;
+                  console.log("[SERVER BUS] 动态拉取通用Header同步成功。");
+              }
+          })
+          .catch(error => {
+              console.warn('本地协议运行中，已触发静态HTML原生原地保真显化：', error.message);
+          });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+      loadHeader(); 
+  });
+  </script>
+
+  <!-- 左右固定科技罗马柱底层系统，高保真对齐主页 -->
+  <div id="pillar-left" class="cyber-pillar hide-on-mobile">
+      <div class="pillar-marquee marquee-down">
+          <div class="marquee-track">
+              <span>✍️</span><span>⚙️</span><span>🔬</span><span>🧬</span><span>👁️</span><span>🛠️</span><span>🎬</span><span>🏛️</span>
+              <span>✍️</span><span>⚙️</span><span>🔬</span><span>🧬</span><span>👁️</span><span>🛠️</span><span>🎬</span><span>🏛️</span>
+          </div>
+      </div>
+      <span class="vertical-text">✦ 8大领域入口</span>
+  </div>
+
+  <div id="pillar-right" class="cyber-pillar hide-on-mobile" title="查看最新空间实验与文明日志" onclick="window.location.href='../index.html#press';">
+      <div class="pillar-marquee marquee-up">
+          <div class="marquee-track">
+              <span>阅</span><span>档</span><span>志</span><span>筑</span>
+              <span>阅</span><span>档</span><span>志</span><span>筑</span>
+          </div>
+      </div>
+      <span class="vertical-text" style="background: linear-gradient(180deg, #00f2fe 0%, #4facfe 100%) !important; color: #000000 !important; font-weight: 900 !important; letter-spacing: 4px !important; padding: 25px 8px !important;">✦ 研究档案</span>
+  </div>
+
+  <a href="javascript:history.back()" class="mobile-back-fab" aria-label="返回上一页">
+      <span class="icon">←</span> <span class="text">返回</span>
+  </a>
+
+</body>
+</html>
