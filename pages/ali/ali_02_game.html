@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>解谜Demo《机关榫卯》 - 星联文明 | 立维宇宙</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .game-hero-info { background: rgba(15, 10, 5, 0.95); border: 1px solid rgba(232, 185, 35, 0.3); padding: 30px; border-radius: 8px; margin-top: -80px; position: relative; z-index: 10; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 40px rgba(0,0,0,0.9); }
+    .dl-btn { background: linear-gradient(90deg, #e8b923, #ff8c00); color: #000; padding: 15px 40px; font-weight: 900; border-radius: 4px; font-size: 1.1rem; border: none; cursor: pointer; transition: 0.3s; }
+    .dl-btn:hover { filter: brightness(1.2); box-shadow: 0 0 30px rgba(232, 185, 35, 0.8); }
+    .feature-list li { margin-bottom: 20px; padding-left: 35px; position: relative; color: #ccc; }
+    .feature-list li::before { content: '⚙️'; position: absolute; left: 0; top: 0; font-size: 1.2rem; }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main>
+    <section class="subpage-hero" style="background-image: url('../../assets/images/ali_02.jpg');">
+        <div class="subpage-hero-overlay">
+            <p class="breadcrumb"><a href="../../index.html">首页</a> &gt; 星联文明 &gt; 独立游戏</p>
+            <h1 style="color: var(--accent-gold); text-shadow: 0 0 15px rgba(232,185,35,0.5);">《机关榫卯》</h1>
+            <h2>不写一行代码的硬核空间解谜。</h2>
+        </div>
+    </section>
+    <div class="subpage-content">
+        <div class="game-hero-info">
+            <div>
+                <h3 style="margin: 0 0 10px 0; color:#fff;">Alpha Demo V0.8.4</h3>
+                <span class="a-tag">开发团队：独立像素室</span>
+                <span class="a-tag" style="background: #333; color: #fff;">Windows / macOS</span>
+            </div>
+            <button class="dl-btn" onclick="alert('请先连接星门账户，获取测试资格。')">下载试玩 Demo</button>
+        </div>
+        <section class="content-section" style="margin-top: 50px;">
+            <div class="text-image-split">
+                <div class="split-image"><img src="../../assets/images/ali_02.jpg" alt="游戏截图" style="border: 2px solid var(--accent-gold); border-radius:8px;"></div>
+                <div class="split-text">
+                    <h3 style="color: var(--accent-gold);">游戏特色</h3>
+                    <ul class="feature-list" style="list-style: none; padding:0;">
+                        <li><strong>真实的物理引擎：</strong> 完全还原中国古代传统木作的受力结构，没有钉子，只有重力与智慧的博弈。</li>
+                        <li><strong>东方机关术：</strong> 每一个谜题，都源自立维宇宙《天曜星途》中记载的上古神明遗迹。</li>
+                        <li><strong>禅意视听：</strong> 极致的木材碰撞声与 ASMR 级别的环境音效，让你在解谜中获得冥想般的体验。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+  </main>
+  <a href="javascript:history.back()" class="mobile-back-fab"><span class="icon">←</span> <span class="text">离开页面</span></a>
+  <script>fetch('../../header.html').then(r => r.text()).then(h => document.getElementById('header-placeholder').innerHTML = h);</script>
+
+
+
+<!-- 直接粘贴在子页面 HTML 的 </body> 之前 -->
+<div id="pillar-left" class="cyber-pillar hide-on-mobile" onclick="openDrawer()">
+    <div class="pillar-marquee marquee-down">
+        <div class="marquee-track">
+            <span>✍️</span><span>⚙️</span><span>🔬</span><span>🧬</span><span>👁️</span><span>🛠️</span><span>🎬</span><span>🏛️</span>
+            <span>✍️</span><span>⚙️</span><span>🔬</span><span>🧬</span><span>👁️</span><span>🛠️</span><span>🎬</span><span>🏛️</span>
+        </div>
+    </div>
+    <span class="vertical-text">✦ 8大阵营入口</span>
+</div>
+
+<div id="pillar-right" class="cyber-pillar hide-on-mobile" title="查看最新空间实验与文明日志" onclick="window.location.href='/index.html#press';">
+    <div class="pillar-marquee marquee-up">
+        <div class="marquee-track">
+            <span>阅</span><span>档</span><span>志</span><span>筑</span>
+            <span>阅</span><span>档</span><span>志</span><span>筑</span>
+        </div>
+    </div>
+    <span class="vertical-text">✦ 研究档案</span>
+</div>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>《折叠长安》视觉小说 - 星联文明 | 立维宇宙</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .vn-screen { position: relative; width: 100%; aspect-ratio: 16/9; background: url('../../assets/images/ali_03.jpg') center/cover; border: 2px solid var(--accent); border-radius: 8px; box-shadow: 0 10px 40px rgba(0,229,255,0.3); overflow: hidden; margin-top: 30px; }
+    .vn-character { position: absolute; bottom: 0; left: 10%; width: 40%; height: 90%; background: url('../../assets/images/ali_03.jpg') top/cover; opacity: 0.9; mask-image: linear-gradient(to top, rgba(0,0,0,1) 70%, rgba(0,0,0,0)); -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 70%, rgba(0,0,0,0)); }
+    .vn-ui { position: absolute; bottom: 20px; left: 5%; right: 5%; background: rgba(10,15,20,0.85); border: 1px solid var(--accent); padding: 25px; border-radius: 4px; backdrop-filter: blur(5px); }
+    .vn-name { display: inline-block; background: var(--accent); color: #000; padding: 5px 15px; font-weight: bold; position: absolute; top: -15px; left: -1px; clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%); }
+    .vn-text { color: #fff; font-size: 1.1rem; line-height: 1.8; margin-top: 10px; font-family: "Noto Serif SC", serif; }
+    .vn-choices { position: absolute; top: 20%; right: 5%; width: 40%; display: flex; flex-direction: column; gap: 15px; }
+    .vn-btn { background: rgba(0,0,0,0.8); border: 1px solid rgba(0,229,255,0.5); padding: 15px; color: #fff; text-align: center; cursor: pointer; transition: 0.3s; clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%); }
+    .vn-btn:hover { background: rgba(0,229,255,0.3); border-color: #00e5ff; font-weight: bold; transform: translateX(-10px); }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main>
+    <section class="subpage-hero" style="background-image: url('../../assets/images/ali_03.jpg');">
+        <div class="subpage-hero-overlay">
+            <p class="breadcrumb"><a href="../../index.html">首页</a> &gt; 星联文明 &gt; 视觉小说</p>
+            <h1 style="color: #00e5ff;">《折叠长安》</h1>
+            <h2>赛博大唐背景 · 多分支叙事文字冒险体验</h2>
+        </div>
+    </section>
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="project-intel-card">
+                <div class="intel-item"><div class="label">研发团队</div><div class="value">盛唐幻梦工作室</div></div>
+                <div class="intel-item"><div class="label">当前阶段</div><div class="value">剧本交互演示 (Web版)</div></div>
+            </div>
+            
+            <h3 style="margin-top:40px; color:var(--accent);">▶ 概念引擎试运行</h3>
+            <div class="vn-screen">
+                <div class="vn-character"></div>
+                <div class="vn-choices">
+                    <div class="vn-btn" onclick="alert('算力不足，无法黑入金吾卫主机。')">A. [骇入] 重写朱雀大街的巡逻代码。</div>
+                    <div class="vn-btn" onclick="alert('你递出了含有木马的诗笺。')">B. [交涉] 念出一首带有病毒指令的绝句。</div>
+                    <div class="vn-btn" onclick="alert('逃避是无法通关赛博大唐的。')">C. [潜行] 遁入平康坊的霓虹阴影中。</div>
+                </div>
+                <div class="vn-ui">
+                    <div class="vn-name">李十二娘</div>
+                    <div class="vn-text">“别看了，这把琵琶里的脉冲发射器已经锁定了你的义体中枢。现在，选一条路走吧，外乡人。”</div>
+                </div>
+            </div>
+        </section>
+    </div>
+  </main>
+  <a href="javascript:history.back()" class="mobile-back-fab"><span class="icon">←</span> <span class="text">退出体验</span></a>
+  <script>fetch('../../header.html').then(r => r.text()).then(h => document.getElementById('header-placeholder').innerHTML = h);</script>
+
+
+<!-- 直接粘贴在子页面 HTML 的 </body> 之前 -->
+<div id="pillar-left" class="cyber-pillar hide-on-mobile" onclick="openDrawer()">
+    <div class="pillar-marquee marquee-down">
+        <div class="marquee-track">
+            <span>✍️</span><span>⚙️</span><span>🔬</span><span>🧬</span><span>👁️</span><span>🛠️</span><span>🎬</span><span>🏛️</span>
+            <span>✍️</span><span>⚙️</span><span>🔬</span><span>🧬</span><span>👁️</span><span>🛠️</span><span>🎬</span><span>🏛️</span>
+        </div>
+    </div>
+    <span class="vertical-text">✦ 8大阵营入口</span>
+</div>
+
+<div id="pillar-right" class="cyber-pillar hide-on-mobile" title="查看最新空间实验与文明日志" onclick="window.location.href='/index.html#press';">
+    <div class="pillar-marquee marquee-up">
+        <div class="marquee-track">
+            <span>阅</span><span>档</span><span>志</span><span>筑</span>
+            <span>阅</span><span>档</span><span>志</span><span>筑</span>
+        </div>
+    </div>
+    <span class="vertical-text">✦ 研究档案</span>
+</div>
+
+</body>
+</html>
