@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>觉者长廊 · 文明潜意识残卷档案馆 | 立维宇宙</title>
+  <link rel="icon" href="../assets/images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+  
+  <!-- 严格对齐真实目录层级 -->
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/subpage.css">
+
+  <style>
+    /* ==========================================================================
+       LEVYTHOS UNIFIED LIFECYCLE (立维宇宙：全站统一弱交互与生命律动主频补丁)
+       ========================================================================== */
+    :root {
+        --bg-deep: #02060a; 
+        --accent: #00e5ff; 
+        --accent-gold: #e8b923; 
+        --text-muted: #e2e8f0;
+        --pulse-duration: 4s; 
+        --ui-glow: rgba(0, 229, 255, 0.2);
+    }
+
+    body {
+        background-color: var(--bg-deep) !important;
+        margin: 0; padding: 0;
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        color: #ffffff !important;
+        overflow-x: hidden;
+    }
+
+    /* 🟢 统一导航栏：高亮度保护 */
+    header.site-header {
+        position: fixed !important;
+        top: 0 !important; left: 0 !important;
+        width: 100% !important; z-index: 10000 !important; 
+        height: 80px !important;
+        background: rgba(2, 6, 10, 0.95) !important;
+        backdrop-filter: blur(10px) !important;
+        border-bottom: 1px solid rgba(0, 229, 255, 0.2) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 0 40px !important;
+        box-sizing: border-box !important;
+    }
+
+    header.site-header .brand { margin-left: 0 !important; gap: 12px !important; }
+    header.site-header .brand-title { font-size: 22px !important; letter-spacing: 2px !important; color: #ffffff !important; }
+    header.site-header .brand-subtitle { font-size: 14.5px !important; letter-spacing: 5.5px !important; color: var(--accent) !important; }
+    header.site-header .site-nav { gap: 16px !important; margin-right: 0 !important; }
+    header.site-header .nav-item-dual strong { font-size: 0.95rem !important; color: #ffffff !important; }
+    header.site-header .nav-item-dual span { font-size: 0.65rem !important; color: var(--accent) !important; }
+    header.site-header .header-actions { margin-right: 0 !important; }
+
+    /* 全局脉冲全息呼吸层 */
+    body::after {
+        content: '';
+        position: fixed; inset: 0;
+        background: radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.03), transparent 70%);
+        pointer-events: none; z-index: 9999;
+        animation: globalPulse var(--pulse-duration) ease-in-out infinite;
+    }
+    @keyframes globalPulse {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 1; }
+    }
+
+    main {
+        max-width: 1300px !important;
+        margin: 0 auto !important;
+        padding: 140px 80px 80px 80px !important;
+        box-sizing: border-box !important;
+        display: block;
+    }
+
+    /* 🌌 震撼的科幻东方视界顶罩 */
+    .matrix-shrine-hero {
+        position: relative !important;
+        padding: 60px 40px;
+        text-align: center;
+        margin-bottom: 40px;
+        border: 1px solid rgba(0, 229, 255, 0.15);
+        border-radius: 12px;
+        background: radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.08) 0%, transparent 80%);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 30px rgba(0,229,255,0.05);
+    }
+    .matrix-shrine-hero h1 { 
+        font-family: 'Noto Serif SC', serif; font-weight: 700; font-size: 42px;
+        color: #ffffff; margin: 0 0 16px 0; letter-spacing: 4px;
+    }
+    .matrix-shrine-hero h1 span { color: var(--accent-gold); }
+    .matrix-shrine-hero p { 
+        color: #ffffff !important; font-size: 15px; font-weight: 400;
+        letter-spacing: 1.5px; max-width: 850px; margin: 0 auto; line-height: 1.8;
+    }
+
+    /* 🕉️ 释迦牟尼原初法相大图巨幕老祖宗核心板块 */
+    .buddha-prime-vault {
+        width: 100%; margin-bottom: 50px;
+        background: #040914; border: 2px solid var(--accent-gold); /* 加粗加亮老祖宗的金边 */
+        border-radius: 12px; overflow: hidden;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 20px rgba(232,185,35,0.1);
+    }
+    .buddha-prime-image {
+        width: 100%; height: 50vh; min-height: 400px; position: relative; background: #000;
+    }
+    .buddha-prime-image img {
+        width: 100%; height: 100%; object-fit: cover; opacity: 0.85;
+    }
+    .buddha-prime-text-panel {
+        padding: 35px 40px; background: linear-gradient(180deg, rgba(4,9,20,0.4) 0%, rgba(2,6,10,1) 100%);
+        border-top: 1px solid rgba(255,255,255,0.05);
+        display: flex; justify-content: space-between; align-items: flex-end; gap: 30px;
+    }
+    .buddha-prime-info-left { flex: 1; }
+    .buddha-prime-title {
+        font-family: 'Noto Serif SC', serif; font-size: 32px; font-weight: 700; color: var(--accent-gold);
+        margin: 0 0 14px 0; letter-spacing: 3px; text-shadow: 0 0 15px rgba(232,185,35,0.3);
+    }
+    .buddha-prime-quote {
+        font-family: 'Noto Serif SC', serif; font-size: 18px; color: var(--accent);
+        margin-bottom: 16px; font-weight: bold; letter-spacing: 1px;
+    }
+    .buddha-prime-desc {
+        font-size: 15px; color: #ffffff; line-height: 1.85; text-align: justify; margin: 0;
+    }
+    
+    /* 佛祖专属大按钮：大一号、带暗金外发光流光、绝对醒目 */
+    .btn-buddha-prime-giving {
+        flex-shrink: 0; background: linear-gradient(135deg, #e8b923, #b8860b) !important;
+        border: none !important; color: #000000 !important; font-family: 'Noto Serif SC', serif;
+        font-size: 16px; font-weight: 900; padding: 14px 32px; border-radius: 6px;
+        cursor: pointer; letter-spacing: 2px; transition: all 0.3s ease;
+        box-shadow: 0 0 20px rgba(232, 185, 35, 0.6);
+    }
+    .btn-buddha-prime-giving:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 35px rgba(232, 185, 35, 0.9);
+        filter: brightness(1.1);
+    }
+
+    /* 分类标签高亮样式 */
+    .shrine-tabs {
+        display: flex; gap: 24px; justify-content: center; margin-bottom: 50px;
+        border-bottom: 1px solid rgba(0,229,255,0.15); padding-bottom: 16px;
+    }
+    .shrine-tab-btn {
+        font-size: 14px; font-weight: bold;
+        color: rgba(255,255,255,0.6); cursor: pointer; transition: all 0.3s;
+        letter-spacing: 2px; position: relative;
+    }
+    .shrine-tab-btn:hover, .shrine-tab-btn.active {
+        color: var(--accent);
+    }
+    .shrine-tab-btn.active::after {
+        content: ''; position: absolute; bottom: -17px; left: 0; width: 100%; height: 2px;
+        background: var(--accent); box-shadow: 0 0 10px var(--accent);
+    }
+
+    /* 🏛️ 东方废土神话长廊 */
+    .shrine-corridor {
+        display: flex; flex-direction: column; gap: 40px; margin-bottom: 60px;
+    }
+    .shrine-node {
+        display: grid;
+        grid-template-columns: 380px 1fr;
+        background: #040914 !important;
+        border: 1px solid rgba(0, 229, 255, 0.15) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        position: relative; overflow: hidden;
+        transition: all 0.3s ease;
+    }
+    .shrine-node:hover {
+        border-color: var(--accent-gold) !important;
+        box-shadow: 0 0 30px rgba(232, 185, 35, 0.25);
+    }
+
+    .shrine-img-vault {
+        width: 100%; height: 100%; min-height: 280px; position: relative; background: #000; overflow: hidden;
+    }
+    .shrine-img-vault img {
+        width: 100%; height: 100%; object-fit: cover;
+        opacity: 0.8; transition: all 0.5s ease;
+    }
+    .shrine-node:hover .shrine-img-vault img { opacity: 1; transform: scale(1.03); }
+
+    .shrine-meta-panel {
+        padding: 30px 40px; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .shrine-header-line { display: flex; justify-content: space-between; align-items: baseline; }
+    .shrine-title { font-family: 'Noto Serif SC', serif; font-size: 22px; color: #ffffff; margin: 0; font-weight: 700; letter-spacing: 2px; }
+    .shrine-code { font-family: monospace; font-size: 12px; color: var(--accent); letter-spacing: 1px; font-weight: bold; }
+    
+    .shrine-poem { 
+        font-family: 'Noto Serif SC', serif; font-size: 17px; color: var(--accent-gold); 
+        margin: 14px 0; font-weight: 700;
+    }
+    .shrine-brief { font-size: 14.5px; color: #ffffff !important; line-height: 1.8; text-align: justify; margin: 0; }
+    
+    /* 🕯️ 交互按钮组 - 文字与符号大幅增强，杜绝误认为普通点赞 */
+    .shrine-action-bus {
+        display: flex; gap: 16px; margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px;
+    }
+    .ritual-btn {
+        background: transparent; border: 1px solid rgba(255,255,255,0.2);
+        color: #ffffff; font-weight: bold; font-size: 13px;
+        padding: 8px 20px; border-radius: 4px; cursor: pointer; transition: all 0.3s; letter-spacing: 1px;
+    }
+    .btn-enter-lore { border-color: var(--accent); color: var(--accent); }
+    .btn-enter-lore:hover { background: rgba(0, 229, 255, 0.1); color: #fff; }
+    
+    /* 打赏按钮大改版：闪烁外框、大字号高亮度、附带醒目箭头 */
+    .btn-ritual-offering { 
+        border: 1.5px solid var(--accent-gold) !important; color: #ffffff !important; 
+        background: rgba(232, 185, 35, 0.05) !important; font-size: 13.5px !important;
+        box-shadow: 0 0 10px rgba(232, 185, 35, 0.2);
+    }
+    .btn-ritual-offering:hover { 
+        background: var(--accent-gold) !important; color: #000000 !important; 
+        box-shadow: 0 0 20px rgba(232, 185, 35, 0.6); 
+    }
+
+    /* 🧱 底部收尾：诸神小型卡片网格布局 */
+    .extended-deities-section {
+        margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(0,229,255,0.2);
+    }
+    .extended-title {
+        font-family: 'Noto Serif SC', serif; font-size: 20px; font-weight: 700; color: #ffffff; 
+        letter-spacing: 2px; margin-bottom: 24px; text-align: left;
+    }
+    .extended-grid {
+        display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-bottom: 30px;
+    }
+    .mini-deity-card {
+        background: #040914; border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 6px; overflow: hidden; transition: all 0.3s; cursor: pointer;
+    }
+    .mini-deity-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 0 15px rgba(0,229,255,0.2); }
+    .mini-img-box { width: 100%; aspect-ratio: 3 / 4; background: #000; overflow: hidden; }
+    .mini-img-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+    .mini-deity-card:hover .mini-img-box img { opacity: 1; }
+    .mini-name { padding: 12px 8px; font-family: 'Noto Serif SC', serif; font-size: 14px; font-weight: bold; color: #ffffff; text-align: center; }
+
+    .more-shrine-trigger { text-align: center; margin-top: 20px; }
+
+    /* 📜 「奉天郡·长明灯录」历史贡献者回响墙（纯脱敏网名） */
+    .shrine-echo-wall {
+        margin-top: 60px; background: rgba(232, 185, 35, 0.05);
+        border: 1px solid var(--accent-gold); padding: 30px; border-radius: 8px;
+    }
+    .echo-wall-title { font-family: 'Noto Serif SC', serif; font-size: 18px; font-weight: 700; color: var(--accent-gold); letter-spacing: 2px; margin: 0 0 16px 0; }
+    .echo-track { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .echo-log-item { font-size: 14px; color: #ffffff; font-family: monospace; line-height: 1.6; }
+    .echo-log-item span { color: var(--accent); font-weight: bold; }
+
+    /* 🧭 绝无仅有：新增全站超级火种留名常驻右侧悬浮总控制面板 */
+    .global-floating-ritual-panel {
+        position: fixed; right: 80px; top: 45%; transform: translateY(-50%);
+        width: 50px; height: 180px; background: rgba(4,9,20,0.95);
+        border: 1.5px solid var(--accent); border-radius: 30px;
+        z-index: 30000; display: flex; flex-direction: column; align-items: center;
+        justify-content: center; cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 0 20px rgba(0,229,255,0.3); overflow: hidden;
+    }
+    .floating-vertical-text {
+        writing-mode: vertical-rl; text-orientation: upright; font-family: 'Noto Serif SC', serif;
+        font-size: 13px; font-weight: 900; color: var(--accent); letter-spacing: 4px;
+        white-space: nowrap; transition: opacity 0.2s ease;
+    }
+    .floating-expanded-content {
+        display: none; width: 100%; height: 100%; padding: 20px; flex-direction: column;
+        justify-content: center; text-align: left; opacity: 0; transition: opacity 0.3s ease;
+    }
+    .floating-expanded-content h4 { font-family: 'Noto Serif SC', serif; font-size: 16px; color: var(--accent-gold); margin: 0 0 8px 0; font-weight: 700; }
+    .floating-expanded-content p { font-size: 12px; color: #ffffff; line-height: 1.5; margin: 0 0 14px 0; }
+    
+    /* 悬浮面板展开状态 */
+    .global-floating-ritual-panel:hover {
+        width: 240px; border-color: var(--accent-gold); border-radius: 12px;
+        box-shadow: 0 0 30px rgba(232,185,35,0.4);
+    }
+    .global-floating-ritual-panel:hover .floating-vertical-text { display: none; }
+    .global-floating-ritual-panel:hover .floating-expanded-content { display: flex; opacity: 1; }
+
+    /* ⛩️ 文明火种留名仪轨 专属控制弹窗 */
+    .ritual-modal-overlay {
+        position: fixed; inset: 0; background: rgba(2, 6, 10, 0.85);
+        backdrop-filter: blur(10px); display: none; justify-content: center; align-items: center; z-index: 25000;
+        opacity: 0; transition: opacity 0.3s ease;
+    }
+    .ritual-modal-overlay.active { display: flex; opacity: 1; }
+    .ritual-glass-panel {
+        background: #04080f; border: 1px solid var(--accent-gold);
+        width: 460px; padding: 40px; border-radius: 8px; box-shadow: 0 0 25px rgba(232, 185, 35, 0.4);
+        position: relative; box-sizing: border-box; text-align: center;
+    }
+    .ritual-modal-title { font-family: 'Noto Serif SC', serif; font-size: 24px; color: var(--accent-gold); margin: 0 0 12px 0; letter-spacing: 2px; font-weight: bold; }
+    .ritual-modal-desc { font-size: 14px; color: #ffffff; line-height: 1.7; margin-bottom: 24px; text-align: justify; }
+    
+    .ritual-options-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+    .ritual-opt-card {
+        border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.4);
+        padding: 14px 6px; border-radius: 4px; cursor: pointer; transition: all 0.3s;
+    }
+    .ritual-opt-card:hover, .ritual-opt-card.selected { border-color: var(--accent-gold); background: rgba(232,185,35,0.1); }
+    .ritual-opt-card strong { display: block; font-size: 14px; color: #ffffff; margin-bottom: 4px; font-family: 'Noto Serif SC', serif; }
+    .ritual-opt-card span { display: block; font-size: 12px; color: var(--accent-gold); font-family: monospace; font-weight: bold; }
+    
+    .ritual-qrcode-area {
+        display: none; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);
+        padding: 20px; border-radius: 4px; margin-bottom: 20px; justify-content: center; flex-direction: column; align-items: center;
+    }
+    .qrcode-box { width: 140px; height: 140px; background: #fff; padding: 6px; box-sizing: border-box; margin-bottom: 12px; }
+    .qrcode-box img { width: 100%; height: 100%; object-fit: contain; }
+
+    /* ③ 第三层流动残响显示总线 */
+    .terminal-ticker {
+        position: fixed; bottom: 0; left: 0; width: 100%;
+        background: rgba(2, 6, 10, 0.95) !important;
+        border-top: 1px solid rgba(0, 229, 255, 0.2) !important;
+        padding: 12px 40px !important; box-sizing: border-box;
+        font-family: 'Noto Serif SC', serif !important; font-size: 13px !important;
+        color: #ffffff !important; display: flex !important;
+        align-items: center !important; justify-content: center; gap: 6px !important; z-index: 99999; pointer-events: none;
+    }
+
+    /* 🟢 赛博罗马柱核心修复：强行提权至 20000 层，直接横跨并盖在导航栏（10000层）之上！ */
+    .cyber-pillar {
+        position: fixed !important; top: 0 !important; height: 100vh !important; width: 60px !important;
+        background: linear-gradient(to bottom, rgba(2,6,10,0.95), rgba(20,30,40,0.95)) !important;
+        z-index: 20000 !important; /* 核心提权修改，直接覆盖在导航栏之上 */
+        cursor: pointer !important; display: flex !important;
+        flex-direction: column !important; align-items: center !important; justify-content: center !important;
+        transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.8) !important; overflow: hidden !important;
+        opacity: 1 !important;
+    }
+    #pillar-left { left: 0 !important; border-right: 2px solid var(--accent-gold) !important; }
+    #pillar-left:hover { width: 75px !important; background: rgba(232, 185, 35, 0.1) !important; }
+    #pillar-right { right: 0 !important; border-left: 2px solid var(--accent) !important; }
+    #pillar-right:hover { width: 75px !important; background: rgba(0, 229, 255, 0.06) !important; }
+
+    .pillar-marquee { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.8; pointer-events: none; }
+    .marquee-track { display: flex; flex-direction: column; align-items: center; gap: 25px; padding: 20px 0; width: 100%; }
+    .marquee-down .marquee-track { animation: scroll-v-down 25s linear infinite; }
+    .marquee-up .marquee-track { animation: scroll-v-up 25s linear infinite; gap: 40px; padding: 30px 0; }
+    @keyframes scroll-v-down { 0% { transform: translateY(-50%); } 100% { transform: translateY(0); } }
+    @keyframes scroll-v-up { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
+
+    .cyber-pillar .vertical-text { position: relative; z-index: 10; background: rgba(0,0,0,0.7); padding: 20px 8px; border-radius: 8px; writing-mode: vertical-rl; text-orientation: upright; color: #fff; font-weight: 900; font-size: 1rem; letter-spacing: 4px; white-space: nowrap; border: none; }
+    #pillar-left .vertical-text { background: linear-gradient(180deg, #fceabb 0%, #f8b500 100%) !important; color: #000000 !important; box-shadow: 0 0 20px rgba(248, 181, 0, 0.6) !important; }
+    #pillar-right .vertical-text { background: linear-gradient(180deg, #00f2fe 0%, #4facfe 100%) !important; color: #000000 !important; box-shadow: 0 0 20px rgba(0, 242, 254, 0.6) !important; padding: 25px 8px !important; }
+  </style>
+</head>
+<body>
+
+<!-- 通用母体规范导航总线 -->
+<div id="header-placeholder">
+    <header class="site-header">
+        <div class="brand">
+            <a class="logo" href="../index.html" aria-label="Levythos 标志">
+                <img src="../assets/images/logo.png" alt="立维宇宙Logo" width="44" height="44" />
+            </a>
+            <div class="brand-text">
+                <div class="brand-title">立维宇宙</div>
+                <div class="brand-subtitle">LEVYTHOS</div>
+            </div>
+        </div>
+        <nav class="site-nav">
+            <a href="../encyclopedia.html" class="nav-item-dual" style="border: 1px solid rgba(232, 185, 35, 0.35); background: rgba(232, 185, 35, 0.05); border-radius: 4px; padding: 4px 10px;">
+                <strong style="color: var(--accent-gold);">立维百科</strong><span>文明档案馆</span>
+            </a>
+            <a href="../index.html#matrix" class="nav-item-dual"><strong>全息·内容宇宙</strong><span>文学/影视原型</span></a>
+            <a href="../index.html#spatial" class="nav-item-dual"><strong>降临·空间活化</strong><span>数字孪生</span></a>
+            <a href="../index.html#ip-souvenir-section" class="nav-item-dual"><strong>共鸣·衍生品计划</strong><span>文创设计</span></a>
+            <a href="../index.html#press" class="nav-item-dual"><strong>纪元·研究日志</strong><span>城市空间运营</span></a>
+            <a href="../index.html#contact" class="nav-item-dual"><strong>缔约·宇宙共建</strong><span>产业合作</span></a>
+        </nav>
+        <div class="header-actions">
+            <a href="#" class="nav-item-dual" onclick="event.preventDefault(); openLoginModal();"><strong>接入终端</strong><span>(获取敕令)</span></a>
+        </div>
+    </header>
+
+    <!-- 星门登录框 -->
+    <div id="lv-login-modal" class="lv-modal-overlay" style="display: none;">
+        <div class="lv-modal-content glass-panel">
+            <button class="lv-modal-close" onclick="closeLoginModal()">×</button>
+            <div class="lv-modal-header">
+                <h3 class="lv-modal-title">星门准入协议</h3>
+                <p class="lv-modal-subtitle">验证身份波段，确立你的文明坐标</p>
+            </div>
+            <div class="lv-modal-body">
+                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                    <button class="lv-btn-social wechat" style="flex: 1; padding: 10px; font-size: 13px; background: rgba(0,0,0,0.4); border: 1px solid #00c864; color: #00c864; border-radius: 4px;">🟢 微信接入</button>
+                    <button class="lv-btn-social qq" style="flex: 1; padding: 10px; font-size: 13px; background: rgba(0,0,0,0.4); border: 1px solid #0096ff; color: #0096ff; border-radius: 4px;">🔵 QQ接入</button>
+                </div>
+                <div class="lv-input-group" style="margin-bottom: 10px;"><input type="text" placeholder="设置文明代号" class="lv-input"></div>
+              <button class="lv-btn-primary" onclick="event.preventDefault(); const nameInput = document.querySelector('input[placeholder*=\'代号\']') || document.querySelector('input[placeholder*=\'昵称\']'); const finalName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : '星河灯塔'; if(typeof simulateLoginSuccess === 'function') { simulateLoginSuccess(finalName, '../assets/images/archetype_narrative.jpg'); }">建立锚点 (立即确权)</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 🧭 Super 醒目右侧独立悬浮面板：明确告知用户此项功能的真实意义，防止误认点赞 -->
+<div class="global-floating-ritual-panel" onclick="openRitualModal(event, '文明火种留名计划', '点燃星火，即可在长明灯录中留下您的观测者大名。所有火种募集资金均100%投入本原创文学宇宙内容的精细化长线研发，共同延续华夏文明脉络。')">
+    <div class="floating-vertical-text">✦ 唤醒火种留名 ↗</div>
+    <div class="floating-expanded-content">
+        <h4>文明火种留名 ↗</h4>
+        <p>支持世界观长线研发，点燃星火即可在全球长明灯录中留下您的专属观测者名册。</p>
+        <button class="ritual-btn" style="border-color:var(--accent-gold); color:var(--accent-gold); width:100%; padding:4px;">立即开启</button>
+    </div>
+</div>
+
+<main>
+    <!-- 🌌 第一层：高维意识残卷展示区 -->
+    <section class="matrix-shrine-hero">
+        <h1>「觉者长廊」<span>华夏潜意识残卷档案馆</span></h1>
+        <p>即使城市已经沉没，仍有人会在深夜想起这些古老的轮廓。我们在此剥离冰冷的程序化控制，在漫长的时间灰烬之中，为那些长久凝视人类痛苦的民俗神龛寻回恒定的不灭火种。</p>
+    </section>
+
+    <!-- 🕉️ 释迦牟尼原初法相大图巨幕板块（新增老祖宗专属巨型打赏模块） -->
+    <section class="buddha-prime-vault">
+        <div class="buddha-prime-image">
+            <img src="../assets/images/philosophy_buddha.jpg" alt="原初释迦牟尼法相大图" onerror="this.src='../assets/images/char_luxiaoyun.jpg'">
+        </div>
+        <div class="buddha-prime-text-panel">
+            <div class="buddha-prime-info-left">
+                <h2 class="buddha-prime-title">原初源头：释迦牟尼 与 觉者之脊</h2>
+                <div class="buddha-prime-quote">“千古一念，物我两忘。在此向下分化出万象世俗文明脉络。”</div>
+                <p class="buddha-prime-desc">作为华夏集体记忆及东方生命哲学的至高源头，释迦法相不立文字，其底层基底是对宇宙无常规律的绝对洞悉。以此原初内核为锚点，向外、向下在时间连续性中衍生出了观音之悲悯、武圣之忠义、财神之留存等一系列深植于民间血脉的情感变量。</p>
+            </div>
+            <!-- 佛祖专属：超大、极其醒目的核心唤醒按钮，绝不掉价 -->
+            <button class="btn-buddha-prime-giving" onclick="openRitualModal(event, '原初源头：释迦牟尼', '您正在向潜意识宇宙总源头投喂核心火种。本项文明留名将由总系统记录，长久照亮后续所有衍生文明残卷的挖掘工作。')">
+                投喂原初火种 🔥
+            </button>
+        </div>
+    </section>
+
+    <!-- 分类控制 -->
+    <div class="shrine-tabs">
+        <div class="shrine-tab-btn active">✦ 全频段文明残响层</div>
+        <div class="shrine-tab-btn">✦ 悲悯形体 (观音与菩萨遗构)</div>
+        <div class="shrine-tab-btn">✦ 信用古则 (关羽与武圣神龛)</div>
+        <div class="shrine-tab-btn">✦ 欲望留存 (民俗财神星图)</div>
+    </div>
+
+    <!-- 🏛️ 第二层：神话核心长廊 -->
+    <section class="shrine-corridor">
+        
+        <!-- 观音 -->
+        <div class="shrine-node node-guanyin">
+            <div class="shrine-img-vault">
+                <img src="../assets/images/deity_guanyin.jpg" alt="感知层变量：观音" onerror="this.src='../assets/images/philosophy_buddha.jpg'">
+            </div>
+            <div class="shrine-meta-panel">
+                <div class="shrine-header-line">
+                    <h3 class="shrine-title">观音 与 悲悯之海</h3>
+                    <span class="shrine-code">感知脉络 深度共振</span>
+                </div>
+                <div class="shrine-poem">“无处不在的倾听，接住一切稍纵即逝的痛苦。”</div>
+                <p class="shrine-brief">她从来不是冷冰冰的数据总线，而是宇宙极深黑暗处永远为凡世亮起的微弱灯塔。立维历史中断裂的记忆证明，她作为全频段精神感知的核心，在废墟与洪流中，温柔地打捞并抚平每一个绝望个体的精神重压。</p>
+                
+                <div class="shrine-action-bus">
+                    <button class="ritual-btn btn-enter-lore" onclick="window.location.href='deities/guanyin.html';">阅览解密残卷 ↗</button>
+                    <button class="ritual-btn btn-ritual-offering" onclick="openRitualModal(event, '观音之域', '您正在向观音神龛续燃长明灯火。本项火种留名仅作为支持东方科幻文学世界观长线研发的赞助仪式。')">续燃长明灯火 🕯️ ↗</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 关公 -->
+        <div class="shrine-node node-guanyu">
+            <div class="shrine-img-vault">
+                <img src="../assets/images/deity_guanyu.jpg" alt="感知层变量：武圣关羽" onerror="this.src='../assets/images/philosophy_buddha.jpg'">
+            </div>
+            <div class="shrine-meta-panel">
+                <div class="shrine-header-line">
+                    <h3 class="shrine-title">关羽 与 信用古则</h3>
+                    <span class="shrine-code">规则屏障 绝对守护</span>
+                </div>
+                <div class="shrine-poem">“青龙饮血，忠义横刀，筑起民间信用的最后防线。”</div>
+                <p class="shrine-brief">关羽代表华夏民间社会最刚烈的信用共识与江湖血性秩序。在奉天郡断层等繁琐无常的环境中，关羽的符号是写进华夏脉络的坚固暗锁，用以对抗外界规则的无情侵蚀。</p>
+                
+                <div class="shrine-action-bus">
+                    <button class="ritual-btn btn-enter-lore" onclick="window.location.href='deities/guanyu.html';">阅览解密残卷 ↗</button>
+                    <button class="ritual-btn btn-ritual-offering" onclick="openRitualModal(event, '武圣神龛', '协助修复武圣秩序长廊的陈旧风化断层。您的留名将长久保存在未来文明开发日志的谢意中。')">追加秩序锚定 ⚔️ ↗</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 财神 -->
+        <div class="shrine-node node-caishen">
+            <div class="shrine-img-vault">
+                <img src="../assets/images/deity_caishen.jpg" alt="感知层变量：财神" onerror="this.src='../assets/images/philosophy_buddha.jpg'">
+            </div>
+            <div class="shrine-meta-panel">
+                <div class="shrine-header-line">
+                    <h3 class="shrine-title">财神 与 万象分配</h3>
+                    <span class="shrine-code">财富流动 价值长青</span>
+                </div>
+                <div class="shrine-poem">“人们在此供奉的，从来不只是冷冰冰的金钱，而是活下去的欲望。”</div>
+                <p class="shrine-brief">他是华夏世俗最真实的人类欲望载体。在立维规则中，财神被转译为存量时代长效流动与分发的主权增益图谱。他不再意味着世俗低级的金钱交换，而是指引前行的共建者，如何在荒原中实现价值共识与永恒资产红利长青。</p>
+                
+                <div class="shrine-action-bus">
+                    <button class="ritual-btn btn-enter-lore" onclick="window.location.href='deities/caishen.html';">阅览解密残卷 ↗</button>
+                    <button class="ritual-btn btn-ritual-offering" onclick="openRitualModal(event, '财神星图', '向财神星图里投入火种，支持东方科幻档案馆底层文献开发。此仪式绝无世俗金钱许愿交易。')">投喂旧时代火种 💰 ↗</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 地藏 -->
+        <div class="shrine-node node-dizang">
+            <div class="shrine-img-vault">
+                <img src="../assets/images/deity_dizang.jpg" alt="感知层变量：地藏" onerror="this.src='../assets/images/philosophy_buddha.jpg'">
+            </div>
+            <div class="shrine-meta-panel">
+                <div class="shrine-header-line">
+                    <h3 class="shrine-title">地藏 与 归墟誓愿</h3>
+                    <span class="shrine-code">底层重构 深渊挽救</span>
+                </div>
+                <div class="shrine-poem">“地府最深沉的影，在文明荒原的边缘，打捞无处可去的死角。”</div>
+                <p class="shrine-brief">地藏长久选择驻留在立维宇宙脉络的最底端，也就是完全丧失了商业能流与活跃生机的归墟废地。他以大坚毅背负历史尘埃，默默地对那些被主流时代抛弃、抹除的失落文明断层，进行着漫长、静默的从零重构。</p>
+                
+                <div class="shrine-action-bus">
+                    <button class="ritual-btn btn-enter-lore" onclick="window.location.href='deities/dizang.html';">阅览解密残卷 ↗</button>
+                    <button class="ritual-btn btn-ritual-offering" onclick="openRitualModal(event, '地藏之界', '向地藏神龛输送微弱的灰烬能源，以协助拓展归墟深渊中失落文明断层的历史碎片扩写企划。')">向深渊输送能源 🔮 ↗</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- 🧱 底部收尾：3:4 比例小型诸神卡片网格 -->
+    <section class="extended-deities-section">
+        <div class="extended-title">✦ 更多待解析的华夏古老精神遗构</div>
+        <div class="extended-grid">
+            
+            <div class="mini-deity-card" onclick="window.location.href='deities/wenshu.html';">
+                <div class="mini-img-box"><img src="../assets/images/deity_mini_wenshu.jpg" alt="文殊" onerror="this.src='../assets/images/philosophy_buddha.jpg'"></div>
+                <div class="mini-name">变量：文殊</div>
+            </div>
+            
+            <div class="mini-deity-card" onclick="window.location.href='deities/puxian.html';">
+                <div class="mini-img-box"><img src="../assets/images/deity_mini_puxian.jpg" alt="普贤" onerror="this.src='../assets/images/philosophy_buddha.jpg'"></div>
+                <div class="mini-name">变量：普贤</div>
+            </div>
+            
+            <div class="mini-deity-card" onclick="window.location.href='deities/mile.html';">
+                <div class="mini-img-box"><img src="../assets/images/deity_mini_mile.jpg" alt="弥勒" onerror="this.src='../assets/images/philosophy_buddha.jpg'"></div>
+                <div class="mini-name">变量：弥勒</div>
+            </div>
+            
+            <div class="mini-deity-card" onclick="window.location.href='deities/erlang.html';">
+                <div class="mini-img-box"><img src="../assets/images/deity_mini_erlang.jpg" alt="杨戬" onerror="this.src='../assets/images/philosophy_buddha.jpg'"></div>
+                <div class="mini-name">变量：二郎神</div>
+            </div>
+            
+            <div class="mini-deity-card" onclick="window.location.href='deities/nezha.html';">
+                <div class="mini-img-box"><img src="../assets/images/deity_mini_nezha.jpg" alt="哪吒" onerror="this.src='../assets/images/philosophy_buddha.jpg'"></div>
+                <div class="mini-name">变量：中坛元帅</div>
+            </div>
+            
+            <div class="mini-deity-card" onclick="window.location.href='deities/mazu.html';">
+                <div class="mini-img-box"><img src="../assets/images/deity_mini_mazu.jpg" alt="妈祖" onerror="this.src='../assets/images/philosophy_buddha.jpg'"></div>
+                <div class="mini-name">变量：天妃妈祖</div>
+            </div>
+
+        </div>
+        
+        <div class="more-shrine-trigger">
+            <button class="ritual-btn" style="border-color:var(--accent); color:var(--accent);" onclick="alert('系统提示：更深层的残卷历史正在挖掘中，敬请期待。')">+ 探索更多未知华夏文明遗构</button>
+        </div>
+    </section>
+
+    <!-- 📜 「奉天郡·长明灯录」历史贡献者回响墙（纯网名，彻底洗除真实姓名穿帮） -->
+    <section class="shrine-echo-wall">
+        <h4 class="echo-wall-title">🕯️ 奉天郡 · 文明长明灯录</h4>
+        <div class="echo-track">
+            <div class="echo-log-item">· 来自余杭的观测员 <span>“追光行者_K”</span> 已协助修复观音长廊第 17 页断代残卷</div>
+            <div class="echo-log-item">· 来自大阪的观测员 <span>“飞天蜉蝣_X”</span> 已为地藏最深处遗构续燃能量火种</div>
+            <div class="echo-log-item">· 来自奉天的共建者 <span>“赛博硬核建工局”</span> 已向武圣关羽节点投喂一枚旧时代火种</div>
+            <div class="echo-log-item">· 来自锦官城的观测员 <span>“九天飞星_Alpha”</span> 已协助点亮弥勒神龛微光火种</div>
+        </div>
+    </section>
+</main>
+
+<!-- ⛩️ 文明火种留名仪轨 专属控制弹窗 -->
+<div id="lv-ritual-modal" class="ritual-modal-overlay">
+    <div class="ritual-glass-panel">
+        <button class="lv-modal-close" style="color: var(--accent-gold); top:20px; right:20px;" onclick="closeRitualModal()">×</button>
+        <h3 class="ritual-modal-title" id="modalDeityName">神明变量</h3>
+        <p class="ritual-modal-desc" id="modalDeityDesc">正在载入文明留名说明...</p>
+        
+        <div class="ritual-options-grid">
+            <div class="ritual-opt-card selected" onclick="selectRitualPrice(event, 3, '../assets/images/wechat_pay_placeholder.png')">
+                <strong>微光火种</strong>
+                <span>维护长明灯火</span>
+            </div>
+            <div class="ritual-opt-card" onclick="selectRitualPrice(event, 12, '../assets/images/wechat_pay_placeholder.png')">
+                <strong>补写残卷一页</strong>
+                <span>修复古老残页</span>
+            </div>
+            <div class="ritual-opt-card" onclick="selectRitualPrice(event, 30, '../assets/images/wechat_pay_placeholder.png')">
+                <strong>共筑长明神龛</strong>
+                <span>延续历史火种</span>
+            </div>
+        </div>
+
+        <!-- 二维码 -->
+        <div class="ritual-qrcode-area" id="qrcodeArea">
+            <div class="qrcode-box">
+                <img id="qrcodeImg" src="../assets/images/wechat_pay_placeholder.png" alt="供奉收款码">
+            </div>
+            <div style="font-size: 13px; color: #ffffff; font-family: monospace; margin-bottom: 14px; font-weight: bold;">
+                请使用微信或支付宝扫描此接口完成火种留名
+            </div>
+            <button class="lv-btn-primary" style="margin: 0; width: 100%; background: var(--accent-gold); color: #000; font-family:'Noto Serif SC',serif; font-size:14px;" onclick="confirmRitualOffering()">我已完成火种留名</button>
+        </div>
+
+        <button class="lv-btn-primary" id="initiateRitualBtn" style="margin: 0; width: 100%; background: transparent; border: 1px solid var(--accent-gold); color: var(--accent-gold); font-family:'Noto Serif SC',serif; font-size:14px;" onclick="showQrcodeArea()">唤醒火种留名协议</button>
+    </div>
+</div>
+
+<!-- ③ 第三层流动残响显示总线 -->
+<div class="terminal-ticker">
+    <span id="tickerText">诸行无常。</span>
+</div>
+
+<script>
+// 弹窗全局控制流
+window.openLoginModal = function() {
+    const modal = document.getElementById('lv-login-modal');
+    if(modal) { modal.style.display = 'flex'; setTimeout(() => { modal.classList.add('active'); }, 10); }
+};
+window.closeLoginModal = function() {
+    const modal = document.getElementById('lv-login-modal');
+    if(modal) { modal.classList.remove('active'); setTimeout(() => { modal.style.display = 'none'; }, 300); }
+};
+
+// 仪式化留名控制流
+function openRitualModal(e, deityName, deityDesc) {
+    if(e) { e.preventDefault(); e.stopPropagation(); }
+    document.getElementById('modalDeityName').innerText = deityName;
+    document.getElementById('modalDeityDesc').innerText = deityDesc;
+    
+    const modal = document.getElementById('lv-ritual-modal');
+    modal.style.display = 'flex';
+    setTimeout(() => { modal.classList.add('active'); }, 10);
+    
+    document.getElementById('qrcodeArea').style.display = 'none';
+    document.getElementById('initiateRitualBtn').style.display = 'block';
+}
+
+function closeRitualModal() {
+    const modal = document.getElementById('lv-ritual-modal');
+    modal.classList.remove('active');
+    setTimeout(() => { modal.style.display = 'none'; }, 300);
+}
+
+function selectRitualPrice(event, price, qrcodePath) {
+    if(event) { event.preventDefault(); event.stopPropagation(); }
+    const cards = document.querySelectorAll('.ritual-opt-card');
+    cards.forEach(c => c.classList.remove('selected'));
+    
+    const targetCard = event.currentTarget || event.target.closest('.ritual-opt-card');
+    if(targetCard) targetCard.classList.add('selected');
+    console.log(`[RITUAL PROTOCOL] LOCKED: ${price}`);
+}
+
+function showQrcodeArea() {
+    document.getElementById('initiateRitualBtn').style.display = 'none';
+    document.getElementById('qrcodeArea').style.display = 'flex';
+}
+
+function confirmRitualOffering() {
+    closeRitualModal();
+    const ticker = document.getElementById('tickerText');
+    ticker.style.color = 'var(--accent-gold)';
+    ticker.innerText = `文明薪火相传。检测到火种注入，您的观测代号已成功录入长明灯录中。`;
+    
+    setTimeout(() => {
+        ticker.style.color = '#ffffff';
+        ticker.innerText = "诸行无常。";
+    }, 4000);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.documentElement.classList.contains('in-wechat')) {
+        const headerLoginButton = document.querySelector('a[onclick*="openLoginModal"]');
+        if (headerLoginButton) {
+            headerLoginButton.setAttribute('onclick', 'event.preventDefault();'); 
+            headerLoginButton.addEventListener('click', function(e) { e.preventDefault(); openLoginModal(); });
+        }
+    }
+
+    const tickerEl = document.getElementById('tickerText');
+    const zenLogs = [
+        "诸行无常。一切有为法，如梦幻泡影。",
+        "人们在此供奉的，从来不只是冷冰冰的金钱，而是活下去的欲望。",
+        "时间无声流转。听，那是古老文明灰烬在深夜里的微弱回响……"
+    ];
+    let idx = 0;
+    setInterval(() => {
+        tickerEl.style.opacity = 0;
+        setTimeout(() => {
+            tickerEl.innerText = zenLogs[idx];
+            tickerEl.style.opacity = 1;
+            idx = (idx + 1) % zenLogs.length;
+        }, 500);
+    }, 5000);
+});
+</script>
+
+<!-- 🟢 赛博罗马柱完美提权至最高 20000 层，直接横跨并盖在导航栏（10000层）之上，彻底解决错位问题！ -->
+<div id="pillar-left" class="cyber-pillar hide-on-mobile">
+    <div class="pillar-marquee marquee-down">
+        <div class="marquee-track">
+            <span>✍️</span><span>⚙️</span><span>🔬</span><span>🧬</span><span>👁️</span><span>🛠️</span><span>🎬</span><span>🏛️</span>
+            <span>✍️</span><span>⚙️</span><span>🔬</span><span>🧬</span><span>👁️</span><span>🛠️</span><span>🎬</span><span>🏛️</span>
+        </div>
+    </div>
+    <span class="vertical-text">✦ 8大阵营入口</span>
+</div>
+
+<div id="pillar-right" class="cyber-pillar hide-on-mobile" title="查看最新空间实验与文明日志" onclick="window.location.href='../index.html#press';">
+    <div class="pillar-marquee marquee-up">
+        <div class="marquee-track">
+            <span>阅</span><span>档</span><span>志</span><span>筑</span>
+            <span>阅</span><span>档</span><span>志</span><span>筑</span>
+        </div>
+    </div>
+    <span class="vertical-text" style="background: linear-gradient(180deg, #00f2fe 0%, #4facfe 100%) !important; color: #000000 !important; font-weight: 900 !important; letter-spacing: 4px !important; padding: 25px 8px !important;">✦ 研究档案</span>
+</div>
+
+</body>
+</html>
