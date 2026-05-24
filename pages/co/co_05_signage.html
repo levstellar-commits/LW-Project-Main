@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>补天之城：霓虹招牌设计集 - 观测档案 | 立维宇宙</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .neon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 30px; }
+    .neon-card { background: #000; padding: 10px; border: 1px solid rgba(255,0,255,0.2); border-radius: 8px; text-align: center; }
+    .neon-card img { border-radius: 4px; aspect-ratio: 1/1; object-fit: cover; filter: contrast(1.2) saturate(1.5); }
+    .neon-title { margin-top: 10px; color: #fff; font-weight: bold; text-shadow: 0 0 10px rgba(0,229,255,0.8); }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main>
+    <section class="subpage-hero" style="background-image: url('../../assets/images/co_05.jpg');">
+        <div class="subpage-hero-overlay">
+            <p class="breadcrumb"><a href="../../index.html">首页</a> &gt; <a href="javascript:history.back()">共创阵营</a> &gt; 视觉设定</p>
+            <h1>补天之城：霓虹招牌设计集</h1>
+            <h2>下城区的光污染，是平民最后的赛博美学。</h2>
+        </div>
+    </section>
+
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="project-intel-card">
+                <div class="intel-item"><div class="label">创作者</div><div class="value">赛博建工局</div></div>
+                <div class="intel-item"><div class="label">归属阵营</div><div class="value">深空器物师</div></div>
+                <div class="intel-item"><div class="label">坐标设定</div><div class="value">上海 2074 · 补天城区</div></div>
+            </div>
+            <div class="quote-block">
+                <p>“高塔之上的人看数据，下城区的人看招牌。我收集了补天之城B4街区的所有招牌设定，它们粗糙、漏电，但充满碳基生物的生命力。”</p>
+            </div>
+            
+            <div class="neon-grid">
+                <div class="neon-card"><img src="../../assets/images/co_05.jpg" alt="招牌1"><div class="neon-title">老鬼机修 (RGB错位版)</div></div>
+                <div class="neon-card"><img src="../../assets/images/co_05.jpg" alt="招牌2"><div class="neon-title">黄泉拉面馆</div></div>
+                <div class="neon-card"><img src="../../assets/images/co_05.jpg" alt="招牌3"><div class="neon-title">记忆黑市当铺</div></div>
+                <div class="neon-card"><img src="../../assets/images/co_05.jpg" alt="招牌4"><div class="neon-title">全息义体诊所</div></div>
+            </div>
+        </section>
+    </div>
+  </main>
+  <a href="javascript:history.back()" class="mobile-back-fab"><span class="icon">←</span> <span class="text">关闭档案</span></a>
+  <script>fetch('../../header.html').then(r => r.text()).then(h => document.getElementById('header-placeholder').innerHTML = h);</script>
+
+
+
+<!-- 直接粘贴在子页面 HTML 的 </body> 之前 -->
+<div id="pillar-left" class="cyber-pillar hide-on-mobile" onclick="openDrawer()">
+    <div class="pillar-marquee marquee-down">
+        <div class="marquee-track">
+            <span>✍️</span><span>⚙️</span><span>🔬</span><span>🧬</span><span>👁️</span><span>🛠️</span><span>🎬</span><span>🏛️</span>
+            <span>✍️</span><span>⚙️</span><span>🔬</span><span>🧬</span><span>👁️</span><span>🛠️</span><span>🎬</span><span>🏛️</span>
+        </div>
+    </div>
+    <span class="vertical-text">✦ 8大阵营入口</span>
+</div>
+
+<div id="pillar-right" class="cyber-pillar hide-on-mobile" title="查看最新空间实验与文明日志" onclick="window.location.href='/index.html#press';">
+    <div class="pillar-marquee marquee-up">
+        <div class="marquee-track">
+            <span>阅</span><span>档</span><span>志</span><span>筑</span>
+            <span>阅</span><span>档</span><span>志</span><span>筑</span>
+        </div>
+    </div>
+    <span class="vertical-text">✦ 研究档案</span>
+</div>
+
+
+</body>
+</html>

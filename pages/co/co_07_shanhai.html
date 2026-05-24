@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>赛博版《山海经》异兽草图 - 观测档案 | 立维宇宙</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .beast-entry { display: flex; gap: 30px; margin-bottom: 40px; background: rgba(255,255,255,0.02); padding: 20px; border-radius: 8px; border-left: 3px solid var(--accent-gold); }
+    .beast-img { width: 40%; border-radius: 6px; border: 1px solid rgba(232, 185, 35, 0.3); }
+    .beast-info h4 { font-size: 1.5rem; color: #fff; margin-top: 0; font-family: "Noto Serif SC", serif; }
+    .beast-info .cyber-tag { display: inline-block; background: #000; color: var(--accent); padding: 2px 8px; font-size: 0.8rem; border: 1px solid var(--accent); margin-bottom: 15px; }
+    @media (max-width: 768px) { .beast-entry { flex-direction: column; } .beast-img { width: 100%; } }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main>
+    <section class="subpage-hero" style="background-image: url('../../assets/images/co_07.jpg');">
+        <div class="subpage-hero-overlay">
+            <p class="breadcrumb"><a href="../../index.html">首页</a> &gt; 异星生物考 &gt; 衍生插画</p>
+            <h1 style="font-family: 'Noto Serif SC', serif;">赛博版《山海经》异兽图谱</h1>
+            <h2>“它们不是神话，它们是被废弃的基因武器。”</h2>
+        </div>
+    </section>
+
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="quote-block">
+                <p>创作者 <strong>画师_阿青</strong>：我尝试将东方的水墨线条与工业时代的义体管线结合。在立维宇宙的设定中，这些异兽更像是古代文明进行生物基因改造失败后的半机械残骸。</p>
+            </div>
+
+            <div class="beast-entry">
+                <img src="../../assets/images/co_07.jpg" alt="穷奇" class="beast-img">
+                <div class="beast-info">
+                    <h4>代号：穷奇 (Qiong-Qi)</h4>
+                    <span class="cyber-tag">分类：高危 / 碳基与硅基缝合体</span>
+                    <p class="desc-sm">原典记载其“状如虎，有翼”。在我们的观测中，这是一台失控的四足全地形歼击机甲，背部的“双翼”实际上是两组高频离子散热鳍片。</p>
+                </div>
+            </div>
+
+            <div class="beast-entry">
+                <img src="../../assets/images/co_07.jpg" alt="白泽" class="beast-img">
+                <div class="beast-info">
+                    <h4>代号：白泽 (Bai-Ze)</h4>
+                    <span class="cyber-tag">分类：中立 / 量子级数据中枢</span>
+                    <p class="desc-sm">原典称其“通万物之情，知鬼神之事”。在赛博纪元，白泽是一个拥有独立意识的超级AI集群服务器，常以全息独角兽的形态游荡在暗网深处。</p>
+                </div>
+            </div>
+        </section>
+    </div>
+  </main>
+  <a href="javascript:history.back()" class="mobile-back-fab"><span class="icon">←</span> <span class="text">合上图谱</span></a>
+  <script>fetch('../../header.html').then(r => r.text()).then(h => document.getElementById('header-placeholder').innerHTML = h);</script>
+
+
+<!-- 直接粘贴在子页面 HTML 的 </body> 之前 -->
+<div id="pillar-left" class="cyber-pillar hide-on-mobile" onclick="openDrawer()">
+    <div class="pillar-marquee marquee-down">
+        <div class="marquee-track">
+            <span>✍️</span><span>⚙️</span><span>🔬</span><span>🧬</span><span>👁️</span><span>🛠️</span><span>🎬</span><span>🏛️</span>
+            <span>✍️</span><span>⚙️</span><span>🔬</span><span>🧬</span><span>👁️</span><span>🛠️</span><span>🎬</span><span>🏛️</span>
+        </div>
+    </div>
+    <span class="vertical-text">✦ 8大阵营入口</span>
+</div>
+
+<div id="pillar-right" class="cyber-pillar hide-on-mobile" title="查看最新空间实验与文明日志" onclick="window.location.href='/index.html#press';">
+    <div class="pillar-marquee marquee-up">
+        <div class="marquee-track">
+            <span>阅</span><span>档</span><span>志</span><span>筑</span>
+            <span>阅</span><span>档</span><span>志</span><span>筑</span>
+        </div>
+    </div>
+    <span class="vertical-text">✦ 研究档案</span>
+</div>
+
+
+</body>
+</html>

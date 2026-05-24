@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>墨龙机甲废稿回收计划 - 观测档案 | 立维宇宙</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .sketch-board { background: #0a0c10; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 30px; position: relative; }
+    .sketch-board::before { content: 'CONFIDENTIAL / DRAFT ONLY'; position: absolute; top: 15px; left: 20px; font-family: monospace; color: #555; font-size: 12px; letter-spacing: 2px; }
+    .sketch-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 30px; }
+    .sketch-card { background: #000; padding: 10px; border: 1px dashed #333; }
+    .sketch-card img { width: 100%; filter: grayscale(80%) sepia(20%); opacity: 0.8; transition: 0.3s; }
+    .sketch-card:hover img { filter: grayscale(0) sepia(0); opacity: 1; border: 1px solid var(--accent); }
+    .sketch-desc { color: #888; font-family: monospace; font-size: 0.85rem; margin-top: 10px; }
+    @media (max-width: 768px) { .sketch-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main>
+    <section class="subpage-hero" style="background-image: url('../../assets/images/co_02.jpg'); filter: grayscale(50%);">
+        <div class="subpage-hero-overlay">
+            <p class="breadcrumb"><a href="../../index.html">首页</a> &gt; <a href="javascript:history.back()">共创阵营</a> &gt; 概念手稿</p>
+            <h1>墨龙机甲废稿回收计划</h1>
+            <h2 style="color: #888; font-family: monospace;">"Failed protocols are the foundation of evolution."</h2>
+        </div>
+    </section>
+
+    <div class="subpage-content">
+        <section class="content-section">
+            <div class="project-intel-card" style="border-left-color: #555;">
+                <div class="intel-item"><div class="label">创作者</div><div class="value">序列_007</div></div>
+                <div class="intel-item"><div class="label">档案分类</div><div class="value">废弃草图 / 早期概念</div></div>
+            </div>
+
+            <div class="sketch-board mt-medium">
+                <p style="color: #ccc; line-height: 1.8;">以下手稿是在最终版《深空墨龙》立项前，被设计组毙掉的 3 个早期方案。虽然它们没有成为正史的物理实体，但这些狂野的线条证明了我们曾在深渊边缘疯狂试探过。</p>
+                
+                <div class="sketch-grid">
+                    <div class="sketch-card">
+                        <img src="../../assets/images/co_02.jpg" alt="草图A">
+                        <div class="sketch-desc">>> 案卷A：四足仿生底盘，因算力过载废弃。</div>
+                    </div>
+                    <div class="sketch-card">
+                        <img src="../../assets/images/co_02.jpg" alt="草图B">
+                        <div class="sketch-desc">>> 案卷B：重火力过载型，装甲机动性极差。</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+  </main>
+  <a href="javascript:history.back()" class="mobile-back-fab"><span class="icon">←</span> <span class="text">封存废稿</span></a>
+  <script>fetch('../../header.html').then(r => r.text()).then(h => document.getElementById('header-placeholder').innerHTML = h);</script>
+
+
+
+<!-- 直接粘贴在子页面 HTML 的 </body> 之前 -->
+<div id="pillar-left" class="cyber-pillar hide-on-mobile" onclick="openDrawer()">
+    <div class="pillar-marquee marquee-down">
+        <div class="marquee-track">
+            <span>✍️</span><span>⚙️</span><span>🔬</span><span>🧬</span><span>👁️</span><span>🛠️</span><span>🎬</span><span>🏛️</span>
+            <span>✍️</span><span>⚙️</span><span>🔬</span><span>🧬</span><span>👁️</span><span>🛠️</span><span>🎬</span><span>🏛️</span>
+        </div>
+    </div>
+    <span class="vertical-text">✦ 8大阵营入口</span>
+</div>
+
+<div id="pillar-right" class="cyber-pillar hide-on-mobile" title="查看最新空间实验与文明日志" onclick="window.location.href='/index.html#press';">
+    <div class="pillar-marquee marquee-up">
+        <div class="marquee-track">
+            <span>阅</span><span>档</span><span>志</span><span>筑</span>
+            <span>阅</span><span>档</span><span>志</span><span>筑</span>
+        </div>
+    </div>
+    <span class="vertical-text">✦ 研究档案</span>
+</div>
+
+
+</body>
+</html>
