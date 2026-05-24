@@ -1,3 +1,4 @@
+<!-- 保持你原本的 Header 内容不变 -->
 <header class="site-header">
     <div class="brand">
         <a class="logo" href="/index.html" aria-label="Levythos 标志">
@@ -10,13 +11,10 @@
     </div>
     
     <nav class="site-nav">
-        <!-- 🟢 1. 升级后的全局立维百科入口，带专属淡金边框高光，对齐全站最高估值 -->
         <a href="/encyclopedia.html" class="nav-item-dual" style="border: 1px solid rgba(232, 185, 35, 0.35); background: rgba(232, 185, 35, 0.05); border-radius: 4px; padding: 4px 10px; box-shadow: 0 0 10px rgba(232, 185, 35, 0.1);">
             <strong style="color: var(--accent-gold);">立维百科</strong>
             <span>文明档案馆/世界观</span>
         </a>
-        
-        <!-- 🟢 2. 统一风格：气质词 · 功能词，半秒可读懂的高级工业感 -->
         <a href="/index.html#matrix" class="nav-item-dual"><strong>全息·内容宇宙</strong><span>文学/有声/漫剧/UE5原型</span></a>
         <a href="/index.html#spatial" class="nav-item-dual"><strong>降临·空间活化</strong><span>城市更新/数字孪生</span></a>
         <a href="/index.html#ip-souvenir-section" class="nav-item-dual"><strong>共鸣·衍生品计划</strong><span>文创/数字藏品</span></a>
@@ -25,7 +23,45 @@
     </nav>
     
     <div class="header-actions">
-        <!-- 🟢 3. 修复原代码里的一个小错漏：保持全局接入终端使用 openLoginModal 交互逻辑 -->
         <a href="#" class="nav-item-dual hide-on-mobile" onclick="event.preventDefault(); openLoginModal();"><strong>接入终端</strong><span>(获取敕令)</span></a>
     </div>
 </header>
+
+<!-- ==========================================================================
+     [新骚操作] 让所有子页面自动具备全功能登录舱，无需修改子页面 HTML 结构
+     ========================================================================== -->
+<div id="lv-login-modal" class="lv-modal-overlay" style="display: none;">
+    <div class="lv-modal-content glass-panel">
+        <button class="lv-modal-close" onclick="closeLoginModal()">×</button>
+        <div class="lv-modal-header">
+            <h3 class="lv-modal-title">星门准入协议</h3>
+            <p class="lv-modal-subtitle">验证身份波段，确立你的文明坐标</p>
+        </div>
+        <div class="lv-modal-body">
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <button class="lv-btn-social wechat" style="flex: 1; padding: 10px; font-size: 13px; background: rgba(0,0,0,0.4); border: 1px solid #00c864; color: #00c864; border-radius: 4px;">🟢 微信接入</button>
+                <button class="lv-btn-social qq" style="flex: 1; padding: 10px; font-size: 13px; background: rgba(0,0,0,0.4); border: 1px solid #0096ff; color: #0096ff; border-radius: 4px;">🔵 QQ接入</button>
+            </div>
+            <div class="lv-input-group" style="margin-bottom: 10px;"><input type="text" placeholder="设置文明代号" class="lv-input"></div>
+            <button class="lv-btn-primary" style="width: 100%; background: #00e5ff; color: #000; font-weight: bold; padding: 12px; border: none; border-radius: 4px; margin-top: 10px;" onclick="alert('系统提示：星门节点正在备案！');">建立锚点</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// 全局弹窗控制函数，挂载到 window 确保全局任何地方调用都不会报错
+window.openLoginModal = function() {
+    const modal = document.getElementById('lv-login-modal');
+    if(modal) {
+        modal.style.display = 'flex';
+        setTimeout(() => { modal.classList.add('active'); }, 10);
+    }
+};
+window.closeLoginModal = function() {
+    const modal = document.getElementById('lv-login-modal');
+    if(modal) {
+        modal.classList.remove('active');
+        setTimeout(() => { modal.style.display = 'none'; }, 300);
+    }
+};
+</script>
