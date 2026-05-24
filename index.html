@@ -1310,7 +1310,7 @@
         
         <!-- 1. 原创世界观 -->
         <div class="card" style="padding: 32px 24px; background: rgba(10, 16, 24, 0.75); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; align-items: center; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);">
-            <strong style="color: var(--accent-gold); display: block; margin-bottom: 18px; font-size: 1.15rem; text-align: center; width: 100%; letter-spacing: 1px;">👤 1. 原创世界观</strong>
+            <strong style="color: var(--accent-gold); display: block; margin-bottom: 18px; font-size: 1.15rem; text-align: center; width: 100%; letter-spacing: 1px;">📝  1. 原创世界观</strong>
             <p class="desc-sm" style="line-height: 1.75; color: rgba(255, 255, 255, 0.8); margin: 0; text-align: justify; text-justify: inter-word; font-size: 0.9rem; width: 100%; letter-spacing: 0.3px;">
                 项目核心设定以华夏神话为源点，持续延伸至史前一万年的文明想象与科幻叙事。团队由设计师与内容创作者组成，依托多部长期沉淀的文学内容，致力于构建具备持续生长能力的文化叙事底盘。
             </p>
@@ -2402,7 +2402,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <input type="password" placeholder="设置访问密钥 (密码)" class="lv-input">
             </div>
             
-            <button class="lv-btn-primary" onclick="alert('系统提示：星门节点正在备案，下月正式开启！');">建立锚点 (立即解锁 Lv.1)</button>
+         <button class="lv-btn-primary" onclick="event.preventDefault(); const nameInput = document.querySelector('input[placeholder*=\'代号\']') || document.querySelector('input[placeholder*=\'昵称\']'); const finalName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : '星河灯塔'; if(typeof simulateLoginSuccess === 'function') { simulateLoginSuccess(finalName, '../assets/images/archetype_narrative.jpg'); }">建立锚点 (立即确权)</button>
             
             <div style="text-align: center; margin-top: 15px;">
                  <a href="javascript:void(0);" onclick="alert('切换至登录模式')" style="color: #888; font-size: 12px; text-decoration: underline;">已有终端记录？点击直接登录</a>
