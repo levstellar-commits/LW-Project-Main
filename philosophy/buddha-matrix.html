@@ -401,8 +401,8 @@
                     <button class="lv-btn-social wechat" style="flex: 1; padding: 10px; font-size: 13px; background: rgba(0,0,0,0.4); border: 1px solid #00c864; color: #00c864; border-radius: 4px;">🟢 微信接入</button>
                     <button class="lv-btn-social qq" style="flex: 1; padding: 10px; font-size: 13px; background: rgba(0,0,0,0.4); border: 1px solid #0096ff; color: #0096ff; border-radius: 4px;">🔵 QQ接入</button>
                 </div>
-                <div class="lv-input-group" style="margin-bottom: 10px;"><input type="text" placeholder="设置文明代号" class="lv-input"></div>
-              <button class="lv-btn-primary" onclick="event.preventDefault(); const nameInput = document.querySelector('input[placeholder*=\'代号\']') || document.querySelector('input[placeholder*=\'昵称\']'); const finalName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : '星河灯塔'; if(typeof simulateLoginSuccess === 'function') { simulateLoginSuccess(finalName, '../assets/images/archetype_narrative.jpg'); }">建立锚点 (立即确权)</button>
+                <div class="lv-input-group" style="margin-bottom: 10px;"><input type="text" id="indexCivCodeInput" placeholder="设置文明代号 (对外展示的昵称)" class="lv-input"></div>
+              <button class="lv-btn-primary" id="indexRealitySubmitBtn" onclick="event.preventDefault(); const nameInput = document.getElementById('indexCivCodeInput') || document.querySelector('.lv-modal-body input[type=\'text\']'); const finalName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : '星河灯塔'; if(typeof window.simulateLoginSuccess === 'function') { window.simulateLoginSuccess(finalName, 'assets/images/archetype_narrative.jpg'); }">建立锚点 (立即确权)</button>
             </div>
         </div>
     </div>
