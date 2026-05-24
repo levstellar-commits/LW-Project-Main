@@ -3,170 +3,806 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>路霄雲 - 角色库 | 立维宇宙</title>
+  <title>路霄雲 - 角色档案馆 | 立维宇宙</title>
   <link rel="icon" href="../assets/images/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+  
+  <!-- 严格对齐真实目录层级 -->
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/subpage.css">
+
+  <style>
+    /* ==========================================================================
+       LEVYTHOS UNIFIED LIFECYCLE (立维宇宙：全站统一弱交互与生命律动主频补丁)
+       ========================================================================== */
+    :root {
+        --bg-deep: #02060a;
+        --accent: #00e5ff;
+        --accent-gold: #e8b923;
+        --text-muted: #e2e8f0;
+        --pulse-duration: 4s; /* 统一的呼吸律动周期 */
+        --ui-glow: rgba(0, 229, 255, 0.2);
+    }
+
+    body {
+        background-color: var(--bg-deep) !important;
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        color: #fff;
+        overflow-x: hidden;
+        transition: filter 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* 🟢 统一导航栏：加入最大宽度保护与内衬安全区，彻底对齐主页视觉，防止挤爆错位 */
+    header.site-header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        z-index: 10000 !important;
+        height: 80px !important;
+        background: rgba(2, 6, 10, 0.9) !important;
+        backdrop-filter: blur(10px) !important;
+        border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 0 40px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 🧠 降级防御：对齐主页标准字号，清除 subpage.css 里的过度放大毒瘤 */
+    header.site-header .brand {
+        margin-left: 0 !important; /* 移除强行的大左边距 */
+        gap: 12px !important;
+    }
+    header.site-header .brand-title {
+        font-size: 22px !important; /* 将 28px 还原为舒适的 22px，不挤压空间 */
+        letter-spacing: 2px !important;
+    }
+    header.site-header .brand-subtitle {
+        font-size: 11px !important; /* 副标题同步收缩 */
+        letter-spacing: 3px !important;
+    }
+    header.site-header .site-nav {
+        gap: 16px !important; /* 缩小中间项的间距，防止右侧“接入终端”被挤出屏幕 */
+        margin-right: 0 !important;
+    }
+    header.site-header .nav-item-dual strong {
+        font-size: 0.88rem !important; /* 略微收紧双行菜单主字号 */
+    }
+    header.site-header .header-actions {
+        margin-right: 0 !important; /* 移除右侧死边距 */
+    }
+
+    /* 统一动态语言：身体和环境的低频全息呼吸 */
+    body::after {
+        content: '';
+        position: fixed; inset: 0;
+        background: radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.02), transparent 70%);
+        pointer-events: none;
+        z-index: 9999;
+        animation: globalPulse var(--pulse-duration) ease-in-out infinite;
+    }
+    @keyframes globalPulse {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 1; }
+    }
+
+    main {
+        max-width: 1300px !important;
+        margin: 0 auto !important;
+        padding: 140px 80px 80px 80px !important;
+        box-sizing: border-box !important;
+        display: block;
+    }
+
+    /* ① Hero 区电影镜头呼吸与大气层微粒 */
+    .subpage-hero {
+        position: relative !important;
+        overflow: hidden !important;
+        height: 55vh !important;
+        min-height: 450px;
+    }
+    .subpage-hero::before {
+        content: '' !important;
+        position: absolute !important;
+        inset: -10% !important; /* 扩大安全边界，防止漂移露白边 */
+        background-image: inherit !important;
+        background-size: cover !important;
+        background-position: center !important;
+        animation: visualNovelDrift 22s ease-in-out infinite alternate !important; 
+        z-index: 1 !important;
+        transform: scale(1.06);
+        filter: contrast(1.05) brightness(0.9);
+    }
+    /* 镜头漂移与慢速呼吸 */
+    @keyframes visualNovelDrift {
+        0% { transform: scale(1.06) translateX(0px) translateY(0px) rotate(0deg); }
+        50% { transform: scale(1.12) translateX(-15px) translateY(-8px) rotate(0.5deg); }
+        100% { transform: scale(1.08) translateX(10px) translateY(5px) rotate(-0.3deg); }
+    }
+    /* 前景微粒/雾气遮罩 */
+    .subpage-hero::after {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(rgba(2,6,10,0) 40%, rgba(2,6,10,0.4) 70%, var(--bg-deep) 100%);
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    /* ② 2.5D 分层视差角色剧场舞台 */
+    .character-stage {
+        position: relative !important;
+        width: 100% !important;
+        height: 550px !important;
+        overflow: hidden !important;
+        background: #040914 !important;
+        border: 1px solid rgba(0, 229, 255, 0.15) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 40px rgba(0,229,255,0.05);
+        cursor: grab;
+    }
+    .character-stage:active { cursor: grabbing; }
+    .character-stage .parallax-layer {
+        position: absolute !important;
+        inset: -40px !important; /* 给视差偏移留出绝对缓冲 */
+        background-size: cover !important;
+        background-position: center !important;
+        transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1) !important;
+        pointer-events: none;
+    }
+    .character-stage .bg-layer {
+        z-index: 1;
+        background-image: radial-gradient(circle at 50% 40%, #0d1e36 0%, #040914 70%);
+    }
+    .character-stage .grid-layer {
+        z-index: 2;
+        background-image: 
+            linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
+        background-position: center;
+        transform: perspective(500px) rotateX(60deg) scale(1.5);
+    }
+    .character-stage .char-img-layer {
+        z-index: 3 !important;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+    .character-stage .char-img-layer img {
+        width: auto !important;
+        height: 100% !important;
+        object-fit: contain !important;
+        filter: drop-shadow(0 0 30px rgba(0, 229, 255, 0.25));
+        transform: translateY(20px);
+    }
+    .character-stage .light-overlay {
+        z-index: 4 !important;
+        background: radial-gradient(circle at 30% 30%, rgba(0,229,255,0.12) 0%, transparent 50%),
+                    radial-gradient(circle at 70% 80%, rgba(232,185,35,0.08) 0%, transparent 60%) !important;
+        mix-blend-mode: screen !important;
+    }
+    /* 弱交互微反馈提示器 */
+    .stage-hint {
+        position: absolute; bottom: 15px; right: 20px; z-index: 5;
+        font-family: monospace; font-size: 11px; color: rgba(0,229,255,0.4);
+        letter-spacing: 1px; pointer-events: none;
+        animation: hintPulse 2s infinite;
+    }
+    @keyframes hintPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+    /* ③ 漫画微动自言自语低频对话气泡 */
+    .manga-bubble-track {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin: 40px auto;
+        max-width: 900px;
+        position: relative;
+        min-height: 120px; /* 锁死高度避免突兀抖动 */
+    }
+    .manga-bubble {
+        position: absolute !important;
+        width: 100% !important;
+        box-sizing: border-box;
+        opacity: 0 !important;
+        transform: translateY(15px) scale(0.98) !important;
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        background: rgba(6, 11, 19, 0.95);
+        border: 1px solid rgba(0, 229, 255, 0.25);
+        padding: 24px 30px;
+        border-radius: 12px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+        pointer-events: none;
+    }
+    .manga-bubble.active {
+        opacity: 1 !important;
+        transform: translateY(0) scale(1) !important;
+        pointer-events: auto;
+    }
+    .manga-bubble::before {
+        content: '';
+        position: absolute; bottom: -8px; left: 45px; width: 16px; height: 16px;
+        background: rgba(6, 11, 19, 0.95);
+        border-right: 1px solid rgba(0, 229, 255, 0.25);
+        border-bottom: 1px solid rgba(0, 229, 255, 0.25);
+        transform: rotate(45deg);
+    }
+    .manga-bubble p {
+        font-family: 'Noto Serif SC', serif;
+        font-size: 1.1rem; line-height: 1.7; color: #ffffff; margin: 0;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    .manga-bubble p::before { content: "“"; color: var(--accent); font-weight: bold; }
+    .manga-bubble p::after { content: " ”"; color: var(--accent); font-weight: bold; }
+
+    /* ④ 时空探索：ARG连线调查终端板块 */
+    .arg-terminal-board {
+        position: relative;
+        background: #040810;
+        border: 1px solid rgba(0,229,255,0.15);
+        border-radius: 12px;
+        height: 500px;
+        margin-top: 30px;
+        overflow: hidden;
+        box-shadow: inset 0 0 30px rgba(0,0,0,0.9);
+    }
+    /* 科技网格纹理衬底 */
+    .arg-terminal-board::before {
+        content: ''; position: absolute; inset: 0;
+        background-image: radial-gradient(rgba(0, 229, 255, 0.08) 1px, transparent 0);
+        background-size: 24px 24px; z-index: 1; opacity: 0.7;
+    }
+    .arg-svg-canvas {
+        position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2;
+        pointer-events: none;
+    }
+    .arg-node {
+        position: absolute; z-index: 3; width: 240px;
+        background: rgba(13, 22, 33, 0.85);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-left: 4px solid var(--accent-gold);
+        border-radius: 4px; padding: 14px;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+    /* 弱交互点亮反馈 */
+    .arg-node:hover {
+        border-color: var(--accent);
+        background: rgba(13, 22, 33, 0.98);
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 0 20px rgba(0,229,255,0.3);
+    }
+    .arg-node.active-node {
+        border-color: var(--accent);
+        box-shadow: 0 0 25px rgba(0,229,255,0.4);
+    }
+    .arg-node h5 { font-size: 0.95rem; color: #fff; margin: 0 0 6px 0; display: flex; justify-content: space-between; align-items: center;}
+    .arg-node h5 span { font-family: monospace; font-size: 10px; color: var(--accent-gold); background: rgba(232,185,35,0.1); padding: 1px 4px; border-radius: 2px; }
+    .arg-node p { font-size: 0.8rem; color: var(--text-muted); margin: 0; line-height: 1.4; text-align: justify; }
+
+    /* ⑤ 状态监控面板：触发人格模式切换 */
+    .status-control-panel {
+        display: flex; gap: 12px; justify-content: center; margin: -10px 0 30px 0;
+    }
+    .status-tag-btn {
+        background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+        padding: 6px 14px; border-radius: 20px; font-size: 12px; font-family: monospace;
+        color: rgba(255,255,255,0.6); cursor: pointer; transition: all 0.3s;
+    }
+    .status-tag-btn:hover { color: var(--accent); border-color: var(--accent); background: rgba(0,229,255,0.05); }
+    .status-tag-btn.active-status {
+        color: #000 !important; font-weight: bold;
+        background: var(--accent) !important; border-color: var(--accent) !important;
+        box-shadow: 0 0 15px rgba(0,229,255,0.4);
+    }
+    .status-tag-btn.active-status.danger-red {
+        background: #ff4757 !important; border-color: #ff4757 !important;
+        box-shadow: 0 0 15px rgba(255,71,87,0.4);
+    }
+
+    /* 环境状态切模驱动底层逻辑 */
+    body.danger-mode {
+        filter: contrast(1.15) saturate(1.1);
+    }
+    body.danger-mode::before {
+        content: ''; position: fixed; inset: 0; z-index: 9998; pointer-events: none;
+        border: 2px solid rgba(255, 71, 87, 0.15);
+        box-shadow: inset 0 0 60px rgba(255, 71, 87, 0.25);
+        animation: dangerPulse 1.5s ease-in-out infinite alternate;
+    }
+    @keyframes dangerPulse { from { opacity: 0.4; } to { opacity: 1; } }
+
+    body.memory-mode {
+        filter: contrast(1.1) hue-rotate(-25deg) sepia(0.2);
+    }
+    body.memory-mode .character-stage {
+        filter: grayscale(0.3) contrast(1.2);
+    }
+
+    /* ⑥ 底部全息动态数据字幕条系统*/
+    .terminal-ticker {
+        position: fixed; bottom: 0; left: 0; width: 100%;
+        background: rgba(2, 6, 10, 0.95) !important;
+        border-top: 1px solid rgba(0, 229, 255, 0.15) !important;
+        padding: 8px 40px !important; box-sizing: border-box;
+        font-family: monospace !important; font-size: 11px !important;
+        color: rgba(255,255,255,0.5) !important; letter-spacing: 1px !important;
+        display: flex !important; align-items: center !important; gap: 6px !important;
+        z-index: 99999; pointer-events: none;
+    }
+    .ticker-prefix { color: var(--accent) !important; font-weight: bold; }
+    .ticker-cursor { animation: tickerBlink 0.8s infinite; color: var(--accent) !important; font-weight: bold; }
+    @keyframes tickerBlink { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+
+    /* 细节修正及排版对齐 */
+    .dawei-comment {
+        background: rgba(232, 185, 35, 0.04) !important;
+        border-left: 3px solid var(--accent-gold) !important;
+        padding: 18px 22px !important;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.9rem; line-height: 1.6; color: var(--text-muted);
+    }
+
+    /* 手机端应急自适应覆盖：防止 site-nav 被强制隐藏 */
+    @media (max-width: 768px) {
+        .site-nav { display: flex !important; gap: 10px !important; flex-wrap: wrap; }
+        header.site-header { height: auto !important; position: absolute !important; }
+        main { padding-top: 180px !important; }
+    }
+
+    /* 🟢 赛博罗马柱核心修复：图层权重（z-index）提到最高 20000 层，直接横向跨越并盖在导航栏上面！ */
+    .cyber-pillar {
+        position: fixed !important; top: 0 !important; height: 100vh !important; width: 60px !important;
+        background: linear-gradient(to bottom, rgba(2,6,10,0.95), rgba(20,30,40,0.95)) !important;
+        z-index: 20000 !important; /* 👈 关键修复：超越导航栏的10000层，实现绝对覆盖 */
+        cursor: pointer !important; display: flex !important;
+        flex-direction: column !important; align-items: center !important; justify-content: center !important;
+        transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.8) !important; overflow: hidden !important;
+        opacity: 1 !important;
+    }
+    #pillar-left { left: 0 !important; border-right: 2px solid var(--accent-gold) !important; }
+    #pillar-left:hover { width: 75px !important; background: rgba(232, 185, 35, 0.1) !important; }
+    #pillar-right { right: 0 !important; border-left: 2px solid var(--accent) !important; }
+    #pillar-right:hover { width: 75px !important; background: rgba(0, 229, 255, 0.06) !important; }
+
+    .pillar-marquee { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.8; pointer-events: none; }
+    .marquee-track { display: flex; flex-direction: column; align-items: center; gap: 25px; padding: 20px 0; width: 100%; }
+    .marquee-down .marquee-track { animation: scroll-v-down 25s linear infinite; }
+    .marquee-up .marquee-track { animation: scroll-v-up 25s linear infinite; gap: 40px; padding: 30px 0; }
+    @keyframes scroll-v-down { 0% { transform: translateY(-50%); } 100% { transform: translateY(0); } }
+    @keyframes scroll-v-up { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
+
+    .cyber-pillar .vertical-text { position: relative; z-index: 10; background: rgba(0,0,0,0.7); padding: 20px 8px; border-radius: 8px; writing-mode: vertical-rl; text-orientation: upright; color: #fff; font-weight: 900; font-size: 1rem; letter-spacing: 4px; white-space: nowrap; border: none; }
+    #pillar-left .vertical-text { background: linear-gradient(180deg, #fceabb 0%, #f8b500 100%) !important; color: #000000 !important; box-shadow: 0 0 20px rgba(248, 181, 0, 0.6) !important; }
+    #pillar-right .vertical-text { background: linear-gradient(180deg, #00f2fe 0%, #4facfe 100%) !important; color: #000000 !important; box-shadow: 0 0 20px rgba(0, 242, 254, 0.6) !important; padding: 25px 8px !important; }
+  </style>
 </head>
 <body>
-  <div id="header-placeholder"></div>
+
+<!-- 通用登陆全功能舱系统（改为直接注入，防御本地跨域拦截） -->
+<div id="header-placeholder">
+    <header class="site-header">
+        <div class="brand">
+            <a class="logo" href="../index.html" aria-label="Levythos 标志">
+                <img src="../assets/images/logo.png" alt="立维宇宙Levythos的Logo标志" width="44" height="44" />
+            </a>
+            <div class="brand-text">
+                <div class="brand-title">立维宇宙</div>
+                <div class="brand-subtitle">LEVYTHOS</div>
+            </div>
+        </div>
+        
+        <nav class="site-nav">
+            <a href="../encyclopedia.html" class="nav-item-dual" style="border: 1px solid rgba(232, 185, 35, 0.35); background: rgba(232, 185, 35, 0.05); border-radius: 4px; padding: 4px 10px; box-shadow: 0 0 10px rgba(232, 185, 35, 0.1);">
+                <strong style="color: var(--accent-gold);">立维百科</strong>
+                <span>文明档案馆/世界观</span>
+            </a>
+            <a href="../index.html#matrix" class="nav-item-dual"><strong>全息·内容宇宙</strong><span>文学/有声/漫剧/UE5原型</span></a>
+            <a href="../index.html#spatial" class="nav-item-dual"><strong>降临·空间活化</strong><span>城市更新/数字孪生</span></a>
+            <a href="../index.html#ip-souvenir-section" class="nav-item-dual"><strong>共鸣·衍生品计划</strong><span>文创/数字藏品</span></a>
+            <a href="../index.html#press" class="nav-item-dual"><strong>纪元·研究日志</strong><span>设计院转型/空间文明运营</span></a>
+            <a href="../index.html#contact" class="nav-item-dual"><strong>缔约·宇宙共建</strong><span>产业合作/文明共建</span></a>
+        </nav>
+        
+        <div class="header-actions">
+            <a href="#" class="nav-item-dual hide-on-mobile" onclick="event.preventDefault(); openLoginModal();"><strong>接入终端</strong><span>(获取敕令)</span></a>
+        </div>
+    </header>
+
+    <!-- 星门准入协议弹窗 -->
+    <div id="lv-login-modal" class="lv-modal-overlay" style="display: none;">
+        <div class="lv-modal-content glass-panel">
+            <button class="lv-modal-close" onclick="closeLoginModal()">×</button>
+            <div class="lv-modal-header">
+                <h3 class="lv-modal-title">星门准入协议</h3>
+                <p class="lv-modal-subtitle">验证身份波段，确立你的文明坐标</p>
+            </div>
+            <div class="lv-modal-body">
+                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                    <button class="lv-btn-social wechat" style="flex: 1; padding: 10px; font-size: 13px; background: rgba(0,0,0,0.4); border: 1px solid #00c864; color: #00c864; border-radius: 4px;">🟢 微信接入</button>
+                    <button class="lv-btn-social qq" style="flex: 1; padding: 10px; font-size: 13px; background: rgba(0,0,0,0.4); border: 1px solid #0096ff; color: #0096ff; border-radius: 4px;">🔵 QQ接入</button>
+                </div>
+                <div class="lv-input-group" style="margin-bottom: 10px;"><input type="text" id="indexCivCodeInput" placeholder="设置文明代号 (对外展示的昵称)" class="lv-input"></div>
+                <button class="lv-btn-primary" id="indexRealitySubmitBtn" onclick="event.preventDefault(); const nameInput = document.getElementById('indexCivCodeInput') || document.querySelector('.lv-modal-body input[type=\'text\']'); const finalName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : '星河灯塔'; if(typeof window.simulateLoginSuccess === 'function') { window.simulateLoginSuccess(finalName, 'assets/images/archetype_narrative.jpg'); }">建立锚点 (立即确权)</button>
+            </div>
+        </div>
+    </div>
+</div>
+
   <main>
+    
+    <!-- ① 带有连续呼吸缓动变焦的电影感Hero顶罩 -->
     <section class="subpage-hero" style="background-image: url('../assets/images/char_luxiaoyun.jpg');">
         <div class="subpage-hero-overlay">
             <p class="breadcrumb"><a href="../index.html">首页</a> &gt; <a href="../index.html#heroes">角色库</a></p>
             <h1>路霄雲</h1>
-            <h2>远行者 · 谜团之核</h2>
+            <h2>远行者 · 谜团之核 // THE PASSENGER</h2>
         </div>
     </section>
+
     <div class="subpage-content">
-        <section class="content-section">
-            <div class="data-sheet">
-                <div class="data-item"><div class="label">身份</div><div class="value">未来考古学家 / 穿越者</div></div>
-                <div class="data-item"><div class="label">首次登场</div><div class="value"><a href="../works/juxiwangqiu.html">《驹隙万秋》</a></div></div>
-                <div class="data-item"><div class="label">特质</div><div class="value">外表懒散、内心坚韧、拥有第六感</div></div>
+        
+        <!-- ⑤ 角色临床特征监控面板（状态切换弱交互系统） -->
+        <div class="status-control-panel">
+            <div class="status-tag-btn active-status" onclick="switchMode('normal', this)">⚙️ 稳态同步 [STABLE]</div>
+            <div class="status-tag-btn" onclick="switchMode('memory', this)">⏳ 基因记忆回溯 [DEEP_MEM]</div>
+            <div class="status-tag-btn" onclick="switchMode('danger', this)">🚨 算法黑盒通缉 [WANTED]</div>
+        </div>
+
+        <!-- ② 2.5D 分层视差角色剧场舞台组件-->
+        <section class="content-section" style="margin-bottom: 40px;">
+            <div class="character-stage" id="charStage">
+                <div class="parallax-layer bg-layer" data-speed="0.1"></div>
+                <div class="parallax-layer grid-layer" data-speed="0.2"></div>
+                <div class="parallax-layer char-img-layer" data-speed="0.5">
+                    <!-- 人物立绘核心层 -->
+                    <img src="../assets/images/char_luxiaoyun.jpg" alt="路霄雲全息立绘">
+                </div>
+                <div class="parallax-layer light-overlay" data-speed="0.3"></div>
+                <div class="stage-hint">[ 拖拽或移动鼠标激活全息视差轴 ]</div>
             </div>
         </section>
+
+        <!-- 明日方舟式数据特征一组 -->
         <section class="content-section">
-            <figure class="quote-block">
-                <blockquote><p>“时间像水，抓不住，也看不透。过去、现在、未来，也许就是这么混在一块儿的。”</p></blockquote>
-                <figcaption>— 路霄雲</figcaption>
-            </figure>
+            <div class="data-sheet">
+                <div class="data-item"><div class="label">身份 / 观测定义</div><div class="value">未来考古学家 / 时空连续性越界变量</div></div>
+                <div class="data-item"><div class="label">首次异变登场</div><div class="value"><a href="../works/juxiwangqiu.html">《驹隙万秋》叙事集</a></div></div>
+                <div class="data-item"><div class="label">心理属性与感知特质</div><div class="value">外表沉寂懒散、极高抗压耐受、具备超敏第六感</div></div>
+            </div>
         </section>
+
+        <!-- ③ ⚠️ 漫画微动随机低频自言自语对话气泡系统 -->
         <section class="content-section">
-            <div class="content-section-title"><h3>人物解读</h3></div>
+            <div class="manga-bubble-track" id="mangaBubbleTrack">
+                <div class="manga-bubble active">
+                    <p>别盲目相信那些闪烁的霓虹广告牌和投流算法。他们自以为在建造未来，实际上，已经把整座城的温度出卖给了流量围猎。</p>
+                </div>
+                <div class="manga-bubble">
+                    <p>时间在立维的规则里像水一样，抓不住，也看不透。过去、现在、未来，其实早已在某个废弃的角落里混成了一块儿。</p>
+                </div>
+                <div class="manga-bubble">
+                    <p>历史从来不是按顺序写的，那些被抹掉的数据，往往才是最坚固的真理。</p>
+                </div>
+                <div class="manga-bubble">
+                    <p>我听得见大地的低鸣……上古的巨兽和深空的机甲，其实做着同一个梦。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 深度人物观察叙事结构拆解 -->
+        <section class="content-section">
+            <div class="content-section-title"><h3>日常切片与世界生存档案</h3></div>
             <div class="text-image-split">
                 <div class="split-text">
-                    <h4>游走在两个世界的“斯文败类”</h4>
-                    [cite_start]<p>在2074年的奉天郡，路霄雲展现出一种玩世不恭的懒散姿态，被羽菱萱戏称为“斯文败类”。然而，在这份看似随意的外表下，隐藏着一个承载着巨大秘密的灵魂。他拥有与生俱来的第六感，能在雷声中窥见“星辰坠落”的幻象，这让他仿佛一直行走在现实与过去的边界，是连接两个时代的关键变量。</p>
+                    <h4>游走在存量边界的“斯文败类”</h4>
+                    <p style="color: var(--text-muted); text-align: justify; line-height: 1.8;">
+                        In 2074年的奉天郡，路霄雲始终展现出一种玩世不恭的随性姿态，甚至被同行者戏称为“斯文败类”。但在这一层懒散的伪装外壳下，隐藏着一个承载了古老华夏连续性断层的灵魂。他拥有一种与生俱来的异常第六感，能在深夜的高频雷声中窥见行星坠落与图腾崩碎的原始幻象。这使他的一生仿佛一直行走在日常现实与古老废墟的锋利交界线上。
+                    </p>
                 </div>
                 <div class="split-image"><img src="../assets/images/char_luxiaoyun.jpg" alt="路霄雲概念图"></div>
             </div>
         </section>
+
+        <!-- ④ ⚠️ 时空节点 ARG 连线调查终端网格板块 -->
+        <section class="content-section">
+            <div class="content-section-title">
+                <h3>时空观测网络 · 行为足迹调查板</h3>
+                <p>光标移入不同坐标，终端将通过向量网格动态解密路霄雲残留的微观事件记录</p>
+            </div>
+            
+            <div class="arg-terminal-board" id="argBoard">
+                <!-- SVG 动态连线画布层 -->
+                <svg class="arg-svg-canvas" id="argCanvas"></svg>
+
+                <!-- 调查节点 01 -->
+                <div class="arg-node" style="top: 80px; left: 60px;" data-node-id="1">
+                    <h5>奉天郡核心区 <span>[ 遭遇围猎 ]</span></h5>
+                    <p>凌晨两点，他曾长久坐在一间高度同质化的全息便利店门前，盯着已经无限期停运的高铁轨道断层。在这里，他第一次遭遇了算法黑盒的全面通缉与绝地逃亡。</p>
+                </div>
+                <!-- 调查节点 02 -->
+                <div class="arg-node" style="top: 260px; left: 340px;" data-node-id="2">
+                    <h5>西双版纳边界 <span>[ 废墟宿营 ]</span></h5>
+                    <p>在湿热的林下动线边缘，他隐匿在完全丧失商业磁场的死角废地中自组织求生。这也是他将华夏上古图腾符号引入现代建筑的临床排雷实验始发点。</p>
+                </div>
+                <!-- 调查节点 03 -->
+                <div class="arg-node" style="top: 120px; left: 620px;" data-node-id="3">
+                    <h5>齐齐哈尔工业带 <span>[ 变量收集 ]</span></h5>
+                    <p>在北国大地上长距离的高压缩动线中，他成功避开了数次严重的视觉剥夺危机，并在一间看似简陋的小微实体武道馆内，找到了复位定价主权的黄金视角。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 带有真实文明温度的人情味切片展示 -->
         <section class="content-section">
             <div class="text-image-split">
-                 <div class="split-image"><img src="../assets/images/miniseries_04.jpg" alt="绝境中的求生者"></div>
+                 <div class="split-image"><img src="../assets/images/miniseries_04.jpg" alt="绝境中的抗争者"></div>
                 <div class="split-text">
-                    <h4>绝境中的求生者与抗争者</h4>
-                    <p>当被命运抛入绝境，路霄雲展现出惊人的韧性。无论是被诬陷为重罪犯后的绝地逃亡，还是在荒野中从零开始学习生存，他总能凭借顽强的意志和超越常人的智慧活下来。他对羽菱萱深沉的爱，是他所有行动的核心驱动力，也是他在黑暗中最坚固的铠甲。</p>
-                    <div class="dawei-comment" style="margin-top: 24px;"><strong>解大为的笔记：</strong>“霄雲这个角色，是连接整个宇宙时间线的关键‘变量’。他以为自己在探索历史，实际上他本身就是历史的一部分。他身上的谜团，比他试图解开的任何谜团都更深。”</div>
+                    <h4>绝境心理依附与底层抗争记录</h4>
+                    <p style="color: var(--text-muted); text-align: justify; line-height: 1.8;">
+                        当被突如其来的洪流抛入断层，路霄雲展现出了近乎恐怖的韧性。无论是面对公域秩序的诬陷排斥，还是在蛮荒野外从零重构生存落脚点，总能精准找到行为视线的缓冲节点。他对羽菱萱那份深沉的情感锚点，不仅是他摆脱精神疲劳的屏障，幕更是他在黑夜中唯一长久凝视的坚固铠甲。
+                    </p>
+                    <div class="dawei-comment" style="margin-top: 24px;">
+                        <strong>解大为的研究笔记 // ARCHIVE NOTE：</strong><br>
+                        “霄雲这个变量，最厉害的地方就在于他绝不是个置身事外的设定集黑话。他以为自己在探索历史，实际上，他每走一步都在用肉体承受着整个物理大地的冷酷压力。他身上的谜团，自带一种文明的温度。”
+                    </div>
                 </div>
             </div>
         </section>
     </div>
+
+    <!-- 探索下一站路由网络 -->
     <section class="explore-next">
         <div class="content-section-title"><h3>探索下一站</h3></div>
         <div class="explore-grid">
-            <a href="yulingxuan.html" class="explore-card"><img src="../assets/images/char_yulingxuan.jpg" alt="羽菱萱"><div class="explore-card-content"><h4>相关角色：羽菱萱</h4><p>了解这位情感之锚的故事</p></div></a>
-            <a href="../works/juxiwangqiu.html" class="explore-card"><img src="../assets/images/cover_juxiwangqiu.jpg" alt="《驹隙万秋》"><div class="explore-card-content"><h4>登场作品：《驹隙万秋》</h4><p>深入了解这部文明悬疑史诗</p></div></a>
-            <a href="../index.html#contact" class="explore-card"><img src="../assets/images/archetype_join.jpg" alt="共建者计划"><div class="explore-card-content"><h4>加入共建者计划</h4><p>共同将蓝图变为现实</p></div></a>
+            <a href="yulingxuan.html" class="explore-card"><img src="../assets/images/char_yulingxuan.jpg" alt="羽菱萱"><div class="explore-card-content"><h4>相关变量：羽菱萱</h4><p>了解这位核心情感之锚的故事</p></div></a>
+            <a href="../works/juxiwangqiu.html" class="explore-card"><img src="../assets/images/cover_juxiwangqiu.jpg" alt="《驹隙万秋》"><div class="explore-card-content"><h4>登场文献：《驹隙万秋》</h4><p>深入了解这部空间悬疑史诗底座</p></div></a>
+            <a href="../index.html#contact" class="explore-card"><img src="../assets/images/archetype_join.jpg" alt="共建者计划"><div class="explore-card-content"><h4>成为火种保存者</h4><p>共同将万年蓝图变为大地的现实</p></div></a>
         </div>
     </section>
   </main>
-  <footer style="margin-top: 80px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
-      <div><div style="font-weight:700">Levythos · 立维宇宙 · Vigio Design · 维杰设计</div><div class="muted" style="margin-top:6px">© 2025 Levythos Global · Vigio Planning & Architectural Design Co., Ltd. 保留所有权利。</div></div>
-      <div class="muted" style="font-size:13px">Global Creative HQ · Shanghai · business@levythos.com</div>
-    </div>
-  </footer>
-  <script>/* 在这里粘贴您主页的JavaScript代码 */</script>
+
+  <!-- ⑥ ⚙️ [首发新增] 底部低成本全息动态字幕数据总线系统 -->
+  <div class="terminal-ticker">
+      <span class="ticker-prefix">[LEVYTHOS BUS]</span>
+      <span id="tickerText">系统初始化就绪...</span><span class="ticker-cursor">_</span>
+  </div>
+
 <script>
-// ----------------------------------------------------
-// [功能 1] 自动加载 /header.html 文件
-// ----------------------------------------------------
-function loadHeader() {
-    fetch('/header.html')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('网络响应不佳');
-            }
-            return response.text();
-        })
-        .then(data => {
-            const headerPlaceholder = document.getElementById('header-placeholder');
-            if (headerPlaceholder) {
-                headerPlaceholder.innerHTML = data;
-            }
-            // ----------------------------------------------------
-            // [功能 2] 导航栏加载完毕后，立刻执行“微信安全拦截”
-            // ----------------------------------------------------
-            setupWeChatSecurity();
-        })
-        .catch(error => {
-            console.error('加载导航栏失败:', error);
-        });
-}
+// ==========================================================================
+// 🔓 [全局弹窗接口挂载] 解决静态引入后“接入终端”按钮的点击事件响应[cite: 2]
+// ==========================================================================
+window.openLoginModal = function() {
+    const modal = document.getElementById('lv-login-modal');
+    if(modal) {
+        modal.style.display = 'flex';[cite: 2]
+        setTimeout(() => { modal.classList.add('active'); }, 10);[cite: 2]
+    }
+};
 
-// ----------------------------------------------------
-// [功能 2] 微信安全拦截逻辑 (和之前一样)
-// ----------------------------------------------------
-// (请确保 "wxSafeModal" 的 HTML 也在 </body> 正上方)
+window.closeLoginModal = function() {
+    const modal = document.getElementById('lv-login-modal');
+    if(modal) {
+        modal.classList.remove('active');[cite: 2]
+        setTimeout(() => { modal.style.display = 'none'; }, 300);[cite: 2]
+    }
+};
+
 const wxSafeModal = document.getElementById('wxSafeModal'); 
-
-function openWxSafeModal() {
-    if (wxSafeModal) wxSafeModal.style.display = 'flex';
-}
-function closeWxSafeModal() {
-    if (wxSafeModal) wxSafeModal.style.display = 'none';
-}
+function openWxSafeModal() { if (wxSafeModal) wxSafeModal.style.display = 'flex'; }
+function closeWxSafeModal() { if (wxSafeModal) wxSafeModal.style.display = 'none'; }
 
 function setupWeChatSecurity() {
-    // 检查是否在微信中 (假设 <head> 里的脚本已经添加了 'in-wechat' 类)
     if (document.documentElement.classList.contains('in-wechat')) {
-        
-        // 拦截“顶部登录/注册”按钮 (现在它在刚加载的导航栏里)
         const headerLoginButton = document.querySelector('a[onclick*="openLoginModal"]');
         if (headerLoginButton) {
             headerLoginButton.setAttribute('onclick', 'event.preventDefault();'); 
             headerLoginButton.addEventListener('click', function(e) {
-                e.preventDefault(); 
-                e.stopPropagation();
-                openWxSafeModal(); 
-            });
-        }
-        
-        // (拦截其他按钮...)
-        const arenaButtons = document.querySelectorAll('#arena a[href*="#arena-debate-details"]');
-        arenaButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault(); 
-                e.stopPropagation();
-                openWxSafeModal(); 
-            });
-        });
-
-        const reviewButton = document.querySelector('button[onclick*="openReviewModal"]');
-        if (reviewButton) {
-            reviewButton.setAttribute('onclick', ''); 
-            reviewButton.addEventListener('click', function(e) {
-                e.preventDefault(); 
-                e.stopPropagation();
-                openWxSafeModal(); 
+                e.preventDefault(); e.stopPropagation(); openWxSafeModal(); 
             });
         }
     }
 }
 
-// ----------------------------------------------------
-//  [启动] 页面加载时，立刻执行
-// ----------------------------------------------------
+// ==========================================================================
+// ⚙️ 立维核心交互驱动引擎 (电影视觉小说 + ARG 调查模块系统集成)
+// ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
-    loadHeader(); // 启动导航栏加载
-    
-    // 确保弹窗的关闭按钮和背景点击可以立即工作
-    window.addEventListener('click', (event) => {
-        if (event.target == wxSafeModal) {
-            closeWxSafeModal();
-        }
+    // 唤醒微信生态下的壳层安全防护
+    setupWeChatSecurity();
+
+    /* ----------------------------------------------------
+       ② 2.5D 视差舞台交互算法 (支持 PC 鼠标及移动端拖拽手势)
+       ---------------------------------------------------- */
+    const stage = document.getElementById('charStage');
+    const layers = stage.querySelectorAll('.parallax-layer');
+
+    function calculateParallax(moveX, moveY) {
+        layers.forEach(layer => {
+            const speed = layer.getAttribute('data-speed') || 0.2;
+            const x = moveX * speed * 40;
+            const y = moveY * speed * 30;
+            layer.style.transform = `translate(${x}px, ${y}px)`;
+            if(layer.classList.contains('grid-layer')) {
+                layer.style.transform = `translate(${x}px, ${y}px) perspective(500px) rotateX(60deg) scale(1.5)`;
+            }
+        });
+    }
+
+    stage.addEventListener('mousemove', (e) => {
+        const rect = stage.getBoundingClientRect();
+        const moveX = ((e.clientX - rect.left) / rect.width) - 0.5;
+        const moveY = ((e.clientY - rect.top) / rect.height) - 0.5;
+        calculateParallax(moveX, moveY);
     });
-    // (确保 .wx-safe-modal-close 上的 onclick="closeWxSafeModal()" 在HTML里)
+
+    stage.addEventListener('mouseleave', () => {
+        layers.forEach(layer => {
+            layer.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+            layer.style.transform = '';
+            if(layer.classList.contains('grid-layer')) {
+                layer.style.transform = 'perspective(500px) rotateX(60deg) scale(1.5)';
+            }
+        });
+        setTimeout(() => {
+            layers.forEach(layer => layer.style.transition = '');
+        }, 600);
+    });
+
+    /* ----------------------------------------------------
+       ③ 漫画气泡低频随机自言自语系统
+       ---------------------------------------------------- */
+    const bubbles = document.querySelectorAll('.manga-bubble');
+    let bubbleIndex = 0;
+
+    setInterval(() => {
+        bubbles.forEach(b => b.classList.remove('active'));
+        bubbleIndex = (bubbleIndex + 1) % bubbles.length;
+        if (bubbles[bubbleIndex]) {
+            bubbles[bubbleIndex].classList.add('active');
+            pushTicker(`检测到行为者自白更新: "${bubbles[bubbleIndex].querySelector('p').innerText.substring(0, 22)}..."`);
+        }
+    }, 6000);
+
+    /* ----------------------------------------------------
+       ④ ARG 调查端自动连线网络拓扑组件
+       ---------------------------------------------------- */
+    const canvas = document.getElementById('argCanvas');
+    const nodes = document.querySelectorAll('.arg-node');
+    
+    function drawArgMatrixLines() {
+        if(!canvas) return;
+        canvas.width = canvas.clientWidth;
+        canvas.height = canvas.clientHeight;
+        canvas.innerHTML = ''; 
+
+        let points = [];
+        nodes.forEach(node => {
+            const top = parseFloat(node.style.top) + (node.clientHeight / 2);
+            const left = parseFloat(node.style.left) + (node.clientWidth / 2);
+            points.push({x: left, y: top});
+        });
+
+        for (let i = 0; i < points.length - 1; i++) {
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', points[i].x);
+            line.setAttribute('y1', points[i].y);
+            line.setAttribute('x2', points[i+1].x);
+            line.setAttribute('y2', points[i+1].y);
+            line.setAttribute('stroke', 'rgba(0, 229, 255, 0.2)');
+            line.setAttribute('stroke-width', '1.5');
+            line.setAttribute('stroke-dasharray', '5,5');
+            canvas.appendChild(line);
+        }
+    }
+
+    nodes.forEach(node => {
+        node.addEventListener('mouseenter', () => {
+            nodes.forEach(n => n.classList.remove('active-node'));
+            node.classList.add('active-node');
+            pushTicker(`核心数据透传 // 正在解析节点：${node.querySelector('h5').innerText.split('[')[0]}`);
+        });
+    });
+
+    window.addEventListener('resize', drawArgMatrixLines);
+    setTimeout(drawArgMatrixLines, 500);
+
+    /* ----------------------------------------------------
+       ⑥ 动态字幕数据总线打字机模拟
+       ---------------------------------------------------- */
+    const tickerEl = document.getElementById('tickerText');
+    let tickerQueue = [
+        "观测坐标已确立 // 当前代号: 远行者路霄雲",
+        "警告：奉天郡连续性遭遇算法黑盒高阻截渗透",
+        "正在加载文明档案馆 V1.0 数据链..."
+    ];
+    let queueIndex = 0;
+
+    function pushTicker(text) {
+        tickerQueue.unshift(text); 
+        if(tickerQueue.length > 5) tickerQueue.pop();
+        triggerTypewriter(tickerQueue[0]);
+    }
+
+    function triggerTypewriter(text) {
+        if(!tickerEl) return;
+        let i = 0;
+        tickerEl.innerText = '';
+        function type() {
+            if (i < text.length) {
+                tickerEl.innerText += text.charAt(i);
+                i++;
+                setTimeout(type, 30); 
+            }
+        }
+        type();
+    }
+
+    setInterval(() => {
+        if(tickerQueue.length > 0) {
+            queueIndex = (queueIndex + 1) % tickerQueue.length;
+            triggerTypewriter(tickerQueue[queueIndex]);
+        }
+    }, 9000);
+
+    triggerTypewriter(tickerQueue[0]);
+    window.pushTicker = pushTicker;
 });
+
+/* ----------------------------------------------------
+   ⑤ 状态变化切换（弱交互环境变换控制引擎）
+   ---------------------------------------------------- */
+function switchMode(mode, btn) {
+    const btns = document.querySelectorAll('.status-tag-btn');
+    btns.forEach(b => b.classList.remove('active-status', 'danger-red'));
+    btn.classList.add('active-status');
+
+    document.body.classList.remove('memory-mode', 'danger-mode');
+
+    if(mode === 'memory') {
+        document.body.classList.add('memory-mode');
+        window.pushTicker("警告：神经安定协议挂起 // 深度基因记忆模式回溯中...");
+    } else if(mode === 'danger') {
+        document.body.classList.add('danger-mode');
+        btn.classList.add('danger-red');
+        window.pushTicker("CRITICAL ALERT // 遭受同质化算法全面通缉，防御阻断壁开启！");
+    } else {
+        window.pushTicker("状态复位：同步链路稳定，物理大地环境态安全。");
+    }
+}
 </script>
 
 <a href="javascript:history.back()" class="mobile-back-fab" aria-label="返回上一页">
     <span class="icon">←</span> <span class="text">返回</span>
 </a>
+
+<!-- 左右两侧固定罗马柱 -->
+<div id="pillar-left" class="cyber-pillar hide-on-mobile">
+    <div class="pillar-marquee marquee-down">
+        <div class="marquee-track">
+            <span>✍️</span><span>⚙️</span><span>🔬</span><span>🧬</span><span>👁️</span><span>🛠️</span><span>🎬</span><span>🏛️</span>
+            <span>✍️</span><span>⚙️</span><span>🔬</span><span>🧬</span><span>👁️</span><span>🛠️</span><span>🎬</span><span>🏛️</span>
+        </div>
+    </div>
+    <span class="vertical-text">✦ 8大阵营入口</span>
+</div>
+
+<div id="pillar-right" class="cyber-pillar hide-on-mobile" title="查看最新空间实验与文明日志" onclick="window.location.href='../index.html#press';">
+    <div class="pillar-marquee marquee-up">
+        <div class="marquee-track">
+            <span>阅</span><span>档</span><span>志</span><span>筑</span>
+            <span>阅</span><span>档</span><span>志</span><span>筑</span>
+        </div>
+    </div>
+    <span class="vertical-text" style="background: linear-gradient(180deg, #00f2fe 0%, #4facfe 100%) !important; color: #000000 !important; font-weight: 900 !important; letter-spacing: 4px !important; padding: 25px 8px !important;">✦ 研究档案</span>
+</div>
+
 </body>
 </html>
