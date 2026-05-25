@@ -1666,7 +1666,24 @@ if (window.innerWidth <= 768) {
 <script src="js/header.js"></script>
 
 
-
+<script>
+window.simulateLoginSuccess = function(userName, avatarPath) {
+    // 1. 写入本地身份档案
+    localStorage.setItem("lv_user_logged_in", "true");
+    localStorage.setItem("lv_user_name", userName);
+    localStorage.setItem("lv_user_avatar", avatarPath || "");
+    
+    // 2. 自动校准路径，防止 GitHub Pages 404
+    let REPO_BASE = "/";
+    if (window.location.pathname.includes('/levythos/')) {
+        REPO_BASE = "/levythos/";
+    }
+    
+    // 3. 强制跳转至通行证页面
+    console.log(`[TERMINAL AUTH] 确权成功: ${userName}，正在建立连接...`);
+    window.location.href = REPO_BASE + "philosophy/passport.html"; 
+};
+</script>
 
 <div id="pillar-left" class="cyber-pillar hide-on-mobile" onclick="openDrawer()">
     <div class="pillar-marquee marquee-down">
@@ -2099,7 +2116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (leftPillar) {
         // 彻底丢弃4秒的急躁闪烁，换用12秒的极慢速全息冷光扫描，使其像一个“冷静工作中的主站终端”
         setInterval(() => {
-            const txt = leftPillar.querySelector('.vertical-text');[
+            const txt = leftPillar.querySelector('.vertical-text');
             if(txt) {
                 txt.style.transition = 'box-shadow 2.5s cubic-bezier(0.4, 0, 0.2, 1)';
                 txt.style.boxShadow = '0 0 30px rgba(248, 181, 0, 0.55)';
