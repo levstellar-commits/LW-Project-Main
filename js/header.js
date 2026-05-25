@@ -13,6 +13,49 @@ document.addEventListener('DOMContentLoaded', () => {
         REPO_BASE = "/levythos/";
     }
 
+    // ==========================================
+    // 🛠️ 核心修复：将全局公共函数移到拦截器前方！
+    // 确保无论当前页面有没有动态骨架，星门弹窗逻辑都能被全局调用
+    // ==========================================
+
+    // 唤醒星门登录弹窗的公共全局函数接口
+    window.openLoginModal = function() {
+        const modal = document.getElementById('lv-login-modal');
+        if(modal) {
+            modal.style.display = 'flex';
+            setTimeout(() => { modal.classList.add('active'); }, 10);
+        }
+    };
+
+    window.closeLoginModal = function() {
+        const modal = document.getElementById('lv-login-modal');
+        if(modal) {
+            modal.classList.remove('active');
+            setTimeout(() => { modal.style.display = 'none'; }, 300);
+        }
+    };
+
+    // 用户在登录成功时调用的全局公共确权接口
+    window.simulateLoginSuccess = function(userName, avatarPath) {
+        localStorage.setItem("lv_user_logged_in", "true");
+        localStorage.setItem("lv_user_name", userName);
+        localStorage.setItem("lv_user_avatar", avatarPath || "");
+        
+        console.log(`[TERMINAL AUTH] 成功确权。观测员代号: ${userName}`);
+        // 自动重定位到第二层通行证中心，绝不 404
+        window.location.href = REPO_BASE + "philosophy/passport.html"; 
+    };
+
+    // 全局防呆监听：点击空白处自动收起下拉抽屉
+    document.addEventListener('click', () => {
+        const drawer = document.getElementById('userDropdownMenuDrawer');
+        if(drawer) drawer.style.display = 'none';
+    });
+
+
+    // ==========================================
+    // 🛑 拦截器：如果页面没有 header-placeholder，则停止注入 HTML，但不影响上面的全局函数
+    // ==========================================
     const placeholder = document.getElementById('header-placeholder');
     if (!placeholder) return;
 
@@ -140,51 +183,4 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
-
-    // 唤醒星门登录弹窗的公共全局函数接口
-    window.openLoginModal = function() {
-        const modal = document.getElementById('lv-login-modal');
-        if(modal) {
-            modal.style.display = 'flex';
-            setTimeout(() => { modal.classList.add('active'); }, 10);
-        }
-    };
-
-    window.closeLoginModal = function() {
-        const modal = document.getElementById('lv-login-modal');
-        if(modal) {
-            modal.classList.remove('active');
-            setTimeout(() => { modal.style.display = 'none'; }, 300);
-        }
-    };
-
-// 用户在登录成功时调用的全局公共确权接口（修复版）
-window.simulateLoginSuccess = function(userName, avatarPath) {
-    localStorage.setItem("lv_user_logged_in", "true");
-    localStorage.setItem("lv_user_name", userName);
-    localStorage.setItem("lv_user_avatar", avatarPath || "");
-    
-    console.log(`[TERMINAL AUTH] 成功确权。观测员代号: ${userName}`);
-    
-    // 自动检测并校准全站根路径，防止二级目录跳转 404
-    const pathName = window.location.pathname;
-    let REPO_BASE = "/";
-    if (pathName.includes('/levythos/')) {
-        REPO_BASE = "/levythos/";
-    }
-    
-    // 登录成功后，如果是弹窗状态，自动顺手把弹窗关掉
-    if (typeof window.closeLoginModal === 'function') {
-        window.closeLoginModal();
-    }
-    
-    // 执行带有安全前缀的绝对路径跳转
-    window.location.href = REPO_BASE + "philosophy/passport.html"; 
-};
-
-    // 全局防呆监听：点击空白处自动收起下拉抽屉
-    document.addEventListener('click', () => {
-        const drawer = document.getElementById('userDropdownMenuDrawer');
-        if(drawer) drawer.style.display = 'none';
-    });
 });
