@@ -922,3 +922,132 @@ select.form-control option { background-color: #0b1116; color: #ffffff; padding:
         transform: translate(-50%, -50%) !important;
         margin: 0 !important;
     }
+
+/* ==========================================================================
+   立维宇宙：手机端（MOBILE）导航栏强行复活与墨龙大图溢出终极手术补丁
+   ========================================================================== */
+@media (max-width: 768px) {
+    
+    /* ----------------------------------------------------------------------
+       1. 导航栏重塑：强行解冻 .site-nav，让菜单文字优雅、安全地在手机端排开
+       ---------------------------------------------------------------------- */
+    .site-nav {
+        display: flex !important; /* 强行破解原本的 display: none */
+        position: fixed !important;
+        top: 60px !important; /* 紧贴在头部 Logo 的下方 */
+        left: 0 !important;
+        width: 100% !important;
+        height: 44px !important;
+        background: rgba(4, 10, 20, 0.95) !important;
+        backdrop-filter: blur(8px) !important;
+        border-bottom: 1px solid rgba(255, 232, 185, 0.15) !important;
+        z-index: 9999 !important;
+        overflow-x: auto !important; /* 如果菜单字太多，允许手指横向滑动查看 */
+        overflow-y: hidden !important;
+        white-space: nowrap !important;
+        padding: 0 10px !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 12px !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* 优化导航内双行文本在手机端的精细度，防止重叠挤压 */
+    .site-nav .nav-item-dual {
+        display: inline-flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        padding: 2px 8px !important;
+        height: 36px !important;
+        flex-shrink: 0 !important;
+    }
+    .site-nav .nav-item-dual strong {
+        font-size: 12px !important;
+        line-height: 1.2 !important;
+    }
+    .site-nav .nav-item-dual span {
+        font-size: 9px !important;
+        line-height: 1.1 !important;
+        opacity: 0.6 !important;
+        margin-top: 1px !important;
+    }
+
+    /* 顶部主 Header 高度微调，为下方菜单腾出黄金视觉位 */
+    header.site-header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 60px !important;
+        background: #02060a !important;
+        z-index: 10000 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 0 16px !important;
+    }
+    
+    /* 修正主体内容外边距，防止首屏标题被上方双层常驻导航栏遮挡 */
+    main, #hero-cinematic {
+        margin-top: 104px !important; /* 60px header + 44px navbar */
+    }
+
+    /* ----------------------------------------------------------------------
+       2. 绝杀“驾驭墨龙”：强力粉碎半路跳出的大图，将其关进紧凑方格中
+       ---------------------------------------------------------------------- */
+    /* 锁定整个天问到耳畔区域 */
+    #bridge-immersive-full {
+        padding: 30px 16px !important;
+        overflow: hidden !important;
+    }
+    
+    /* 强行解除原本会导致元素掉队的横向滚动流 */
+    #bridge-immersive-full .bridge-layout {
+        display: block !important; /* 改为标准块级垂直流 */
+        overflow-x: visible !important;
+        width: 100% !important;
+    }
+
+    /* 让文本卡片乖乖单列纵向铺开 */
+    #bridge-immersive-full .clue-cards-column {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        margin-bottom: 16px !important;
+    }
+
+    /* 核心围剿：不管 HTML 怎么错位，强制将图片大容器以及里面所有的图（包含墨龙）
+       全部塞入一排精密的 3 列等宽矮格子网格中 */
+    #bridge-immersive-full .visual-container-compact,
+    #bridge-immersive-full .triptych-container {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important; /* 强行均分三列 */
+        gap: 6px !important;
+        width: 100% !important;
+        height: 85px !important; /* 高度死死压在 85 像素，绝不给变大的机会 */
+        max-height: 85px !important;
+        overflow: hidden !important;
+        margin-top: 12px !important;
+        padding: 0 !important;
+    }
+
+    /* 强制控制里面的每一张图（包含那个半路跳出来的墨龙图） */
+    #bridge-immersive-full .triptych-item,
+    #bridge-immersive-full .triptych-container img,
+    #bridge-immersive-full .bridge-layout img {
+        width: 100% !important;
+        height: 85px !important; /* 强制等高 */
+        max-height: 85px !important;
+        object-fit: cover !important; /* 裁剪填充，绝不拉伸变形 */
+        border-radius: 4px !important;
+    }
+
+    /* 降级手机端多余的纵向古风文字占位符，统一横向紧凑显示 */
+    #bridge-immersive-full .img-fallback-text {
+        font-size: 10px !important;
+        writing-mode: horizontal-tb !important;
+        line-height: 85px !important;
+        text-align: center !important;
+    }
+}
