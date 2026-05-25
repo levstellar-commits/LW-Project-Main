@@ -847,135 +847,56 @@ select.form-control option { background-color: #0b1116; color: #ffffff; padding:
     box-shadow: 0 0 20px rgba(0, 229, 255, 0.5) !important;
 }
 
-/* ==========================================================================
-   立维宇宙：手机端（MOBILE）长文本与多维卡片排版高级微调补丁
-   ========================================================================== */
-@media (max-width: 768px) {
-    /* 1. 顶部导航栏与品牌标识修复 */
-    header.site-header {
-        position: fixed !important; /* 让导航栏在手机端保持可见 */
-        background: rgba(2, 6, 10, 0.95) !important;
-        backdrop-filter: blur(10px) !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-        height: 70px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        padding: 0 16px !important;
+/* 4. 彻底重构“从天问到耳畔”版面：极致压缩大图，文字自适应 */
+    #bridge-immersive-full {
+        padding: 40px 16px !important; /* 压缩外边距，腾出屏幕空间 */
     }
-    .brand {
-        margin: 0 !important; /* 剔除多余居中，回正靠左 */
-        gap: 8px !important;
-    }
-    .brand img {
-        width: 36px !important;
-        height: 36px !important;
-    }
-    .brand-title {
-        font-size: 18px !important;
-        letter-spacing: 2px !important;
-    }
-    .brand-subtitle {
-        font-size: 10px !important;
-        letter-spacing: 3px !important;
-        margin-top: 2px !important;
-    }
-    .header-actions {
-        display: block !important; /* 唤醒接入终端按钮 */
-        margin-right: 0 !important;
-    }
-    .header-actions .nav-item-dual strong {
-        font-size: 13px !important;
-        color: var(--accent) !important;
-    }
-    .header-actions .nav-item-dual span {
-        display: none !important; /* 隐藏手机端冗余副标题 */
-    }
-
-    /* 2. 首屏视区文字过大与溢出平滑降级 */
-    #hero-cinematic {
-        padding: 0 20px !important;
-        min-height: 560px !important;
-        height: auto !important;
-    }
-    .hero-content {
-        margin-top: 40px !important;
-    }
-    #hero-line-1 {
-        font-size: 2rem !important; /* 从3.2rem平滑降级，防止字号暴走 */
-        line-height: 1.4 !important;
-        font-weight: 700 !important;
-        letter-spacing: 1px !important;
-        margin-bottom: 16px !important;
-    }
-    #hero-line-2 {
-        font-size: 0.95rem !important;
-        line-height: 1.7 !important;
-        max-width: 100% !important;
-        color: rgba(255, 255, 255, 0.8) !important;
-    }
-
-    /* 3. 强力破除“关于立维宇宙”卡片变高变瘦的致命硬伤 */
-    #about .about-grid {
-        display: flex !important;
-        flex-direction: column !important; /* 手机端强制改回垂直纵向堆叠 */
-        overflow-x: visible !important; /* 彻底卸载横向滚动 */
-        padding: 0 !important;
-        margin-top: 30px !important;
-        gap: 20px !important;
-    }
-    #about .card {
-        flex: none !important;
-        width: 100% !important; /* 卡片满宽展开 */
-        max-width: none !important;
-        box-sizing: border-box !important;
-        padding: 24px 20px !important;
-    }
-    #about .card strong {
-        text-align: left !important; /* 迎合阅读习惯改回左对齐 */
-        font-size: 1.1rem !important;
-    }
-
-    /* 4. 彻底重构“从天问到耳畔”版面：文字竖排 + 图片三格紧凑横排 */
     #bridge-immersive-full .bridge-layout {
         display: flex !important;
-        flex-direction: column !important; /* 纵向切分：上文字下图片 */
+        flex-direction: column !important; /* 上文下图 */
         overflow-x: visible !important;
         padding: 0 !important;
+        margin: 0 !important;
     }
     #bridge-immersive-full .clue-cards-column {
         display: flex !important;
         flex-direction: column !important;
-        gap: 12px !important;
+        gap: 10px !important;
         width: 100% !important;
+        padding: 0 !important;
     }
     #bridge-immersive-full .clue-cards-column .card.scene {
         flex: none !important;
         width: 100% !important;
-        padding: 16px !important;
+        padding: 14px 16px !important;
         box-sizing: border-box !important;
+        background: rgba(13, 22, 33, 0.95) !important;
     }
     #bridge-immersive-full .clue-cards-column .card.scene h4 {
         font-size: 0.95rem !important;
         line-height: 1.4 !important;
-        margin-bottom: 6px !important;
+        margin: 0 0 4px 0 !important;
     }
     #bridge-immersive-full .clue-cards-column .card.scene p {
         font-size: 0.8rem !important;
         line-height: 1.5 !important;
+        color: rgba(255, 255, 255, 0.7) !important;
     }
     
-    /* 独立修正图片盒子，使其不参与文字滚动，自成一派紧凑并排 */
+    /* 核心：将右侧图片块变成一排低调、不占地方的 1:1 小方格占位符 */
     #bridge-immersive-full .visual-container-compact {
+        display: block !important;
         width: 100% !important;
-        margin-top: 16px !important;
+        margin-top: 14px !important;
+        padding: 0 !important;
+        height: auto !important;
     }
     #bridge-immersive-full .triptych-container {
         display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important; /* 严格均分三列 */
+        grid-template-columns: repeat(3, 1fr) !important; /* 严格3列并排 */
         gap: 8px !important;
         width: 100% !important;
-        height: 110px !important; /* 压缩图片区块高度 */
+        height: 85px !important; /* 极客式瘦身：高度死死锁定在 85px，绝不暴走变大图 */
         padding: 0 !important;
         overflow: hidden !important;
     }
@@ -983,37 +904,21 @@ select.form-control option { background-color: #0b1116; color: #ffffff; padding:
         flex: none !important;
         width: 100% !important;
         height: 100% !important;
+        background: #090e15 !important;
+        border-radius: 6px !important;
+    }
+    #bridge-immersive-full .triptych-item img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        position: relative !important;
     }
     #bridge-immersive-full .triptych-item .img-fallback-text {
-        font-size: 11px !important;
-        writing-mode: horizontal-tb !important; /* 手机端字少，改成横向排版防止挤压 */
-        letter-spacing: 1px !important;
+        font-size: 10px !important;
+        writing-mode: horizontal-tb !important; /* 强制横排 */
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        margin: 0 !important;
     }
-
-    /* 5. 情感奇遇采集表单与自媒体数据总线自适应优化 */
-    .story-layout {
-        display: flex !important;
-        flex-direction: column !important;
-        overflow-x: visible !important;
-        padding: 0 !important;
-    }
-    .story-form-card {
-        width: 100% !important;
-        padding: 20px 16px !important;
-    }
-    .form-row {
-        grid-template-columns: 1fr !important; /* 表单项在手机端单列平铺 */
-        gap: 10px !important;
-    }
-    
-    /* 压缩卡片下方过宽的点赞分发总线，使其更契合手机屏幕 */
-    .lv-civilization-interact-bus {
-        padding: 6px 12px !important;
-        margin: 12px 0 0 0 !important;
-        border-radius: 8px !important;
-    }
-    .lv-civilization-interact-bus .interact-trigger-btn {
-        font-size: 12px !important;
-        gap: 4px !important;
-    }
-}
