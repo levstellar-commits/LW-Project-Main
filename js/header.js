@@ -13,10 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
         REPO_BASE = "/levythos/";
     }
 
-    // ==========================================
-    // 🛠️ 核心修复：将全局公共函数移到拦截器前方！
-    // 确保无论当前页面有没有动态骨架，星门弹窗逻辑都能被全局调用
-    // ==========================================
+    /* ==========================================================================
+       🌟 核心修复区：全局接口提升挂载
+       无论当前页面是否需要动态抓取 header，必须优先把“星门控制端”全局注册好，
+       防止因为页面结构不同导致接口缺失、点击无反应的问题。
+       ========================================================================== */
 
     // 唤醒星门登录弹窗的公共全局函数接口
     window.openLoginModal = function() {
@@ -53,10 +54,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // ==========================================
-    // 🛑 拦截器：如果页面没有 header-placeholder，则停止注入 HTML，但不影响上面的全局函数
-    // ==========================================
+    /* ==========================================================================
+       🛡️ 动态抓取与状态机引擎
+       ========================================================================== */
+
     const placeholder = document.getElementById('header-placeholder');
+    // 如果当前页面（如 index.html）没有 header-placeholder 占位符，
+    // 到这里安全退出，但上方的全局登录接口已经成功注册！
     if (!placeholder) return;
 
     // ⚡ 2. 动态组件结构注入
@@ -95,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. 【核心鉴权控制】未来切 Supabase 时，只需要把本函数内部读取 localStorage 换成真数据库读取即可！
+    // 【核心鉴权控制】未来切 Supabase 时，只需要把本函数内部读取 localStorage 换成真数据库读取即可
     function synchronizeUserTerminalStatus() {
         const isUserLoggedIn = localStorage.getItem("lv_user_logged_in") === "true";
         const savedUserName = localStorage.getItem("lv_user_name") || "星河灯塔";
@@ -158,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 6. 【弹窗仪轨联动】处理星门准入弹窗内部的硬核代号提取与提交动作
+    // 【弹窗仪轨联动】处理星门准入弹窗内部的硬核代号提取与提交动作
     function bindLoginModalEvents() {
         // 给输入框强制赋予一个硬核标志 ID，防止混乱的模糊抓取失败
         const modalInput = document.querySelector('#header-placeholder .lv-input');
