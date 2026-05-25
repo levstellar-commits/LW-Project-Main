@@ -1793,6 +1793,21 @@ function closeDrawer() {
 
 
 
+
+<script>
+// 星门登录舱控制脚本
+function openLoginModal() {
+    const modal = document.getElementById('lv-login-modal');
+    modal.style.display = 'flex';
+    setTimeout(() => { modal.classList.add('active'); }, 10);
+}
+function closeLoginModal() {
+    const modal = document.getElementById('lv-login-modal');
+    modal.classList.remove('active');
+    setTimeout(() => { modal.style.display = 'none'; }, 300);
+}
+</script>
+
 <script>
 /* =========================================================
    立维宇宙：共创与星联板块 动态随机盲盒加载系统 (1对1完美闭环版)
@@ -2377,17 +2392,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
             <div class="lv-divider"><span>或使用独立频段注册/登录</span></div>
             
-            <div class="lv-input-group">
-                      <input type="text" id="indexCivCodeInput" placeholder="设置文明代号 (对外展示的昵称)" class="lv-input" style="border-color: rgba(232, 185, 35, 0.4);">
-            </div>
-            <div class="lv-input-group">
-                <input type="text" placeholder="设置登录账号 (用户名/手机号)" class="lv-input">
-            </div>
-            <div class="lv-input-group">
-                <input type="password" placeholder="设置访问密钥 (密码)" class="lv-input">
-            </div>
-            
-        <button class="lv-btn-primary" id="indexRealitySubmitBtn" onclick="event.preventDefault(); const nameInput = document.getElementById('indexCivCodeInput') || document.querySelector('.lv-modal-body input[type=\'text\']'); const finalName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : '星河灯塔'; if(typeof window.simulateLoginSuccess === 'function') { window.simulateLoginSuccess(finalName, 'assets/images/archetype_narrative.jpg'); }">建立锚点 (立即确权)</button>
+<div class="lv-input-group">
+    <input type="text" id="indexCivCodeInput" placeholder="设置文明代号 (对外展示的昵称)" class="lv-input" style="border-color: rgba(232, 185, 35, 0.4);">
+</div>
+<div class="lv-input-group">
+    <input type="text" placeholder="设置登录账号 (用户名/手机号)" class="lv-input">
+</div>
+<div class="lv-input-group">
+    <input type="password" placeholder="设置访问密钥 (密码)" class="lv-input">
+</div>
+
+<button class="lv-btn-primary" id="indexRealitySubmitBtn" 
+        onclick="event.preventDefault(); 
+                 const nameInput = document.getElementById('indexCivCodeInput'); 
+                 const finalName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : '未知观测员'; 
+                 if(typeof window.simulateLoginSuccess === 'function') { 
+                     window.simulateLoginSuccess(finalName, 'assets/images/archetype_narrative.jpg'); 
+                 } else {
+                     alert('【终端提示】核心数据链（header.js）尚未加载完毕，请稍候再试。');
+                 }">
+    建立锚点 (立即确权)
+</button>
             
             <div style="text-align: center; margin-top: 15px;">
                  <a href="javascript:void(0);" onclick="alert('切换至登录模式')" style="color: #888; font-size: 12px; text-decoration: underline;">已有终端记录？点击直接登录</a>
