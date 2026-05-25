@@ -846,3 +846,174 @@ select.form-control option { background-color: #0b1116; color: #ffffff; padding:
     filter: brightness(1.1) !important;
     box-shadow: 0 0 20px rgba(0, 229, 255, 0.5) !important;
 }
+
+/* ==========================================================================
+   立维宇宙 (Levythos) - 手机端视觉与排版长效优化补丁 (2026.05.25)
+   ========================================================================== */
+@media (max-width: 768px) {
+  
+  /* [1] 头部与导航栏全量复活：不再直接粗暴 display:none */
+  header.site-header {
+    position: fixed !important; /* 恢复固定浮动 */
+    background: rgba(2, 6, 10, 0.95) !important;
+    backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.15) !important;
+    height: 64px !important;
+    padding: 0 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+  
+  /* 手机端只保留最核心的“立维百科”快捷入口，防止导航挤爆屏幕 */
+  header.site-header .site-nav {
+    display: flex !important;
+    margin-left: auto !important;
+    margin-right: 12px !important;
+    gap: 0 !important;
+  }
+  header.site-header .site-nav a {
+    display: none !important; /* 先隐藏其他常规标签 */
+  }
+  header.site-header .site-nav a[href*="encyclopedia"] {
+    display: flex !important; /* 强制复活百科按钮 */
+    font-size: 11px !important;
+    padding: 3px 8px !important;
+    transform: scale(0.9);
+  }
+  
+  header.site-header .header-actions {
+    display: flex !important; /* 让接入终端按钮在手机端回来 */
+    margin-right: 0 !important;
+  }
+  header.site-header .header-actions a {
+    font-size: 12px !important;
+    padding: 4px 10px !important;
+    border: 1px solid var(--accent) !important;
+    background: rgba(0,229,255,0.05) !important;
+    border-radius: 4px !important;
+  }
+  header.site-header .header-actions span {
+    display: none !important; /* 隐藏获取敕令小字，省空间 */
+  }
+
+  /* [2] 首屏 Cinematic 文本张力收敛 */
+  #hero-cinematic {
+    padding-top: 80px !important; /* 给固定导航留出呼吸安全区 */
+  }
+  #hero-line-1 {
+    font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif !important; /* 统一中文无衬线体 */
+    font-size: 1.85rem !important; /* 降低字号，防止两行小屏炸开 */
+    line-height: 1.45 !important;
+    letter-spacing: 1px !important;
+    font-weight: 800 !important;
+    white-space: normal !important;
+  }
+  #hero-line-2 {
+    font-size: 0.95rem !important;
+    line-height: 1.7 !important;
+    max-width: 90% !important;
+    color: rgba(255, 255, 255, 0.75) !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8) !important;
+  }
+
+  /* [3] 解锁被强行掰弯的“关于立维宇宙”三栏卡片、思想擂台与情感奇遇布局 */
+  .about-grid, 
+  .story-layout, 
+  .manifesto-grid, 
+  .arena-layout,
+  #about .about-grid {
+    display: flex !important;
+    flex-direction: column !important; /* 强制改回垂直上下流，禁止横向流产 */
+    overflow-x: visible !important;
+    scroll-snap-type: none !important;
+    padding: 0 4px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* 让解冻后的关于卡片完全撑满手机端横宽，汉字重新横向舒展阅读 */
+  #about .about-grid .card,
+  .story-layout .card,
+  .manifesto-grid .card {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 16px !important;
+    scroll-snap-align: none !important;
+    padding: 24px 20px !important;
+  }
+  
+  #about .about-grid .card strong {
+    text-align: left !important; /* 标题改回符合移动端阅读直觉的左对齐 */
+  }
+
+  /* [4] “从天问到耳畔” 深度重构补丁：彻底消灭竹竿文，转为精细 1:1 或卡片流 */
+  #bridge-immersive-full .bridge-layout {
+    display: flex !important;
+    flex-direction: column !important; /* 左右结构改上下 */
+    gap: 24px !important;
+  }
+  
+  #bridge-immersive-full .clue-cards-column {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+  
+  #bridge-immersive-full .clue-cards-column .card.scene {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    scroll-snap-align: none !important;
+    padding: 16px !important;
+  }
+
+  /* 纠正三个线索缩略图在手机端直接横向溢出导致小屏拉伸的恶性视觉 */
+  .visual-container-compact .triptych-container,
+  #bridge-immersive-full .triptych-container {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important; /* 严格3等分格子排在一行 */
+    gap: 8px !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 12px 0 0 0 !important;
+    overflow-x: visible !important;
+  }
+
+  #bridge-immersive-full .triptych-item {
+    flex: none !important;
+    width: 100% !important;
+    height: 110px !important; /* 给定一个理智的移动端正方形高度 */
+    position: relative !important;
+  }
+  
+  #bridge-immersive-full .triptych-item img {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  #bridge-immersive-full .triptych-item .img-fallback-text {
+    font-size: 11px !important;
+    writing-mode: horizontal-tb !important; /* 手机端字少，改回横排更清爽 */
+    letter-spacing: 1px !important;
+    width: 100% !important;
+    text-align: center !important;
+    left: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
+  }
+  
+  /* [5] 全局体验细节润色：优化字重与内边距，移除原生表格溢出隐患 */
+  body {
+    -webkit-font-smoothing: antialiased;
+    word-break: break-word; /* 逼迫长英文代码自动换行，防撑爆 */
+  }
+}
