@@ -847,132 +847,12 @@ select.form-control option { background-color: #0b1116; color: #ffffff; padding:
     box-shadow: 0 0 20px rgba(0, 229, 255, 0.5) !important;
 }
 
-/* 4. 彻底重构“从天问到耳畔”版面：极致压缩大图，文字自适应 */
-    #bridge-immersive-full {
-        padding: 40px 16px !important; /* 压缩外边距，腾出屏幕空间 */
-    }
-    #bridge-immersive-full .bridge-layout {
-        display: flex !important;
-        flex-direction: column !important; /* 上文下图 */
-        overflow-x: visible !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-    #bridge-immersive-full .clue-cards-column {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 10px !important;
-        width: 100% !important;
-        padding: 0 !important;
-    }
-    #bridge-immersive-full .clue-cards-column .card.scene {
-        flex: none !important;
-        width: 100% !important;
-        padding: 14px 16px !important;
-        box-sizing: border-box !important;
-        background: rgba(13, 22, 33, 0.95) !important;
-    }
-    #bridge-immersive-full .clue-cards-column .card.scene h4 {
-        font-size: 0.95rem !important;
-        line-height: 1.4 !important;
-        margin: 0 0 4px 0 !important;
-    }
-    #bridge-immersive-full .clue-cards-column .card.scene p {
-        font-size: 0.8rem !important;
-        line-height: 1.5 !important;
-        color: rgba(255, 255, 255, 0.7) !important;
-    }
-    
-    /* 核心：将右侧图片块变成一排低调、不占地方的 1:1 小方格占位符 */
-    #bridge-immersive-full .visual-container-compact {
-        display: block !important;
-        width: 100% !important;
-        margin-top: 14px !important;
-        padding: 0 !important;
-        height: auto !important;
-    }
-    #bridge-immersive-full .triptych-container {
-        display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important; /* 严格3列并排 */
-        gap: 8px !important;
-        width: 100% !important;
-        height: 85px !important; /* 极客式瘦身：高度死死锁定在 85px，绝不暴走变大图 */
-        padding: 0 !important;
-        overflow: hidden !important;
-    }
-    #bridge-immersive-full .triptych-item {
-        flex: none !important;
-        width: 100% !important;
-        height: 100% !important;
-        background: #090e15 !important;
-        border-radius: 6px !important;
-    }
-    #bridge-immersive-full .triptych-item img {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-        position: relative !important;
-    }
-    #bridge-immersive-full .triptych-item .img-fallback-text {
-        font-size: 10px !important;
-        writing-mode: horizontal-tb !important; /* 强制横排 */
-        position: absolute !important;
-        top: 50% !important;
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        margin: 0 !important;
-    }
-
 /* ==========================================================================
-   立维宇宙：手机端（MOBILE）导航栏强行复活与墨龙大图溢出终极手术补丁
+   立维宇宙：手机端（MOBILE）导航复活、登录重塑与墨龙溢出终极防沙雕补丁
    ========================================================================== */
 @media (max-width: 768px) {
     
-    /* ----------------------------------------------------------------------
-       1. 导航栏重塑：强行解冻 .site-nav，让菜单文字优雅、安全地在手机端排开
-       ---------------------------------------------------------------------- */
-    .site-nav {
-        display: flex !important; /* 强行破解原本的 display: none */
-        position: fixed !important;
-        top: 60px !important; /* 紧贴在头部 Logo 的下方 */
-        left: 0 !important;
-        width: 100% !important;
-        height: 44px !important;
-        background: rgba(4, 10, 20, 0.95) !important;
-        backdrop-filter: blur(8px) !important;
-        border-bottom: 1px solid rgba(255, 232, 185, 0.15) !important;
-        z-index: 9999 !important;
-        overflow-x: auto !important; /* 如果菜单字太多，允许手指横向滑动查看 */
-        overflow-y: hidden !important;
-        white-space: nowrap !important;
-        padding: 0 10px !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        gap: 12px !important;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    /* 优化导航内双行文本在手机端的精细度，防止重叠挤压 */
-    .site-nav .nav-item-dual {
-        display: inline-flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-        padding: 2px 8px !important;
-        height: 36px !important;
-        flex-shrink: 0 !important;
-    }
-    .site-nav .nav-item-dual strong {
-        font-size: 12px !important;
-        line-height: 1.2 !important;
-    }
-    .site-nav .nav-item-dual span {
-        font-size: 9px !important;
-        line-height: 1.1 !important;
-        opacity: 0.6 !important;
-        margin-top: 1px !important;
-    }
-
-    /* 顶部主 Header 高度微调，为下方菜单腾出黄金视觉位 */
+    /* 1. 顶部双层主 Header 重塑 */
     header.site-header {
         position: fixed !important;
         top: 0 !important;
@@ -985,30 +865,94 @@ select.form-control option { background-color: #0b1116; color: #ffffff; padding:
         align-items: center !important;
         justify-content: space-between !important;
         padding: 0 16px !important;
+        border-bottom: 1px solid rgba(255,255,255,0.1) !important;
     }
+    .brand { margin-left: 0 !important; justify-content: flex-start !important; max-width: 140px !important; }
+    .brand img { width: 32px !important; height: 32px !important; }
+    .brand-title { font-size: 16px !important; letter-spacing: 1px !important; }
     
-    /* 修正主体内容外边距，防止首屏标题被上方双层常驻导航栏遮挡 */
+    /* 修正主体内容外边距，防止首屏被双层导航栏遮挡 */
     main, #hero-cinematic {
         margin-top: 104px !important; /* 60px header + 44px navbar */
     }
 
-    /* ----------------------------------------------------------------------
-       2. 绝杀“驾驭墨龙”：强力粉碎半路跳出的大图，将其关进紧凑方格中
-       ---------------------------------------------------------------------- */
-    /* 锁定整个天问到耳畔区域 */
+    /* 2. 强行解冻手机端 site-nav 菜单栏并支持横向滑行 */
+    .site-nav {
+        display: flex !important;
+        position: fixed !important;
+        top: 60px !important; /* 紧贴在第一层下方 */
+        left: 0 !important;
+        width: 100% !important;
+        height: 44px !important;
+        background: rgba(4, 10, 20, 0.95) !important;
+        backdrop-filter: blur(8px) !important;
+        border-bottom: 1px solid rgba(232, 185, 35, 0.15) !important;
+        z-index: 9999 !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        white-space: nowrap !important;
+        padding: 0 10px !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 12px !important;
+        -webkit-overflow-scrolling: touch;
+    }
+    .site-nav::-webkit-scrollbar { display: none; } /* 隐藏手机端原生难看的滚动条 */
+
+    .site-nav .nav-item-dual {
+        display: inline-flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        padding: 2px 8px !important;
+        height: 36px !important;
+        flex-shrink: 0 !important;
+    }
+    .site-nav .nav-item-dual strong { font-size: 12px !important; line-height: 1.2 !important; }
+    .site-nav .nav-item-dual span { font-size: 9px !important; line-height: 1.1 !important; opacity: 0.6 !important; margin-top: 1px !important; }
+
+    /* 3. 右上角高亮【接入终端】胶囊按钮强制归位 */
+    .header-actions {
+        display: block !important;
+        position: fixed !important;
+        top: 13px !important;
+        right: 16px !important;
+        left: auto !important;
+        bottom: auto !important;
+        z-index: 100002 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    .header-actions #terminalLoginTriggerBtn,
+    .header-actions a.nav-item-dual {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: rgba(2, 6, 10, 0.9) !important;
+        border: 1px solid #00e5ff !important;
+        box-shadow: 0 0 10px rgba(0, 229, 255, 0.4) !important;
+        padding: 6px 12px !important;
+        border-radius: 4px !important;
+        height: 34px !important;
+        text-decoration: none !important;
+    }
+    .header-actions #terminalLoginTriggerBtn strong::after,
+    .header-actions a.nav-item-dual strong::after {
+        content: "终端" !important;
+    }
+    .header-actions #terminalLoginTriggerBtn strong,
+    .header-actions a.nav-item-dual strong { color: #00e5ff !important; font-size: 13px !important; font-weight: bold; }
+    .header-actions #terminalLoginTriggerBtn span, .header-actions a.nav-item-dual span { display: none !important; }
+
+    /* 4. 彻底合围拦截“天问到耳畔”，强制粉碎乱跳的墨龙大图 */
     #bridge-immersive-full {
         padding: 30px 16px !important;
         overflow: hidden !important;
     }
-    
-    /* 强行解除原本会导致元素掉队的横向滚动流 */
     #bridge-immersive-full .bridge-layout {
-        display: block !important; /* 改为标准块级垂直流 */
+        display: block !important; /* 解开有毒的 flex 横向拖动，回正为上下街区块 */
         overflow-x: visible !important;
         width: 100% !important;
     }
-
-    /* 让文本卡片乖乖单列纵向铺开 */
     #bridge-immersive-full .clue-cards-column {
         width: 100% !important;
         display: flex !important;
@@ -1016,39 +960,48 @@ select.form-control option { background-color: #0b1116; color: #ffffff; padding:
         gap: 10px !important;
         margin-bottom: 16px !important;
     }
+    #bridge-immersive-full .clue-cards-column .card.scene {
+        flex: none !important;
+        width: 100% !important;
+        padding: 14px 16px !important;
+        box-sizing: border-box !important;
+        background: rgba(13, 22, 33, 0.95) !important;
+    }
 
-    /* 核心围剿：不管 HTML 怎么错位，强制将图片大容器以及里面所有的图（包含墨龙）
-       全部塞入一排精密的 3 列等宽矮格子网格中 */
+    /* 将右侧图片总线及里面所有的图（包含乱跑的墨龙）焊死在 3 列均分矮网格里 */
     #bridge-immersive-full .visual-container-compact,
     #bridge-immersive-full .triptych-container {
         display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important; /* 强行均分三列 */
+        grid-template-columns: repeat(3, 1fr) !important;
         gap: 6px !important;
         width: 100% !important;
-        height: 85px !important; /* 高度死死压在 85 像素，绝不给变大的机会 */
+        height: 85px !important;
         max-height: 85px !important;
         overflow: hidden !important;
         margin-top: 12px !important;
         padding: 0 !important;
     }
-
-    /* 强制控制里面的每一张图（包含那个半路跳出来的墨龙图） */
     #bridge-immersive-full .triptych-item,
     #bridge-immersive-full .triptych-container img,
     #bridge-immersive-full .bridge-layout img {
         width: 100% !important;
-        height: 85px !important; /* 强制等高 */
+        height: 85px !important;
         max-height: 85px !important;
-        object-fit: cover !important; /* 裁剪填充，绝不拉伸变形 */
+        object-fit: cover !important;
         border-radius: 4px !important;
+        position: relative !important;
     }
-
-    /* 降级手机端多余的纵向古风文字占位符，统一横向紧凑显示 */
     #bridge-immersive-full .img-fallback-text {
         font-size: 10px !important;
         writing-mode: horizontal-tb !important;
         line-height: 85px !important;
         text-align: center !important;
+        position: absolute !important;
+        top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important;
     }
-}
 
+    /* 5. 破除潜藏的第三方作妖圆形悬浮挂件 */
+    .wl-login-radius, [style*="border-radius: 50%"][style*="position: fixed"] {
+        display: none !important;
+    }
+} /* 👈 这一行大括号完美闭合媒体查询，彻底锁定手机端！ */
