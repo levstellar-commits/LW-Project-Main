@@ -13,54 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         REPO_BASE = "/levythos/";
     }
 
-    /* ==========================================================================
-       🌟 核心修复区：全局接口提升挂载
-       无论当前页面是否需要动态抓取 header，必须优先把“星门控制端”全局注册好，
-       防止因为页面结构不同导致接口缺失、点击无反应的问题。
-       ========================================================================== */
-
-    // 唤醒星门登录弹窗的公共全局函数接口
-    window.openLoginModal = function() {
-        const modal = document.getElementById('lv-login-modal');
-        if(modal) {
-            modal.style.display = 'flex';
-            setTimeout(() => { modal.classList.add('active'); }, 10);
-        }
-    };
-
-    window.closeLoginModal = function() {
-        const modal = document.getElementById('lv-login-modal');
-        if(modal) {
-            modal.classList.remove('active');
-            setTimeout(() => { modal.style.display = 'none'; }, 300);
-        }
-    };
-
-    // 用户在登录成功时调用的全局公共确权接口
-    window.simulateLoginSuccess = function(userName, avatarPath) {
-        localStorage.setItem("lv_user_logged_in", "true");
-        localStorage.setItem("lv_user_name", userName);
-        localStorage.setItem("lv_user_avatar", avatarPath || "");
-        
-        console.log(`[TERMINAL AUTH] 成功确权。观测员代号: ${userName}`);
-        // 自动重定位到第二层通行证中心，绝不 404
-        window.location.href = REPO_BASE + "philosophy/passport.html"; 
-    };
-
-    // 全局防呆监听：点击空白处自动收起下拉抽屉
-    document.addEventListener('click', () => {
-        const drawer = document.getElementById('userDropdownMenuDrawer');
-        if(drawer) drawer.style.display = 'none';
-    });
-
-
-    /* ==========================================================================
-       🛡️ 动态抓取与状态机引擎
-       ========================================================================== */
-
     const placeholder = document.getElementById('header-placeholder');
-    // 如果当前页面（如 index.html）没有 header-placeholder 占位符，
-    // 到这里安全退出，但上方的全局登录接口已经成功注册！
     if (!placeholder) return;
 
     // ⚡ 2. 动态组件结构注入
@@ -99,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 【核心鉴权控制】未来切 Supabase 时，只需要把本函数内部读取 localStorage 换成真数据库读取即可
+    // 5. 【核心鉴权控制】未来切 Supabase 时，只需要把本函数内部读取 localStorage 换成真数据库读取即可！
     function synchronizeUserTerminalStatus() {
         const isUserLoggedIn = localStorage.getItem("lv_user_logged_in") === "true";
         const savedUserName = localStorage.getItem("lv_user_name") || "星河灯塔";
@@ -162,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 【弹窗仪轨联动】处理星门准入弹窗内部的硬核代号提取与提交动作
+    // 6. 【弹窗仪轨联动】处理星门准入弹窗内部的硬核代号提取与提交动作
     function bindLoginModalEvents() {
         // 给输入框强制赋予一个硬核标志 ID，防止混乱的模糊抓取失败
         const modalInput = document.querySelector('#header-placeholder .lv-input');
@@ -187,4 +140,38 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+
+    // 唤醒星门登录弹窗的公共全局函数接口
+    window.openLoginModal = function() {
+        const modal = document.getElementById('lv-login-modal');
+        if(modal) {
+            modal.style.display = 'flex';
+            setTimeout(() => { modal.classList.add('active'); }, 10);
+        }
+    };
+
+    window.closeLoginModal = function() {
+        const modal = document.getElementById('lv-login-modal');
+        if(modal) {
+            modal.classList.remove('active');
+            setTimeout(() => { modal.style.display = 'none'; }, 300);
+        }
+    };
+
+    // 用户在登录成功时调用的全局公共确权接口
+    window.simulateLoginSuccess = function(userName, avatarPath) {
+        localStorage.setItem("lv_user_logged_in", "true");
+        localStorage.setItem("lv_user_name", userName);
+        localStorage.setItem("lv_user_avatar", avatarPath || "");
+        
+        console.log(`[TERMINAL AUTH] 成功确权。观测员代号: ${userName}`);
+        // 自动重定位到第二层通行证中心，绝不 404
+        window.location.href = REPO_BASE + "philosophy/passport.html"; 
+    };
+
+    // 全局防呆监听：点击空白处自动收起下拉抽屉
+    document.addEventListener('click', () => {
+        const drawer = document.getElementById('userDropdownMenuDrawer');
+        if(drawer) drawer.style.display = 'none';
+    });
 });
