@@ -1088,48 +1088,6 @@ select.form-control option { background-color: #0b1116; color: #ffffff; padding:
     }
 
 
-/* Component visibility control */
-    #dawei-guide-widget, .dawei-guide, .hide-on-mobile { display: none; }
-    
-    .drawer-panel { bottom: 0; left: 0; width: 100vw; height: 85vh; border-radius: 20px 20px 0 0; transform: translateY(100%); border-top: 2px solid var(--accent-gold); padding-bottom: env(safe-area-inset-bottom); }
-    .drawer-panel.active { transform: translateY(0); }
-    .drawer-grid { grid-template-columns: 1fr; padding: 20px; gap: 15px; }
-    .drawer-header { padding: 15px 20px; }
-
-    /* 🔴 1. 强行在手机端彻底隐藏右侧“研究档案”，不留任何物理占位 */
-    #pillar-right {
-        display: none !important;
-    }
-
-    /* 🟡 2. 释放左侧罗马柱，让它在手机端变成专属的悬浮导航手柄（显示8大阵营） */
-    #pillar-left {
-        display: flex !important; 
-        position: fixed !important;
-        top: 50% !important;
-        left: 0 !important;
-        transform: translateY(-50%) !important;
-        width: 42px !important; /* 精致窄边，不遮挡常规阅读 */
-        height: 140px !important; /* 手机端黄金触控高度 */
-        border-radius: 0 8px 8px 0 !important;
-        z-index: 10001 !important;
-        background: rgba(4, 9, 20, 0.95) !important;
-        border-right: 2px solid var(--accent-gold) !important;
-        border-top: 1px solid rgba(255,255,255,0.1) !important;
-        border-bottom: 1px solid rgba(255,255,255,0.1) !important;
-    }
-    
-    #pillar-left .vertical-text {
-        font-size: 11px !important;
-        padding: 10px 4px !important;
-        letter-spacing: 2px !important;
-        line-height: 1.2 !important;
-    }
-    
-    #pillar-left .pillar-marquee {
-        display: none !important; /* 关掉手机端华而不实的滚动，防止CPU发热滑行卡顿 */
-    }
-
-
 /* ==========================================================================
    立维宇宙：手机端（MOBILE）导航栏强行复活与墨龙大图溢出终极手术补丁
    ========================================================================== */
@@ -1157,6 +1115,50 @@ select.form-control option { background-color: #0b1116; color: #ffffff; padding:
         justify-content: flex-start !important;
         gap: 12px !important;
         -webkit-overflow-scrolling: touch;
+    }
+
+/* ==========================================================================
+       【死锁隔离补丁】把组件控制塞入手机端媒体查询内部，绝对不准干扰电脑端
+       ========================================================================== */
+    #dawei-guide-widget, .dawei-guide, .hide-on-mobile { display: none !important; }
+    
+    .drawer-panel { bottom: 0 !important; left: 0 !important; width: 100vw !important; height: 85vh !important; border-radius: 20px 20px 0 0 !important; transform: translateY(100%) !important; border-top: 2px solid var(--accent-gold) !important; padding-bottom: env(safe-area-inset-bottom) !important; }
+    .drawer-panel.active { transform: translateY(0) !important; }
+    .drawer-grid { grid-template-columns: 1fr !important; padding: 20px !important; gap: 15px !important; }
+    .drawer-header { padding: 15px 20px !important; }
+
+    /* 🔴 1. 强行在手机端彻底隐藏右侧“研究档案”，电脑端放行 */
+    #pillar-right {
+        display: none !important;
+    }
+
+    /* 🟡 2. 强行复活左侧罗马柱，让它在手机端变成专属的金色悬浮手柄 */
+    #pillar-left {
+        display: flex !important; 
+        position: fixed !important;
+        top: 50% !important;
+        left: 0 !important;
+        transform: translateY(-50%) !important;
+        width: 42px !important; 
+        height: 140px !important; 
+        border-radius: 0 8px 8px 0 !important;
+        z-index: 10001 !important;
+        background: rgba(4, 9, 20, 0.95) !important;
+        border-right: 2px solid var(--accent-gold) !important;
+        border-top: 1px solid rgba(255,255,255,0.1) !important;
+        border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+    }
+    
+    #pillar-left .vertical-text {
+        font-size: 11px !important;
+        padding: 10px 4px !important;
+        letter-spacing: 2px !important;
+        line-height: 1.2 !important;
+        display: block !important;
+    }
+    
+    #pillar-left .pillar-marquee {
+        display: none !important; 
     }
 
     /* 优化导航内双行文本在手机端的精细度，防止重叠挤压 */
