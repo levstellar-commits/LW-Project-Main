@@ -1261,3 +1261,95 @@ select.form-control option { background-color: #0b1116; color: #ffffff; padding:
     }
 }
 
+
+
+/* ==========================================================================
+   立维宇宙：导航栏格式精准调校样式 (完美保留长文本)
+   ========================================================================== */
+
+/* 导航栏整体间距与大屏对齐 */
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 30px;
+    background-color: #05090e;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+}
+
+/* 导航菜单容器：允许项目有合理的挤压宽度 */
+.site-nav {
+    display: flex;
+    align-items: stretch; /* 保证高度对齐 */
+    gap: 20px; /* 紧凑但理智的间距 */
+    flex: 1;
+    justify-content: center;
+}
+
+/* 双行导航项：强制居中，限定宽度以防挤压整行字号 */
+.nav-item-dual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    text-align: center;
+    max-width: 180px; /* 🔒 核心控宽：超过这个宽度副标题自动换行，不影响主字号 */
+}
+
+/* 主标题：恢复旧版舒服的大字和字重 */
+.nav-item-dual .nav-title {
+    font-size: 16px; /* 恢复清晰饱满的大字 */
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    white-space: nowrap; /* 主标题绝不换行 */
+}
+
+/* 副标题：亮青色，允许长文本自然换行并保持精致 */
+.nav-item-dual .nav-subtitle {
+    font-size: 11px;
+    color: #00e5ff; /* 还原图一亮丽的冷青色 */
+    font-weight: 400;
+    line-height: 1.3;
+    opacity: 0.9;
+    letter-spacing: 0.3px;
+    word-break: break-all; /* 允许长词在边界换行 */
+}
+
+/* 🌟 立维百科：独立金色细边框高光框 */
+.nav-item-encyclopedia {
+    border: 1px solid rgba(232, 185, 35, 0.6); /* 更加清爽的细金边 */
+    border-radius: 4px;
+    padding: 6px 12px;
+    background: rgba(232, 185, 35, 0.04);
+    box-shadow: 0 0 10px rgba(232, 185, 35, 0.15);
+}
+
+/* 立维百科内部字色单独锁定 */
+.nav-item-encyclopedia .nav-title {
+    color: #e8b923 !important; 
+}
+.nav-item-encyclopedia .nav-subtitle {
+    color: rgba(232, 185, 35, 0.85) !important;
+}
+
+/* 悬停动效 */
+.nav-item-dual:not(.nav-item-encyclopedia):hover .nav-title {
+    color: #00e5ff;
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+}
+.nav-item-encyclopedia:hover {
+    background: rgba(232, 185, 35, 0.08);
+    border-color: #e8b923;
+    box-shadow: 0 0 12px rgba(232, 185, 35, 0.3);
+}
+
+/* 📱 移动端自适应防崩塌断点 */
+@media (max-width: 1300px) {
+    .site-nav { gap: 10px; }
+    .nav-item-dual { max-width: 140px; }
+    .nav-item-dual .nav-title { font-size: 14px; }
+    .nav-item-dual .nav-subtitle { font-size: 10px; }
+}
