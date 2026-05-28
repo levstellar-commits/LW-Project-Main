@@ -175,3 +175,51 @@ document.addEventListener('DOMContentLoaded', () => {
         if(drawer) drawer.style.display = 'none';
     });
 });
+
+/* ==========================================================================
+   立维宇宙：子页面路径自动修正补丁 (追加在文件末尾，绝不影响原有逻辑)
+   ========================================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. 判断当前是否在子文件夹中 (例如 /characters/, /encyclopedia/ 等)
+    const isSubPage = window.location.pathname.includes('/characters/') || 
+                      window.location.pathname.includes('/philosophy/') ||
+                      window.location.pathname.includes('/encyclopedia/');
+    
+    // 如果不是子页面，不需要修正，直接退出
+    if (!isSubPage) return;
+
+    const basePath = "../";
+    
+    // 2. 延迟 500ms 执行，确保你原本 8000 多代码里的 Header 加载逻辑已经执行完毕
+    setTimeout(() => {
+        const headerElement = document.querySelector("header.site-header");
+        if (!headerElement) return;
+
+        // 修正品牌 Logo 路径返回主页
+        const brandLogo = headerElement.querySelector(".brand a");
+        if (brandLogo && !brandLogo.getAttribute("href").startsWith("http")) {
+            brandLogo.setAttribute("href", basePath + "INDEX.html");
+        }
+
+        // 修正菜单栏所有链接路径，自动补上 ../
+        const navLinks = headerElement.querySelectorAll(".site-nav a, .header-actions a");
+        navLinks.forEach(link => {
+            const href = link.getAttribute("href");
+            if (href && !href.startsWith("http") && !href.startsWith("../") && !href.startsWith("javascript")) {
+                if (href.startsWith("#")) {
+                    // 锚点链接修正为返回主页的锚点
+                    link.setAttribute("href", basePath + "INDEX.html" + href);
+                } else {
+                    link.setAttribute("href", basePath + href);
+                }
+            }
+        });
+
+        // 强制给子页面的登录按钮补上青色高亮框的类名 (解决子页没框的问题)
+        const loginBtn = headerElement.querySelector(".header-actions .nav-item-dual");
+        if (loginBtn && !loginBtn.classList.contains("nav-item-terminal")) {
+            loginBtn.classList.add("nav-item-terminal");
+        }
+        
+    }, 500); // 500毫秒的延迟为了给你原本的代码让路
+});
