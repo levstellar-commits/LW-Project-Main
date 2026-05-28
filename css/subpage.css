@@ -867,7 +867,7 @@ header.site-header {
     
     /* 1. 强力松绑主内衬：让行文、卡片两侧拥有呼吸安全缝隙，拒绝贴边 */
     main {
-        padding: 90px 16px 80px 16px !important; /* 预留顶部固定 header 的安全高度 */
+        padding: 90px 16px 80px 16px !important;
         width: 100% !important;
         max-width: 100vw !important;
         box-sizing: border-box !important;
@@ -876,12 +876,12 @@ header.site-header {
 
     /* 2. 电影感 Hero 顶罩高度等比内敛，防止手机一开屏全是图 */
     .subpage-hero {
-        height: 35vh !important; /* 锁死在屏幕高度的 35%，图景比例最舒服 */
+        height: 35vh !important;
         min-height: 240px !important;
         margin-top: -80px !important;
     }
     .subpage-hero h1 {
-        font-size: 2rem !important; /* 告别 52px 的暴走字号 */
+        font-size: 2rem !important;
         letter-spacing: 2px !important;
     }
     .subpage-hero h2 {
@@ -894,19 +894,19 @@ header.site-header {
 
     /* 3. 2.5D 角色全息剧场舞台高宽比重构：剔除庞大黑框 */
     .character-stage {
-        height: 320px !important; /* 从 550px 降落到 320px，紧凑精致 */
+        height: 320px !important;
         width: 100% !important;
         margin-bottom: 24px !important;
     }
     .character-stage .char-img-layer img {
-        height: 90% !important; /* 立绘稍微收缩，在格子内完美呈现 */
+        height: 90% !important;
         width: auto !important;
     }
 
     /* 4. 破除图文死锁：图文混排改用标准垂直单列堆叠流程 */
     .text-image-split {
         display: flex !important;
-        flex-direction: column !important; /* 强行改为：上字下图 或 上图下字 */
+        flex-direction: column !important;
         gap: 16px !important;
     }
     .text-image-split .split-text {
@@ -915,20 +915,20 @@ header.site-header {
     .text-image-split img,
     .text-image-split .split-image {
         width: 100% !important;
-        max-width: 340px !important; /* 限制图片最大宽度，防止单张大图撑满显得太粗犷 */
-        margin: 0 auto !important; /* 居中显示 */
+        max-width: 340px !important;
+        margin: 0 auto !important;
         height: auto !important;
-        aspect-ratio: 16 / 10 !important; /* 维持利落的微电影长宽比 */
+        aspect-ratio: 16 / 10 !important;
     }
 
     /* 5. 独白对话气泡框与解大为笔记排版压缩 */
     .manga-bubble-track {
-        min-height: auto !important; /* 解除高度锁死 */
+        min-height: auto !important;
         margin: 24px auto !important;
     }
     .manga-bubble {
-        position: relative !important; /* 由绝对定位改为相对占位，防止多条文字重叠在一起 */
-        display: none !important;      /* 配合你原有的 js 轮播逻辑 */
+        position: relative !important;
+        display: none !important;     
         padding: 16px 20px !important;
     }
     .manga-bubble.active {
@@ -946,44 +946,51 @@ header.site-header {
 
     /* 6. 数据索引网格与底部“探索下一站”全面单列降级 */
     .data-sheet {
-        grid-template-columns: 1fr !important; /* 变成一行一个核心特征 */
+        grid-template-columns: 1fr !important;
         border-radius: 8px !important;
     }
     .data-item {
         padding: 12px 16px !important;
     }
     .explore-grid {
-        grid-template-columns: 1fr !important; /* 变成一行一个探索卡片 */
+        grid-template-columns: 1fr !important;
         gap: 16px !important;
     }
     .explore-card {
-        height: 160px !important; /* 缩减推荐卡片高度，防无限往下刷 */
+        height: 160px !important;
     }
 
-    /* 7. 终端跑马灯字幕条弱化，防止它把底部的返回按钮（.mobile-back-fab）盖死 */
+    /* 7. 终端跑马灯字幕条弱化 */
     .terminal-ticker {
         padding: 6px 16px !important;
         font-size: 10px !important;
         height: 28px !important;
     }
     
-    /* 配合字幕条缩减，把返回按钮优雅地抬高一点，方便大拇指点按 */
+    /* 返回按钮在手机底部绝对居中 */
     .mobile-back-fab {
         bottom: 40px !important;
         left: 50% !important;
-        transform: translateX(-50%) !important; /* 在手机底部绝对居中，极其具有跑车中控台的爽快感 */
+        transform: translateX(-50%) !important;
         box-shadow: 0 8px 30px rgba(0,229,255,0.4) !important;
         background: rgba(4, 9, 20, 0.95) !important;
         border-color: #00e5ff !important;
     }
-}
+
+    /* 移动端自适应防崩塌断点及隐藏 */
+    .archive-container { padding: 0 20px !important; margin-top: 90px !important; }
+    .archive-grid-panel { grid-template-columns: 1fr !important; }
+    .site-nav, .header-actions, .hide-on-mobile, .cyber-pillar { display: none !important; }
+    header.site-header { position: absolute !important; justify-content: center !important; background: transparent !important; border: none !important; height: 60px !important; padding: 0 15px !important; }
+    .brand { margin-left: 0 !important; justify-content: center !important; }
+    .brand img { width: 32px !important; height: 32px !important; }
+} /* 👈 核心修改：在这里及时闭合手机端的媒体查询，不让它吞掉下面的全局代码 */
 
 
 /* ==========================================================================
-   立维宇宙：导航栏格式精准调校样式 (完美保留长文本)
+   立维宇宙：导航栏格式精准调校样式 (完美保留长文本 - 全局大屏应用)
    ========================================================================== */
 
-/* 导航栏整体间距与大屏对齐 */
 .site-header {
     display: flex;
     align-items: center;
@@ -993,16 +1000,14 @@ header.site-header {
     border-bottom: 1px solid rgba(0, 229, 255, 0.1);
 }
 
-/* 导航菜单容器：允许项目有合理的挤压宽度 */
 .site-nav {
     display: flex;
-    align-items: stretch; /* 保证高度对齐 */
-    gap: 20px; /* 紧凑但理智的间距 */
+    align-items: stretch;
+    gap: 20px;
     flex: 1;
     justify-content: center;
 }
 
-/* 双行导航项：强制居中，限定宽度以防挤压整行字号 */
 .nav-item-dual {
     display: flex;
     flex-direction: column;
@@ -1010,172 +1015,40 @@ header.site-header {
     justify-content: center;
     text-decoration: none;
     text-align: center;
-    max-width: 180px; /* 🔒 核心控宽：超过这个宽度副标题自动换行，不影响主字号 */
+    max-width: 180px;
 }
 
-/* 主标题：恢复旧版舒服的大字和字重 */
 .nav-item-dual .nav-title {
-    font-size: 16px; /* 恢复清晰饱满的大字 */
+    font-size: 16px;
     font-weight: 600;
     color: #ffffff;
     letter-spacing: 1px;
     margin-bottom: 5px;
-    white-space: nowrap; /* 主标题绝不换行 */
+    white-space: nowrap;
 }
 
-/* 副标题：亮青色，允许长文本自然换行并保持精致 */
 .nav-item-dual .nav-subtitle {
     font-size: 11px;
-    color: #00e5ff; /* 还原图一亮丽的冷青色 */
+    color: #00e5ff;
     font-weight: 400;
     line-height: 1.3;
     opacity: 0.9;
     letter-spacing: 0.3px;
-    word-break: break-all; /* 允许长词在边界换行 */
+    word-break: break-all;
 }
 
-/* 🌟 立维百科：独立金色细边框高光框 */
 .nav-item-encyclopedia {
-    border: 1px solid rgba(232, 185, 35, 0.6); /* 更加清爽的细金边 */
+    border: 1px solid rgba(232, 185, 35, 0.6) !important; 
     border-radius: 4px;
     padding: 6px 12px;
     background: rgba(232, 185, 35, 0.04);
     box-shadow: 0 0 10px rgba(232, 185, 35, 0.15);
 }
 
-/* 立维百科内部字色单独锁定 */
-.nav-item-encyclopedia .nav-title {
-    color: #e8b923 !important; 
-}
-.nav-item-encyclopedia .nav-subtitle {
-    color: rgba(232, 185, 35, 0.85) !important;
-}
+.nav-item-encyclopedia .nav-title { color: #e8b923 !important; }
+.nav-item-encyclopedia .nav-subtitle { color: rgba(232, 185, 35, 0.85) !important; }
 
-/* 悬停动效 */
-.nav-item-dual:not(.nav-item-encyclopedia):hover .nav-title {
-    color: #00e5ff;
-    text-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
-}
-.nav-item-encyclopedia:hover {
-    background: rgba(232, 185, 35, 0.08);
-    border-color: #e8b923;
-    box-shadow: 0 0 12px rgba(232, 185, 35, 0.3);
-}
-
-/* 📱 移动端自适应防崩塌断点 */
-@media (max-width: 1300px) {
-    .site-nav { gap: 10px; }
-    .nav-item-dual { max-width: 140px; }
-    .nav-item-dual .nav-title { font-size: 14px; }
-    .nav-item-dual .nav-subtitle { font-size: 10px; }
-}
-
-/* ==========================================================================
-   立维宇宙：子页面导航栏精准同步与登录终端粒子框 (全量对齐主页)
-   ========================================================================== */
-
-header.site-header {
-  height: 80px !important;
-  background: #05090e !important; /* 对齐主页深空暗色系 */
-  border-bottom: 1px solid rgba(0, 229, 255, 0.1) !important;
-  display: flex !important; 
-  align-items: center !important; 
-  justify-content: space-between !important;
-  padding: 0 40px !important;
-  position: fixed !important; 
-  top: 0 !important; 
-  left: 0 !important; 
-  width: 100% !important; 
-  z-index: 9999 !important;
-  box-sizing: border-box !important;
-}
-
-.brand { 
-  display: flex !important; 
-  align-items: center !important; 
-  gap: 12px !important; 
-}
-.brand img { 
-  width: 44px !important; 
-  height: 44px !important; 
-  display: block !important; 
-}
-.brand-text { 
-  display: flex !important; 
-  flex-direction: column !important; 
-  align-items: flex-start !important; 
-}
-.brand-title { 
-  font-size: 18px !important; 
-  font-weight: 700 !important; 
-  color: #ffffff !important; 
-  letter-spacing: 1px !important;
-  line-height: 1.2 !important;
-}
-.brand-subtitle { 
-  font-size: 11px !important; 
-  font-weight: 600 !important; 
-  color: #00e5ff !important; 
-  letter-spacing: 1px !important; 
-  line-height: 1 !important;
-  margin-top: 2px !important;
-}
-
-.site-nav { 
-  display: flex !important; 
-  align-items: stretch !important;
-  gap: 20px !important; 
-  flex: 1 !important;
-  justify-content: center !important;
-  margin: 0 !important;
-  padding: 0 20px !important;
-}
-
-.nav-item-dual { 
-  display: flex !important; 
-  flex-direction: column !important; 
-  align-items: center !important; 
-  justify-content: center !important; 
-  text-decoration: none !important; 
-  text-align: center !important;
-  max-width: 180px !important; /* 🔒 核心控宽：促成长文本精准折行 */
-}
-
-.nav-item-dual .nav-title { 
-  font-size: 16px !important; 
-  font-weight: 600 !important; 
-  color: #fff !important; 
-  letter-spacing: 1px !important;
-  margin-bottom: 5px !important;
-  white-space: nowrap !important;
-}
-
-.nav-item-dual .nav-subtitle { 
-  font-size: 11px !important; 
-  color: #00e5ff !important; 
-  font-weight: 400 !important;
-  line-height: 1.3 !important;
-  opacity: 0.9 !important;
-  letter-spacing: 0.3px !important;
-  word-break: break-all !important;
-}
-
-/* 立维百科专属细金框 */
-.nav-item-encyclopedia {
-  border: 1px solid rgba(232, 185, 35, 0.6) !important; 
-  border-radius: 4px !important;
-  padding: 6px 12px !important;
-  background: rgba(232, 185, 35, 0.04) !important;
-  box-shadow: 0 0 10px rgba(232, 185, 35, 0.15) !important;
-}
-.nav-item-encyclopedia .nav-title {
-  color: #e8b923 !important;
-}
-.nav-item-encyclopedia .nav-subtitle {
-  color: rgba(232, 185, 35, 0.85) !important;
-}
-
-/* 接入终端全息青色框 */
+/* 接入终端全息青色框修正 */
 .nav-item-terminal {
   border: 1px solid rgba(0, 229, 255, 0.5) !important;
   border-radius: 4px !important;
@@ -1183,23 +1056,17 @@ header.site-header {
   background: rgba(0, 229, 255, 0.04) !important;
   box-shadow: 0 0 10px rgba(0, 229, 255, 0.15) !important;
 }
-.nav-item-terminal .nav-title {
-  color: #ffffff !important;
-}
-.nav-item-terminal .nav-subtitle {
-  color: #00e5ff !important;
-  font-weight: bold !important;
-}
+.nav-item-terminal .nav-title { color: #ffffff !important; }
+.nav-item-terminal .nav-subtitle { color: #00e5ff !important; font-weight: bold !important; }
 
-/* 悬停动效控制 */
-.nav-item-dual:not(.nav-item-encyclopedia):not(.nav-item-terminal):hover .nav-title { 
-  color: #00e5ff !important; 
-  text-shadow: 0 0 8px rgba(0, 229, 255, 0.5) !important;
+.nav-item-dual:not(.nav-item-encyclopedia):not(.nav-item-terminal):hover .nav-title {
+    color: #00e5ff !important;
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.5) !important;
 }
 .nav-item-encyclopedia:hover {
-  background: rgba(232, 185, 35, 0.08) !important;
-  border-color: #e8b923 !important;
-  box-shadow: 0 0 12px rgba(232, 185, 35, 0.3) !important;
+    background: rgba(232, 185, 35, 0.08) !important;
+    border-color: #e8b923 !important;
+    box-shadow: 0 0 12px rgba(232, 185, 35, 0.3) !important;
 }
 .nav-item-terminal:hover {
   background: rgba(0, 229, 255, 0.1) !important;
@@ -1207,24 +1074,10 @@ header.site-header {
   box-shadow: 0 0 12px rgba(0, 229, 255, 0.35) !important;
 }
 
-.header-actions { 
-  display: flex !important;
-  align-items: center !important;
-}
-
-/* 中小屏自适应降级断点 */
+/* 💻 独立断点：iPad 与中屏响应式缩放 */
 @media (max-width: 1300px) {
-  .site-nav { gap: 10px !important; }
-  .nav-item-dual { max-width: 140px !important; }
-  .nav-item-dual .nav-title { font-size: 14px !important; }
-  .nav-item-dual .nav-subtitle { font-size: 10px !important; }
-}
-
-@media (max-width: 768px) {
-  .archive-container { padding: 0 20px !important; margin-top: 90px !important; }
-  .archive-grid-panel { grid-template-columns: 1fr !important; }
-  .site-nav, .header-actions, .hide-on-mobile, .cyber-pillar { display: none !important; }
-  header.site-header { position: absolute !important; justify-content: center !important; background: transparent !important; border: none !important; height: 60px !important; padding: 0 15px !important; }
-  .brand { margin-left: 0 !important; justify-content: center !important; }
-  .brand img { width: 32px !important; height: 32px !important; }
+    .site-nav { gap: 10px !important; }
+    .nav-item-dual { max-width: 140px !important; }
+    .nav-item-dual .nav-title { font-size: 14px !important; }
+    .nav-item-dual .nav-subtitle { font-size: 10px !important; }
 }
