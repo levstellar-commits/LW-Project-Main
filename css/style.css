@@ -1353,3 +1353,24 @@ select.form-control option { background-color: #0b1116; color: #ffffff; padding:
     .nav-item-dual .nav-title { font-size: 14px; }
     .nav-item-dual .nav-subtitle { font-size: 10px; }
 }
+
+/* 接入终端全息青色框 (同步给主页) */
+.nav-item-terminal {
+    border: 1px solid rgba(0, 229, 255, 0.5) !important;
+    border-radius: 4px !important;
+    padding: 6px 14px !important;
+    background: rgba(0, 229, 255, 0.04) !important;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.15) !important;
+}
+.nav-item-terminal .nav-title {
+    color: #ffffff !important;
+}
+.nav-item-terminal .nav-subtitle {
+    color: #00e5ff !important;
+    font-weight: bold !important;
+}
+.nav-item-terminal:hover {
+    background: rgba(0, 229, 255, 0.1) !important;
+    border-color: #00e5ff !important;
+    box-shadow: 0 0 12px rgba(0, 229, 255, 0.35) !important;
+}
