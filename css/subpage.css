@@ -864,8 +864,6 @@ header.site-header {
    立维宇宙：子页面（SUBPAGE）手机端电影感重工业视觉平滑降级补丁
    ========================================================================== */
 @media (max-width: 768px) {
-    
-    /* 1. 强力松绑主内衬：让行文、卡片两侧拥有呼吸安全缝隙，拒绝贴边 */
     main {
         padding: 90px 16px 80px 16px !important;
         width: 100% !important;
@@ -873,8 +871,6 @@ header.site-header {
         box-sizing: border-box !important;
         overflow-x: hidden !important;
     }
-
-    /* 2. 电影感 Hero 顶罩高度等比内敛，防止手机一开屏全是图 */
     .subpage-hero {
         height: 35vh !important;
         min-height: 240px !important;
@@ -891,8 +887,6 @@ header.site-header {
     .subpage-hero-overlay {
         padding-bottom: 24px !important;
     }
-
-    /* 3. 2.5D 角色全息剧场舞台高宽比重构：剔除庞大黑框 */
     .character-stage {
         height: 320px !important;
         width: 100% !important;
@@ -902,8 +896,6 @@ header.site-header {
         height: 90% !important;
         width: auto !important;
     }
-
-    /* 4. 破除图文死锁：图文混排改用标准垂直单列堆叠流程 */
     .text-image-split {
         display: flex !important;
         flex-direction: column !important;
@@ -920,8 +912,6 @@ header.site-header {
         height: auto !important;
         aspect-ratio: 16 / 10 !important;
     }
-
-    /* 5. 独白对话气泡框与解大为笔记排版压缩 */
     .manga-bubble-track {
         min-height: auto !important;
         margin: 24px auto !important;
@@ -943,8 +933,6 @@ header.site-header {
         font-size: 0.85rem !important;
         line-height: 1.6 !important;
     }
-
-    /* 6. 数据索引网格与底部“探索下一站”全面单列降级 */
     .data-sheet {
         grid-template-columns: 1fr !important;
         border-radius: 8px !important;
@@ -959,15 +947,11 @@ header.site-header {
     .explore-card {
         height: 160px !important;
     }
-
-    /* 7. 终端跑马灯字幕条弱化 */
     .terminal-ticker {
         padding: 6px 16px !important;
         font-size: 10px !important;
         height: 28px !important;
     }
-    
-    /* 返回按钮在手机底部绝对居中 */
     .mobile-back-fab {
         bottom: 40px !important;
         left: 50% !important;
@@ -976,21 +960,17 @@ header.site-header {
         background: rgba(4, 9, 20, 0.95) !important;
         border-color: #00e5ff !important;
     }
-
-    /* 移动端自适应防崩塌断点及隐藏 */
     .archive-container { padding: 0 20px !important; margin-top: 90px !important; }
     .archive-grid-panel { grid-template-columns: 1fr !important; }
     .site-nav, .header-actions, .hide-on-mobile, .cyber-pillar { display: none !important; }
     header.site-header { position: absolute !important; justify-content: center !important; background: transparent !important; border: none !important; height: 60px !important; padding: 0 15px !important; }
     .brand { margin-left: 0 !important; justify-content: center !important; }
     .brand img { width: 32px !important; height: 32px !important; }
-} /* 👈 核心修改：在这里及时闭合手机端的媒体查询，不让它吞掉下面的全局代码 */
-
+}
 
 /* ==========================================================================
    立维宇宙：导航栏格式精准调校样式 (完美保留长文本 - 全局大屏应用)
    ========================================================================== */
-
 .site-header {
     display: flex;
     align-items: center;
@@ -999,7 +979,6 @@ header.site-header {
     background-color: #05090e;
     border-bottom: 1px solid rgba(0, 229, 255, 0.1);
 }
-
 .site-nav {
     display: flex;
     align-items: stretch;
@@ -1007,7 +986,6 @@ header.site-header {
     flex: 1;
     justify-content: center;
 }
-
 .nav-item-dual {
     display: flex;
     flex-direction: column;
@@ -1017,7 +995,6 @@ header.site-header {
     text-align: center;
     max-width: 180px;
 }
-
 .nav-item-dual .nav-title {
     font-size: 16px;
     font-weight: 600;
@@ -1026,7 +1003,6 @@ header.site-header {
     margin-bottom: 5px;
     white-space: nowrap;
 }
-
 .nav-item-dual .nav-subtitle {
     font-size: 11px;
     color: #00e5ff;
@@ -1036,7 +1012,6 @@ header.site-header {
     letter-spacing: 0.3px;
     word-break: break-all;
 }
-
 .nav-item-encyclopedia {
     border: 1px solid rgba(232, 185, 35, 0.6) !important; 
     border-radius: 4px;
@@ -1044,17 +1019,15 @@ header.site-header {
     background: rgba(232, 185, 35, 0.04);
     box-shadow: 0 0 10px rgba(232, 185, 35, 0.15);
 }
-
 .nav-item-encyclopedia .nav-title { color: #e8b923 !important; }
 .nav-item-encyclopedia .nav-subtitle { color: rgba(232, 185, 35, 0.85) !important; }
 
-/* 接入终端全息青色框修正 */
 .nav-item-terminal {
-  border: 1px solid rgba(0, 229, 255, 0.5) !important;
-  border-radius: 4px !important;
-  padding: 6px 14px !important;
-  background: rgba(0, 229, 255, 0.04) !important;
-  box-shadow: 0 0 10px rgba(0, 229, 255, 0.15) !important;
+    border: 1px solid rgba(0, 229, 255, 0.5) !important;
+    border-radius: 4px !important;
+    padding: 6px 14px !important;
+    background: rgba(0, 229, 255, 0.04) !important;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.15) !important;
 }
 .nav-item-terminal .nav-title { color: #ffffff !important; }
 .nav-item-terminal .nav-subtitle { color: #00e5ff !important; font-weight: bold !important; }
@@ -1069,12 +1042,11 @@ header.site-header {
     box-shadow: 0 0 12px rgba(232, 185, 35, 0.3) !important;
 }
 .nav-item-terminal:hover {
-  background: rgba(0, 229, 255, 0.1) !important;
-  border-color: #00e5ff !important;
-  box-shadow: 0 0 12px rgba(0, 229, 255, 0.35) !important;
+    background: rgba(0, 229, 255, 0.1) !important;
+    border-color: #00e5ff !important;
+    box-shadow: 0 0 12px rgba(0, 229, 255, 0.35) !important;
 }
 
-/* 💻 独立断点：iPad 与中屏响应式缩放 */
 @media (max-width: 1300px) {
     .site-nav { gap: 10px !important; }
     .nav-item-dual { max-width: 140px !important; }
@@ -1086,12 +1058,9 @@ header.site-header {
    【终极闭合补丁】全局子页面大屏导航栏与右侧罗马柱完美错位规范
    ========================================================================== */
 @media (min-width: 769px) {
-    /* 强制让统一的导航栏右边内衬留出 80px，死死把登录按钮顶在罗马柱左边，绝不穿帮 */
     header.site-header {
         padding-right: 80px !important; 
     }
-
-    /* 登录框右侧边距回正归零，不需要任何多余的 margin */
     header.site-header .header-actions {
         margin-right: 0 !important;
     }
