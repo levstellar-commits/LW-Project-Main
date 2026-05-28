@@ -1081,3 +1081,18 @@ header.site-header {
     .nav-item-dual .nav-title { font-size: 14px !important; }
     .nav-item-dual .nav-subtitle { font-size: 10px !important; }
 }
+
+/* ==========================================================================
+   【终极闭合补丁】全局子页面大屏导航栏与右侧罗马柱完美错位规范
+   ========================================================================== */
+@media (min-width: 769px) {
+    /* 强制让统一的导航栏右边内衬留出 80px，死死把登录按钮顶在罗马柱左边，绝不穿帮 */
+    header.site-header {
+        padding-right: 80px !important; 
+    }
+
+    /* 登录框右侧边距回正归零，不需要任何多余的 margin */
+    header.site-header .header-actions {
+        margin-right: 0 !important;
+    }
+}
