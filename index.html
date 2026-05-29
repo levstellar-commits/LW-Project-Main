@@ -127,8 +127,8 @@
             将华夏神话重构为浩瀚的东方科幻宇宙。<br>这里没有被算法围猎的看客，只有共同书写《宇宙编年史》的文明观测员。
         </p>
         <div class="hero-actions">
-            <a href="javascript:void(0);" onclick="openDrawer()" class="btn btn-primary">申请文明驻留</a>
-<a href="#contact" class="btn btn-outline-cyan">查阅工业白皮书</a>
+<!-- 🟢 换成这行：点一下，直接弹出登录确权舱 -->
+<a href="javascript:void(0);" onclick="event.preventDefault(); openLoginModal();" class="btn btn-outline-cyan">查阅工业白皮书</a>
             </div>
 
 </section>
@@ -1761,8 +1761,8 @@ window.simulateLoginSuccess = function(userName, avatarPath) {
                     <h4>【万象造物主】· 实体与微观赋能</h4>
                     <p class="d-desc"><strong>专属：</strong>手艺人、Coser、手办玩家的工坊。</p>
                 </div>
-            </a>
-            <a href="factions/promoters.html" class="drawer-card">
+            </a>     
+                <a href="factions/promoters.html" class="drawer-card">
                 <div class="d-icon">🎬</div>
                 <div class="d-info">
                     <h4>【矩阵布道者】· 传播与二创剪辑</h4>
@@ -1774,6 +1774,22 @@ window.simulateLoginSuccess = function(userName, avatarPath) {
                 <div class="d-info">
                     <h4>【初元先知会】· 殿堂级共建智库</h4>
                     <p class="d-desc"><strong>专属：</strong>投资人、学界大佬、专家的荣誉位。</p>
+                </div>
+            </a>
+            <!-- 🆕 新增第 9 阵营：星纪主理人（数实融合、大小老板与重资产盘活接口） -->
+            <a href="factions/space-共创.html" class="drawer-card" style="border: 1px solid rgba(232, 185, 35, 0.3); background: rgba(232, 185, 35, 0.02);">
+                <div class="d-icon">🌐</div>
+                <div class="d-info">
+                    <h4>【星纪主理人】· 存量空间活化与场景共创</h4>
+                    <p class="d-desc"><strong>专属：</strong>线下主理人、连锁品牌、存量资产与产业链持有者的协作结界。</p>
+                </div>
+            </a>
+            <!-- 🆕 新增第 10 阵营：枢纽构建者（大盘政策借势、规资住建与顶级智库防线） -->
+            <a href="factions/governance.html" class="drawer-card" style="border: 1px solid rgba(0, 229, 255, 0.3); background: rgba(0, 229, 255, 0.02);">
+                <div class="d-icon">🏛️</div>
+                <div class="d-info">
+                    <h4>【枢纽构建者】· 规划治理协同与大盘政策借势</h4>
+                    <p class="d-desc"><strong>专属：</strong>行业专家、学界翘楚、政策智库及存量资产大盘运营方的荣誉席位。</p>
                 </div>
             </a>
         </div>
